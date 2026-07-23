@@ -13,11 +13,14 @@ Python:
 
 from __future__ import annotations
 
+import re
+
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import (
     QAbstractItemView,
     QHeaderView,
+    QSizePolicy,
     QTableWidget,
     QTableWidgetItem,
     QWidget,
@@ -58,6 +61,7 @@ class ResultTable(QTableWidget):
         self.setHorizontalHeaderLabels(self.HEADERS)
 
         self.setAlternatingRowColors(True)
+        self.setFrameShape(QTableWidget.NoFrame)
 
         self.setSelectionBehavior(
             QAbstractItemView.SelectRows
@@ -72,10 +76,15 @@ class ResultTable(QTableWidget):
         )
 
         self.setWordWrap(True)
+        self.setCornerButtonEnabled(False)
+        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.setMinimumHeight(0)
 
         self.verticalHeader().setVisible(False)
 
         header = self.horizontalHeader()
+        header.setDefaultAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        header.setMinimumSectionSize(90)
 
         header.setSectionResizeMode(
             0,
@@ -144,7 +153,7 @@ class ResultTable(QTableWidget):
         )
 
         reason_item = QTableWidgetItem(
-            result.reason
+            self._format_reason(result.reason)
         )
 
         self._apply_status_color(
@@ -171,6 +180,17 @@ class ResultTable(QTableWidget):
         )
 
     # ---------------------------------------------------------
+
+    @staticmethod
+    def _format_reason(reason: str) -> str:
+        """Remove only leading numeric prefixes from display reasons."""
+        cleaned = reason.strip()
+        while True:
+            match = re.match(r"^\d+\.\s*", cleaned)
+            if match is None:
+                break
+            cleaned = cleaned[match.end():]
+        return cleaned
 
     @staticmethod
     def _apply_status_color(

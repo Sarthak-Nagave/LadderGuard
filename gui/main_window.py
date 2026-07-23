@@ -17,10 +17,14 @@ import sys
 import webbrowser
 from pathlib import Path
 
-from PySide6.QtGui import QAction, QCloseEvent
-from PySide6.QtCore import QObject, QThread, Signal
+from PySide6.QtGui import QAction, QCloseEvent, QColor, QGuiApplication
+from PySide6.QtCore import QObject, QThread, QFileSystemWatcher, Signal, Qt
 from PySide6.QtWidgets import (
+    QApplication,
+    QGraphicsDropShadowEffect,
     QFileDialog,
+    QFrame,
+    QGridLayout,
     QHBoxLayout,
     QLabel,
     QMainWindow,
@@ -91,10 +95,14 @@ class MainWindow(QMainWindow):
         self.project_path: Path | None = None
         self.worker: ValidationWorker | None = None
         self.thread: QThread | None = None
+        self._filesystem_watcher: QFileSystemWatcher | None = None
+        self._watched_paths: set[str] = set()
+        self._project_changed_pending = False
 
         self._build_ui()
         self._create_menu()
         self._connect_signals()
+        self._setup_file_watcher()
 
     # ---------------------------------------------------------
 
@@ -103,74 +111,94 @@ class MainWindow(QMainWindow):
         Build the main window.
         """
         self.setWindowTitle(APP_NAME)
-        self.resize(1200, 800)
+        self.resize(1600, 900)
+        self.setMinimumSize(1450, 820)
 
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
 
         main_layout = QVBoxLayout(central_widget)
-        main_layout.setContentsMargins(20, 20, 20, 20)
-        main_layout.setSpacing(15)
+        main_layout.setContentsMargins(12, 12, 12, 12)
+        main_layout.setSpacing(8)
 
-        #
-        # -----------------------------------------------------
-        # Project Selection
-        # -----------------------------------------------------
-        #
-        project_layout = QHBoxLayout()
+        header_frame = QFrame()
+        header_frame.setObjectName("HeaderPanel")
+        header_layout = QVBoxLayout(header_frame)
+        header_layout.setContentsMargins(12, 8, 12, 8)
+        header_layout.setSpacing(2)
+
+        title_label = QLabel("Operational Package Validator")
+        title_label.setObjectName("WindowTitle")
+        subtitle_label = QLabel("Industrial-grade validation workspace for engineering package integrity")
+        subtitle_label.setObjectName("WindowSubtitle")
+
+        header_layout.addWidget(title_label)
+        header_layout.addWidget(subtitle_label)
+
+        main_layout.addWidget(header_frame)
+
+        self.summary_container = QFrame()
+        self.summary_container.setObjectName("SummaryPanel")
+        self.summary_layout = QGridLayout(self.summary_container)
+        self.summary_layout.setContentsMargins(10, 10, 10, 10)
+        self.summary_layout.setSpacing(6)
+        self.summary_cards: dict[str, QFrame] = {}
+        self.summary_value_labels: dict[str, QLabel] = {}
+        self._build_summary_cards()
+        main_layout.addWidget(self.summary_container)
+
+        project_frame = QFrame()
+        project_frame.setObjectName("ProjectPanel")
+        project_layout = QHBoxLayout(project_frame)
+        project_layout.setContentsMargins(10, 6, 10, 6)
+        project_layout.setSpacing(8)
+
         project_label = QLabel("Project Folder")
+        project_label.setObjectName("SectionLabel")
         self.project_path_label = QLabel("No project selected")
         self.project_path_label.setSizePolicy(
             QSizePolicy.Expanding,
             QSizePolicy.Preferred,
         )
         self.project_path_label.setWordWrap(True)
+        self.project_path_label.setMinimumHeight(24)
+        self.project_path_label.setObjectName("ProjectPathLabel")
         self.browse_button = QPushButton("Browse...")
 
         project_layout.addWidget(project_label)
         project_layout.addWidget(self.project_path_label, 1)
         project_layout.addWidget(self.browse_button)
 
-        main_layout.addLayout(project_layout)
+        main_layout.addWidget(project_frame)
 
-        #
-        # -----------------------------------------------------
-        # Action Buttons
-        # -----------------------------------------------------
-        #
         button_layout = QHBoxLayout()
+        button_layout.setSpacing(8)
         self.validate_button = QPushButton("Validate Project")
         self.validate_button.setEnabled(False)
+        self.validate_button.setObjectName("PrimaryButton")
+        self.validate_button.setMinimumWidth(180)
         self.report_button = QPushButton("Generate Report")
         self.report_button.setEnabled(False)
+        self.report_button.setObjectName("SecondaryButton")
+        self.report_button.setMinimumWidth(180)
 
+        button_layout.addStretch(1)
         button_layout.addWidget(self.validate_button)
         button_layout.addWidget(self.report_button)
-        button_layout.addStretch()
+        button_layout.addStretch(1)
 
         main_layout.addLayout(button_layout)
 
-        #
-        # -----------------------------------------------------
-        # Progress Widget
-        # -----------------------------------------------------
-        #
         self.progress_widget = ProgressWidget()
+        self.progress_widget.setObjectName("ProgressWidget")
         main_layout.addWidget(self.progress_widget)
 
-        #
-        # -----------------------------------------------------
-        # Results Table
-        # -----------------------------------------------------
-        #
         self.result_table = ResultTable()
+        self.result_table.setObjectName("ResultTable")
         main_layout.addWidget(self.result_table, 1)
 
-        #
-        # -----------------------------------------------------
-        # Status Bar
-        # -----------------------------------------------------
-        #
+        self._apply_initial_geometry()
+
         self.status_bar = QStatusBar()
         self.setStatusBar(self.status_bar)
         self.status_bar.showMessage("Ready")
@@ -184,6 +212,183 @@ class MainWindow(QMainWindow):
         self.browse_button.clicked.connect(self._browse_project)
         self.validate_button.clicked.connect(self._start_validation)
         self.report_button.clicked.connect(self._generate_report)
+
+    # ---------------------------------------------------------
+
+    def _build_summary_cards(self) -> None:
+        """Create the summary cards shown at the top of the dashboard."""
+        cards = [
+            ("pass", "PASS"),
+            ("fail", "FAIL"),
+            ("warning", "WARNING"),
+            ("duration", "DURATION"),
+        ]
+
+        for index, (key, title) in enumerate(cards):
+            card = QFrame()
+            card.setObjectName("SummaryCard")
+            card_layout = QVBoxLayout(card)
+            card_layout.setContentsMargins(8, 6, 8, 6)
+            card_layout.setSpacing(1)
+
+            title_label = QLabel(title)
+            title_label.setObjectName("SummaryTitle")
+            title_label.setAlignment(Qt.AlignCenter)
+            value_label = QLabel("—")
+            value_label.setObjectName("SummaryValue")
+            value_label.setAlignment(Qt.AlignCenter)
+
+            card_layout.addWidget(title_label)
+            card_layout.addWidget(value_label)
+
+            card.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+            card.setMinimumHeight(46)
+            self._apply_card_shadow(card)
+            self.summary_cards[key] = card
+            self.summary_value_labels[key] = value_label
+            self.summary_layout.addWidget(card, 0, index)
+
+    # ---------------------------------------------------------
+
+    def _apply_card_shadow(self, widget: QWidget) -> None:
+        """Add a subtle shadow and hover polish to dashboard cards."""
+        shadow = QGraphicsDropShadowEffect(widget)
+        shadow.setBlurRadius(6)
+        shadow.setOffset(0, 1)
+        shadow.setColor(QColor(0, 0, 0, 10))
+        widget.setGraphicsEffect(shadow)
+
+    def _apply_initial_geometry(self) -> None:
+        """Center the window at a compact initial size."""
+        geometry = None
+
+        screens = QGuiApplication.screens()
+        if screens:
+            geometry = screens[0].availableGeometry()
+        else:
+            screen = QGuiApplication.primaryScreen()
+            if screen is not None:
+                geometry = screen.availableGeometry()
+
+        if geometry is None:
+            desktop = QApplication.desktop()
+            if desktop is not None:
+                geometry = desktop.availableGeometry()
+
+        if geometry is None:
+            self.resize(1600, 900)
+            return
+
+        width = min(1600, max(self.minimumWidth(), int(geometry.width() * 0.72)))
+        height = min(900, max(self.minimumHeight(), int(geometry.height() * 0.72)))
+        self.resize(width, height)
+        self.move(
+            geometry.left() + max(0, (geometry.width() - width) // 2),
+            geometry.top() + max(0, (geometry.height() - height) // 2),
+        )
+
+    # ---------------------------------------------------------
+
+    def _update_summary_cards(self, summary: ValidationSummary | None) -> None:
+        """Refresh the top summary cards with the newest validation data."""
+        if summary is None:
+            self.summary_value_labels["pass"].setText("—")
+            self.summary_value_labels["fail"].setText("—")
+            self.summary_value_labels["warning"].setText("—")
+            self.summary_value_labels["duration"].setText("—")
+            return
+
+        duration = "0s"
+        if summary.started_at and summary.finished_at:
+            elapsed = summary.finished_at - summary.started_at
+            seconds = int(elapsed.total_seconds())
+            duration = f"{seconds}s"
+
+        self.summary_value_labels["pass"].setText(str(summary.passed))
+        self.summary_value_labels["fail"].setText(str(summary.failed))
+        self.summary_value_labels["warning"].setText(str(summary.warnings))
+        self.summary_value_labels["duration"].setText(duration)
+
+    # ---------------------------------------------------------
+
+    def _setup_file_watcher(self) -> None:
+        """Set up filesystem watching for the selected project tree."""
+        self._filesystem_watcher = QFileSystemWatcher(self)
+        self._filesystem_watcher.directoryChanged.connect(self._handle_path_changed)
+        self._filesystem_watcher.fileChanged.connect(self._handle_path_changed)
+
+    # ---------------------------------------------------------
+
+    def _watch_project(self, project_path: Path | None) -> None:
+        """Watch the selected project folder and its current subdirectories."""
+        if self._filesystem_watcher is None:
+            self._setup_file_watcher()
+
+        if self._filesystem_watcher is None:
+            return
+
+        for watched_path in list(self._filesystem_watcher.files()) + list(self._filesystem_watcher.directories()):
+            self._filesystem_watcher.removePath(watched_path)
+
+        self._watched_paths.clear()
+
+        if project_path is None or not project_path.exists():
+            return
+
+        self._filesystem_watcher.addPath(str(project_path))
+        self._watched_paths.add(str(project_path))
+        self._watch_subdirectories(project_path)
+
+    # ---------------------------------------------------------
+
+    def _watch_subdirectories(self, directory: Path) -> None:
+        """Recursively watch current subdirectories for live changes."""
+        if self._filesystem_watcher is None:
+            return
+
+        try:
+            child_directories = sorted(
+                path
+                for path in directory.iterdir()
+                if path.is_dir()
+            )
+        except OSError:
+            return
+
+        for child_directory in child_directories:
+            path_str = str(child_directory)
+            if path_str in self._watched_paths:
+                continue
+
+            self._filesystem_watcher.addPath(path_str)
+            self._watched_paths.add(path_str)
+            self._watch_subdirectories(child_directory)
+
+    # ---------------------------------------------------------
+
+    def _handle_path_changed(self, path: str) -> None:
+        """Mark the current project as changed when the filesystem updates."""
+        if self.project_path is None:
+            return
+
+        self._project_changed_pending = True
+
+        if self.thread is not None and self.thread.isRunning():
+            logger.info("Project files changed during validation: {}", path)
+            return
+
+        self.status_bar.showMessage("Project files have changed. Click Validate to refresh.")
+
+    # ---------------------------------------------------------
+
+    def _reset_validation_state(self) -> None:
+        """Reset UI state and refresh flags before a new validation run."""
+        self.summary = None
+        self.result_table.clear_results()
+        self.progress_widget.reset()
+        self.report_button.setEnabled(False)
+        self._project_changed_pending = False
+        self._update_summary_cards(None)
 
     # ---------------------------------------------------------
 
@@ -211,13 +416,10 @@ class MainWindow(QMainWindow):
 
         self.project_path = selected_path
         self.project_path_label.setText(str(self.project_path))
+        self._watch_project(self.project_path)
 
         self.validate_button.setEnabled(True)
-        self.report_button.setEnabled(False)
-        self.result_table.clear_results()
-        self.progress_widget.reset()
-        self.summary = None
-
+        self._reset_validation_state()
         self.status_bar.showMessage("Project selected.")
         logger.info("Project selected: {}", self.project_path)
 
@@ -244,9 +446,7 @@ class MainWindow(QMainWindow):
             )
             return
 
-        self.summary = None
-        self.result_table.clear_results()
-        self.progress_widget.reset()
+        self._reset_validation_state()
         self.progress_widget.set_running()
         self.progress_widget.set_step("Starting validation...")
         self.status_bar.showMessage("Validation started...")
@@ -328,16 +528,21 @@ class MainWindow(QMainWindow):
         self.summary = summary
         self.result_table.load_summary(summary)
         self.result_table.resize_columns()
+        self._update_summary_cards(summary)
 
         self.progress_widget.set_success()
         self.progress_widget.set_step("Validation completed successfully.")
 
-        self.status_bar.showMessage(
-            f"Validation completed. "
-            f"Passed: {summary.passed} | "
-            f"Failed: {summary.failed} | "
-            f"Warnings: {summary.warnings}"
-        )
+        if self._project_changed_pending:
+            self.status_bar.showMessage("Project files have changed. Click Validate to refresh.")
+            self._project_changed_pending = False
+        else:
+            self.status_bar.showMessage(
+                f"Validation completed. "
+                f"Passed: {summary.passed} | "
+                f"Failed: {summary.failed} | "
+                f"Warnings: {summary.warnings}"
+            )
 
         self._set_validation_running(False)
         self.report_button.setEnabled(True)  # Strictly enforce enablement on success
@@ -490,6 +695,7 @@ class MainWindow(QMainWindow):
         self.project_path_label.setText("No project selected")
         self.progress_widget.reset()
         self.result_table.clear_results()
+        self._update_summary_cards(None)
         
         self.validate_button.setEnabled(False)
         self.report_button.setEnabled(False)

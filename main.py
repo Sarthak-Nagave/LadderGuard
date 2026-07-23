@@ -79,6 +79,7 @@ def main() -> int:
 
     app = QApplication(sys.argv)
 
+    app.setStyle("Fusion")
     app.setApplicationName(
         APP_NAME
     )

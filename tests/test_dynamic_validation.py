@@ -3,9 +3,12 @@ import unittest
 from pathlib import Path
 
 from core.validation_context import ValidationContext
-from core.validation_step import ValidationStatus
+from core.validation_step import ValidationStatus, ValidationStep
+from services.file_reader import FileReaderService
 from services.file_search import FileSearchService
+from services.signature_reader import SignatureReaderService
 from validators.bin_validator import BinValidator
+from validators.document_validator import DocumentValidator
 from validators.ladder_validator import LadderValidator
 
 
@@ -79,6 +82,64 @@ class DynamicValidationTests(unittest.TestCase):
             context.add_ladder_file("Master/QC", ladders_root / "Master" / "QC" / "beta.sdoc")
 
             validator = BinValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.PASS)
+
+    def test_test_report_validator_accepts_simple_layout(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            report_root = root / "4. Test Report"
+            report_root.mkdir(parents=True, exist_ok=True)
+            (report_root / "report_of_test-sgn.pdf").write_bytes(b"%PDF-1.4\n%fake")
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("4. Test Report", report_root)
+
+            validator = DocumentValidator(
+                ValidationStep.TEST_REPORT,
+                "4. Test Report",
+                FileSearchService(),
+                FileReaderService(),
+                SignatureReaderService(),
+            )
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.PASS)
+
+    def test_test_report_validator_accepts_structured_layout(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
+            report_root = root / "4. Test Report"
+            (ladders_root / "Master" / "Initial").mkdir(parents=True, exist_ok=True)
+            (ladders_root / "Master" / "QC").mkdir(parents=True, exist_ok=True)
+            (report_root / "Master" / "Initial").mkdir(parents=True, exist_ok=True)
+            (report_root / "Master" / "QC").mkdir(parents=True, exist_ok=True)
+            (ladders_root / "Master" / "Initial" / "alpha.sdoc").write_text(
+                "alpha",
+                encoding="utf-8",
+            )
+            (report_root / "Master" / "Initial" / "report_of_test-sgn.pdf").write_bytes(
+                b"%PDF-1.4\n%fake",
+                )
+            (report_root / "Master" / "QC" / "report_of_test-sgn.pdf").write_bytes(
+                b"%PDF-1.4\n%fake",
+            )
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
+            context.add_folder("4. Test Report", report_root)
+            context.add_discovered_path("Master/Initial", ladders_root / "Master" / "Initial")
+            context.add_discovered_path("Master/QC", ladders_root / "Master" / "QC")
+
+            validator = DocumentValidator(
+                ValidationStep.TEST_REPORT,
+                "4. Test Report",
+                FileSearchService(),
+                FileReaderService(),
+                SignatureReaderService(),
+            )
             result = validator.validate(context)
 
             self.assertEqual(result.status, ValidationStatus.PASS)

@@ -33,7 +33,7 @@ from config import (
 from core.base_validator import BaseValidator
 from core.validation_context import ValidationContext
 from core.validation_result import ValidationResult
-from core.validation_step import ValidationStep
+from core.validation_step import ValidationStatus, ValidationStep
 
 from models.signature_info import SignatureInfo
 
@@ -88,6 +88,12 @@ class DocumentValidator(BaseValidator):
             )
 
         self._write_debug_log(f"Folder exists: {folder}")
+
+        if self.step == ValidationStep.TEST_REPORT:
+            return self._validate_test_report_folder(
+                context=context,
+                folder=folder,
+            )
 
         try:
             document = self._discover_document(
@@ -202,6 +208,149 @@ class DocumentValidator(BaseValidator):
     # ---------------------------------------------------------
     # Private Helpers
     # ---------------------------------------------------------
+
+    def _validate_test_report_folder(
+        self,
+        context: ValidationContext,
+        folder: Path,
+    ) -> ValidationResult:
+        """Validate Test Report using either simple or structured layout."""
+        root_documents = [
+            document
+            for document in folder.iterdir()
+            if document.is_file()
+            and document.suffix.casefold() == ".pdf"
+            and SIGNED_DOCUMENT_SUFFIX.lower() in document.stem.lower()
+        ]
+
+        if root_documents:
+            if len(root_documents) != 1:
+                return self.fail_result(
+                    reason="Expected exactly one signed PDF in the Test Report root.",
+                    checked_path=folder,
+                    details={"documents": [str(path) for path in root_documents]},
+                )
+
+            document = root_documents[0]
+            context.add_document(self._folder_name, document)
+            return self.pass_result(
+                reason="Simple Test Report layout validated successfully.",
+                checked_path=document,
+                details={"document": str(document)},
+            )
+
+        discovered_paths = [
+            relative_path
+            for relative_path, _ in context.discovered_paths
+            if relative_path and "/" in relative_path
+        ]
+
+        if not discovered_paths:
+            return self.fail_result(
+                reason="No signed PDF found in the Test Report root and no ladder structure was discovered.",
+                checked_path=folder,
+            )
+
+        expected_paths = sorted({relative_path for relative_path in discovered_paths})
+        failures = []
+        discovered_documents = []
+
+        for relative_path in expected_paths:
+            stage_directory = folder / relative_path
+            if not stage_directory.exists():
+                failures.append(f"Missing folder '{relative_path}'.")
+                continue
+
+            staged_documents = [
+                document
+                for document in self._file_search.recursive_files(stage_directory, ".pdf")
+                if document.is_file()
+                and SIGNED_DOCUMENT_SUFFIX.lower() in document.stem.lower()
+            ]
+
+            if len(staged_documents) == 0:
+                failures.append(f"No signed PDF found in '{relative_path}'.")
+                continue
+
+            if len(staged_documents) != 1:
+                failures.append(f"Expected exactly one signed PDF in '{relative_path}'.")
+                continue
+
+            document = staged_documents[0]
+            context.add_document(self._folder_name, document)
+            discovered_documents.append(document)
+
+        if failures:
+            return self.fail_result(
+                reason="; ".join(failures),
+                checked_path=folder,
+                details={"failures": failures},
+            )
+
+        if len(discovered_documents) != len(expected_paths):
+            return self.fail_result(
+                reason="Structured Test Report validation did not discover the expected number of signed PDFs.",
+                checked_path=folder,
+                details={"expected": len(expected_paths), "found": len(discovered_documents)},
+            )
+
+        return self.pass_result(
+            reason="Structured Test Report validation completed successfully.",
+            checked_path=folder,
+            details={"documents": [str(path) for path in discovered_documents]},
+        )
+
+    def _validate_single_document(
+        self,
+        document: Path,
+        context: ValidationContext,
+    ) -> ValidationResult:
+        """Validate one signed document using the existing signature logic."""
+        try:
+            document_text = self._file_reader.read(document)
+        except Exception as exc:
+            return self.fail_result(
+                reason=f"Unable to read '{document.name}'.",
+                checked_path=document,
+                details={"exception": str(exc)},
+            )
+
+        try:
+            signatures = self._signature_reader.read(document)
+        except Exception as exc:
+            return self.fail_result(
+                reason=f"Unable to inspect signatures in '{document.name}'.",
+                checked_path=document,
+                details={"exception": str(exc)},
+            )
+
+        context.add_signature(self._folder_name, signatures)
+        signer_results = self._validate_signers(document_text=document_text, signatures=signatures)
+
+        details = {
+            "document": document.name,
+            "signers": [signer.to_dict() for signer in signer_results],
+        }
+
+        if all(signer.is_valid for signer in signer_results):
+            return self.pass_result(
+                reason=f"{self._folder_name} validated successfully.",
+                checked_path=document,
+                details=details,
+            )
+
+        detailed_reasons = []
+        for signer in signer_results:
+            if not signer.name_found:
+                detailed_reasons.append(f"Required signer '{signer.signer_name}' not found.")
+            elif not signer.signature_found:
+                detailed_reasons.append(f"Adobe Digital Signature missing for '{signer.signer_name}'.")
+
+        return self.fail_result(
+            reason="; ".join(detailed_reasons) if detailed_reasons else f"{self._folder_name} validation failed.",
+            checked_path=document,
+            details=details,
+        )
 
     def _discover_document(
         self,
