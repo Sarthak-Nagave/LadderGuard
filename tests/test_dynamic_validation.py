@@ -47,6 +47,26 @@ class DynamicValidationTests(unittest.TestCase):
                 ["Master/Initial", "Master/QC", "Slave/Voltage"],
             )
 
+    def test_ladder_validator_discovers_arbitrary_board_names(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
+            factory = ladders_root / "Factory"
+            (factory / "BurnIn").mkdir(parents=True, exist_ok=True)
+            (factory / "BurnIn" / "gamma.sdoc").write_text(
+                "gamma",
+                encoding="utf-8",
+            )
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
+
+            validator = LadderValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.PASS)
+            self.assertIn("Factory/BurnIn", context.ladder_files)
+
     def test_bin_validator_matches_discovered_folder_structure(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
@@ -82,6 +102,30 @@ class DynamicValidationTests(unittest.TestCase):
             context.add_ladder_file("Master/QC", ladders_root / "Master" / "QC" / "beta.sdoc")
 
             validator = BinValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.PASS)
+
+    def test_document_validator_uses_discovered_stage_folders(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            operational_root = root / "3. Operational Flow"
+            (operational_root / "Factory" / "BurnIn").mkdir(parents=True, exist_ok=True)
+            (operational_root / "Factory" / "BurnIn" / "flow-sgn.pdf").write_bytes(
+                b"%PDF-1.4\n%fake",
+                )
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("3. Operational Flow", operational_root)
+            context.add_discovered_path("Factory/BurnIn", operational_root / "Factory" / "BurnIn")
+
+            validator = DocumentValidator(
+                ValidationStep.OPERATIONAL_FLOW,
+                "3. Operational Flow",
+                FileSearchService(),
+                FileReaderService(),
+                SignatureReaderService(),
+            )
             result = validator.validate(context)
 
             self.assertEqual(result.status, ValidationStatus.PASS)

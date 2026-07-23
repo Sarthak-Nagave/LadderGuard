@@ -180,5 +180,6 @@ class ValidationContext:
         self.bin_files.clear()
         self.documents.clear()
         self.signatures.clear()
+        self.discovered_paths.clear()
         self.results.clear()
         self.metadata.clear()

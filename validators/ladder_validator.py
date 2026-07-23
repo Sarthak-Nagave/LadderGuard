@@ -66,24 +66,23 @@ class LadderValidator(BaseValidator):
         failures: list[str] = []
         discovered_files: dict[str, str] = {}
 
-        for branch_name in ("Master", "Slave"):
-            branch_directory = self._file_search.directory(
-                ladders_root,
-                branch_name,
+        board_directories = self._file_search.subdirectories(ladders_root)
+        if not board_directories:
+            return self.fail_result(
+                reason="No board folders were found under the ladders root.",
+                checked_path=ladders_root,
+                details={"failures": ["No board folders were found under the ladders root."]},
             )
 
-            if branch_directory is None:
-                failures.append(f"{branch_name} folder missing.")
-                continue
-
-            child_folders = self._file_search.subdirectories(branch_directory)
+        for board_directory in board_directories:
+            child_folders = self._file_search.subdirectories(board_directory)
             if not child_folders:
-                failures.append(f"{branch_name} has no subfolders.")
+                failures.append(f"{board_directory.name} has no stage subfolders.")
                 continue
 
             for child_folder in child_folders:
                 discovered_folders.append(child_folder)
-                relative_path = f"{branch_name}/{child_folder.name}"
+                relative_path = f"{board_directory.name}/{child_folder.name}"
 
                 context.add_discovered_path(relative_path, child_folder)
 
