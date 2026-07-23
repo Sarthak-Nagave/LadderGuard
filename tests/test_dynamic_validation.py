@@ -1,0 +1,88 @@
+import tempfile
+import unittest
+from pathlib import Path
+
+from core.validation_context import ValidationContext
+from core.validation_step import ValidationStatus
+from services.file_search import FileSearchService
+from validators.bin_validator import BinValidator
+from validators.ladder_validator import LadderValidator
+
+
+class DynamicValidationTests(unittest.TestCase):
+    def test_ladder_validator_discovers_dynamic_subfolders(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
+            master = ladders_root / "Master"
+            slave = ladders_root / "Slave"
+            (master / "Initial").mkdir(parents=True, exist_ok=True)
+            (master / "QC").mkdir(parents=True, exist_ok=True)
+            (slave / "Voltage").mkdir(parents=True, exist_ok=True)
+            (master / "Initial" / "alpha.sdoc").write_text(
+                "alpha",
+                encoding="utf-8",
+            )
+            (master / "QC" / "beta.sdoc").write_text(
+                "beta",
+                encoding="utf-8",
+            )
+            (slave / "Voltage" / "gamma.sdoc").write_text(
+                "gamma",
+                encoding="utf-8",
+            )
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
+
+            validator = LadderValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.PASS)
+            self.assertEqual(
+                sorted(context.ladder_files.keys()),
+                ["Master/Initial", "Master/QC", "Slave/Voltage"],
+            )
+
+    def test_bin_validator_matches_discovered_folder_structure(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
+            bin_root = root / "2. Bin File"
+            (ladders_root / "Master" / "Initial").mkdir(parents=True, exist_ok=True)
+            (ladders_root / "Master" / "QC").mkdir(parents=True, exist_ok=True)
+            (bin_root / "Master" / "Initial").mkdir(parents=True, exist_ok=True)
+            (bin_root / "Master" / "QC").mkdir(parents=True, exist_ok=True)
+            (ladders_root / "Master" / "Initial" / "alpha.sdoc").write_text(
+                "alpha",
+                encoding="utf-8",
+            )
+            (ladders_root / "Master" / "QC" / "beta.sdoc").write_text(
+                "beta",
+                encoding="utf-8",
+            )
+            (bin_root / "Master" / "Initial" / "alpha.bin").write_text(
+                "bin",
+                encoding="utf-8",
+            )
+            (bin_root / "Master" / "QC" / "beta.bin").write_text(
+                "bin",
+                encoding="utf-8",
+            )
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
+            context.add_folder("2. Bin File", bin_root)
+            context.add_discovered_path("Master/Initial", ladders_root / "Master" / "Initial")
+            context.add_discovered_path("Master/QC", ladders_root / "Master" / "QC")
+            context.add_ladder_file("Master/Initial", ladders_root / "Master" / "Initial" / "alpha.sdoc")
+            context.add_ladder_file("Master/QC", ladders_root / "Master" / "QC" / "beta.sdoc")
+
+            validator = BinValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.PASS)
+
+
+if __name__ == "__main__":
+    unittest.main()

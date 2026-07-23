@@ -1,0 +1,193 @@
+"""
+gui.progress_widget
+===================
+
+Reusable validation progress widget.
+
+Author:
+    Selec Controls Pvt. Ltd. - R&D
+
+Python:
+    3.12+
+"""
+
+from __future__ import annotations
+
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import (
+    QWidget,
+    QLabel,
+    QProgressBar,
+    QVBoxLayout,
+    QFrame,
+)
+
+
+class ProgressWidget(QFrame):
+    """
+    Displays the current validation progress.
+
+    This widget is presentation-only and does not
+    contain any validation logic.
+    """
+
+    def __init__(
+        self,
+        parent: QWidget | None = None,
+    ) -> None:
+        super().__init__(parent)
+
+        self._build_ui()
+
+        self.reset()
+
+    # ---------------------------------------------------------
+
+    def _build_ui(self) -> None:
+        """
+        Create all controls.
+        """
+
+        self.setObjectName("ProgressWidget")
+
+        self.setFrameShape(QFrame.StyledPanel)
+
+        layout = QVBoxLayout(self)
+
+        layout.setContentsMargins(20, 20, 20, 20)
+
+        layout.setSpacing(12)
+
+        title = QLabel("Validation Progress")
+
+        title.setObjectName("ProgressTitle")
+
+        self.step_label = QLabel()
+
+        self.step_label.setWordWrap(True)
+
+        self.progress_bar = QProgressBar()
+
+        self.progress_bar.setMinimum(0)
+
+        self.progress_bar.setMaximum(100)
+
+        self.progress_bar.setTextVisible(True)
+
+        self.progress_bar.setAlignment(Qt.AlignCenter)
+
+        self.status_label = QLabel()
+
+        self.status_label.setAlignment(Qt.AlignCenter)
+
+        layout.addWidget(title)
+
+        layout.addWidget(self.step_label)
+
+        layout.addWidget(self.progress_bar)
+
+        layout.addWidget(self.status_label)
+
+    # ---------------------------------------------------------
+
+    def reset(self) -> None:
+        """
+        Reset widget.
+        """
+
+        self.progress_bar.setValue(0)
+
+        self.step_label.setText(
+            "Waiting for validation..."
+        )
+
+        self.status_label.setText(
+            "Ready"
+        )
+
+        self.status_label.setStyleSheet(
+            ""
+        )
+
+    # ---------------------------------------------------------
+
+    def set_step(
+        self,
+        step: str,
+    ) -> None:
+        """
+        Update current validation step.
+        """
+
+        self.step_label.setText(step)
+
+    # ---------------------------------------------------------
+
+    def set_progress(
+        self,
+        value: int,
+    ) -> None:
+        """
+        Update progress percentage.
+        """
+
+        value = max(0, min(100, value))
+
+        self.progress_bar.setValue(value)
+
+    # ---------------------------------------------------------
+
+    def set_running(self) -> None:
+        """
+        Show running state.
+        """
+
+        self.status_label.setText(
+            "Running..."
+        )
+
+        self.status_label.setStyleSheet(
+            "color:#1976D2;font-weight:bold;"
+        )
+
+    # ---------------------------------------------------------
+
+    def set_success(self) -> None:
+        """
+        Show successful validation.
+        """
+
+        self.progress_bar.setValue(100)
+
+        self.status_label.setText(
+            "Validation Completed"
+        )
+
+        self.status_label.setStyleSheet(
+            "color:#2E7D32;font-weight:bold;"
+        )
+
+    # ---------------------------------------------------------
+
+    def set_failure(
+        self,
+        message: str = "Validation Failed",
+    ) -> None:
+        """
+        Show validation failure.
+        """
+
+        self.status_label.setText(message)
+
+        self.status_label.setStyleSheet(
+            "color:#D32F2F;font-weight:bold;"
+        )
+
+    # ---------------------------------------------------------
+
+    def finish(self) -> None:
+        """
+        Mark progress complete.
+        """
+
+        self.progress_bar.setValue(100)

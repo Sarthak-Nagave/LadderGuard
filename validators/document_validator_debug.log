@@ -1,0 +1,355 @@
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}, {'signer_name': 'Piyush S.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}, {'signer_name': 'Mohit S.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Passed condition result: False
+Final decision: FAIL
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\Input_of_Automation-sgn.pdf
+SignatureReader output for Input_of_Automation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\Input_of_Automation-sgn.pdf
+SignatureReader output for Input_of_Automation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\Input_of_Automation-sgn.pdf
+SignatureReader output for Input_of_Automation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Discovery failed: No signed document found in '5. Automation Input Doc'.
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': None, 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+No discovered ladder paths for folder: 3. Operational Flow
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+No discovered ladder paths for folder: 4. Test Report
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+No discovered ladder paths for folder: 5. Automation Input Doc
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+No discovered ladder paths for folder: 6. Ladder Flow
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Discovery failed: Expected 1 signed document but found 15.
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Discovery failed: Expected 1 signed document but found 15.
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Discovery failed: Expected 1 signed document but found 15.
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Passed condition result: False
+Final decision: FAIL
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Discovery failed: Expected 1 signed document but found 15.
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Passed condition result: False
+Final decision: FAIL
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Passed condition result: False
+Final decision: FAIL
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Passed condition result: False
+Final decision: FAIL
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Discovery failed: Expected 1 signed document but found 15.
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Passed condition result: False
+Final decision: FAIL
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit M.', 'name_found': False, 'signature_found': False, 'signed_at': None, 'certificate': None, 'is_valid': False}]
+Passed condition result: False
+Final decision: FAIL
+Starting validation for folder=3. Operational Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\3. Operational Flow\flow_of_operation-sgn.pdf
+SignatureReader output for flow_of_operation-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=4. Test Report
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\4. Test Report
+Discovery failed: Expected 1 signed document but found 15.
+Starting validation for folder=5. Automation Input Doc
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\5. Automation Input Doc\report_of_test-sgn.pdf
+SignatureReader output for report_of_test-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
+Starting validation for folder=6. Ladder Flow
+Folder exists: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow
+Signed document discovered: C:\Users\SM 464\Desktop\8.18.5 Operational Method\6. Ladder Flow\TCP _IP_SERVER-sgn.pdf
+SignatureReader output for TCP _IP_SERVER-sgn.pdf: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Signer results before final decision: [{'signer_name': 'Arjun V.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Arjun V., Organization: Selec Control Pvt. Ltd., Organizational Unit: Design Engineer, Email Address: hwtmr@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Piyush S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Piyush S., Organization: Selec Control Pvt.Ltd, Organizational Unit: Design Engineer, Email Address: PiyushS@selec.com, Country: IN', 'is_valid': True}, {'signer_name': 'Mohit S.', 'name_found': True, 'signature_found': True, 'signed_at': None, 'certificate': 'Common Name: Mohit S., Organization: Management Resource, Organizational Unit: Selec Control Pvt. Ltd., Email Address: MohitS@selec.com, Country: IN', 'is_valid': True}]
+Passed condition result: True
+Final decision: PASS
