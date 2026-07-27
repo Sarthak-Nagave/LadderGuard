@@ -54,16 +54,33 @@ class ChronologyValidatorTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             chronology_folder = root / "7. Chronology"
-            chronology_folder.mkdir(parents=True, exist_ok=True)
-            (chronology_folder / "Master" / "FactoryAcceptance").mkdir(parents=True, exist_ok=True)
-            (chronology_folder / "Master" / "FactoryAcceptance" / "timeline.txt").write_text(
-                "Revision 1",
-                encoding="utf-8",
+            stage_folder = chronology_folder / "Master" / "Initial"
+            stage_folder.mkdir(parents=True, exist_ok=True)
+
+            document = fitz.open()
+            page = document.new_page()
+            page.insert_text(
+                (72, 72),
+                "Chronology Report - Master Initial\n"
+                "Board\n"
+                "Testing Stage\n"
+                "BIN File\n"
+                "Version\n"
+                "Release Date\n"
+                "Reason for Upgrade\n"
+                "Master\n"
+                "Initial\n"
+                "firmware_V1.02.bin\n"
+                "V1.02\n"
+                "12-03-2026\n"
+                "N/A",
             )
+            document.save(stage_folder / "chronology.pdf")
+            document.close()
 
             context = ValidationContext(project_path=root)
             context.add_folder("7. Chronology", chronology_folder)
-            context.add_discovered_path("Master/FactoryAcceptance", root / "1. Ladders" / "Master" / "FactoryAcceptance")
+            context.add_discovered_path("Master/Initial", root / "1. Ladders" / "Master" / "Initial")
 
             validator = ChronologyValidator(FileSearchService())
             result = validator.validate(context)
@@ -71,11 +88,30 @@ class ChronologyValidatorTests(unittest.TestCase):
             self.assertEqual(result.status, ValidationStatus.PASS)
             self.assertEqual(result.reason, "Chronology folder validated successfully.")
 
+    def test_chronology_validator_fails_when_expected_pdf_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            chronology_folder = root / "7. Chronology"
+            stage_folder = chronology_folder / "Master" / "Initial"
+            stage_folder.mkdir(parents=True, exist_ok=True)
+            (stage_folder / "chronology.txt").write_text("placeholder", encoding="utf-8")
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("7. Chronology", chronology_folder)
+            context.add_discovered_path("Master/Initial", root / "1. Ladders" / "Master" / "Initial")
+
+            validator = ChronologyValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.FAIL)
+            self.assertIn("Missing Chronology PDF", result.reason)
+            self.assertIn("Master / Initial", result.reason)
+
     def test_chronology_validator_extracts_firmware_metadata_from_pdf(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             chronology_folder = root / "7. Chronology"
-            stage_folder = chronology_folder / "Master" / "FactoryAcceptance"
+            stage_folder = chronology_folder / "Master" / "Initial"
             stage_folder.mkdir(parents=True, exist_ok=True)
 
             document = fitz.open()
@@ -100,7 +136,7 @@ class ChronologyValidatorTests(unittest.TestCase):
             document.close()
 
             bin_root = root / "2. Bin File"
-            bin_stage_folder = bin_root / "Master" / "FactoryAcceptance"
+            bin_stage_folder = bin_root / "Master" / "Initial"
             bin_stage_folder.mkdir(parents=True, exist_ok=True)
             actual_bin_path = bin_stage_folder / "firmware_V1.02.bin"
             actual_bin_path.write_bytes(b"bin")
@@ -108,8 +144,8 @@ class ChronologyValidatorTests(unittest.TestCase):
             context = ValidationContext(project_path=root)
             context.add_folder("7. Chronology", chronology_folder)
             context.add_folder("2. Bin File", bin_root)
-            context.add_discovered_path("Master/FactoryAcceptance", root / "1. Ladders" / "Master" / "FactoryAcceptance")
-            context.add_bin_file("Master/FactoryAcceptance", actual_bin_path)
+            context.add_discovered_path("Master/Initial", root / "1. Ladders" / "Master" / "Initial")
+            context.add_bin_file("Master/Initial", actual_bin_path)
 
             validator = ChronologyValidator(FileSearchService())
             result = validator.validate(context)
@@ -122,6 +158,54 @@ class ChronologyValidatorTests(unittest.TestCase):
             self.assertEqual(result.details["stages"][0]["version"], "V1.02")
             self.assertEqual(result.details["stages"][0]["release_date"], "12-03-2026")
             self.assertEqual(result.details["stages"][0]["reason_for_upgrade"], "N/A")
+
+    def test_chronology_validator_fails_when_chronology_data_does_not_match_bin(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            chronology_folder = root / "7. Chronology"
+            stage_folder = chronology_folder / "Slave" / "Final"
+            stage_folder.mkdir(parents=True, exist_ok=True)
+
+            document = fitz.open()
+            page = document.new_page()
+            page.insert_text(
+                (72, 72),
+                "Chronology Report - Slave Final\n"
+                "Board\n"
+                "Testing Stage\n"
+                "BIN File\n"
+                "Version\n"
+                "Release Date\n"
+                "Reason for Upgrade\n"
+                "Slave\n"
+                "Initial\n"
+                "abc_V1.00.bin\n"
+                "V1.00\n"
+                "14-05-2026\n"
+                "Firmware upgraded for production release.",
+            )
+            document.save(stage_folder / "chronology.pdf")
+            document.close()
+
+            bin_root = root / "2. Bin File"
+            bin_stage_folder = bin_root / "Slave" / "Final"
+            bin_stage_folder.mkdir(parents=True, exist_ok=True)
+            actual_bin_path = bin_stage_folder / "abc_V2.00.bin"
+            actual_bin_path.write_bytes(b"bin")
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("7. Chronology", chronology_folder)
+            context.add_folder("2. Bin File", bin_root)
+            context.add_discovered_path("Slave/Final", root / "1. Ladders" / "Slave" / "Final")
+            context.add_bin_file("Slave/Final", actual_bin_path)
+
+            validator = ChronologyValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.FAIL)
+            self.assertIn("Testing Stage", result.reason)
+            self.assertIn("Version", result.reason)
+            self.assertIn("BIN filename", result.reason)
 
     def test_chronology_validator_handles_wrapped_bin_filenames(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

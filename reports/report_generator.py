@@ -557,6 +557,22 @@ pre {{
                     f"<div class='details-row'><span class='details-label'>{html.escape(label)}</span> : {html.escape(str(value))}</div>"
                 )
 
+            if stage.get("previous_version") is not None or stage.get("previous_release_date") is not None:
+                rows_html.append(
+                    f"<div class='details-row'><span class='details-label'>Previous Version</span> : {html.escape(str(stage.get('previous_version') or '-'))}</div>"
+                )
+                rows_html.append(
+                    f"<div class='details-row'><span class='details-label'>Previous Release Date</span> : {html.escape(str(stage.get('previous_release_date') or '-'))}</div>"
+                )
+
+            if stage.get("upgraded_version") is not None or stage.get("upgraded_release_date") is not None:
+                rows_html.append(
+                    f"<div class='details-row'><span class='details-label'>Upgraded Version</span> : {html.escape(str(stage.get('upgraded_version') or '-'))}</div>"
+                )
+                rows_html.append(
+                    f"<div class='details-row'><span class='details-label'>Upgraded Release Date</span> : {html.escape(str(stage.get('upgraded_release_date') or '-'))}</div>"
+                )
+
             if rows_html:
                 cards.append(
                     "<div class='details-card'>"

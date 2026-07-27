@@ -43,6 +43,7 @@ from core.validation_summary import ValidationSummary
 from reports.report_generator import ReportGenerator
 from services.file_reader import FileReaderService
 from services.file_search import FileSearchService
+from services.folder_structure_generator import FolderStructureGenerator
 from services.logger import LoggerService
 from services.signature_reader import SignatureReaderService
 from validators.bin_validator import BinValidator
@@ -181,10 +182,14 @@ class MainWindow(QMainWindow):
         self.report_button.setEnabled(False)
         self.report_button.setObjectName("SecondaryButton")
         self.report_button.setMinimumWidth(180)
+        self.generate_structure_button = QPushButton("Generate Folder Structure")
+        self.generate_structure_button.setObjectName("SecondaryButton")
+        self.generate_structure_button.setMinimumWidth(220)
 
         button_layout.addStretch(1)
         button_layout.addWidget(self.validate_button)
         button_layout.addWidget(self.report_button)
+        button_layout.addWidget(self.generate_structure_button)
         button_layout.addStretch(1)
 
         main_layout.addLayout(button_layout)
@@ -212,6 +217,7 @@ class MainWindow(QMainWindow):
         self.browse_button.clicked.connect(self._browse_project)
         self.validate_button.clicked.connect(self._start_validation)
         self.report_button.clicked.connect(self._generate_report)
+        self.generate_structure_button.clicked.connect(self._generate_folder_structure)
 
     # ---------------------------------------------------------
 
@@ -609,6 +615,42 @@ class MainWindow(QMainWindow):
             self._show_error(
                 APP_NAME,
                 f"Unable to generate report.\n\n{error}",
+            )
+
+    def _generate_folder_structure(self) -> None:
+        """Generate the operational package folder structure on the desktop."""
+        try:
+            generator = FolderStructureGenerator()
+            generated_root = generator.generate_structure()
+            self.status_bar.showMessage("Folder structure generated")
+            logger.info("Folder structure successfully generated at:\n{}", generated_root)
+            self._show_information(
+                "Generation Completed",
+                "Operational Package folder structure has been successfully generated on your Desktop.",
+            )
+        except PermissionError:
+            logger.exception("Permission denied while generating folder structure")
+            self._show_error(
+                "Folder Structure Generation Failed",
+                "Permission denied while creating folders.",
+            )
+        except FileNotFoundError:
+            logger.exception("Invalid path while generating folder structure")
+            self._show_error(
+                "Folder Structure Generation Failed",
+                "The target path is invalid.",
+            )
+        except OSError as error:
+            logger.exception("Unexpected filesystem error while generating folder structure: {}", error)
+            self._show_error(
+                "Folder Structure Generation Failed",
+                "An unexpected filesystem error occurred.",
+            )
+        except Exception as error:
+            logger.exception("Unexpected error while generating folder structure: {}", error)
+            self._show_error(
+                "Folder Structure Generation Failed",
+                str(error),
             )
 
     # ---------------------------------------------------------

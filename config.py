@@ -39,6 +39,27 @@ REQUIRED_FOLDERS: Final[tuple[str, ...]] = (
     "7. Chronology",
 )
 
+PROJECT_ROOT_FOLDER_NAME: Final[str] = "Operational Package Structure"
+
+PROJECT_STRUCTURE: Final[dict[str, dict[str, list[str]] | dict[str, object]]] = {
+    "1. Ladders": {
+        "Master": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"],
+        "Slave": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"],
+    },
+    "2. Bin File": {
+        "Master": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"],
+        "Slave": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"],
+    },
+    "3. Operational Flow": {},
+    "4. Test Report": {},
+    "5. Automation Input Doc": {},
+    "6. Ladder Flow": {},
+    "7. Chronology": {
+        "Master": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"],
+        "Slave": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"],
+    },
+}
+
 LADDER_INITIAL_FOLDER: Final[str] = "Initial"
 LADDER_FINAL_FOLDER: Final[str] = "Final"
 
