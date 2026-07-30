@@ -64,6 +64,7 @@ class ValidationEngine:
             from validators.document_validator import DocumentValidator
             from validators.folder_validator import FolderValidator
             from validators.ladder_validator import LadderValidator
+            from config import DOCUMENT_VALIDATION_FOLDERS
             from core.validation_step import ValidationStep
 
             file_search = FileSearchService()
@@ -76,28 +77,28 @@ class ValidationEngine:
                 BinValidator(file_search),
                 DocumentValidator(
                     ValidationStep.OPERATIONAL_FLOW,
-                    "3. Operational Flow",
+                    DOCUMENT_VALIDATION_FOLDERS[0],
                     file_search,
                     file_reader,
                     signature_reader,
                 ),
                 DocumentValidator(
                     ValidationStep.TEST_REPORT,
-                    "4. Test Report",
+                    DOCUMENT_VALIDATION_FOLDERS[1],
                     file_search,
                     file_reader,
                     signature_reader,
                 ),
                 DocumentValidator(
                     ValidationStep.AUTOMATION_INPUT,
-                    "5. Automation Input Doc",
+                    DOCUMENT_VALIDATION_FOLDERS[2],
                     file_search,
                     file_reader,
                     signature_reader,
                 ),
                 DocumentValidator(
                     ValidationStep.LADDER_FLOW,
-                    "6. Ladder Flow",
+                    DOCUMENT_VALIDATION_FOLDERS[3],
                     file_search,
                     file_reader,
                     signature_reader,

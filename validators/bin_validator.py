@@ -23,7 +23,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from config import BIN_EXTENSION
+from config import BIN_EXTENSION, FOLDER_KEYS
 
 from core.base_validator import BaseValidator
 from core.validation_context import ValidationContext
@@ -55,7 +55,7 @@ class BinValidator(BaseValidator):
 
         self.logger.info("Starting BIN validation.")
 
-        bin_root = context.folders.get("2. Bin File")
+        bin_root = context.folders.get(FOLDER_KEYS["bin_file"])
 
         if bin_root is None:
 

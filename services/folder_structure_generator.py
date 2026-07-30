@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 from typing import Any
 
-from config import PROJECT_ROOT_FOLDER_NAME, PROJECT_STRUCTURE
+from config import DEFAULT_FOLDER_GENERATION_TARGET, PROJECT_ROOT_FOLDER_NAME, PROJECT_STRUCTURE
 from services.logger import LoggerService
 
 logger = LoggerService.get_logger()
@@ -35,7 +35,7 @@ class FolderStructureGenerator:
         if base_path is not None:
             return base_path / PROJECT_ROOT_FOLDER_NAME
 
-        desktop_path = Path.home() / "Desktop"
+        desktop_path = Path.home() / DEFAULT_FOLDER_GENERATION_TARGET
         return desktop_path / PROJECT_ROOT_FOLDER_NAME
 
     def _create_structure(self, root: Path, structure: dict[str, Any]) -> None:

@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import os
 import sys
+import traceback
 import webbrowser
 from pathlib import Path
 
@@ -36,15 +37,17 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from config import APP_NAME, APP_VERSION, COMPANY_NAME
+from config import APP_NAME, APP_VERSION, COMPANY_NAME, DOCUMENT_VALIDATION_FOLDERS
 from core.validation_engine import ValidationEngine
 from core.validation_step import ValidationStep
 from core.validation_summary import ValidationSummary
-from reports.report_generator import ReportGenerator
+from reports.report_model import ReportDataModel
+from reports.report_window import ReportWindow
 from services.file_reader import FileReaderService
 from services.file_search import FileSearchService
 from services.folder_structure_generator import FolderStructureGenerator
 from services.logger import LoggerService
+from services.project_organizer import ProjectOrganizerService
 from services.signature_reader import SignatureReaderService
 from validators.bin_validator import BinValidator
 from validators.chronology_validator import ChronologyValidator
@@ -54,6 +57,7 @@ from validators.ladder_validator import LadderValidator
 
 from gui.progress_widget import ProgressWidget
 from gui.result_table import ResultTable
+from gui.chronology.chronology_dialog import ChronologyDialog
 
 logger = LoggerService.get_logger()
 
@@ -95,6 +99,7 @@ class MainWindow(QMainWindow):
         self.summary: ValidationSummary | None = None
         self.project_path: Path | None = None
         self.worker: ValidationWorker | None = None
+        self.report_window: ReportWindow | None = None
         self.thread: QThread | None = None
         self._filesystem_watcher: QFileSystemWatcher | None = None
         self._watched_paths: set[str] = set()
@@ -174,22 +179,22 @@ class MainWindow(QMainWindow):
 
         button_layout = QHBoxLayout()
         button_layout.setSpacing(8)
-        self.validate_button = QPushButton("Validate Project")
-        self.validate_button.setEnabled(False)
-        self.validate_button.setObjectName("PrimaryButton")
-        self.validate_button.setMinimumWidth(180)
         self.report_button = QPushButton("Generate Report")
         self.report_button.setEnabled(False)
         self.report_button.setObjectName("SecondaryButton")
         self.report_button.setMinimumWidth(180)
-        self.generate_structure_button = QPushButton("Generate Folder Structure")
-        self.generate_structure_button.setObjectName("SecondaryButton")
-        self.generate_structure_button.setMinimumWidth(220)
+        self.generate_and_validate_button = QPushButton("Generate and Validate Folder Structure")
+        self.generate_and_validate_button.setObjectName("PrimaryButton")
+        self.generate_and_validate_button.setMinimumWidth(280)
+        
+        self.generate_chronology_button = QPushButton("Generate Chronology")
+        self.generate_chronology_button.setObjectName("SecondaryButton")
+        self.generate_chronology_button.setMinimumWidth(180)
 
         button_layout.addStretch(1)
-        button_layout.addWidget(self.validate_button)
         button_layout.addWidget(self.report_button)
-        button_layout.addWidget(self.generate_structure_button)
+        button_layout.addWidget(self.generate_and_validate_button)
+        button_layout.addWidget(self.generate_chronology_button)
         button_layout.addStretch(1)
 
         main_layout.addLayout(button_layout)
@@ -215,9 +220,9 @@ class MainWindow(QMainWindow):
         Connect all widget signals.
         """
         self.browse_button.clicked.connect(self._browse_project)
-        self.validate_button.clicked.connect(self._start_validation)
         self.report_button.clicked.connect(self._generate_report)
-        self.generate_structure_button.clicked.connect(self._generate_folder_structure)
+        self.generate_and_validate_button.clicked.connect(self._generate_and_validate_folder_structure)
+        self.generate_chronology_button.clicked.connect(self.on_generate_chronology)
 
     # ---------------------------------------------------------
 
@@ -420,11 +425,17 @@ class MainWindow(QMainWindow):
             )
             return
 
+        try:
+            organizer = ProjectOrganizerService()
+            selected_path = organizer.organize_if_needed(selected_path)
+        except Exception as e:
+            logger.error(f"Error during project organization: {e}")
+            self._show_warning(APP_NAME, f"Project organization failed: {e}")
+
         self.project_path = selected_path
         self.project_path_label.setText(str(self.project_path))
         self._watch_project(self.project_path)
 
-        self.validate_button.setEnabled(True)
         self._reset_validation_state()
         self.status_bar.showMessage("Project selected.")
         logger.info("Project selected: {}", self.project_path)
@@ -436,7 +447,6 @@ class MainWindow(QMainWindow):
         Enable or disable controls while validation is running.
         """
         self.browse_button.setEnabled(not running)
-        self.validate_button.setEnabled(not running)
         self.report_button.setEnabled(not running and self.summary is not None)
 
     # ---------------------------------------------------------
@@ -472,28 +482,28 @@ class MainWindow(QMainWindow):
             BinValidator(file_search),
             DocumentValidator(
                 ValidationStep.OPERATIONAL_FLOW,
-                "3. Operational Flow",
+                DOCUMENT_VALIDATION_FOLDERS[0],
                 file_search,
                 file_reader,
                 signature_reader,
             ),
             DocumentValidator(
                 ValidationStep.TEST_REPORT,
-                "4. Test Report",
+                DOCUMENT_VALIDATION_FOLDERS[1],
                 file_search,
                 file_reader,
                 signature_reader,
             ),
             DocumentValidator(
                 ValidationStep.AUTOMATION_INPUT,
-                "5. Automation Input Doc",
+                DOCUMENT_VALIDATION_FOLDERS[2],
                 file_search,
                 file_reader,
                 signature_reader,
             ),
             DocumentValidator(
                 ValidationStep.LADDER_FLOW,
-                "6. Ladder Flow",
+                DOCUMENT_VALIDATION_FOLDERS[3],
                 file_search,
                 file_reader,
                 signature_reader,
@@ -551,10 +561,16 @@ class MainWindow(QMainWindow):
             )
 
         self._set_validation_running(False)
-        self.report_button.setEnabled(True)  # Strictly enforce enablement on success
+        self.report_button.setEnabled(True)
 
         self.thread = None
         self.worker = None
+
+        try:
+            self._show_report_window(summary)
+        except Exception as error:
+            logger.exception("Unable to open report window: %s", error)
+            self._show_error("Report Window Error", "Unable to open the validation report window.")
 
         logger.info("Validation completed successfully.")
 
@@ -590,10 +606,45 @@ class MainWindow(QMainWindow):
 
     # ---------------------------------------------------------
 
+    def _show_report_window(self, summary: ValidationSummary) -> None:
+        """Display the native PySide6 report window for the supplied validation summary."""
+        logger.info("Entering _show_report_window()")
+
+        if self.report_window is not None and (self.report_window.isVisible() or self.report_window.isHidden()):
+            logger.info("Refreshing existing ReportWindow with latest validation summary")
+            report_model = ReportDataModel.from_summary(summary)
+            self.report_window.set_data_model(report_model)
+            self.report_window.raise_()
+            self.report_window.activateWindow()
+            self.report_window.showNormal()
+            self.status_bar.showMessage("Report window refreshed")
+            return
+
+        logger.info("Creating ReportDataModel...")
+        report_model = ReportDataModel.from_summary(summary)
+        logger.info("ReportDataModel created for project: %s", report_model.project_name)
+        logger.info("Validation Summary ID: %s | Project Path: %s | Passed: %s | Failed: %s | Warnings: %s", id(summary), summary.project_path, summary.passed, summary.failed, summary.warnings)
+
+        logger.info("Creating ReportWindow...")
+        self.report_window = ReportWindow(report_model)
+        self.report_window.destroyed.connect(lambda: setattr(self, "report_window", None))
+        logger.info("ReportWindow created: %s | receives summary id: %s", self.report_window, id(summary))
+
+        logger.info("Calling show()...")
+        self.report_window.show()
+        logger.info("show() completed. visible=%s hidden=%s geometry=%s", self.report_window.isVisible(), self.report_window.isHidden(), self.report_window.geometry())
+
+        logger.info("Calling raise_()...")
+        self.report_window.raise_()
+        logger.info("Calling activateWindow()...")
+        self.report_window.activateWindow()
+        self.report_window.showNormal()
+        logger.info("Window visible=%s hidden=%s geometry=%s", self.report_window.isVisible(), self.report_window.isHidden(), self.report_window.geometry())
+
+        self.status_bar.showMessage("Report window opened")
+
     def _generate_report(self) -> None:
-        """
-        Generate the HTML validation report.
-        """
+        """Open the native PySide6 report window for the latest validation summary."""
         if self.summary is None:
             self._show_information(
                 APP_NAME,
@@ -602,56 +653,79 @@ class MainWindow(QMainWindow):
             return
 
         try:
-            logger.info("Generating report...")
-            report_path = ReportGenerator.generate(self.summary)
-            
-            self.status_bar.showMessage(f"Report generated: {report_path.name}")
-            logger.info("Report generated: {}", report_path)
-            
-            self._open_report(report_path)
-
+            logger.info("Opening report window...")
+            self._show_report_window(self.summary)
         except Exception as error:
-            logger.exception("Unable to generate report: {}", error)
+            logger.exception("Unable to open report window. Traceback:\n%s", traceback.format_exc())
             self._show_error(
                 APP_NAME,
-                f"Unable to generate report.\n\n{error}",
+                f"Unable to open report window.\n\n{error}",
             )
 
-    def _generate_folder_structure(self) -> None:
-        """Generate the operational package folder structure on the desktop."""
+    def _generate_and_validate_folder_structure(self) -> None:
+        """Generate the operational package folder structure and then validate it."""
         try:
             generator = FolderStructureGenerator()
             generated_root = generator.generate_structure()
             self.status_bar.showMessage("Folder structure generated")
             logger.info("Folder structure successfully generated at:\n{}", generated_root)
-            self._show_information(
-                "Generation Completed",
-                "Operational Package folder structure has been successfully generated on your Desktop.",
-            )
         except PermissionError:
             logger.exception("Permission denied while generating folder structure")
             self._show_error(
                 "Folder Structure Generation Failed",
                 "Permission denied while creating folders.",
             )
+            return
         except FileNotFoundError:
             logger.exception("Invalid path while generating folder structure")
             self._show_error(
                 "Folder Structure Generation Failed",
                 "The target path is invalid.",
             )
+            return
         except OSError as error:
             logger.exception("Unexpected filesystem error while generating folder structure: {}", error)
             self._show_error(
                 "Folder Structure Generation Failed",
                 "An unexpected filesystem error occurred.",
             )
+            return
         except Exception as error:
             logger.exception("Unexpected error while generating folder structure: {}", error)
             self._show_error(
                 "Folder Structure Generation Failed",
                 str(error),
             )
+            return
+
+        # Auto-select the generated folder as the project and start validation
+        self.project_path = generated_root
+        self.project_path_label.setText(str(generated_root))
+        self._watch_project(generated_root)
+        logger.info("Auto-selected generated folder as project: {}", generated_root)
+        self._start_validation()
+
+    # ---------------------------------------------------------
+
+    def on_generate_chronology(self) -> None:
+        """
+        Open the Chronology Generation dialog for the selected project.
+        """
+        if self.project_path is None or not self.project_path.exists():
+            QMessageBox.warning(
+                self,
+                APP_NAME,
+                "Project folder not selected."
+            )
+            return
+
+        logger.info("Chronology generation started.")
+        logger.info("Chronology dialog opened.")
+
+        dialog = ChronologyDialog(project_folder=self.project_path, parent=self)
+        dialog.exec()
+
+        logger.info("Chronology generation completed.")
 
     # ---------------------------------------------------------
 
@@ -739,7 +813,6 @@ class MainWindow(QMainWindow):
         self.result_table.clear_results()
         self._update_summary_cards(None)
         
-        self.validate_button.setEnabled(False)
         self.report_button.setEnabled(False)
         
         self.status_bar.showMessage("Ready")

@@ -21,6 +21,9 @@ from PySide6.QtWidgets import QApplication
 from config import (
     APP_NAME,
     APP_VERSION,
+    ICON_PATH,
+    ORGANIZATION_NAME,
+    STYLESHEET_PATH,
 )
 
 from gui.main_window import MainWindow
@@ -35,9 +38,7 @@ def load_stylesheet(
     """
 
     stylesheet = (
-        Path(__file__).parent
-        / "assets"
-        / "styles.qss"
+        Path(__file__).parent / STYLESHEET_PATH
     )
 
     if stylesheet.exists():
@@ -57,10 +58,7 @@ def load_icon(
     """
 
     icon = (
-        Path(__file__).parent
-        / "assets"
-        / "icons"
-        / "app.ico"
+        Path(__file__).parent / ICON_PATH
     )
 
     if icon.exists():
@@ -89,7 +87,7 @@ def main() -> int:
     )
 
     app.setOrganizationName(
-        "Selec Controls Pvt. Ltd."
+        ORGANIZATION_NAME
     )
 
     load_stylesheet(app)

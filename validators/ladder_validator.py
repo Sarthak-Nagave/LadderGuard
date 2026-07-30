@@ -23,7 +23,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from config import LADDER_EXTENSION
+from config import FOLDER_KEYS, LADDER_EXTENSION
 
 from core.base_validator import BaseValidator
 from core.validation_context import ValidationContext
@@ -54,7 +54,7 @@ class LadderValidator(BaseValidator):
 
         self.logger.info("Starting ladder validation.")
 
-        ladders_root = context.folders.get("1. Ladders")
+        ladders_root = context.folders.get(FOLDER_KEYS["ladders"])
 
         if ladders_root is None:
 

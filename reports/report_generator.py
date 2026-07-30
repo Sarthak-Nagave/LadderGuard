@@ -83,10 +83,10 @@ class ReportGenerator:
             f"Generating report: {report_path.name}"
         )
 
-        html = cls._build_html(summary)
+        html_content = cls._build_html(summary)
 
         report_path.write_text(
-            html,
+            html_content,
             encoding="utf-8",
         )
 
@@ -106,7 +106,11 @@ class ReportGenerator:
 
         rows = []
 
+        chronology_result = None
         for result in summary.results:
+            if result.step == ValidationStep.CHRONOLOGY:
+                chronology_result = result
+                continue
 
             color = {
                 "PASS": "#2E7D32",
@@ -124,16 +128,14 @@ class ReportGenerator:
                 f"""
 <tr>
 <td>{result.step}</td>
-<td style="color:{color};font-weight:bold;">
-{result.status.name}
-</td>
-<td>{result.reason}</td>
+<td style="color:{color};font-weight:bold;">{result.status.name}</td>
+<td>{html.escape(result.reason)}</td>
 <td>{details_html}</td>
 </tr>
 """
             )
 
-            table_rows = "\n".join(rows)
+        table_rows = "\n".join(rows)
 
         return f"""
 <!DOCTYPE html>
@@ -245,6 +247,135 @@ pre {{
     padding-left: 16px;
 }}
 
+.chronology-stage {{
+    margin: 24px 0;
+    padding: 20px;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    background: #ffffff;
+}}
+
+.chronology-stage h3 {{
+    margin: 0 0 18px 0;
+    font-size: 1.25em;
+    color: #0F172A;
+    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 10px;
+}}
+
+.chronology-table {{
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}}
+
+.chronology-table caption {{
+    caption-side: top;
+    text-align: left;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #1F2937;
+}}
+
+.chronology-table td,
+.chronology-table th {{
+    padding: 10px 12px;
+    border: 1px solid #E5E7EB;
+    vertical-align: top;
+}}
+
+.chronology-table th {{
+    background: #F8FAFC;
+    font-weight: 700;
+    color: #0F172A;
+    text-align: left;
+}}
+
+.stage-status {{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: #F8FAFC;
+    border: 1px solid #E5E7EB;
+    color: #0F172A;
+    font-weight: 700;
+}}
+
+.stage-status.pass {{
+    border-color: #2E7D32;
+    color: #2E7D32;
+}}
+
+.stage-status.fail {{
+    border-color: #D32F2F;
+    color: #D32F2F;
+}}
+
+.validation-summary {{
+    margin-top: 36px;
+    padding: 22px;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    background: #ffffff;
+}}
+
+.validation-summary h3 {{
+    margin-top: 0;
+    color: #0F172A;
+}}
+
+.validation-summary table {{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}}
+
+.validation-summary th,
+.validation-summary td {{
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid #E5E7EB;
+}}
+
+.validation-summary th {{
+    background: #F8FAFC;
+    font-weight: 700;
+}}
+
+.overall-failure {{
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 10px;
+    background: #FEF2F2;
+    color: #B91C1C;
+    border: 1px solid #FECACA;
+}}
+
+.validation-reasons {{
+    margin: 12px 0 0 0;
+    padding-left: 20px;
+}}
+
+.validation-reasons li {{
+    margin-bottom: 6px;
+}}
+
+.chronology-overview {{
+    margin: 30px 0 10px 0;
+    padding: 20px;
+    border-left: 4px solid #F57C00;
+    background: #F9FAFB;
+    border-radius: 8px;
+}}
+
+.chronology-overview p {{
+    margin: 0;
+    color: #334155;
+    line-height: 1.6;
+}}
+
 </style>
 
 </head>
@@ -313,6 +444,8 @@ pre {{
 
 </div>
 
+{cls._render_chronology_section(chronology_result) if chronology_result else ""}
+
 <h2>Validation Results</h2>
 
 <table>
@@ -341,6 +474,52 @@ pre {{
 """
 
     # ---------------------------------------------------------
+
+    @classmethod
+    def _render_chronology_section(cls, chronology_result: object | None) -> str:
+        if chronology_result is None or not hasattr(chronology_result, "details"):
+            return ""
+
+        details = getattr(chronology_result, "details")
+        if not isinstance(details, dict):
+            return ""
+
+        reason = getattr(chronology_result, "reason", "") or ""
+        section_html = (
+            "<h2>CHRONOLOGY</h2>"
+            "<div class='chronology-overview'>"
+            f"<p>{html.escape(reason)}</p>"
+            "</div>"
+            f"{cls._render_chronology_details(details)}"
+        )
+
+        stages = details.get("stages")
+        if isinstance(stages, list) and stages:
+            summary_rows = []
+            overall_status = "PASS"
+            for stage in stages:
+                if not isinstance(stage, dict):
+                    continue
+                heading = cls._chronology_stage_heading(stage.get("board"), stage.get("stage"))
+                stage_status = stage.get("overall_result") or "FAIL"
+                if stage_status != "PASS":
+                    overall_status = "FAIL"
+                summary_rows.append(
+                    f"<tr><td>{html.escape(heading)}</td><td>{html.escape(stage_status)}</td></tr>"
+                )
+
+            section_html += (
+                "<div class='validation-summary'>"
+                "<h3>FINAL SUMMARY</h3>"
+                "<table>"
+                "<tr><th>Testing Stage</th><th>Result</th></tr>"
+                + "".join(summary_rows)
+                + "</table>"
+                f"<div style='margin-top: 15px;' class='stage-status {overall_status.lower()}'>Overall: {html.escape(overall_status)}</div>"
+                "</div>"
+            )
+
+        return section_html
 
     @classmethod
     def _build_details(
@@ -535,53 +714,100 @@ pre {{
         if not isinstance(stages, list):
             return ""
 
-        cards = []
+        stage_cards = []
         for stage in stages:
             if not isinstance(stage, dict):
                 continue
-            board = stage.get("board")
-            stage_name = stage.get("stage")
-            heading = f"{board} / {stage_name}" if board and stage_name else (board or stage_name or "Chronology")
+            heading = cls._chronology_stage_heading(stage.get("board"), stage.get("stage"))
+            stage_cards.append(cls._render_chronology_stage_card(heading, stage))
 
-            rows_html = []
-            for key, label in [
-                ("bin_file", "BIN File"),
-                ("version", "Version"),
-                ("release_date", "Release Date"),
-                ("reason_for_upgrade", "Upgrade Reason"),
-            ]:
-                value = stage.get(key)
-                if value is None:
-                    continue
-                rows_html.append(
-                    f"<div class='details-row'><span class='details-label'>{html.escape(label)}</span> : {html.escape(str(value))}</div>"
-                )
+        return "".join(stage_cards)
 
-            if stage.get("previous_version") is not None or stage.get("previous_release_date") is not None:
-                rows_html.append(
-                    f"<div class='details-row'><span class='details-label'>Previous Version</span> : {html.escape(str(stage.get('previous_version') or '-'))}</div>"
-                )
-                rows_html.append(
-                    f"<div class='details-row'><span class='details-label'>Previous Release Date</span> : {html.escape(str(stage.get('previous_release_date') or '-'))}</div>"
-                )
+    @classmethod
+    def _render_chronology_stage_card(cls, heading: str, stage: dict) -> str:
+        def fmt(value: object | None) -> str:
+            return html.escape(str(value)) if value is not None else "Not Found"
 
-            if stage.get("upgraded_version") is not None or stage.get("upgraded_release_date") is not None:
-                rows_html.append(
-                    f"<div class='details-row'><span class='details-label'>Upgraded Version</span> : {html.escape(str(stage.get('upgraded_version') or '-'))}</div>"
-                )
-                rows_html.append(
-                    f"<div class='details-row'><span class='details-label'>Upgraded Release Date</span> : {html.escape(str(stage.get('upgraded_release_date') or '-'))}</div>"
-                )
+        latest = stage.get("latest_firmware") or {}
+        previous = stage.get("previous_firmware")
+        validation = stage.get("validation") or {}
+        overall = stage.get("overall_result") or "FAIL"
+        failures = stage.get("failure_reasons") or []
 
-            if rows_html:
-                cards.append(
-                    "<div class='details-card'>"
-                    f"<div class='details-heading'>{html.escape(heading)}</div>"
-                    + "".join(rows_html)
-                    + "</div>"
-                )
+        latest_html = (
+            "<table class='chronology-table'>"
+            "<caption>Latest Firmware</caption>"
+            "<tr><th>BIN File</th><td>" + fmt(latest.get("bin_file")) + "</td></tr>"
+            "<tr><th>Version</th><td>" + fmt(latest.get("version")) + "</td></tr>"
+            "<tr><th>Release Date</th><td>" + fmt(latest.get("release_date")) + "</td></tr>"
+            "<tr><th>Chronology CRC</th><td>" + fmt(latest.get("crc")) + "</td></tr>"
+            "<tr><th>Reason for Upgrade</th><td>" + fmt(latest.get("reason_for_upgrade")) + "</td></tr>"
+            "</table>"
+        )
 
-        return "".join(cards)
+        if previous:
+            previous_html = (
+                "<table class='chronology-table'>"
+                "<caption>Previous Firmware</caption>"
+                "<tr><th>BIN File</th><td>" + fmt(previous.get("bin_file")) + "</td></tr>"
+                "<tr><th>Version</th><td>" + fmt(previous.get("version")) + "</td></tr>"
+                "<tr><th>Release Date</th><td>" + fmt(previous.get("release_date")) + "</td></tr>"
+                "<tr><th>CRC</th><td>" + fmt(previous.get("crc")) + "</td></tr>"
+                "</table>"
+            )
+        else:
+            previous_html = (
+                "<table class='chronology-table'>"
+                "<caption>Previous Firmware</caption>"
+                "<tr><td>N/A</td></tr>"
+                "</table>"
+            )
+
+        v_crc = validation.get("crc") or {}
+
+        validation_html = (
+            "<table class='chronology-table'>"
+            "<caption>Validation</caption>"
+            "<tr><th>Chronology CRC</th><td>" + fmt(latest.get("crc")) + "</td></tr>"
+            "<tr><th>Generated CRC</th><td>" + fmt(v_crc.get("generated_crc")) + "</td></tr>"
+            "<tr><th>Result</th><td>" + fmt(overall) + "</td></tr>"
+            "</table>"
+        )
+
+        overall_html = f"<div class='stage-status {overall.lower()}'>Overall Result: {html.escape(overall)}</div>"
+
+        failures_html = ""
+        if failures:
+            list_items = "".join(f"<li>{html.escape(str(f))}</li>" for f in failures)
+            failures_html = (
+                "<div class='overall-failure'>"
+                "<strong>Failure Reasons</strong>"
+                "<ul class='validation-reasons'>"
+                f"{list_items}"
+                "</ul>"
+                "</div>"
+            )
+
+        return (
+            "<div class='chronology-stage'>"
+            f"<h3>{html.escape(heading)}</h3>"
+            f"{latest_html}"
+            f"{previous_html}"
+            f"{validation_html}"
+            f"{overall_html}"
+            f"{failures_html}"
+            "</div>"
+        )
+
+    @staticmethod
+    def _chronology_stage_heading(board: str | None, stage_name: str | None) -> str:
+        if board and stage_name:
+            return f"{board} / {stage_name}"
+        if board:
+            return str(board)
+        if stage_name:
+            return str(stage_name)
+        return "Chronology"
 
     @staticmethod
     def _friendly_label(key: str) -> str:

@@ -25,6 +25,9 @@ import re
 from pathlib import Path
 
 import fitz
+import pdfplumber
+
+from config import FOLDER_KEYS
 
 from core.base_validator import BaseValidator
 from core.validation_context import ValidationContext
@@ -32,6 +35,8 @@ from core.validation_result import ValidationResult
 from core.validation_step import ValidationStep
 
 from services.file_search import FileSearchService
+from services.crc.crc_exceptions import CRCError
+from services.crc.crc_generator import CRCGenerator
 
 
 class ChronologyValidator(BaseValidator):
@@ -70,7 +75,7 @@ class ChronologyValidator(BaseValidator):
         )
 
         chronology_folder = context.folders.get(
-            "7. Chronology"
+            FOLDER_KEYS["chronology"]
         )
 
         if chronology_folder is None:
@@ -103,127 +108,124 @@ class ChronologyValidator(BaseValidator):
 
         stages = []
         failures: list[str] = []
+
         for relative_path in discovered_folders:
             stage_path = chronology_folder / Path(*relative_path.split("/"))
             expected_stage_name = Path(relative_path).name
             expected_bin_path = context.bin_files.get(relative_path)
-            expected_bin_name = expected_bin_path.name if expected_bin_path else None
-            expected_bin_version = self._extract_version_from_name(expected_bin_name)
 
             if not stage_path.exists() or not stage_path.is_dir():
-                stages.append(
-                    {
-                        "board": None,
-                        "stage": expected_stage_name,
-                        "bin_file": None,
-                        "version": None,
-                        "release_date": None,
-                        "reason_for_upgrade": None,
-                        "previous_version": None,
-                        "previous_release_date": None,
-                        "upgraded_version": None,
-                        "upgraded_release_date": None,
-                    }
-                )
+                error_msg = f"Stage directory missing for {relative_path}"
+                failures.append(error_msg)
+                stages.append(self._create_empty_stage_dict(
+                    board=None,
+                    stage=expected_stage_name,
+                    result="FAIL",
+                    errors=["Stage directory missing."]
+                ))
                 continue
 
             chronology_pdf = self._resolve_chronology_pdf(stage_path)
             if chronology_pdf is None:
-                failure_message = f"Missing Chronology PDF for {relative_path.replace('/', ' / ')}."
-                failures.append(failure_message)
-                stages.append(
-                    {
-                        "board": None,
-                        "stage": expected_stage_name,
-                        "bin_file": None,
-                        "version": None,
-                        "release_date": None,
-                        "reason_for_upgrade": None,
-                        "previous_version": None,
-                        "previous_release_date": None,
-                        "upgraded_version": None,
-                        "upgraded_release_date": None,
-                    }
-                )
+                error_msg = f"Missing Chronology PDF for {relative_path.replace('/', ' / ')}."
+                failures.append(error_msg)
+                stages.append(self._create_empty_stage_dict(
+                    board=None,
+                    stage=expected_stage_name,
+                    result="FAIL",
+                    errors=["Missing Chronology PDF."]
+                ))
                 continue
 
             metadata = self._extract_metadata(chronology_pdf)
 
-            self.logger.debug(
-                "Chronology parsed values | board=%s | stage=%s | bin=%s | version=%s | release_date=%s | upgrade_reason=%s",
-                metadata.get("board"),
-                metadata.get("stage"),
-                metadata.get("bin_file"),
-                metadata.get("version"),
-                metadata.get("release_date"),
-                metadata.get("reason_for_upgrade"),
-            )
+            board = metadata.get("board")
+            extracted_stage = metadata.get("stage")
 
-            if metadata.get("board") is None:
-                self.logger.debug("Chronology parse failed: board field could not be extracted.")
-            if metadata.get("stage") is None:
-                self.logger.debug("Chronology parse failed: stage field could not be extracted.")
-            if metadata.get("bin_file") is None:
-                self.logger.debug("Chronology parse failed: bin filename field could not be extracted.")
-            if metadata.get("version") is None:
-                self.logger.debug("Chronology parse failed: version field could not be extracted.")
-            if metadata.get("release_date") is None:
-                self.logger.debug("Chronology parse failed: release date field could not be extracted.")
-            if metadata.get("reason_for_upgrade") is None:
-                self.logger.debug("Chronology parse failed: upgrade reason field could not be extracted.")
+            raw_latest_bin = metadata.get("bin_file")
+            latest_bin = self._normalize_filename_for_display(raw_latest_bin)
+            
+            latest_version = metadata.get("version")
+            latest_release_date = metadata.get("release_date")
+            latest_crc_raw = metadata.get("crc")
+            latest_reason = metadata.get("reason_for_upgrade")
+
+            prev_bin = metadata.get("previous_bin_file")
+            prev_version = metadata.get("previous_version")
+            prev_release_date = metadata.get("previous_release_date")
+            prev_crc_raw = metadata.get("previous_crc")
 
             stage_validation_errors: list[str] = []
-            if metadata.get("stage") is None:
-                stage_validation_errors.append("Testing Stage missing.")
-            elif expected_stage_name and not self._same_text(metadata.get("stage"), expected_stage_name):
-                stage_validation_errors.append(
-                    f"Testing Stage mismatch. Expected {expected_stage_name}. Found {metadata.get('stage')}."
-                )
 
-            if expected_bin_name is not None:
-                if metadata.get("bin_file") is None:
-                    stage_validation_errors.append("BIN filename missing from chronology PDF.")
-                elif not self._same_text(metadata.get("bin_file"), expected_bin_name):
+            # ==========================================================
+            # CRC VALIDATION (Only rule that determines PASS/FAIL)
+            # ==========================================================
+            chronology_crc_decimal = self._parse_crc_value(latest_crc_raw)
+            computed_crc_decimal = None
+            crc_result = "FAIL"
+
+            if expected_bin_path is not None and expected_bin_path.exists():
+                try:
+                    crc_out = CRCGenerator().generate_from_file(expected_bin_path)
+                    computed_crc_decimal = crc_out.decimal_value
+                except CRCError as exc:
+                    stage_validation_errors.append(f"BIN CRC generation failed: {str(exc)}")
+            else:
+                stage_validation_errors.append("Project BIN file is missing; cannot generate CRC.")
+
+            if latest_crc_raw is None:
+                stage_validation_errors.append("Chronology CRC missing from latest firmware row.")
+            elif chronology_crc_decimal is None:
+                stage_validation_errors.append("Unable to parse CRC value from chronology PDF.")
+
+            if computed_crc_decimal is not None and chronology_crc_decimal is not None:
+                if computed_crc_decimal == chronology_crc_decimal:
+                    crc_result = "PASS"
+                else:
                     stage_validation_errors.append(
-                        f"BIN filename mismatch. Expected {expected_bin_name}. Found {metadata.get('bin_file')}."
+                        f"CRC mismatch. Expected (generated) {computed_crc_decimal}. Found (chronology) {chronology_crc_decimal}."
                     )
 
-            if expected_bin_version is not None:
-                if metadata.get("version") is None:
-                    stage_validation_errors.append("Chronology version missing.")
-                elif not self._same_text(metadata.get("version"), expected_bin_version):
-                    stage_validation_errors.append(
-                        f"Version mismatch. Expected {expected_bin_version}. Found {metadata.get('version')}."
-                    )
+            overall_result = crc_result
 
-            required_fields = ["board", "stage", "bin_file", "version", "release_date"]
-            for field in required_fields:
-                if metadata.get(field) is None:
-                    stage_validation_errors.append(f"{field.replace('_', ' ').title()} missing.")
-
-            if not self._validate_reason(metadata.get("version"), metadata.get("reason_for_upgrade")):
-                stage_validation_errors.append("Upgrade reason missing.")
-
-            if stage_validation_errors:
-                failures.extend(
-                    f"{relative_path.replace('/', ' / ')}: {error}"
-                    for error in stage_validation_errors
-                )
-
-            stages.append(
-                {
-                    "board": metadata.get("board"),
-                    "stage": metadata.get("stage"),
-                    "bin_file": metadata.get("bin_file"),
-                    "version": metadata.get("version"),
-                    "release_date": metadata.get("release_date"),
-                    "reason_for_upgrade": metadata.get("reason_for_upgrade"),
-                    "previous_version": metadata.get("previous_version"),
-                    "previous_release_date": metadata.get("previous_release_date"),
-                    "upgraded_version": metadata.get("upgraded_version"),
-                    "upgraded_release_date": metadata.get("upgraded_release_date"),
+            previous_firmware = None
+            if prev_bin or prev_version or prev_release_date or prev_crc_raw:
+                previous_firmware = {
+                    "bin_file": prev_bin,
+                    "version": prev_version,
+                    "release_date": prev_release_date,
+                    "crc": prev_crc_raw,
                 }
-            )
+
+            stage_dict = {
+                "board": board,
+                "stage": extracted_stage,
+                "latest_firmware": {
+                    "bin_file": latest_bin,
+                    "version": latest_version,
+                    "release_date": latest_release_date,
+                    "crc": latest_crc_raw,
+                    "reason_for_upgrade": latest_reason,
+                },
+                "previous_firmware": previous_firmware,
+                "validation": {
+                    "crc": {
+                        "chronology_crc": latest_crc_raw,
+                        "generated_crc": computed_crc_decimal,
+                        "result": crc_result,
+                    },
+                },
+                "overall_result": overall_result,
+                "failure_reasons": stage_validation_errors,
+            }
+            
+            stages.append(stage_dict)
+
+            if overall_result == "FAIL":
+                failures.extend(
+                    f"{relative_path.replace('/', ' / ')}: {err}"
+                    for err in stage_validation_errors
+                )
 
         context.set_metadata("chronology_stages", stages)
 
@@ -249,8 +251,7 @@ class ChronologyValidator(BaseValidator):
             )
 
         self.logger.info(
-            f"Chronology validation passed "
-            f"({len(files)} files found)."
+            f"Chronology validation passed ({len(files)} files found)."
         )
 
         return self.pass_result(
@@ -258,6 +259,36 @@ class ChronologyValidator(BaseValidator):
             checked_path=chronology_folder,
             details=details,
         )
+
+    def _create_empty_stage_dict(
+        self,
+        board: str | None,
+        stage: str | None,
+        result: str,
+        errors: list[str],
+    ) -> dict:
+        """Helper to create a unified missing/failed stage dictionary without duplicated keys."""
+        return {
+            "board": board,
+            "stage": stage,
+            "latest_firmware": {
+                "bin_file": None,
+                "version": None,
+                "release_date": None,
+                "crc": None,
+                "reason_for_upgrade": None,
+            },
+            "previous_firmware": None,
+            "validation": {
+                "crc": {
+                    "chronology_crc": None,
+                    "generated_crc": None,
+                    "result": "FAIL",
+                },
+            },
+            "overall_result": result,
+            "failure_reasons": errors,
+        }
 
     @staticmethod
     def _extract_metadata(file_path: Path | None) -> dict[str, str | None]:
@@ -292,6 +323,7 @@ class ChronologyValidator(BaseValidator):
         lines = [line for line in normalized.splitlines() if line]
 
         metadata: dict[str, str | None] = {
+            "testing_stage": None,
             "board": None,
             "stage": None,
             "bin_file": None,
@@ -300,10 +332,45 @@ class ChronologyValidator(BaseValidator):
             "reason_for_upgrade": None,
             "previous_version": None,
             "previous_release_date": None,
-            "upgraded_version": None,
-            "upgraded_release_date": None,
+            "previous_bin_file": None,
+            "previous_crc": None,
+            "crc": None,
         }
 
+        table_rows = ChronologyValidator._extract_table_rows(file_path)
+        if table_rows:
+            first_row = table_rows[0]
+            metadata["testing_stage"] = first_row.get("testing_stage")
+            metadata["board"], metadata["stage"] = ChronologyValidator._split_testing_stage(first_row.get("testing_stage"))
+            metadata["bin_file"] = first_row.get("bin_file")
+            metadata["version"] = first_row.get("version")
+            metadata["release_date"] = first_row.get("release_date")
+            metadata["reason_for_upgrade"] = first_row.get("reason_for_upgrade")
+            metadata["crc"] = first_row.get("crc")
+
+            if len(table_rows) > 1:
+                previous_row = table_rows[1]
+                metadata["previous_version"] = previous_row.get("version")
+                metadata["previous_release_date"] = previous_row.get("release_date")
+                metadata["previous_bin_file"] = previous_row.get("bin_file")
+                metadata["previous_crc"] = previous_row.get("crc")
+
+            return metadata
+
+        try:
+            document = fitz.open(file_path)
+        except Exception:
+            return metadata
+
+        try:
+            text = "\n".join(page.get_text("text") for page in document if page.get_text("text"))
+        finally:
+            document.close()
+
+        normalized = ChronologyValidator._normalize_text(text)
+        lines = [line for line in normalized.splitlines() if line]
+
+        metadata["crc"] = ChronologyValidator._extract_crc_value(normalized)
         data_lines = ChronologyValidator._extract_data_lines(lines)
         if data_lines:
             board, stage, remaining = ChronologyValidator._split_first_data_row(data_lines)
@@ -317,8 +384,8 @@ class ChronologyValidator(BaseValidator):
             metadata["reason_for_upgrade"] = parsed_values.get("reason_for_upgrade")
             metadata["previous_version"] = parsed_values.get("previous_version")
             metadata["previous_release_date"] = parsed_values.get("previous_release_date")
-            metadata["upgraded_version"] = parsed_values.get("upgraded_version")
-            metadata["upgraded_release_date"] = parsed_values.get("upgraded_release_date")
+            metadata["previous_bin_file"] = parsed_values.get("previous_bin_file")
+            metadata["previous_crc"] = parsed_values.get("previous_crc")
 
         return metadata
 
@@ -340,8 +407,29 @@ class ChronologyValidator(BaseValidator):
         ]
         if not header_indices:
             return []
-        start_index = header_indices[-1] + 1
-        return [line for line in lines[start_index:] if line]
+
+        data_lines = [line for line in lines[header_indices[-1] + 1:] if line]
+        if not data_lines:
+            return []
+
+        crc_labels = {
+            "crc",
+            "crc32",
+            "crc64",
+            "checksum",
+            "crc value",
+            "crc32 value",
+            "checksum value",
+        }
+
+        first_line = data_lines[0].casefold()
+        if first_line in crc_labels:
+            if len(data_lines) > 1 and re.fullmatch(r"(0x[0-9A-Fa-f]+|\d+)", data_lines[1].strip()):
+                data_lines = data_lines[2:]
+        elif re.search(r"^(crc|crc32|crc64|checksum)\b.*(0x[0-9A-Fa-f]+|\d+)", data_lines[0], re.IGNORECASE):
+            data_lines = data_lines[1:]
+
+        return data_lines
 
     @staticmethod
     def _is_header_line(value: str) -> bool:
@@ -374,8 +462,7 @@ class ChronologyValidator(BaseValidator):
             "reason_for_upgrade": None,
             "previous_version": None,
             "previous_release_date": None,
-            "upgraded_version": None,
-            "upgraded_release_date": None,
+            "previous_bin_file": None,
         }
         if not lines:
             return values
@@ -399,7 +486,7 @@ class ChronologyValidator(BaseValidator):
                 continue
 
             bin_parts: list[str] = []
-            for index in range(version_index - 1, -1, -1):
+            for index in range(version_index - 1, 1, -1):
                 line = lines[index]
                 if not line:
                     continue
@@ -431,7 +518,7 @@ class ChronologyValidator(BaseValidator):
                 bin_parts.reverse()
 
             joined_bin_name = "".join(bin_parts).strip()
-            joined_bin_name = re.sub(r"\s+", "", joined_bin_name)
+            joined_bin_name = re.sub(r"\s+", " ", joined_bin_name)
 
             reason_lines = []
             for index in range(date_index + 1, len(lines)):
@@ -454,20 +541,195 @@ class ChronologyValidator(BaseValidator):
             return values
 
         latest_row = rows[0]
-        oldest_row = rows[-1]
+        previous_row = rows[1] if len(rows) > 1 else None
 
         values["bin_file"] = latest_row.get("bin_file")
         values["version"] = latest_row.get("version")
         values["release_date"] = latest_row.get("release_date")
         values["reason_for_upgrade"] = latest_row.get("reason_for_upgrade")
+        values["crc"] = latest_row.get("crc")
 
-        if len(rows) > 1:
-            values["previous_version"] = oldest_row.get("version")
-            values["previous_release_date"] = oldest_row.get("release_date")
-            values["upgraded_version"] = latest_row.get("version")
-            values["upgraded_release_date"] = latest_row.get("release_date")
+        if previous_row:
+            values["previous_version"] = previous_row.get("version")
+            values["previous_release_date"] = previous_row.get("release_date")
+            values["previous_bin_file"] = previous_row.get("bin_file")
+            values["previous_crc"] = previous_row.get("crc")
 
         return values
+
+    @staticmethod
+    def _extract_crc_value(text: str) -> str | None:
+        if not text:
+            return None
+
+        normalized = re.sub(r"\s+", " ", text).strip()
+        patterns = [
+            r"\b(?:crc|crc32|crc64|checksum|crc value|crc32 value|checksum value)\b\s*[:=]?\s*(0x[0-9A-Fa-f]+|\d+)",
+        ]
+
+        for pattern in patterns:
+            match = re.search(pattern, normalized, re.IGNORECASE)
+            if match:
+                return match.group(1).upper()
+
+        lines = [line.strip() for line in normalized.splitlines() if line.strip()]
+        crc_labels = {
+            "crc",
+            "crc32",
+            "crc64",
+            "checksum",
+            "crc value",
+            "crc32 value",
+            "checksum value",
+        }
+
+        for index, line in enumerate(lines):
+            if line.casefold() in crc_labels and index + 1 < len(lines):
+                candidate = lines[index + 1]
+                match = re.search(r"(0x[0-9A-Fa-f]+|\d+)", candidate)
+                if match:
+                    return match.group(1).upper()
+
+        return None
+
+    @staticmethod
+    def _parse_crc_value(value: str | None) -> int | None:
+        if value is None:
+            return None
+
+        match = re.search(r"(0x[0-9A-Fa-f]+|\d+)", value.strip(), re.IGNORECASE)
+        if not match:
+            return None
+
+        candidate = match.group(1)
+        try:
+            return int(candidate, 0)
+        except ValueError:
+            return None
+
+    @staticmethod
+    def _extract_table_rows(file_path: Path) -> list[dict[str, str | None]]:
+        rows: list[dict[str, str | None]] = []
+
+        try:
+            with pdfplumber.open(file_path) as document:
+                for page in document.pages:
+                    tables = []
+                    found_tables = page.find_tables() or []
+                    for table_obj in found_tables:
+                        try:
+                            tables.append(table_obj.extract())
+                        except Exception:
+                            continue
+
+                    if not tables:
+                        tables.extend(page.extract_tables() or [])
+
+                    for table in tables:
+                        if not table or len(table) < 2:
+                            continue
+
+                        header_row = table[0]
+                        header_map = ChronologyValidator._normalize_table_headers(header_row)
+                        if not ChronologyValidator._has_table_headers(header_map):
+                            continue
+
+                        for row in table[1:]:
+                            if not row or not any(cell and str(cell).strip() for cell in row):
+                                continue
+
+                            parsed_row = ChronologyValidator._parse_table_row(row, header_map)
+                            if parsed_row:
+                                rows.append(parsed_row)
+
+        except Exception:
+            return []
+
+        return rows
+
+    @staticmethod
+    def _normalize_table_headers(header_row: list[str | None]) -> dict[int, str]:
+        header_map: dict[int, str] = {}
+        for index, header in enumerate(header_row):
+            normalized = ChronologyValidator._normalize_header(header)
+            if not normalized:
+                continue
+            if normalized in {
+                "testing stage",
+                "stage",
+                "testing_stage",
+                "testingstage",
+            }:
+                header_map[index] = "testing_stage"
+            elif normalized in {"bin file", "bin", "bin_file", "binfile"}:
+                header_map[index] = "bin_file"
+            elif normalized in {"crc", "crc32", "crc64", "checksum", "checksum value", "crc value", "crc32 value"}:
+                header_map[index] = "crc"
+            elif normalized in {"version"}:
+                header_map[index] = "version"
+            elif normalized in {"release date", "releasedate", "release_date"}:
+                header_map[index] = "release_date"
+            elif normalized in {"reason for upgrade", "reason", "reasonforupgrade", "remarks", "comments"}:
+                header_map[index] = "reason_for_upgrade"
+
+        return header_map
+
+    @staticmethod
+    def _has_table_headers(header_map: dict[int, str]) -> bool:
+        return any(field == "testing_stage" for field in header_map.values()) and any(
+            field == "bin_file" for field in header_map.values()
+        )
+
+    @staticmethod
+    def _parse_table_row(row: list[str | None], header_map: dict[int, str]) -> dict[str, str | None]:
+        parsed_row: dict[str, str | None] = {
+            "testing_stage": None,
+            "bin_file": None,
+            "crc": None,
+            "version": None,
+            "release_date": None,
+            "reason_for_upgrade": None,
+        }
+
+        for index, field_name in header_map.items():
+            if index >= len(row):
+                continue
+            value = ChronologyValidator._normalize_table_value(row[index])
+            if value is not None:
+                parsed_row[field_name] = value
+
+        if not parsed_row["testing_stage"] or not parsed_row["bin_file"]:
+            return {}
+
+        return parsed_row
+
+    @staticmethod
+    def _normalize_header(value: str | None) -> str:
+        if value is None:
+            return ""
+        text = str(value).strip().lower()
+        text = re.sub(r"[\W_]+", " ", text)
+        return re.sub(r"\s+", " ", text).strip()
+
+    @staticmethod
+    def _normalize_table_value(value: str | None) -> str | None:
+        if value is None:
+            return None
+        text = str(value).strip()
+        if not text:
+            return None
+        text = re.sub(r"\s+", " ", text)
+        return text
+
+    @staticmethod
+    def _split_testing_stage(value: str | None) -> tuple[str | None, str | None]:
+        if not value:
+            return None, None
+        text = str(value).strip()
+        parts = [part.strip() for part in re.split(r"[/\\]", text) if part.strip()]
+        if len(parts) >= 2:
+            return parts[0], parts[1]
+        return text, None
 
     @staticmethod
     def _is_version_value(value: str) -> bool:
@@ -497,10 +759,27 @@ class ChronologyValidator(BaseValidator):
         return match.group(1).upper() if match else None
 
     @staticmethod
+    def _normalize_filename_for_display(filename: str | None) -> str | None:
+        if not filename:
+            return None
+        t = re.sub(r"[\r\n\t]", "", filename)
+        t = re.sub(r"[\u200B\u200C\u200D\uFEFF]", "", t)
+        t = re.sub(r"[\u2010\u2011\u2012\u2013\u2014\u2015\u2212]", "-", t)
+        t = re.sub(r" +", " ", t)
+        return t.strip()
+
+    @staticmethod
     def _same_text(left: str | None, right: str | None) -> bool:
         if left is None or right is None:
             return left is None and right is None
-        return re.sub(r"\s+", " ", left).strip().casefold() == re.sub(r"\s+", " ", right).strip().casefold()
+
+        def normalize(t: str) -> str:
+            t = re.sub(r"[\u200B\u200C\u200D\uFEFF]", "", t)
+            t = re.sub(r"[\u2010\u2011\u2012\u2013\u2014\u2015\u2212]", "-", t)
+            t = re.sub(r"\s+", " ", t)
+            return t.strip().casefold()
+
+        return normalize(left) == normalize(right)
 
     @staticmethod
     def _validate_reason(version: str | None, reason: str | None) -> bool:
