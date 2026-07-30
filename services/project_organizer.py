@@ -8,6 +8,7 @@ Author:
     Selec Controls Pvt. Ltd. - R&D
 """
 
+import os
 import shutil
 from pathlib import Path
 
@@ -62,6 +63,8 @@ class ProjectOrganizerService:
             
         self._move_pdfs(project_path, operational_pkg_path)
             
+        self._remove_empty_subfolders(operational_pkg_path)
+        
         logger.info("Project reorganization complete.")
         return operational_pkg_path
 
@@ -142,3 +145,23 @@ class ProjectOrganizerService:
                     logger.info(f"Moved PDF {file_path.name} to {dest_folder.relative_to(target_root)}")
                 except Exception as e:
                     logger.error(f"Failed to move PDF {file_path.name}: {e}")
+
+    def _remove_empty_subfolders(self, target_root: Path) -> None:
+        """Removes empty subfolders recursively, keeping the main top-level folders."""
+        for main_folder in target_root.iterdir():
+            if not main_folder.is_dir():
+                continue
+            
+            # Walk bottom-up so we delete empty children before their parents
+            for root, dirs, files in os.walk(main_folder, topdown=False):
+                current_dir = Path(root)
+                # Don't delete the main folder itself
+                if current_dir == main_folder:
+                    continue
+                
+                try:
+                    if not any(current_dir.iterdir()):
+                        current_dir.rmdir()
+                        logger.info(f"Removed empty generated subfolder: {current_dir.relative_to(target_root)}")
+                except Exception as e:
+                    logger.error(f"Failed to remove empty folder {current_dir.name}: {e}")
