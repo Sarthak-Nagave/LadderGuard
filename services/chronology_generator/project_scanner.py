@@ -200,3 +200,22 @@ class ProjectScanner:
             return "Slave Final"
 
         return "Unknown"
+
+    def _calculate_crc(self, bin_path: Path) -> str:
+        """
+        Calculates the CRC checksum for the given BIN file.
+
+        Args:
+            bin_path: Path to the BIN file.
+
+        Returns:
+            The CRC checksum hex string, or an empty string if generation fails.
+        """
+        try:
+            from services.crc.crc_generator import CRCGenerator
+            generator = CRCGenerator()
+            result = generator.generate_from_file(bin_path)
+            return result.hex_value
+        except Exception as e:
+            self._logger.error(f"Failed to calculate CRC for {bin_path.name}: {e}")
+            return ""
