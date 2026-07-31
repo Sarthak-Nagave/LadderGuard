@@ -56,6 +56,8 @@ class ChronologyDialog(QDialog):
         self._project_folder = project_folder
         self._logger = logging.getLogger(__name__)
         self._chronology: ProjectChronology | None = None
+        self._groups: list[tuple[Path, list]] = []
+        self._current_group_index: int = 0
 
         # Standard PySide6 UI setup
         self.ui = Ui_ChronologyDialog()
@@ -100,6 +102,14 @@ class ChronologyDialog(QDialog):
         
         self.ui.combo_automation_modification.clear()
         self.ui.combo_automation_modification.addItems(combo_options)
+        
+        # Hide output file UI elements since paths are now automatic
+        if hasattr(self.ui, "lbl_output_file"):
+            self.ui.lbl_output_file.hide()
+        if hasattr(self.ui, "line_output_file"):
+            self.ui.line_output_file.hide()
+        if hasattr(self.ui, "btn_browse_output"):
+            self.ui.btn_browse_output.hide()
 
     def _connect_signals(self) -> None:
         """
@@ -126,20 +136,53 @@ class ChronologyDialog(QDialog):
             generator = ChronologyGenerator(self._project_folder, dummy_template)
             
             self._chronology = generator.scan_project()
-            self._populate_table()
+            
+            # Setup groups for the wizard
+            self._groups = list(self._chronology.group_by_firmware_folder().items())
+            self._current_group_index = 0
+            
+            if self._groups:
+                self._load_current_group()
+            else:
+                self._populate_table([])
             
         except Exception as exc:
             self._logger.exception("Failed to run initial chronology scan.")
             QMessageBox.critical(self, "Scan Error", f"Failed to scan project:\n{exc}")
 
-    def _populate_table(self) -> None:
+    def _load_current_group(self) -> None:
         """
-        Populates the QTableWidget with the scanned chronology entries.
+        Loads the UI state for the current firmware group in the wizard flow.
         """
-        if not self._chronology:
+        if not self._groups:
             return
+            
+        folder, entries = self._groups[self._current_group_index]
+        
+        # Clear inputs for the new group
+        self.ui.line_released_by.clear()
+        self.ui.line_tested_by.clear()
+        self.ui.combo_ladder_release.setCurrentIndex(0)
+        self.ui.combo_operator_modification.setCurrentIndex(0)
+        self.ui.combo_automation_modification.setCurrentIndex(0)
+        
+        # Update labels and button text
+        total = len(self._groups)
+        current = self._current_group_index + 1
+        folder_name = folder.relative_to(self._project_folder) if self._project_folder in folder.parents else folder.name
+        self.ui.grp_firmware_entries.setTitle(f"Detected Firmware Entries - Group {current}/{total} ({folder_name})")
+        
+        if self._current_group_index < total - 1:
+            self.ui.btn_generate.setText("Next Group")
+        else:
+            self.ui.btn_generate.setText("Generate Excel")
+            
+        self._populate_table(entries)
 
-        entries = self._chronology.sorted_entries()
+    def _populate_table(self, entries: list) -> None:
+        """
+        Populates the QTableWidget with the provided chronology entries.
+        """
         self.ui.table_chronology.setRowCount(len(entries))
 
         for row, entry in enumerate(entries):
@@ -188,28 +231,27 @@ class ChronologyDialog(QDialog):
 
     def _on_generate_clicked(self) -> None:
         """
-        Handles the generate button click. Validates inputs, captures paths,
-        updates the models, and coordinates the report generation.
+        Handles the generate/next button click. Validates inputs, updates the 
+        current group's models, and advances the wizard or finishes generation.
         """
         if not self._validate_inputs():
             return
 
-        # Fetch paths from the line edits if available, otherwise fallback to dialogs
+        self._update_chronology_models()
+        
+        # Advance wizard if more groups remain
+        if self._current_group_index < len(self._groups) - 1:
+            self._current_group_index += 1
+            self._load_current_group()
+            return
+
+        # Fetch template path
         if hasattr(self.ui, "line_excel_template") and self.ui.line_excel_template.text().strip():
             template_path = Path(self.ui.line_excel_template.text().strip())
         else:
             template_path = self._select_template_file()
             if not template_path:
                 return
-
-        if hasattr(self.ui, "line_output_file") and self.ui.line_output_file.text().strip():
-            output_path = Path(self.ui.line_output_file.text().strip())
-        else:
-            output_path = self._select_output_file()
-            if not output_path:
-                return
-
-        self._update_chronology_models()
 
         try:
             generator = ChronologyGenerator(self._project_folder, template_path)
@@ -218,12 +260,12 @@ class ChronologyDialog(QDialog):
             # chronology model instead of re-scanning and wiping the inputs.
             generator.scan_project = lambda: self._chronology
             
-            generator.generate(output_path)
+            generator.generate(output_path=None)
             
             QMessageBox.information(
                 self, 
                 "Success", 
-                "Chronology Excel report generated successfully."
+                "Chronology Excel report(s) generated successfully."
             )
             self.accept()
             
@@ -272,11 +314,6 @@ class ChronologyDialog(QDialog):
             self.ui.btn_browse_template.setFocus()
             return False
 
-        if hasattr(self.ui, "line_output_file") and not self.ui.line_output_file.text().strip():
-            QMessageBox.warning(self, "Validation Error", "Please select an Output File.")
-            self.ui.btn_browse_output.setFocus()
-            return False
-
         return True
 
     def _select_template_file(self) -> Path | None:
@@ -323,7 +360,11 @@ class ChronologyDialog(QDialog):
         operator_mod = self.ui.combo_operator_modification.currentText()
         automation_mod = self.ui.combo_automation_modification.currentText()
 
-        entries = self._chronology.sorted_entries()
+        # Update only the entries in the current group
+        if not self._groups:
+            return
+            
+        entries = self._groups[self._current_group_index][1]
 
         for row, entry in enumerate(entries):
             # Capture the potentially edited reason for upgrade directly from the table

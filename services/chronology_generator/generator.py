@@ -74,16 +74,16 @@ class ChronologyGenerator:
             self._logger.error(error_msg)
             raise ChronologyGenerationError(error_msg) from exc
 
-    def generate(self, output_path: Path) -> ProjectChronology:
+    def generate(self, output_path: Path | None = None) -> ProjectChronology:
         """
         Executes the full chronology generation workflow.
 
         1. Scans the project for chronology entries.
-        2. Sorts the entries (handled by the model/writer).
-        3. Writes the data into the specified Excel output path using the template.
+        2. Groups entries by firmware folder.
+        3. Writes the data into an Excel output path inside each folder.
 
         Args:
-            output_path: The destination path for the generated Excel file.
+            output_path: Deprecated. Chronologies are now generated per-folder.
 
         Returns:
             The generated ProjectChronology model.
@@ -91,15 +91,43 @@ class ChronologyGenerator:
         Raises:
             ChronologyGenerationError: If any step of the generation workflow fails.
         """
-        self._logger.info(f"Starting chronology generation targeting: {output_path}")
+        self._logger.info("Starting chronology generation workflow for firmware groups")
 
         try:
             # Step 1: Scan project
             chronology = self.scan_project()
 
-            # Step 2 & 3 & 4: Pass chronology to writer and save workbook
+            # Step 2: Group entries
+            groups = chronology.group_by_firmware_folder()
+            if not groups:
+                self._logger.warning("No firmware groups found to generate chronology for.")
+                return chronology
+
+            # Step 3: Pass each group to writer and save workbook
             writer = self._create_writer()
-            writer.write(chronology, output_path)
+            for folder, entries in groups.items():
+                if not entries:
+                    continue
+                    
+                sub_chronology = ProjectChronology(project_root=self._project_root, entries=entries)
+                
+                # Determine target path inside '7. Chronology' based on testing stage
+                stage = entries[0].testing_stage
+                if stage and stage != "Unknown":
+                    # stage is e.g. 'Master Initial'
+                    parts = stage.split()
+                    if len(parts) >= 2:
+                        target_dir = self._project_root / "7. Chronology" / parts[0] / parts[1]
+                    else:
+                        target_dir = self._project_root / "7. Chronology" / folder.name
+                else:
+                    target_dir = self._project_root / "7. Chronology" / folder.name
+                    
+                target_dir.mkdir(parents=True, exist_ok=True)
+                target_path = target_dir / "Ladder_Chronology.xlsx"
+                
+                self._logger.info(f"Generating chronology for group {folder} at {target_path}")
+                writer.write(sub_chronology, target_path)
 
             self._logger.info("Chronology generation completed successfully.")
             return chronology

@@ -130,3 +130,19 @@ class ProjectChronology:
         if len(sorted_list) <= 1:
             return []
         return sorted_list[1:]
+
+    def group_by_firmware_folder(self) -> dict[Path, list[ChronologyEntry]]:
+        """
+        Groups chronology entries by their parent firmware folder.
+        
+        Returns:
+            A dictionary mapping each firmware folder Path to a list of ChronologyEntry objects.
+            The list for each folder is sorted by version in descending order.
+        """
+        groups: dict[Path, list[ChronologyEntry]] = {}
+        for entry in self.sorted_entries():
+            folder = entry.bin_file_path.parent
+            if folder not in groups:
+                groups[folder] = []
+            groups[folder].append(entry)
+        return groups

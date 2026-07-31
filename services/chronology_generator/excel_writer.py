@@ -219,16 +219,14 @@ class ChronologyExcelWriter:
 
     def _is_row_merged(self, sheet: Worksheet, row: int, header_map: dict[str, int]) -> bool:
         """
-        Determines if a row is a structural merged row (e.g., a section divider).
-        Checks if the primary 'Serial No.' column is involved in a horizontal merge.
+        Determines if a row is a structural merged row (e.g., a section divider or instruction row).
+        Checks if any horizontal merge on this row spans across multiple data columns.
         """
-        serial_col = header_map.get("serial no.", 1)
         for merged_range in sheet.merged_cells.ranges:
             if merged_range.min_row <= row <= merged_range.max_row:
-                # If the horizontal merge spans across our primary column
-                if merged_range.min_col <= serial_col <= merged_range.max_col:
-                    if merged_range.max_col > merged_range.min_col:
-                        return True
+                # If the horizontal merge spans 3 or more columns, it's considered structural
+                if (merged_range.max_col - merged_range.min_col) >= 2:
+                    return True
         return False
 
     def _get_writable_cell(self, sheet: Worksheet, row: int, column: int) -> Any:

@@ -34,8 +34,9 @@ class FilenameParser:
     _VERSION_PATTERN = re.compile(r"(V\d+\.\d+)", re.IGNORECASE)
     _LETTER_CHECK_PATTERN = re.compile(r"[A-Za-z]")
     
-    # Matches valid PLC models (must start with uppercase letter, can contain numbers/hyphens)
-    _PLC_MODEL_PATTERN = re.compile(r"^[A-Z]+[A-Z0-9\-]*$")
+    # Matches valid PLC models (e.g., MIBRX, MIBRX-4M, FLEXYS, etc.)
+    # Must start with uppercase letters, optionally followed by a hyphen, numbers, and uppercase letters
+    _PLC_MODEL_PATTERN = re.compile(r"^[A-Z]+(?:-\d+[A-Z]*)?$")
 
     @classmethod
     def extract_version(cls, filename: str) -> str:

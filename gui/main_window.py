@@ -566,12 +566,6 @@ class MainWindow(QMainWindow):
         self.thread = None
         self.worker = None
 
-        try:
-            self._show_report_window(summary)
-        except Exception as error:
-            logger.exception("Unable to open report window: %s", error)
-            self._show_error("Report Window Error", "Unable to open the validation report window.")
-
         logger.info("Validation completed successfully.")
 
     # ---------------------------------------------------------
@@ -666,7 +660,7 @@ class MainWindow(QMainWindow):
         """Generate the operational package folder structure and then validate it."""
         try:
             generator = FolderStructureGenerator()
-            generated_root = generator.generate_structure()
+            generated_root = generator.generate_structure(source_project_path=self.project_path)
             self.status_bar.showMessage("Folder structure generated")
             logger.info("Folder structure successfully generated at:\n{}", generated_root)
         except PermissionError:
