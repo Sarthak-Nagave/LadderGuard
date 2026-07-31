@@ -541,6 +541,8 @@ class MainWindow(QMainWindow):
         """
         Called when validation completes successfully.
         """
+        summary.results = [r for r in summary.results if r.step != ValidationStep.CHRONOLOGY]
+        
         self.summary = summary
         self.result_table.load_summary(summary)
         self.result_table.resize_columns()

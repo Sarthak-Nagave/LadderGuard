@@ -118,8 +118,7 @@ class ReportDataModel:
             return cls._render_stage_file_details(step, details)
         if step in {ValidationStep.OPERATIONAL_FLOW, ValidationStep.TEST_REPORT, ValidationStep.AUTOMATION_INPUT, ValidationStep.LADDER_FLOW}:
             return cls._render_signed_document_details(step, details)
-        if step == ValidationStep.CHRONOLOGY or "stages" in details:
-            return cls._render_chronology_details(details)
+
         if "signers" in details and isinstance(details["signers"], list):
             return cls._render_signed_document_details(step, details)
         if "document" in details or "documents" in details:
@@ -224,85 +223,6 @@ class ReportDataModel:
                 cards.append(ReportDetailCard(title=str(doc_name), rows=child_rows, children=child_cards))
         return cards
 
-    @classmethod
-    def _render_chronology_details(cls, details: dict[str, Any]) -> list[ReportDetailCard]:
-        stages = details.get("stages")
-        if not isinstance(stages, list):
-            return []
-
-        cards: list[ReportDetailCard] = []
-        for stage in stages:
-            if not isinstance(stage, dict):
-                continue
-            heading = cls._chronology_stage_heading(stage)
-            cards.append(cls._build_chronology_stage_card(stage, heading))
-        return cards
-
-    @classmethod
-    def _build_chronology_stage_card(cls, stage: dict[str, Any], heading: str) -> ReportDetailCard:
-        latest = stage.get("latest_firmware") or {}
-        previous = stage.get("previous_firmware")
-        validation = stage.get("validation") or {}
-        overall = stage.get("overall_result") or "FAIL"
-        failures = stage.get("failure_reasons") or []
-
-        rows: list[ReportDetailRow] = []
-
-        # Latest Firmware
-        rows.append(ReportDetailRow("Latest Firmware", ""))
-        rows.append(ReportDetailRow("BIN File", str(latest.get("bin_file")) if latest.get("bin_file") is not None else "Not Found"))
-        rows.append(ReportDetailRow("Version", str(latest.get("version")) if latest.get("version") is not None else "Not Found"))
-        rows.append(ReportDetailRow("Release Date", str(latest.get("release_date")) if latest.get("release_date") is not None else "Not Found"))
-        rows.append(ReportDetailRow("Chronology CRC", str(latest.get("crc")) if latest.get("crc") is not None else "Not Found"))
-        rows.append(ReportDetailRow("Reason for Upgrade", str(latest.get("reason_for_upgrade")) if latest.get("reason_for_upgrade") is not None else "Not Found"))
-        
-        rows.append(ReportDetailRow("", ""))
-
-        # Previous Firmware
-        rows.append(ReportDetailRow("Previous Firmware", ""))
-        if previous:
-            rows.append(ReportDetailRow("BIN File", str(previous.get("bin_file")) if previous.get("bin_file") is not None else "N/A"))
-            rows.append(ReportDetailRow("Version", str(previous.get("version")) if previous.get("version") is not None else "N/A"))
-            rows.append(ReportDetailRow("Release Date", str(previous.get("release_date")) if previous.get("release_date") is not None else "N/A"))
-            rows.append(ReportDetailRow("CRC", str(previous.get("crc")) if previous.get("crc") is not None else "N/A"))
-        else:
-            rows.append(ReportDetailRow("N/A", ""))
-            
-        rows.append(ReportDetailRow("", ""))
-
-        # Validation
-        rows.append(ReportDetailRow("Validation", ""))
-        
-        v_crc = validation.get("crc", {})
-        
-        rows.append(ReportDetailRow("Chronology CRC", str(latest.get("crc")) if latest.get("crc") is not None else "Not Found"))
-        rows.append(ReportDetailRow("Generated CRC", str(v_crc.get("generated_crc")) if v_crc.get("generated_crc") is not None else "Not Found"))
-        rows.append(ReportDetailRow("Result", str(overall)))
-
-        rows.append(ReportDetailRow("", ""))
-
-        # Overall Result
-        rows.append(ReportDetailRow("Overall Result", str(overall)))
-        if failures:
-            rows.append(ReportDetailRow("Failure Reasons", ", ".join(str(f) for f in failures)))
-
-        return ReportDetailCard(title=heading, rows=rows)
-
-    @classmethod
-    def _build_detail_card(cls, title: str | None, rows: list[ReportDetailRow]) -> ReportDetailCard:
-        return ReportDetailCard(title=title, rows=rows)
-
-    @staticmethod
-    def _chronology_stage_heading(stage: dict[str, Any]) -> str:
-        board = stage.get("board")
-        stage_name = stage.get("stage")
-        if board and stage_name:
-            return f"{board} / {stage_name}"
-        if board:
-            return str(board)
-        if stage_name:
-            return str(stage_name)
-        return "Chronology"
 
     @staticmethod
     def _friendly_label(key: str) -> str:
@@ -311,7 +231,7 @@ class ReportDataModel:
             "version": "Version",
             "release_date": "Release Date",
             "crc": "CRC",
-            "chronology_crc_decimal": "Chronology CRC",
+
             "computed_crc": "Computed CRC",
             "computed_crc_decimal": "Computed CRC (dec)",
             "crc_match": "CRC Match",
