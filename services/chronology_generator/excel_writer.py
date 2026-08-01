@@ -17,13 +17,13 @@ Python:
 
 from __future__ import annotations
 
+from datetime import datetime
 import logging
 import re
 from pathlib import Path
 from typing import Any
 
 import openpyxl
-from openpyxl.utils import get_column_letter
 from openpyxl.workbook import Workbook
 from openpyxl.worksheet.worksheet import Worksheet
 
@@ -97,47 +97,45 @@ class ChronologyExcelWriter:
         first_data_row = self._first_data_row(header_row_idx)
 
         entries = chronology.sorted_entries()
-        self._logger.debug(f"Writing {len(entries)} entries starting at row {first_data_row}.")
+        if not entries:
+            self._logger.warning("No chronology entries to write.")
+            return
 
-        current_row = first_data_row
-        serial_no = len(entries)
+        self._logger.debug(f"Writing chronology update using {len(entries)} scanned entries.")
 
-        for entry in entries:
-            # Skip structural merged rows (e.g., section dividers) or rows that already contain template instruction text
-            while self._is_instruction_row(sheet, current_row, header_map):
-                self._logger.debug(f"Skipping instruction row {current_row}")
-                current_row += 1
-                
-            self._write_entry(sheet, current_row, entry, header_map, serial_no)
-            current_row += 1
-            serial_no -= 1
+        newest_entry = entries[0]
+        history_row = first_data_row
+        while self._is_instruction_row(sheet, history_row, header_map):
+            self._logger.debug(f"Skipping instruction row {history_row}")
+            history_row += 1
 
-        # Clear remaining unused placeholder rows, if any exist in the template
-        while current_row <= sheet.max_row:
-            if self._is_instruction_row(sheet, current_row, header_map):
-                current_row += 1
-                continue
-            
-            # Check if this row has any data in the mapped columns
-            has_data = False
-            for col_idx in header_map.values():
-                if sheet.cell(row=current_row, column=col_idx).value is not None:
-                    has_data = True
-                    break
-            
-            # If the row is completely empty in our mapped columns, assume end of chronology table
-            if not has_data:
-                break
-                
-            # Clear the values in this dummy row while preserving formatting
-            for col_idx in header_map.values():
-                cell = self._get_writable_cell(sheet, current_row, col_idx)
-                cell.value = ""
-                
-            current_row += 1
+        using_existing_workbook = self._is_existing_workbook(output_path)
+        has_existing_history = self._has_history_row_data(sheet, history_row, header_map)
+
+        if using_existing_workbook and has_existing_history:
+            if self._is_same_release_row(sheet, history_row, newest_entry, header_map):
+                self._logger.info("Selected release already exists at top of chronology history; skipping duplicate insert.")
+                self._renumber_serials(sheet, history_row, header_map)
+                self._save(workbook, output_path)
+                self._logger.info("Chronology Excel export completed successfully.")
+                return
+
+            sheet.insert_rows(history_row, amount=1)
+
+        release_date = datetime.now().strftime("%d/%m/%Y")
+        self._write_entry(sheet, history_row, newest_entry, header_map, serial_no=1, release_date=release_date)
+        self._renumber_serials(sheet, history_row, header_map)
 
         self._save(workbook, output_path)
         self._logger.info("Chronology Excel export completed successfully.")
+
+    def _is_existing_workbook(self, output_path: Path) -> bool:
+        if not output_path.exists():
+            return False
+        try:
+            return output_path.resolve() == self._template_path.resolve()
+        except Exception:
+            return output_path == self._template_path
 
     def _load_workbook(self) -> Workbook:
         """
@@ -198,19 +196,9 @@ class ChronologyExcelWriter:
         """
         header_map: dict[str, int] = {}
         
-        print(f"Header row: {header_row}\n")
-        
         for col_idx in range(1, sheet.max_column + 1):
             cell_value = sheet.cell(row=header_row, column=col_idx).value
             normalized_name = self._normalize_header(cell_value)
-            
-            col_letter = get_column_letter(col_idx)
-            print(f"Column {col_letter} -> {repr(cell_value)}")
-            
-            if cell_value is not None:
-                print(f"Original:\n{repr(cell_value)}\n")
-                print(f"Normalized:\n{repr(normalized_name)}\n")
-                print("-" * 40)
             
             if normalized_name:
                 header_map[normalized_name] = col_idx
@@ -246,14 +234,7 @@ class ChronologyExcelWriter:
         Determines if a row is an instruction row (e.g., Row 16 with merged text).
         Checks if it's merged or contains existing text.
         """
-        if self._is_row_merged(sheet, row, header_map):
-            return True
-            
-        for col_idx in header_map.values():
-            val = sheet.cell(row=row, column=col_idx).value
-            if val and isinstance(val, str) and len(val.strip()) > 5:
-                return True
-        return False
+        return self._is_row_merged(sheet, row, header_map)
 
     def _is_row_merged(self, sheet: Worksheet, row: int, header_map: dict[str, int]) -> bool:
         """
@@ -294,7 +275,8 @@ class ChronologyExcelWriter:
         row_idx: int, 
         entry: ChronologyEntry, 
         header_map: dict[str, int], 
-        serial_no: int
+        serial_no: int,
+        release_date: str,
     ) -> None:
         """
         Writes a single ChronologyEntry to the specified row.
@@ -313,19 +295,18 @@ class ChronologyExcelWriter:
         def safe_val(value: Any) -> str | int:
             return value if value is not None else ""
 
-        # Construct the data mapping aligned with normalized header names
+        # Only update business fields for chronology history entries.
         data = {
             "serial no.": serial_no,
             "source code path": str(entry.source_code_path) if entry.source_code_path else "",
             "bin file name": entry.bin_file_name,
-            "crc": entry.crc,
             "ladder version no.": entry.version,
             "reason for upgrade": entry.reason_for_upgrade,
             "testing stage": entry.testing_stage,
             "plc model": entry.plc_model,
             "selpro version & path": entry.selpro_version,
             "bootloader version": entry.bootloader_version,
-            "release date": entry.release_date,
+            "release date": release_date,
             "released by": entry.released_by,
             "ladder release-to production": entry.ladder_release_to_production,
             "operator procedure modification": entry.operator_procedure_modification,
@@ -337,6 +318,73 @@ class ChronologyExcelWriter:
             if header_name in data:
                 writable_cell = self._get_writable_cell(sheet, row_idx, col_idx)
                 writable_cell.value = safe_val(data[header_name])
+
+    def _renumber_serials(self, sheet: Worksheet, start_row: int, header_map: dict[str, int]) -> None:
+        serial_column = header_map.get("serial no.")
+        if serial_column is None:
+            return
+
+        serial_no = 1
+        row_index = start_row
+        while row_index <= sheet.max_row:
+            if self._is_instruction_row(sheet, row_index, header_map):
+                row_index += 1
+                continue
+
+            if not self._has_history_row_data(sheet, row_index, header_map):
+                break
+
+            serial_cell = self._get_writable_cell(sheet, row_index, serial_column)
+            serial_cell.value = serial_no
+            serial_no += 1
+            row_index += 1
+
+    @staticmethod
+    def _has_history_row_data(sheet: Worksheet, row: int, header_map: dict[str, int]) -> bool:
+        probe_headers = [
+            "bin file name",
+            "ladder version no.",
+            "testing stage",
+            "source code path",
+        ]
+
+        for header in probe_headers:
+            col_idx = header_map.get(header)
+            if col_idx is None:
+                continue
+            value = sheet.cell(row=row, column=col_idx).value
+            if value is not None and str(value).strip() != "":
+                return True
+
+        return False
+
+    def _is_same_release_row(
+        self,
+        sheet: Worksheet,
+        row: int,
+        entry: ChronologyEntry,
+        header_map: dict[str, int],
+    ) -> bool:
+        expected = {
+            "bin file name": entry.bin_file_name,
+            "ladder version no.": entry.version,
+            "source code path": str(entry.source_code_path) if entry.source_code_path else "",
+            "testing stage": entry.testing_stage,
+            "plc model": entry.plc_model,
+            "bootloader version": entry.bootloader_version,
+        }
+
+        for header, expected_value in expected.items():
+            col_idx = header_map.get(header)
+            if col_idx is None:
+                continue
+            current_value = sheet.cell(row=row, column=col_idx).value
+            left = "" if current_value is None else str(current_value).strip()
+            right = "" if expected_value is None else str(expected_value).strip()
+            if left.casefold() != right.casefold():
+                return False
+
+        return True
 
     def _save(self, workbook: Workbook, output_path: Path) -> None:
         """

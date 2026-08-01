@@ -35,8 +35,6 @@ from core.validation_result import ValidationResult
 from core.validation_step import ValidationStep
 
 from services.file_search import FileSearchService
-from services.crc.crc_exceptions import CRCError
-from services.crc.crc_generator import CRCGenerator
 
 
 class ChronologyValidator(BaseValidator):
@@ -157,36 +155,17 @@ class ChronologyValidator(BaseValidator):
 
             stage_validation_errors: list[str] = []
 
-            # ==========================================================
-            # CRC VALIDATION (Only rule that determines PASS/FAIL)
-            # ==========================================================
-            chronology_crc_decimal = self._parse_crc_value(latest_crc_raw)
-            computed_crc_decimal = None
-            crc_result = "FAIL"
+            if expected_bin_path is not None:
+                self._apply_legacy_metadata_checks(
+                    expected_stage_name=expected_stage_name,
+                    extracted_stage=extracted_stage,
+                    latest_bin=latest_bin,
+                    latest_version=latest_version,
+                    expected_bin_path=expected_bin_path,
+                    stage_validation_errors=stage_validation_errors,
+                )
 
-            if expected_bin_path is not None and expected_bin_path.exists():
-                try:
-                    crc_out = CRCGenerator().generate_from_file(expected_bin_path)
-                    computed_crc_decimal = crc_out.decimal_value
-                except CRCError as exc:
-                    stage_validation_errors.append(f"BIN CRC generation failed: {str(exc)}")
-            else:
-                stage_validation_errors.append("Project BIN file is missing; cannot generate CRC.")
-
-            if latest_crc_raw is None:
-                stage_validation_errors.append("Chronology CRC missing from latest firmware row.")
-            elif chronology_crc_decimal is None:
-                stage_validation_errors.append("Unable to parse CRC value from chronology PDF.")
-
-            if computed_crc_decimal is not None and chronology_crc_decimal is not None:
-                if computed_crc_decimal == chronology_crc_decimal:
-                    crc_result = "PASS"
-                else:
-                    stage_validation_errors.append(
-                        f"CRC mismatch. Expected (generated) {computed_crc_decimal}. Found (chronology) {chronology_crc_decimal}."
-                    )
-
-            overall_result = crc_result
+            overall_result = "PASS" if not stage_validation_errors else "FAIL"
 
             previous_firmware = None
             if prev_bin or prev_version or prev_release_date or prev_crc_raw:
@@ -200,6 +179,14 @@ class ChronologyValidator(BaseValidator):
             stage_dict = {
                 "board": board,
                 "stage": extracted_stage,
+                # Backward-compatible top-level keys retained for existing report/tests.
+                "bin_file": latest_bin,
+                "version": latest_version,
+                "release_date": latest_release_date,
+                "reason_for_upgrade": latest_reason,
+                "crc": latest_crc_raw,
+                "computed_crc": None,
+                "crc_match": None,
                 "latest_firmware": {
                     "bin_file": latest_bin,
                     "version": latest_version,
@@ -211,8 +198,9 @@ class ChronologyValidator(BaseValidator):
                 "validation": {
                     "crc": {
                         "chronology_crc": latest_crc_raw,
-                        "generated_crc": computed_crc_decimal,
-                        "result": crc_result,
+                        "ladder_crc": None,
+                        "bin_crc": None,
+                        "result": "NOT_CHECKED",
                     },
                 },
                 "overall_result": overall_result,
@@ -259,6 +247,42 @@ class ChronologyValidator(BaseValidator):
             checked_path=chronology_folder,
             details=details,
         )
+
+    @staticmethod
+    def _apply_legacy_metadata_checks(
+        expected_stage_name: str,
+        extracted_stage: str | None,
+        latest_bin: str | None,
+        latest_version: str | None,
+        expected_bin_path: Path,
+        stage_validation_errors: list[str],
+    ) -> None:
+        if extracted_stage and extracted_stage.casefold() != expected_stage_name.casefold():
+            stage_validation_errors.append(
+                f"Testing Stage mismatch. Expected {expected_stage_name}. Found {extracted_stage}."
+            )
+
+        expected_bin_name = expected_bin_path.name
+        if latest_bin is None:
+            stage_validation_errors.append("BIN filename missing in chronology.")
+        elif not ChronologyValidator._same_filename_loose(latest_bin, expected_bin_name):
+            stage_validation_errors.append(
+                f"BIN filename mismatch. Expected {expected_bin_name}. Found {latest_bin}."
+            )
+
+        expected_version = ChronologyValidator._extract_version_from_name(expected_bin_name)
+        if expected_version and latest_version and expected_version.casefold() != latest_version.casefold():
+            stage_validation_errors.append(
+                f"Version mismatch. Expected {expected_version}. Found {latest_version}."
+            )
+
+    @staticmethod
+    def _same_filename_loose(left: str, right: str) -> bool:
+        def normalize(name: str) -> str:
+            base = Path(name).name
+            return re.sub(r"[^a-z0-9]", "", base.casefold())
+
+        return normalize(left) == normalize(right)
 
     def _create_empty_stage_dict(
         self,
@@ -486,7 +510,7 @@ class ChronologyValidator(BaseValidator):
                 continue
 
             bin_parts: list[str] = []
-            for index in range(version_index - 1, 1, -1):
+            for index in range(version_index - 1, -1, -1):
                 line = lines[index]
                 if not line:
                     continue
@@ -502,7 +526,7 @@ class ChronologyValidator(BaseValidator):
             bin_parts.reverse()
 
             if not bin_parts:
-                for index in range(max(0, version_index - 2), -1, -1):
+                for index in range(version_index - 1, -1, -1):
                     line = lines[index]
                     if not line:
                         continue

@@ -634,20 +634,42 @@ pre {{
                         f"<div class='details-row'><span class='details-label'>SDOC File</span> : {html.escape(str(path))}</div></div>"
                     )
         else:
-            entries = details.get("bin_files")
-            if isinstance(entries, dict):
-                for relative_path, path in entries.items():
-                    heading = cls._stage_heading(relative_path)
-                    cards.append(
-                        f"<div class='details-card'><div class='details-heading'>{html.escape(heading)}</div>"
-                        f"<div class='details-row'><span class='details-label'>BIN File</span> : {html.escape(str(path))}</div></div>"
-                    )
+            entries = details.get("bin_files") if isinstance(details.get("bin_files"), dict) else {}
+            crc_records = details.get("bin_crcs") if isinstance(details.get("bin_crcs"), dict) else {}
+
+            stage_keys = sorted(set(entries.keys()) | set(crc_records.keys()))
+            for relative_path in stage_keys:
+                heading = cls._stage_heading(relative_path)
+                stage_bin_path = entries.get(relative_path)
+                crc_record = crc_records.get(relative_path, {})
+
+                bin_display = crc_record.get("bin_name") or stage_bin_path
+                crc_display = crc_record.get("crc")
+                status_text = "PASS" if crc_display else "FAILED"
+
+                rows = [
+                    f"<div class='details-row'><span class='details-label'>BIN File</span> : {html.escape(str(bin_display))}</div>",
+                    f"<div class='details-row'><span class='details-label'>CRC</span> : {html.escape(str(crc_display))}</div>",
+                    f"<div class='details-row'><span class='details-label'>Status</span> : {html.escape(status_text)}</div>",
+                ]
+
+                cards.append(
+                    f"<div class='details-card'><div class='details-heading'>{html.escape(heading)}</div>{''.join(rows)}</div>"
+                )
 
         failures = details.get("failures")
         if isinstance(failures, list) and failures:
             cards.append(
                 "<div class='details-card'><div class='details-heading'>Issues</div>"
                 + "".join(f"<div class='details-row'>{html.escape(str(failure))}</div>" for failure in failures)
+                + "</div>"
+            )
+
+        stage_errors = details.get("stage_errors")
+        if isinstance(stage_errors, list) and stage_errors:
+            cards.append(
+                "<div class='details-card'><div class='details-heading'>Issues</div>"
+                + "".join(f"<div class='details-row'>{html.escape(str(item))}</div>" for item in stage_errors)
                 + "</div>"
             )
 

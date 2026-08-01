@@ -20,6 +20,7 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 
+from config import FOLDER_KEYS
 from services.chronology_generator.excel_writer import ChronologyExcelWriter
 from services.chronology_generator.models import ProjectChronology
 from services.chronology_generator.project_scanner import ProjectScanner
@@ -104,28 +105,18 @@ class ChronologyGenerator:
                 return chronology
 
             # Step 3: Pass each group to writer and save workbook
-            writer = self._create_writer()
             for folder, entries in groups.items():
                 if not entries:
                     continue
                     
                 sub_chronology = ProjectChronology(project_root=self._project_root, entries=entries)
-                
-                # Determine target path inside '7. Chronology' based on testing stage
-                stage = entries[0].testing_stage
-                if stage and stage != "Unknown":
-                    # stage is e.g. 'Master Initial'
-                    parts = stage.split()
-                    if len(parts) >= 2:
-                        target_dir = self._project_root / "7. Chronology" / parts[0] / parts[1]
-                    else:
-                        target_dir = self._project_root / "7. Chronology" / folder.name
-                else:
-                    target_dir = self._project_root / "7. Chronology" / folder.name
-                    
-                target_dir.mkdir(parents=True, exist_ok=True)
-                target_path = target_dir / "Ladder_Chronology.xlsx"
-                
+
+                target_path = self._resolve_chronology_output_path(folder)
+                target_path.parent.mkdir(parents=True, exist_ok=True)
+
+                template_path = target_path if target_path.exists() else self._template_path
+                writer = ChronologyExcelWriter(template_path)
+
                 self._logger.info(f"Generating chronology for group {folder} at {target_path}")
                 writer.write(sub_chronology, target_path)
 
@@ -157,3 +148,16 @@ class ChronologyGenerator:
             ChronologyExcelWriter: A new writer instance.
         """
         return ChronologyExcelWriter(self._template_path)
+
+    def _resolve_chronology_output_path(self, firmware_folder: Path) -> Path:
+        """Mirror firmware folder hierarchy from 2. Bin File into 7. Chronology."""
+        bin_root = self._project_root / FOLDER_KEYS["bin_file"]
+        chronology_root = self._project_root / FOLDER_KEYS["chronology"]
+
+        try:
+            relative_folder = firmware_folder.resolve().relative_to(bin_root.resolve())
+        except Exception:
+            # Fallback to folder name if the path cannot be relativized for any reason.
+            relative_folder = Path(firmware_folder.name)
+
+        return chronology_root / relative_folder / "Ladder_Chronology.xlsx"

@@ -30,22 +30,13 @@
       "7. Chronology"
     ],
     "folder_tree": {
-      "1. Ladders": {
-        "Master": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"],
-        "Slave": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"]
-      },
-      "2. Bin File": {
-        "Master": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"],
-        "Slave": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"]
-      },
+      "1. Ladders": {},
+      "2. Bin File": {},
       "3. Operational Flow": {},
       "4. Test Report": {},
       "5. Automation Input Doc": {},
       "6. Ladder Flow": {},
-      "7. Chronology": {
-        "Master": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"],
-        "Slave": ["Initial", "Final", "Functional", "QC", "Voltage", "Calb"]
-      }
+      "7. Chronology": {}
     },
     "ladder_initial_folder": "Initial",
     "ladder_final_folder": "Final",

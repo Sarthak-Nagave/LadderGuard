@@ -14,8 +14,10 @@ import os
 from pathlib import Path
 from typing import Any
 
-from config import DEFAULT_FOLDER_GENERATION_TARGET, PROJECT_ROOT_FOLDER_NAME, PROJECT_STRUCTURE
+from config import DEFAULT_FOLDER_GENERATION_TARGET, PROJECT_ROOT_FOLDER_NAME, REQUIRED_FOLDERS
 from services.logger import LoggerService
+from services.mirror_service import MirrorService
+from services.hierarchy_discovery import HierarchyDiscovery
 
 logger = LoggerService.get_logger()
 
@@ -28,78 +30,42 @@ class FolderStructureGenerator:
         target_root = self._resolve_target_root(base_path)
         target_root.mkdir(parents=True, exist_ok=True)
 
-        dynamic_structure = self.build_dynamic_structure(source_project_path)
-        self._create_structure(target_root, dynamic_structure)
+        # Always create only the required top-level baseline folders.
+        # Intentionally ignore any nested hierarchy that may be present in config.
+        self._create_required_roots(target_root)
+            
+        if not source_project_path or not source_project_path.exists():
+            return target_root
+            
+        ladder_src = source_project_path / "Ladder"
+        bin_src = source_project_path / "Bin Files"
+        
+        # Discover firmware hierarchy
+        sources_to_scan = []
+        if ladder_src.exists(): sources_to_scan.append(ladder_src)
+        if bin_src.exists(): sources_to_scan.append(bin_src)
+        
+        # Discover dynamic hierarchy from engineering folders
+        firmware_dirs = HierarchyDiscovery.discover_firmware_hierarchy(sources_to_scan)
+        
+        # Strategy 1: Ladder
+        if ladder_src.exists():
+            logger.info("Mirroring Ladder...")
+            MirrorService.mirror_ladder(ladder_src, target_root / "1. Ladders")
+            
+        # Strategy 2: Bin Files
+        if bin_src.exists():
+            logger.info("Mirroring Bin Files...")
+            MirrorService.mirror_bin_files(bin_src, target_root / "2. Bin File")
+            
+        # Strategy 3: Chronology
+        if firmware_dirs:
+            logger.info("Creating Chronology hierarchy...")
+            MirrorService.generate_chronology(firmware_dirs, target_root / "7. Chronology")
+            
         return target_root
 
-    def build_dynamic_structure(self, source_path: Path | None) -> dict[str, Any]:
-        """Dynamically filters the project structure based on existing firmware groups."""
-        import copy
-        structure = copy.deepcopy(PROJECT_STRUCTURE)
-        
-        groups = {"Master": set(), "Slave": set()}
-        
-        if source_path and source_path.exists():
-            for file_path in source_path.rglob("*"):
-                if not file_path.is_file():
-                    continue
-                    
-                # Skip files inside Backup, GRP, POU
-                parts_lower = [p.lower() for p in file_path.parts]
-                if any(ignored in parts_lower for ignored in ["backup", "grp", "pou"]):
-                    continue
-                    
-                ext = file_path.suffix.lower()
-                if ext not in [".bin", ".sdoc"]:
-                    continue
-                
-                is_master = False
-                is_slave = False
-                is_initial = False
-                is_final = False
-                
-                # Check filename first
-                import re
-                name = file_path.name.lower()
-                tokens = set(re.findall(r'[a-z0-9]+', name))
-                
-                if "m" in tokens or "master" in tokens:
-                    is_master = True
-                elif "s" in tokens or "slave" in tokens:
-                    is_slave = True
-                    
-                if "initial" in tokens:
-                    is_initial = True
-                elif "final" in tokens:
-                    is_final = True
-                
-                # Check parts from immediate parent upwards if not fully determined
-                if not (is_master or is_slave) or not (is_initial or is_final):
-                    for p in reversed(file_path.parts[:-1]):
-                        p_low = p.lower()
-                        p_tokens = set(re.findall(r'[a-z0-9]+', p_low))
-                        if not (is_master or is_slave):
-                            if "m" in p_tokens or "master" in p_tokens: is_master = True
-                            elif "s" in p_tokens or "slave" in p_tokens: is_slave = True
-                        if not (is_initial or is_final):
-                            if "initial" in p_tokens: is_initial = True
-                            elif "final" in p_tokens: is_final = True
-                
-                if is_master and is_initial: groups["Master"].add("Initial")
-                if is_master and is_final: groups["Master"].add("Final")
-                if is_slave and is_initial: groups["Slave"].add("Initial")
-                if is_slave and is_final: groups["Slave"].add("Final")
 
-        # Filter the structure for specific keys
-        for key in ["1. Ladders", "2. Bin File", "7. Chronology"]:
-            if key in structure:
-                structure[key] = {}
-                if groups["Master"]:
-                    structure[key]["Master"] = list(groups["Master"])
-                if groups["Slave"]:
-                    structure[key]["Slave"] = list(groups["Slave"])
-                    
-        return structure
 
     def _resolve_target_root(self, base_path: Path | None) -> Path:
         if base_path is not None:
@@ -108,14 +74,8 @@ class FolderStructureGenerator:
         desktop_path = Path.home() / DEFAULT_FOLDER_GENERATION_TARGET
         return desktop_path / PROJECT_ROOT_FOLDER_NAME
 
-    def _create_structure(self, root: Path, structure: dict[str, Any]) -> None:
-        for folder_name, children in structure.items():
-            current_path = root / folder_name
-            current_path.mkdir(parents=True, exist_ok=True)
-            if isinstance(children, dict):
-                self._create_structure(current_path, children)
-            elif isinstance(children, list):
-                for child_name in children:
-                    (current_path / child_name).mkdir(parents=True, exist_ok=True)
+    def _create_required_roots(self, root: Path) -> None:
+        for folder_name in REQUIRED_FOLDERS:
+            (root / folder_name).mkdir(parents=True, exist_ok=True)
 
-        logger.debug("Created folder structure at %s", root)
+        logger.debug("Created required root folders at %s", root)

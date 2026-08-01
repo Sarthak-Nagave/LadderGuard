@@ -165,32 +165,9 @@ class ReportWindow(QMainWindow):
         self._title_label.setText(APP_NAME)
         self._heading.setText("Validation Results")
 
-        for index in reversed(range(self._info_layout.count())):
-            item = self._info_layout.itemAt(index)
-            if item is None:
-                continue
-            if item.widget() is not None:
-                item.widget().deleteLater()
-            elif item.layout() is not None:
-                self._clear_layout(item.layout())
-
-        for index in reversed(range(self._summary_layout.count())):
-            item = self._summary_layout.itemAt(index)
-            if item is None:
-                continue
-            if item.widget() is not None:
-                item.widget().deleteLater()
-            elif item.layout() is not None:
-                self._clear_layout(item.layout())
-
-        for index in reversed(range(self._sections_layout.count())):
-            item = self._sections_layout.itemAt(index)
-            if item is None:
-                continue
-            if item.widget() is not None:
-                item.widget().deleteLater()
-            elif item.layout() is not None:
-                self._clear_layout(item.layout())
+        self._clear_layout(self._info_layout)
+        self._clear_layout(self._summary_layout)
+        self._clear_layout(self._sections_layout)
 
         self._info_layout.addLayout(self._build_info_layout())
         self._summary_layout.addWidget(self._build_summary_card("Overall", self._data_model.status_text()))
@@ -208,7 +185,9 @@ class ReportWindow(QMainWindow):
         while layout.count():
             item = layout.takeAt(0)
             if item.widget() is not None:
-                item.widget().deleteLater()
+                widget = item.widget()
+                widget.setParent(None)
+                widget.deleteLater()
             elif item.layout() is not None:
                 ReportWindow._clear_layout(item.layout())
 

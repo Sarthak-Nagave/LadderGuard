@@ -13,7 +13,7 @@ from validators.chronology_validator import ChronologyValidator
 
 
 class ChronologyValidatorCRCTests(unittest.TestCase):
-    def test_chronology_validator_reports_crc_values_when_present(self) -> None:
+    def test_chronology_validator_does_not_require_crc_comparison_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             chronology_folder = root / "7. Chronology"
@@ -31,8 +31,6 @@ class ChronologyValidatorCRCTests(unittest.TestCase):
                 "Version\n"
                 "Release Date\n"
                 "Reason for Upgrade\n"
-                "CRC\n"
-                "0x1234ABCD\n"
                 "Master\n"
                 "Initial\n"
                 "firmware_V1.02.bin\n"
@@ -58,13 +56,12 @@ class ChronologyValidatorCRCTests(unittest.TestCase):
             validator = ChronologyValidator(FileSearchService())
             result = validator.validate(context)
 
-            self.assertEqual(result.status, ValidationStatus.FAIL)
-            self.assertIn("CRC mismatch", result.reason)
-            self.assertEqual(result.details["stages"][0]["crc"], "0X1234ABCD")
-            self.assertEqual(result.details["stages"][0]["computed_crc"], "0xAA275AED")
-            self.assertFalse(result.details["stages"][0]["crc_match"])
+            self.assertEqual(result.status, ValidationStatus.PASS)
+            self.assertEqual(result.details["stages"][0]["validation"]["crc"]["result"], "NOT_CHECKED")
+            self.assertIsNone(result.details["stages"][0]["validation"]["crc"]["ladder_crc"])
+            self.assertIsNone(result.details["stages"][0]["validation"]["crc"]["bin_crc"])
 
-    def test_chronology_validator_fails_when_crc_missing_in_pdf(self) -> None:
+    def test_chronology_validator_keeps_crc_value_as_document_data_only(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             chronology_folder = root / "7. Chronology"
@@ -82,6 +79,8 @@ class ChronologyValidatorCRCTests(unittest.TestCase):
                 "Version\n"
                 "Release Date\n"
                 "Reason for Upgrade\n"
+                "CRC\n"
+                "0xAA275AED\n"
                 "Slave\n"
                 "Final\n"
                 "firmware_V1.00.bin\n"
@@ -107,11 +106,9 @@ class ChronologyValidatorCRCTests(unittest.TestCase):
             validator = ChronologyValidator(FileSearchService())
             result = validator.validate(context)
 
-            self.assertEqual(result.status, ValidationStatus.FAIL)
-            self.assertIn("CRC value missing", result.reason)
-            self.assertIsNone(result.details["stages"][0].get("crc"))
-            self.assertEqual(result.details["stages"][0].get("computed_crc"), "0xAA275AED")
-            self.assertIsNone(result.details["stages"][0].get("crc_match"))
+            self.assertEqual(result.status, ValidationStatus.PASS)
+            self.assertEqual(result.details["stages"][0]["crc"], "0XAA275AED")
+            self.assertEqual(result.details["stages"][0]["validation"]["crc"]["result"], "NOT_CHECKED")
 
 
 if __name__ == "__main__":

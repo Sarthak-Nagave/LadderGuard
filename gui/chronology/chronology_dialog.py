@@ -19,15 +19,19 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+from typing import Any
 
 from config import DEFAULT_OUTPUT_FILENAME
-from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
+    QComboBox,
     QDialog,
     QFileDialog,
-    QHeaderView,
+    QFormLayout,
+    QGroupBox,
+    QLineEdit,
+    QScrollArea,
     QMessageBox,
-    QTableWidgetItem,
+    QVBoxLayout,
     QWidget,
 )
 
@@ -56,8 +60,11 @@ class ChronologyDialog(QDialog):
         self._project_folder = project_folder
         self._logger = logging.getLogger(__name__)
         self._chronology: ProjectChronology | None = None
-        self._groups: list[tuple[Path, list]] = []
-        self._current_group_index: int = 0
+        self._groups: list[tuple[Path, list[Any]]] = []
+        self._entry_cards: list[dict[str, Any]] = []
+        self._cards_scroll_area: QScrollArea | None = None
+        self._cards_container: QWidget | None = None
+        self._cards_layout: QVBoxLayout | None = None
 
         # Standard PySide6 UI setup
         self.ui = Ui_ChronologyDialog()
@@ -69,7 +76,7 @@ class ChronologyDialog(QDialog):
 
     def _configure_ui(self) -> None:
         """
-        Configures the initial state of the table headers and combo boxes.
+        Configures the base dialog layout and dynamic cards container.
         """
         self.setWindowTitle("Generate Ladder Chronology")
         self.resize(900, 600)
@@ -78,30 +85,6 @@ class ChronologyDialog(QDialog):
         if hasattr(self.ui, "line_project_folder"):
             self.ui.line_project_folder.setText(str(self._project_folder))
 
-        # Configure Table
-        headers = [
-            "BIN File", 
-            "Version", 
-            "PLC Model", 
-            "CRC", 
-            "Testing Stage"
-        ]
-        self.ui.table_chronology.setColumnCount(len(headers))
-        self.ui.table_chronology.setHorizontalHeaderLabels(headers)
-        self.ui.table_chronology.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-
-        # Configure ComboBoxes
-        combo_options = ["Select...", "Yes", "No"]
-        
-        self.ui.combo_ladder_release.clear()
-        self.ui.combo_ladder_release.addItems(combo_options)
-        
-        self.ui.combo_operator_modification.clear()
-        self.ui.combo_operator_modification.addItems(combo_options)
-        
-        self.ui.combo_automation_modification.clear()
-        self.ui.combo_automation_modification.addItems(combo_options)
-        
         # Hide output file UI elements since paths are now automatic
         if hasattr(self.ui, "lbl_output_file"):
             self.ui.lbl_output_file.hide()
@@ -109,6 +92,33 @@ class ChronologyDialog(QDialog):
             self.ui.line_output_file.hide()
         if hasattr(self.ui, "btn_browse_output"):
             self.ui.btn_browse_output.hide()
+
+        # Release information is now rendered per firmware folder card.
+        if hasattr(self.ui, "grp_release_info"):
+            self.ui.grp_release_info.hide()
+
+        # The legacy table is replaced by dynamic cards.
+        if hasattr(self.ui, "table_chronology"):
+            self.ui.table_chronology.hide()
+
+        self._setup_dynamic_cards_area()
+        self.ui.btn_generate.setEnabled(False)
+
+    def _setup_dynamic_cards_area(self) -> None:
+        if self._cards_scroll_area is not None:
+            return
+
+        self._cards_scroll_area = QScrollArea(self)
+        self._cards_scroll_area.setWidgetResizable(True)
+
+        self._cards_container = QWidget(self._cards_scroll_area)
+        self._cards_layout = QVBoxLayout(self._cards_container)
+        self._cards_layout.setContentsMargins(0, 0, 0, 0)
+        self._cards_layout.setSpacing(12)
+        self._cards_layout.addStretch(1)
+
+        self._cards_scroll_area.setWidget(self._cards_container)
+        self.ui.verticalLayoutFirmware.addWidget(self._cards_scroll_area)
 
     def _connect_signals(self) -> None:
         """
@@ -136,100 +146,152 @@ class ChronologyDialog(QDialog):
             
             self._chronology = generator.scan_project()
             
-            # Setup groups for the wizard
+            # Setup groups for dynamic card generation
             self._groups = list(self._chronology.group_by_firmware_folder().items())
-            self._current_group_index = 0
-            
-            if self._groups:
-                self._load_current_group()
-            else:
-                self._populate_table([])
+            self._build_dynamic_cards()
+            self._update_generate_button_state()
             
         except Exception as exc:
             self._logger.exception("Failed to run initial chronology scan.")
             QMessageBox.critical(self, "Scan Error", f"Failed to scan project:\n{exc}")
 
-    def _load_current_group(self) -> None:
-        """
-        Loads the UI state for the current firmware group in the wizard flow.
-        """
-        if not self._groups:
+    def _build_dynamic_cards(self) -> None:
+        if self._cards_layout is None:
             return
-            
-        folder, entries = self._groups[self._current_group_index]
-        
-        # Clear inputs for the new group
-        self.ui.line_release_date.clear()
-        self.ui.line_reason.clear()
-        self.ui.line_released_by.clear()
-        self.ui.line_tested_by.clear()
-        self.ui.line_selpro_version.clear()
-        self.ui.line_selpro_path.clear()
-        self.ui.line_source_code_path.clear()
-        
-        self.ui.combo_ladder_release.setCurrentIndex(0)
-        self.ui.combo_operator_modification.setCurrentIndex(0)
-        self.ui.combo_automation_modification.setCurrentIndex(0)
-        
-        # Pre-fill Source Code Path if detected (take the path from the first entry as they share the group)
-        if entries and entries[0].source_code_path:
-            self.ui.line_source_code_path.setText(str(entries[0].source_code_path))
 
-        self._populate_table(entries)
+        self._entry_cards.clear()
 
-        # Update labels and button text
-        total = len(self._groups)
-        current = self._current_group_index + 1
-        folder_name = folder.relative_to(self._project_folder) if self._project_folder in folder.parents else folder.name
-        self.ui.grp_firmware_entries.setTitle(f"Detected Firmware Entries - Group {current}/{total} ({folder_name})")
-        
-        if self._current_group_index < total - 1:
-            self.ui.btn_generate.setText("Next Group")
-        else:
-            self.ui.btn_generate.setText("Generate Excel")
-            
-        self._populate_table(entries)
+        while self._cards_layout.count() > 1:
+            item = self._cards_layout.takeAt(0)
+            widget = item.widget()
+            if widget is not None:
+                widget.deleteLater()
 
-    def _populate_table(self, entries: list) -> None:
-        self.ui.table_chronology.setRowCount(0)
-        self.ui.table_chronology.setColumnCount(6)
-        self.ui.table_chronology.setHorizontalHeaderLabels([
-            "BIN File", 
-            "Version", 
-            "PLC Model", 
-            "CRC", 
-            "Testing Stage", 
-            "Bootloader Version"
-        ])
-        
-        for row, entry in enumerate(entries):
-            self.ui.table_chronology.insertRow(row)
-            
-            # Read-only items
-            item_bin = QTableWidgetItem(entry.bin_file_name)
-            item_bin.setFlags(item_bin.flags() & ~Qt.ItemFlag.ItemIsEditable)
-            self.ui.table_chronology.setItem(row, 0, item_bin)
-            
-            item_ver = QTableWidgetItem(entry.version)
-            item_ver.setFlags(item_ver.flags() & ~Qt.ItemFlag.ItemIsEditable)
-            self.ui.table_chronology.setItem(row, 1, item_ver)
-            
-            item_model = QTableWidgetItem(entry.plc_model)
-            item_model.setFlags(item_model.flags() & ~Qt.ItemFlag.ItemIsEditable)
-            self.ui.table_chronology.setItem(row, 2, item_model)
+        for index, (folder, entries) in enumerate(self._groups, start=1):
+            if not entries:
+                continue
 
-            item_crc = QTableWidgetItem(entry.crc)
-            item_crc.setFlags(item_crc.flags() & ~Qt.ItemFlag.ItemIsEditable)
-            self.ui.table_chronology.setItem(row, 3, item_crc)
+            entry = entries[0]
+            card = self._create_card(index, folder, entry)
+            self._entry_cards.append(card)
+            self._cards_layout.insertWidget(self._cards_layout.count() - 1, card["group_box"])
 
-            item_stage = QTableWidgetItem(entry.testing_stage)
-            item_stage.setFlags(item_stage.flags() & ~Qt.ItemFlag.ItemIsEditable)
-            self.ui.table_chronology.setItem(row, 4, item_stage)
+        self.ui.grp_firmware_entries.setTitle(f"Detected Firmware Entries ({len(self._entry_cards)} card(s))")
 
-            item_bootloader = QTableWidgetItem(entry.bootloader_version or "")
-            item_bootloader.setFlags(item_bootloader.flags() & ~Qt.ItemFlag.ItemIsEditable)
-            self.ui.table_chronology.setItem(row, 5, item_bootloader)
-            self.ui.table_chronology.setItem(row, 5, item_reason)
+    def _create_card(self, index: int, folder: Path, entry: Any) -> dict[str, Any]:
+        card_box = QGroupBox(f"Chronology {index}", self._cards_container)
+        form = QFormLayout(card_box)
+        form.setContentsMargins(10, 10, 10, 10)
+        form.setHorizontalSpacing(12)
+        form.setVerticalSpacing(6)
+
+        firmware_folder_value = self._format_firmware_folder(folder)
+        line_firmware_folder = self._read_only_line(firmware_folder_value)
+        line_bin = self._read_only_line(entry.bin_file_name)
+        line_version = self._read_only_line(entry.version)
+        line_plc = self._read_only_line(entry.plc_model)
+        line_bootloader = self._read_only_line(entry.bootloader_version or "")
+        line_stage = self._read_only_line(entry.testing_stage)
+        line_source_path = self._read_only_line(str(entry.source_code_path))
+
+        line_reason = QLineEdit(card_box)
+        line_released_by = QLineEdit(card_box)
+        line_tested_by = QLineEdit(card_box)
+        line_selpro_version = QLineEdit(card_box)
+        line_selpro_path = QLineEdit(card_box)
+        combo_ladder_release = self._yes_no_combo(card_box)
+        combo_operator_modification = self._yes_no_combo(card_box)
+        combo_automation_modification = self._yes_no_combo(card_box)
+
+        form.addRow("Firmware Folder:", line_firmware_folder)
+        form.addRow("BIN File Name:", line_bin)
+        form.addRow("Version:", line_version)
+        form.addRow("PLC Model:", line_plc)
+        form.addRow("Bootloader Version:", line_bootloader)
+        form.addRow("Testing Stage:", line_stage)
+        form.addRow("Source Code Path:", line_source_path)
+
+        form.addRow("Reason for Upgrade:", line_reason)
+        form.addRow("Released By:", line_released_by)
+        form.addRow("Tested By:", line_tested_by)
+        form.addRow("Selpro Version:", line_selpro_version)
+        form.addRow("Selpro Path:", line_selpro_path)
+        form.addRow("Ladder Release To Production:", combo_ladder_release)
+        form.addRow("Operator Procedure Modification:", combo_operator_modification)
+        form.addRow("Automation Set Up Modification:", combo_automation_modification)
+
+        line_reason.textChanged.connect(self._update_generate_button_state)
+        line_released_by.textChanged.connect(self._update_generate_button_state)
+        line_tested_by.textChanged.connect(self._update_generate_button_state)
+        combo_ladder_release.currentTextChanged.connect(self._update_generate_button_state)
+        combo_operator_modification.currentTextChanged.connect(self._update_generate_button_state)
+        combo_automation_modification.currentTextChanged.connect(self._update_generate_button_state)
+
+        return {
+            "group_box": card_box,
+            "folder": folder,
+            "entry": entry,
+            "line_firmware_folder": line_firmware_folder,
+            "line_source_path": line_source_path,
+            "line_reason": line_reason,
+            "line_released_by": line_released_by,
+            "line_tested_by": line_tested_by,
+            "line_selpro_version": line_selpro_version,
+            "line_selpro_path": line_selpro_path,
+            "combo_ladder_release": combo_ladder_release,
+            "combo_operator_modification": combo_operator_modification,
+            "combo_automation_modification": combo_automation_modification,
+        }
+
+    def _format_firmware_folder(self, folder: Path) -> str:
+        try:
+            rel = folder.resolve().relative_to(self._project_folder.resolve())
+            rel_text = rel.as_posix()
+            if rel_text.startswith("2. Bin File/"):
+                return rel_text[len("2. Bin File/") :]
+            return rel_text
+        except Exception:
+            return folder.as_posix()
+
+    @staticmethod
+    def _read_only_line(value: str) -> QLineEdit:
+        line = QLineEdit()
+        line.setText(value)
+        line.setReadOnly(True)
+        line.setCursorPosition(0)
+        return line
+
+    @staticmethod
+    def _yes_no_combo(parent: QWidget) -> QComboBox:
+        combo = QComboBox(parent)
+        combo.addItems(["Select...", "Yes", "No"])
+        return combo
+
+    def _update_generate_button_state(self) -> None:
+        template_ready = bool(self.ui.line_excel_template.text().strip())
+        card_ready = bool(self._entry_cards)
+
+        for card in self._entry_cards:
+            if not card["line_reason"].text().strip():
+                card_ready = False
+                break
+            if not card["line_released_by"].text().strip():
+                card_ready = False
+                break
+            if not card["line_tested_by"].text().strip():
+                card_ready = False
+                break
+            if card["combo_ladder_release"].currentText() == "Select...":
+                card_ready = False
+                break
+            if card["combo_operator_modification"].currentText() == "Select...":
+                card_ready = False
+                break
+            if card["combo_automation_modification"].currentText() == "Select...":
+                card_ready = False
+                break
+
+        self.ui.btn_generate.setEnabled(template_ready and card_ready)
 
     def _on_browse_template_clicked(self) -> None:
         """
@@ -238,6 +300,7 @@ class ChronologyDialog(QDialog):
         path = self._select_template_file()
         if path and hasattr(self.ui, "line_excel_template"):
             self.ui.line_excel_template.setText(str(path))
+            self._update_generate_button_state()
 
     def _on_browse_output_clicked(self) -> None:
         """
@@ -256,12 +319,6 @@ class ChronologyDialog(QDialog):
             return
 
         self._update_chronology_models()
-        
-        # Advance wizard if more groups remain
-        if self._current_group_index < len(self._groups) - 1:
-            self._current_group_index += 1
-            self._load_current_group()
-            return
 
         # Fetch template path
         if hasattr(self.ui, "line_excel_template") and self.ui.line_excel_template.text().strip():
@@ -301,36 +358,40 @@ class ChronologyDialog(QDialog):
         Returns:
             True if all inputs are valid, False otherwise.
         """
-        if not self.ui.line_released_by.text().strip():
-            QMessageBox.warning(self, "Validation Error", "'Released By' cannot be empty.")
-            self.ui.line_released_by.setFocus()
+        if not self._entry_cards:
+            QMessageBox.warning(self, "Validation Error", "No firmware folders with BIN files were discovered.")
             return False
 
-        if not self.ui.line_tested_by.text().strip():
-            QMessageBox.warning(self, "Validation Error", "'Tested By' cannot be empty.")
-            self.ui.line_tested_by.setFocus()
-            return False
-
-        if self.ui.combo_ladder_release.currentText() == "Select...":
-            QMessageBox.warning(self, "Validation Error", "Please select an option for 'Ladder Release To Production'.")
-            self.ui.combo_ladder_release.setFocus()
-            return False
-
-        if self.ui.combo_operator_modification.currentText() == "Select...":
-            QMessageBox.warning(self, "Validation Error", "Please select an option for 'Operator Procedure Modification'.")
-            self.ui.combo_operator_modification.setFocus()
-            return False
-
-        if self.ui.combo_automation_modification.currentText() == "Select...":
-            QMessageBox.warning(self, "Validation Error", "Please select an option for 'Automation Set Up Modification'.")
-            self.ui.combo_automation_modification.setFocus()
-            return False
-
-        # Validate that paths are selected if the user didn't use the browse buttons yet
         if hasattr(self.ui, "line_excel_template") and not self.ui.line_excel_template.text().strip():
             QMessageBox.warning(self, "Validation Error", "Please select an Excel Template.")
             self.ui.btn_browse_template.setFocus()
             return False
+
+        for index, card in enumerate(self._entry_cards, start=1):
+            if not card["line_reason"].text().strip():
+                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: 'Reason for Upgrade' cannot be empty.")
+                card["line_reason"].setFocus()
+                return False
+            if not card["line_released_by"].text().strip():
+                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: 'Released By' cannot be empty.")
+                card["line_released_by"].setFocus()
+                return False
+            if not card["line_tested_by"].text().strip():
+                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: 'Tested By' cannot be empty.")
+                card["line_tested_by"].setFocus()
+                return False
+            if card["combo_ladder_release"].currentText() == "Select...":
+                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: select 'Ladder Release To Production'.")
+                card["combo_ladder_release"].setFocus()
+                return False
+            if card["combo_operator_modification"].currentText() == "Select...":
+                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: select 'Operator Procedure Modification'.")
+                card["combo_operator_modification"].setFocus()
+                return False
+            if card["combo_automation_modification"].currentText() == "Select...":
+                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: select 'Automation Set Up Modification'.")
+                card["combo_automation_modification"].setFocus()
+                return False
 
         return True
 
@@ -368,32 +429,22 @@ class ChronologyDialog(QDialog):
         if not self._chronology:
             return
 
-        release_date = self.ui.line_release_date.text().strip()
-        reason = self.ui.line_reason.text().strip()
-        released_by = self.ui.line_released_by.text().strip()
-        tested_by = self.ui.line_tested_by.text().strip()
-        selpro_version = self.ui.line_selpro_version.text().strip()
-        selpro_path = self.ui.line_selpro_path.text().strip()
-        source_code_path = self.ui.line_source_code_path.text().strip()
+        for card in self._entry_cards:
+            entry = card["entry"]
+            reason = card["line_reason"].text().strip()
+            released_by = card["line_released_by"].text().strip()
+            tested_by = card["line_tested_by"].text().strip()
+            selpro_version = card["line_selpro_version"].text().strip()
+            selpro_path = card["line_selpro_path"].text().strip()
 
-        ladder_release = self.ui.combo_ladder_release.currentText()
-        operator_mod = self.ui.combo_operator_modification.currentText()
-        automation_mod = self.ui.combo_automation_modification.currentText()
+            ladder_release = card["combo_ladder_release"].currentText()
+            operator_mod = card["combo_operator_modification"].currentText()
+            automation_mod = card["combo_automation_modification"].currentText()
 
-        if not self._groups:
-            return
-            
-        entries = self._groups[self._current_group_index][1]
-
-        for entry in entries:
-            entry.release_date = release_date
             entry.reason_for_upgrade = reason
             entry.released_by = released_by
             entry.tested_by = tested_by
-            entry.source_code_path = Path(source_code_path) if source_code_path else None
-            # Formatting selpro version and path
             entry.selpro_version = f"{selpro_version} {selpro_path}".strip()
-            
             entry.ladder_release_to_production = ladder_release if ladder_release != "Select..." else ""
             entry.operator_procedure_modification = operator_mod if operator_mod != "Select..." else ""
             entry.automation_setup_modification = automation_mod if automation_mod != "Select..." else ""

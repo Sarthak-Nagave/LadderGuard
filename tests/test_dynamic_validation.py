@@ -1,4 +1,5 @@
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
@@ -84,14 +85,23 @@ class DynamicValidationTests(unittest.TestCase):
                 "beta",
                 encoding="utf-8",
             )
-            (bin_root / "Master" / "Initial" / "alpha.bin").write_text(
-                "bin",
-                encoding="utf-8",
-            )
-            (bin_root / "Master" / "QC" / "beta.bin").write_text(
-                "bin",
-                encoding="utf-8",
-            )
+
+            # Master/Initial -> make latest Ladder and latest Bin match.
+            old_ladder_initial = ladders_root / "Master" / "Initial" / "alpha_old.bin"
+            new_ladder_initial = ladders_root / "Master" / "Initial" / "alpha_new.bin"
+            old_bin_initial = bin_root / "Master" / "Initial" / "alpha_old.bin"
+            new_bin_initial = bin_root / "Master" / "Initial" / "alpha_new.bin"
+            old_ladder_initial.write_bytes(b"old")
+            old_bin_initial.write_bytes(b"old")
+            time.sleep(0.01)
+            new_ladder_initial.write_bytes(b"same-latest")
+            new_bin_initial.write_bytes(b"same-latest")
+
+            # Master/QC -> single matching files.
+            qc_ladder = ladders_root / "Master" / "QC" / "beta.bin"
+            qc_bin = bin_root / "Master" / "QC" / "beta.bin"
+            qc_ladder.write_bytes(b"qc")
+            qc_bin.write_bytes(b"qc")
 
             context = ValidationContext(project_path=root)
             context.add_folder("1. Ladders", ladders_root)
@@ -105,6 +115,8 @@ class DynamicValidationTests(unittest.TestCase):
             result = validator.validate(context)
 
             self.assertEqual(result.status, ValidationStatus.PASS)
+            self.assertIn("Master/Initial", context.bin_files)
+            self.assertEqual(context.bin_files["Master/Initial"].name, "alpha_new.bin")
 
     def test_document_validator_uses_discovered_stage_folders(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

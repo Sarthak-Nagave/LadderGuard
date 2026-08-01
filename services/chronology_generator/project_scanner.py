@@ -19,9 +19,10 @@ Python:
 from __future__ import annotations
 
 import logging
-import re
 from pathlib import Path
 
+from config import FOLDER_KEYS
+from services.hierarchy_discovery import HierarchyDiscovery
 from services.chronology_generator.models import ChronologyEntry, ProjectChronology
 from services.chronology_generator.parsers import FilenameParser
 
@@ -56,71 +57,58 @@ class ProjectScanner:
 
         chronology = ProjectChronology(project_root=self._project_root)
 
-        bin_files = self._find_bin_files()
-        sdoc_files = self._find_sdoc_files()
-        sdoc_lookup = self._build_sdoc_lookup(sdoc_files)
+        firmware_stages = self._discover_firmware_stages()
 
-        self._logger.debug(f"Found {len(bin_files)} BIN files and {len(sdoc_files)} SDOC files.")
+        selected_bin_count = 0
+        for stage in firmware_stages:
+            bin_files = self._find_bin_files_for_stage(stage)
+            selected_bin = self._select_newest_bin(bin_files)
+            if selected_bin is None:
+                self._logger.warning(f"No BIN files found for firmware stage: {stage}")
+                continue
 
-        for bin_path in bin_files:
-            bin_name = bin_path.name
-            sdoc_path = self._match_sdoc(bin_path, sdoc_lookup)
-            sdoc_name = sdoc_path.name if sdoc_path else None
+            selected_bin_count += 1
 
-            # Determine source code path (fallback to bin folder if SDOC is missing)
-            source_folder = sdoc_path.parent if sdoc_path else bin_path.parent
-            try:
-                source_code_path = source_folder.relative_to(self._project_root)
-            except ValueError:
-                source_code_path = source_folder
+            bin_name = selected_bin.name
+
+            # Source Code Path is the absolute selected BIN path.
+            source_code_path = selected_bin.resolve()
 
             # Extract metadata
             try:
                 version = FilenameParser.extract_version(bin_name)
             except Exception:
                 version = "Unknown"
-                
-            plc_model = ""
-            if sdoc_name:
-                try:
-                    plc_model = FilenameParser.extract_plc_model(sdoc_name)
-                except Exception:
-                    pass
-            if not plc_model:
-                try:
-                    plc_model = FilenameParser.extract_plc_model(bin_name)
-                except Exception:
-                    plc_model = "Unknown"
-                    
+
+            try:
+                plc_model = FilenameParser.extract_plc_model(bin_name)
+            except Exception:
+                plc_model = "Unknown"
+
             try:
                 bootloader_version = FilenameParser.extract_bootloader_version(bin_name)
             except Exception:
                 bootloader_version = ""
-                    
-            testing_stage = self._determine_testing_stage(bin_path)
+
+            testing_stage = self._determine_testing_stage(stage)
 
             self._logger.debug(
                 f"Extracted metadata for {bin_name}: Version={version}, "
                 f"Model={plc_model}, Stage={testing_stage}"
             )
 
-            # Safely attempt CRC calculation if scanner supports it (placeholder implemented safely)
-            crc_val = ""
-            if hasattr(self, "_calculate_crc"):
-                crc_val = getattr(self, "_calculate_crc")(bin_path)
-
-            # Construct entry
+            # One firmware folder -> one chronology entry (newest BIN only).
             entry = ChronologyEntry(
                 source_code_path=source_code_path,
-                bin_file_path=bin_path,
-                sdoc_file_path=sdoc_path,
+                bin_file_path=selected_bin,
+                sdoc_file_path=None,
                 bin_file_name=bin_name,
-                sdoc_file_name=sdoc_name,
+                sdoc_file_name=None,
                 version=version,
                 plc_model=plc_model,
                 selpro_version="",
                 bootloader_version=bootloader_version,
-                crc=crc_val,
+                crc="",
                 testing_stage=testing_stage,
                 release_date="",
                 reason_for_upgrade="",
@@ -133,98 +121,45 @@ class ProjectScanner:
 
             chronology.add_entry(entry)
 
+        self._logger.debug(f"Found {len(firmware_stages)} firmware stages and {selected_bin_count} selected BIN files.")
         self._logger.info(f"Scan complete. Built chronology with {len(chronology.entries)} entries.")
         return chronology
 
-    def _find_bin_files(self) -> list[Path]:
-        """
-        Recursively locates all .bin files in the project.
+    def _discover_firmware_stages(self) -> list[Path]:
+        bin_root = self._resolve_bin_root()
+        return HierarchyDiscovery.discover_firmware_hierarchy([bin_root])
 
-        Returns:
-            A list of Paths pointing to .bin files.
-        """
-        return list(self._project_root.rglob("*.bin"))
+    def _find_bin_files_for_stage(self, stage: Path) -> list[Path]:
+        stage_root = self._resolve_bin_root() / stage
+        # Business rule: search only in the discovered firmware folder itself.
+        return list(stage_root.glob("*.bin")) if stage_root.exists() else []
 
-    def _find_sdoc_files(self) -> list[Path]:
-        """
-        Recursively locates all .sdoc files in the project.
+    def _resolve_bin_root(self) -> Path:
+        return self._project_root / FOLDER_KEYS["bin_file"]
 
-        Returns:
-            A list of Paths pointing to .sdoc files.
-        """
-        return list(self._project_root.rglob("*.sdoc"))
+    @staticmethod
+    def _select_newest_bin(bin_files: list[Path]) -> Path | None:
+        if not bin_files:
+            return None
 
-    def _build_sdoc_lookup(self, sdoc_files: list[Path]) -> dict[str, Path]:
+        def key(path: Path) -> tuple[int, str]:
+            stat = path.stat()
+            mtime_ns = getattr(stat, "st_mtime_ns", int(stat.st_mtime * 1_000_000_000))
+            return (-mtime_ns, path.name.casefold())
+
+        return sorted(bin_files, key=key)[0]
+
+    def _determine_testing_stage(self, stage: Path) -> str:
         """
-        Creates a case-insensitive lookup dictionary for SDOC files based on their stem.
+        Determines the testing stage from the discovered firmware stage path.
 
         Args:
-            sdoc_files: List of discovered SDOC file paths.
+            stage: Firmware stage path relative to bin root.
 
         Returns:
-            A dictionary mapping lowercased stems to their full Paths.
+            The testing stage as a human-readable string.
         """
-        return {sdoc.stem.casefold(): sdoc for sdoc in sdoc_files}
-
-    def _match_sdoc(self, bin_file: Path, sdoc_lookup: dict[str, Path]) -> Path | None:
-        """
-        Finds the corresponding SDOC file for a given BIN file.
-
-        Args:
-            bin_file: The BIN file Path.
-            sdoc_lookup: The pre-built SDOC lookup dictionary.
-
-        Returns:
-            The matching SDOC Path if found, otherwise None.
-        """
-        return sdoc_lookup.get(bin_file.stem.casefold())
-
-    def _determine_testing_stage(self, filepath: Path) -> str:
-        """
-        Determines the testing stage based on the folder hierarchy.
-
-        Evaluates the path parts for combinations of 'master', 'slave', 
-        'initial', and 'final'.
-
-        Args:
-            filepath: The full path to the file.
-
-        Returns:
-            The testing stage as a strictly formatted string.
-        """
-        parts = [part.casefold() for part in filepath.parts]
-        
-        is_master = any("master" in p for p in parts)
-        is_slave = any("slave" in p for p in parts)
-        is_initial = any("initial" in p for p in parts)
-        is_final = any("final" in p for p in parts)
-
-        if is_master and is_initial:
-            return "Master Initial"
-        if is_master and is_final:
-            return "Master Final"
-        if is_slave and is_initial:
-            return "Slave Initial"
-        if is_slave and is_final:
-            return "Slave Final"
-
-        return "Unknown"
-
-    def _calculate_crc(self, bin_path: Path) -> str:
-        """
-        Calculates the CRC checksum for the given BIN file.
-
-        Args:
-            bin_path: Path to the BIN file.
-
-        Returns:
-            The CRC checksum hex string, or an empty string if generation fails.
-        """
-        try:
-            from services.crc.crc_generator import CRCGenerator
-            generator = CRCGenerator()
-            result = generator.generate_from_file(bin_path)
-            return result.hex_value
-        except Exception as e:
-            self._logger.error(f"Failed to calculate CRC for {bin_path.name}: {e}")
-            return ""
+        parts = [part.strip() for part in stage.parts if part.strip()]
+        if not parts:
+            return "Unknown"
+        return " ".join(parts)

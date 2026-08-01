@@ -66,7 +66,7 @@ class ReportDataModel:
 
         return cls(
             project_name=summary.project_path.name if summary.project_path.name else "Project",
-            project_path=str(summary.project_path),
+            project_path=summary.project_path.as_posix(),
             validation_date=summary.finished_at.strftime("%Y-%m-%d"),
             validation_time=summary.finished_at.strftime("%H:%M:%S"),
             duration_seconds=summary.duration_seconds,
@@ -166,15 +166,29 @@ class ReportDataModel:
                     heading = cls._stage_heading(relative_path)
                     cards.append(ReportDetailCard(title=heading, rows=[ReportDetailRow("SDOC File", str(path))]))
         else:
-            entries = details.get("bin_files")
-            if isinstance(entries, dict):
-                for relative_path, path in entries.items():
-                    heading = cls._stage_heading(relative_path)
-                    cards.append(ReportDetailCard(title=heading, rows=[ReportDetailRow("BIN File", str(path))]))
+            entries = details.get("bin_files") if isinstance(details.get("bin_files"), dict) else {}
+            crc_records = details.get("bin_crcs") if isinstance(details.get("bin_crcs"), dict) else {}
+
+            stage_keys = sorted(set(entries.keys()) | set(crc_records.keys()))
+            for relative_path in stage_keys:
+                heading = cls._stage_heading(relative_path)
+                stage_bin_path = entries.get(relative_path)
+                crc_record = crc_records.get(relative_path, {})
+
+                rows = [
+                    ReportDetailRow("BIN File", cls._friendly_value(crc_record.get("bin_name") or stage_bin_path)),
+                    ReportDetailRow("CRC", cls._friendly_value(crc_record.get("crc"))),
+                    ReportDetailRow("Status", "PASS" if crc_record.get("crc") else "FAILED"),
+                ]
+                cards.append(ReportDetailCard(title=heading, rows=rows))
 
         failures = details.get("failures")
         if isinstance(failures, list) and failures:
             cards.append(ReportDetailCard(title="Issues", rows=[ReportDetailRow("", str(failure)) for failure in failures]))
+
+        stage_errors = details.get("stage_errors")
+        if isinstance(stage_errors, list) and stage_errors:
+            cards.append(ReportDetailCard(title="Issues", rows=[ReportDetailRow("", str(item)) for item in stage_errors]))
         return cards
 
     @classmethod

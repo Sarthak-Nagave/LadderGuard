@@ -44,7 +44,7 @@ class ChronologyEntry:
     plc_model: str
     selpro_version: str
     bootloader_version: str
-    crc: int
+    crc: str
     testing_stage: str
     release_date: str
     reason_for_upgrade: str

@@ -11,6 +11,7 @@ from .crc_exceptions import (
     CRCMissingFileError,
 )
 from .crc_factory import CRCFactory
+from .crc_comparison_service import BinCRCResult, CRCComparisonService
 from .crc_generator import CRCGenerator
 from .crc_result import CRCResult
 
@@ -21,6 +22,8 @@ __all__ = [
     "CRC32CAlgorithm",
     "CRC64Algorithm",
     "CRCFactory",
+    "BinCRCResult",
+    "CRCComparisonService",
     "CRCGenerator",
     "CRCResult",
     "CRCError",
