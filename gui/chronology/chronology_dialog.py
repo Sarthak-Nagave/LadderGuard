@@ -84,8 +84,7 @@ class ChronologyDialog(QDialog):
             "Version", 
             "PLC Model", 
             "CRC", 
-            "Testing Stage", 
-            "Reason For Upgrade"
+            "Testing Stage"
         ]
         self.ui.table_chronology.setColumnCount(len(headers))
         self.ui.table_chronology.setHorizontalHeaderLabels(headers)
@@ -160,12 +159,24 @@ class ChronologyDialog(QDialog):
         folder, entries = self._groups[self._current_group_index]
         
         # Clear inputs for the new group
+        self.ui.line_release_date.clear()
+        self.ui.line_reason.clear()
         self.ui.line_released_by.clear()
         self.ui.line_tested_by.clear()
+        self.ui.line_selpro_version.clear()
+        self.ui.line_selpro_path.clear()
+        self.ui.line_source_code_path.clear()
+        
         self.ui.combo_ladder_release.setCurrentIndex(0)
         self.ui.combo_operator_modification.setCurrentIndex(0)
         self.ui.combo_automation_modification.setCurrentIndex(0)
         
+        # Pre-fill Source Code Path if detected (take the path from the first entry as they share the group)
+        if entries and entries[0].source_code_path:
+            self.ui.line_source_code_path.setText(str(entries[0].source_code_path))
+
+        self._populate_table(entries)
+
         # Update labels and button text
         total = len(self._groups)
         current = self._current_group_index + 1
@@ -180,37 +191,44 @@ class ChronologyDialog(QDialog):
         self._populate_table(entries)
 
     def _populate_table(self, entries: list) -> None:
-        """
-        Populates the QTableWidget with the provided chronology entries.
-        """
-        self.ui.table_chronology.setRowCount(len(entries))
-
+        self.ui.table_chronology.setRowCount(0)
+        self.ui.table_chronology.setColumnCount(6)
+        self.ui.table_chronology.setHorizontalHeaderLabels([
+            "BIN File", 
+            "Version", 
+            "PLC Model", 
+            "CRC", 
+            "Testing Stage", 
+            "Bootloader Version"
+        ])
+        
         for row, entry in enumerate(entries):
+            self.ui.table_chronology.insertRow(row)
+            
             # Read-only items
-            item_bin = QTableWidgetItem(entry.bin_file_name or "")
+            item_bin = QTableWidgetItem(entry.bin_file_name)
             item_bin.setFlags(item_bin.flags() & ~Qt.ItemFlag.ItemIsEditable)
-
-            item_version = QTableWidgetItem(entry.version or "")
-            item_version.setFlags(item_version.flags() & ~Qt.ItemFlag.ItemIsEditable)
-
-            item_model = QTableWidgetItem(entry.plc_model or "")
-            item_model.setFlags(item_model.flags() & ~Qt.ItemFlag.ItemIsEditable)
-
-            item_crc = QTableWidgetItem(str(entry.crc))
-            item_crc.setFlags(item_crc.flags() & ~Qt.ItemFlag.ItemIsEditable)
-
-            item_stage = QTableWidgetItem(entry.testing_stage or "")
-            item_stage.setFlags(item_stage.flags() & ~Qt.ItemFlag.ItemIsEditable)
-
-            # Editable item
-            item_reason = QTableWidgetItem(entry.reason_for_upgrade or "")
-            # Default flags include ItemIsEditable
-
             self.ui.table_chronology.setItem(row, 0, item_bin)
-            self.ui.table_chronology.setItem(row, 1, item_version)
+            
+            item_ver = QTableWidgetItem(entry.version)
+            item_ver.setFlags(item_ver.flags() & ~Qt.ItemFlag.ItemIsEditable)
+            self.ui.table_chronology.setItem(row, 1, item_ver)
+            
+            item_model = QTableWidgetItem(entry.plc_model)
+            item_model.setFlags(item_model.flags() & ~Qt.ItemFlag.ItemIsEditable)
             self.ui.table_chronology.setItem(row, 2, item_model)
+
+            item_crc = QTableWidgetItem(entry.crc)
+            item_crc.setFlags(item_crc.flags() & ~Qt.ItemFlag.ItemIsEditable)
             self.ui.table_chronology.setItem(row, 3, item_crc)
+
+            item_stage = QTableWidgetItem(entry.testing_stage)
+            item_stage.setFlags(item_stage.flags() & ~Qt.ItemFlag.ItemIsEditable)
             self.ui.table_chronology.setItem(row, 4, item_stage)
+
+            item_bootloader = QTableWidgetItem(entry.bootloader_version or "")
+            item_bootloader.setFlags(item_bootloader.flags() & ~Qt.ItemFlag.ItemIsEditable)
+            self.ui.table_chronology.setItem(row, 5, item_bootloader)
             self.ui.table_chronology.setItem(row, 5, item_reason)
 
     def _on_browse_template_clicked(self) -> None:
@@ -347,34 +365,35 @@ class ChronologyDialog(QDialog):
         return Path(filepath) if filepath else None
 
     def _update_chronology_models(self) -> None:
-        """
-        Transfers the user-entered data from the UI into the underlying
-        ChronologyEntry models.
-        """
         if not self._chronology:
             return
 
+        release_date = self.ui.line_release_date.text().strip()
+        reason = self.ui.line_reason.text().strip()
         released_by = self.ui.line_released_by.text().strip()
         tested_by = self.ui.line_tested_by.text().strip()
+        selpro_version = self.ui.line_selpro_version.text().strip()
+        selpro_path = self.ui.line_selpro_path.text().strip()
+        source_code_path = self.ui.line_source_code_path.text().strip()
+
         ladder_release = self.ui.combo_ladder_release.currentText()
         operator_mod = self.ui.combo_operator_modification.currentText()
         automation_mod = self.ui.combo_automation_modification.currentText()
 
-        # Update only the entries in the current group
         if not self._groups:
             return
             
         entries = self._groups[self._current_group_index][1]
 
-        for row, entry in enumerate(entries):
-            # Capture the potentially edited reason for upgrade directly from the table
-            reason_item = self.ui.table_chronology.item(row, 5)
-            if reason_item:
-                entry.reason_for_upgrade = reason_item.text().strip()
-
-            # Apply global metadata to every entry
+        for entry in entries:
+            entry.release_date = release_date
+            entry.reason_for_upgrade = reason
             entry.released_by = released_by
             entry.tested_by = tested_by
-            entry.ladder_release_to_production = ladder_release
-            entry.operator_procedure_modification = operator_mod
-            entry.automation_setup_modification = automation_mod
+            entry.source_code_path = Path(source_code_path) if source_code_path else None
+            # Formatting selpro version and path
+            entry.selpro_version = f"{selpro_version} {selpro_path}".strip()
+            
+            entry.ladder_release_to_production = ladder_release if ladder_release != "Select..." else ""
+            entry.operator_procedure_modification = operator_mod if operator_mod != "Select..." else ""
+            entry.automation_setup_modification = automation_mod if automation_mod != "Select..." else ""

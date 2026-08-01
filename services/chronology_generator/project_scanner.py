@@ -68,7 +68,11 @@ class ProjectScanner:
             sdoc_name = sdoc_path.name if sdoc_path else None
 
             # Determine source code path (fallback to bin folder if SDOC is missing)
-            source_code_path = sdoc_path.parent if sdoc_path else bin_path.parent
+            source_folder = sdoc_path.parent if sdoc_path else bin_path.parent
+            try:
+                source_code_path = source_folder.relative_to(self._project_root)
+            except ValueError:
+                source_code_path = source_folder
 
             # Extract metadata
             try:
@@ -87,6 +91,11 @@ class ProjectScanner:
                     plc_model = FilenameParser.extract_plc_model(bin_name)
                 except Exception:
                     plc_model = "Unknown"
+                    
+            try:
+                bootloader_version = FilenameParser.extract_bootloader_version(bin_name)
+            except Exception:
+                bootloader_version = ""
                     
             testing_stage = self._determine_testing_stage(bin_path)
 
@@ -110,7 +119,7 @@ class ProjectScanner:
                 version=version,
                 plc_model=plc_model,
                 selpro_version="",
-                bootloader_version="",
+                bootloader_version=bootloader_version,
                 crc=crc_val,
                 testing_stage=testing_stage,
                 release_date="",

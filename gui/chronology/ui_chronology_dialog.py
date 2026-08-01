@@ -40,18 +40,18 @@ class Ui_ChronologyDialog(object):
         self.lbl_project_folder = QLabel(self.grp_project_info)
         self.lbl_project_folder.setObjectName(u"lbl_project_folder")
 
-        self.formLayoutProjectInfo.setWidget(0, QFormLayout.LabelRole, self.lbl_project_folder)
+        self.formLayoutProjectInfo.setWidget(2, QFormLayout.LabelRole, self.lbl_project_folder)
 
         self.line_project_folder = QLineEdit(self.grp_project_info)
         self.line_project_folder.setObjectName(u"line_project_folder")
         self.line_project_folder.setReadOnly(True)
 
-        self.formLayoutProjectInfo.setWidget(0, QFormLayout.FieldRole, self.line_project_folder)
+        self.formLayoutProjectInfo.setWidget(2, QFormLayout.FieldRole, self.line_project_folder)
 
         self.lbl_excel_template = QLabel(self.grp_project_info)
         self.lbl_excel_template.setObjectName(u"lbl_excel_template")
 
-        self.formLayoutProjectInfo.setWidget(1, QFormLayout.LabelRole, self.lbl_excel_template)
+        self.formLayoutProjectInfo.setWidget(3, QFormLayout.LabelRole, self.lbl_excel_template)
 
         self.layout_template = QHBoxLayout()
         self.layout_template.setSpacing(6)
@@ -73,7 +73,7 @@ class Ui_ChronologyDialog(object):
         self.lbl_output_file = QLabel(self.grp_project_info)
         self.lbl_output_file.setObjectName(u"lbl_output_file")
 
-        self.formLayoutProjectInfo.setWidget(2, QFormLayout.LabelRole, self.lbl_output_file)
+        self.formLayoutProjectInfo.setWidget(7, QFormLayout.LabelRole, self.lbl_output_file)
 
         self.layout_output = QHBoxLayout()
         self.layout_output.setSpacing(6)
@@ -134,30 +134,69 @@ class Ui_ChronologyDialog(object):
         self.formLayoutReleaseInfo.setHorizontalSpacing(12)
         self.formLayoutReleaseInfo.setVerticalSpacing(8)
         self.formLayoutReleaseInfo.setContentsMargins(-1, 12, -1, -1)
+
+        self.lbl_release_date = QLabel(self.grp_release_info)
+        self.lbl_release_date.setObjectName(u"lbl_release_date")
+        self.formLayoutReleaseInfo.setWidget(0, QFormLayout.LabelRole, self.lbl_release_date)
+        self.line_release_date = QLineEdit(self.grp_release_info)
+        self.line_release_date.setObjectName(u"line_release_date")
+        self.formLayoutReleaseInfo.setWidget(0, QFormLayout.FieldRole, self.line_release_date)
+
+        self.lbl_reason = QLabel(self.grp_release_info)
+        self.lbl_reason.setObjectName(u"lbl_reason")
+        self.formLayoutReleaseInfo.setWidget(1, QFormLayout.LabelRole, self.lbl_reason)
+        self.line_reason = QLineEdit(self.grp_release_info)
+        self.line_reason.setObjectName(u"line_reason")
+        self.formLayoutReleaseInfo.setWidget(1, QFormLayout.FieldRole, self.line_reason)
+
         self.lbl_released_by = QLabel(self.grp_release_info)
+
         self.lbl_released_by.setObjectName(u"lbl_released_by")
 
-        self.formLayoutReleaseInfo.setWidget(0, QFormLayout.LabelRole, self.lbl_released_by)
+        self.formLayoutReleaseInfo.setWidget(2, QFormLayout.LabelRole, self.lbl_released_by)
 
         self.line_released_by = QLineEdit(self.grp_release_info)
         self.line_released_by.setObjectName(u"line_released_by")
 
-        self.formLayoutReleaseInfo.setWidget(0, QFormLayout.FieldRole, self.line_released_by)
+        self.formLayoutReleaseInfo.setWidget(2, QFormLayout.FieldRole, self.line_released_by)
 
         self.lbl_tested_by = QLabel(self.grp_release_info)
         self.lbl_tested_by.setObjectName(u"lbl_tested_by")
 
-        self.formLayoutReleaseInfo.setWidget(1, QFormLayout.LabelRole, self.lbl_tested_by)
+        self.formLayoutReleaseInfo.setWidget(3, QFormLayout.LabelRole, self.lbl_tested_by)
 
         self.line_tested_by = QLineEdit(self.grp_release_info)
         self.line_tested_by.setObjectName(u"line_tested_by")
 
-        self.formLayoutReleaseInfo.setWidget(1, QFormLayout.FieldRole, self.line_tested_by)
+        self.formLayoutReleaseInfo.setWidget(3, QFormLayout.FieldRole, self.line_tested_by)
+
+
+        self.lbl_selpro_version = QLabel(self.grp_release_info)
+        self.lbl_selpro_version.setObjectName(u"lbl_selpro_version")
+        self.formLayoutReleaseInfo.setWidget(4, QFormLayout.LabelRole, self.lbl_selpro_version)
+        self.line_selpro_version = QLineEdit(self.grp_release_info)
+        self.line_selpro_version.setObjectName(u"line_selpro_version")
+        self.formLayoutReleaseInfo.setWidget(4, QFormLayout.FieldRole, self.line_selpro_version)
+
+        self.lbl_selpro_path = QLabel(self.grp_release_info)
+        self.lbl_selpro_path.setObjectName(u"lbl_selpro_path")
+        self.formLayoutReleaseInfo.setWidget(5, QFormLayout.LabelRole, self.lbl_selpro_path)
+        self.line_selpro_path = QLineEdit(self.grp_release_info)
+        self.line_selpro_path.setObjectName(u"line_selpro_path")
+        self.formLayoutReleaseInfo.setWidget(5, QFormLayout.FieldRole, self.line_selpro_path)
+
+        self.lbl_source_code_path = QLabel(self.grp_release_info)
+        self.lbl_source_code_path.setObjectName(u"lbl_source_code_path")
+        self.formLayoutReleaseInfo.setWidget(6, QFormLayout.LabelRole, self.lbl_source_code_path)
+        self.line_source_code_path = QLineEdit(self.grp_release_info)
+        self.line_source_code_path.setObjectName(u"line_source_code_path")
+        self.formLayoutReleaseInfo.setWidget(6, QFormLayout.FieldRole, self.line_source_code_path)
 
         self.lbl_ladder_release = QLabel(self.grp_release_info)
+
         self.lbl_ladder_release.setObjectName(u"lbl_ladder_release")
 
-        self.formLayoutReleaseInfo.setWidget(2, QFormLayout.LabelRole, self.lbl_ladder_release)
+        self.formLayoutReleaseInfo.setWidget(7, QFormLayout.LabelRole, self.lbl_ladder_release)
 
         self.combo_ladder_release = QComboBox(self.grp_release_info)
         self.combo_ladder_release.addItem("")
@@ -165,12 +204,12 @@ class Ui_ChronologyDialog(object):
         self.combo_ladder_release.addItem("")
         self.combo_ladder_release.setObjectName(u"combo_ladder_release")
 
-        self.formLayoutReleaseInfo.setWidget(2, QFormLayout.FieldRole, self.combo_ladder_release)
+        self.formLayoutReleaseInfo.setWidget(7, QFormLayout.FieldRole, self.combo_ladder_release)
 
         self.lbl_operator_mod = QLabel(self.grp_release_info)
         self.lbl_operator_mod.setObjectName(u"lbl_operator_mod")
 
-        self.formLayoutReleaseInfo.setWidget(3, QFormLayout.LabelRole, self.lbl_operator_mod)
+        self.formLayoutReleaseInfo.setWidget(8, QFormLayout.LabelRole, self.lbl_operator_mod)
 
         self.combo_operator_modification = QComboBox(self.grp_release_info)
         self.combo_operator_modification.addItem("")
@@ -178,12 +217,12 @@ class Ui_ChronologyDialog(object):
         self.combo_operator_modification.addItem("")
         self.combo_operator_modification.setObjectName(u"combo_operator_modification")
 
-        self.formLayoutReleaseInfo.setWidget(3, QFormLayout.FieldRole, self.combo_operator_modification)
+        self.formLayoutReleaseInfo.setWidget(8, QFormLayout.FieldRole, self.combo_operator_modification)
 
         self.lbl_automation_mod = QLabel(self.grp_release_info)
         self.lbl_automation_mod.setObjectName(u"lbl_automation_mod")
 
-        self.formLayoutReleaseInfo.setWidget(4, QFormLayout.LabelRole, self.lbl_automation_mod)
+        self.formLayoutReleaseInfo.setWidget(9, QFormLayout.LabelRole, self.lbl_automation_mod)
 
         self.combo_automation_modification = QComboBox(self.grp_release_info)
         self.combo_automation_modification.addItem("")
@@ -191,7 +230,7 @@ class Ui_ChronologyDialog(object):
         self.combo_automation_modification.addItem("")
         self.combo_automation_modification.setObjectName(u"combo_automation_modification")
 
-        self.formLayoutReleaseInfo.setWidget(4, QFormLayout.FieldRole, self.combo_automation_modification)
+        self.formLayoutReleaseInfo.setWidget(9, QFormLayout.FieldRole, self.combo_automation_modification)
 
 
         self.verticalLayout.addWidget(self.grp_release_info)
@@ -245,11 +284,21 @@ class Ui_ChronologyDialog(object):
         ___qtablewidgetitem4 = self.table_chronology.horizontalHeaderItem(4)
         ___qtablewidgetitem4.setText(QCoreApplication.translate("ChronologyDialog", u"Testing Stage", None));
         ___qtablewidgetitem5 = self.table_chronology.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("ChronologyDialog", u"Reason For Upgrade", None));
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("ChronologyDialog", u"Bootloader Version", None));
         self.grp_release_info.setTitle(QCoreApplication.translate("ChronologyDialog", u"Release Information", None))
+
+        self.lbl_release_date.setText(QCoreApplication.translate("ChronologyDialog", u"Release Date:", None))
+        self.lbl_reason.setText(QCoreApplication.translate("ChronologyDialog", u"Reason for Upgrade:", None))
         self.lbl_released_by.setText(QCoreApplication.translate("ChronologyDialog", u"Released By:", None))
+
         self.lbl_tested_by.setText(QCoreApplication.translate("ChronologyDialog", u"Tested By:", None))
+
+        self.lbl_selpro_version.setText(QCoreApplication.translate("ChronologyDialog", u"Selpro Version:", None))
+        self.lbl_selpro_path.setText(QCoreApplication.translate("ChronologyDialog", u"Selpro Path:", None))
+        self.lbl_source_code_path.setText(QCoreApplication.translate("ChronologyDialog", u"Source Code Path:", None))
+
         self.lbl_ladder_release.setText(QCoreApplication.translate("ChronologyDialog", u"Ladder Release To Production:", None))
+
         self.combo_ladder_release.setItemText(0, QCoreApplication.translate("ChronologyDialog", u"Select...", None))
         self.combo_ladder_release.setItemText(1, QCoreApplication.translate("ChronologyDialog", u"Yes", None))
         self.combo_ladder_release.setItemText(2, QCoreApplication.translate("ChronologyDialog", u"No", None))

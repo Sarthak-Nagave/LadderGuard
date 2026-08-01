@@ -100,17 +100,41 @@ class ChronologyExcelWriter:
         self._logger.debug(f"Writing {len(entries)} entries starting at row {first_data_row}.")
 
         current_row = first_data_row
-        serial_no = 1
+        serial_no = len(entries)
 
         for entry in entries:
-            # Skip structural merged rows (e.g., section dividers)
-            while self._is_row_merged(sheet, current_row, header_map):
-                self._logger.debug(f"Skipping merged structural row {current_row}")
+            # Skip structural merged rows (e.g., section dividers) or rows that already contain template instruction text
+            while self._is_instruction_row(sheet, current_row, header_map):
+                self._logger.debug(f"Skipping instruction row {current_row}")
                 current_row += 1
                 
             self._write_entry(sheet, current_row, entry, header_map, serial_no)
             current_row += 1
-            serial_no += 1
+            serial_no -= 1
+
+        # Clear remaining unused placeholder rows, if any exist in the template
+        while current_row <= sheet.max_row:
+            if self._is_instruction_row(sheet, current_row, header_map):
+                current_row += 1
+                continue
+            
+            # Check if this row has any data in the mapped columns
+            has_data = False
+            for col_idx in header_map.values():
+                if sheet.cell(row=current_row, column=col_idx).value is not None:
+                    has_data = True
+                    break
+            
+            # If the row is completely empty in our mapped columns, assume end of chronology table
+            if not has_data:
+                break
+                
+            # Clear the values in this dummy row while preserving formatting
+            for col_idx in header_map.values():
+                cell = self._get_writable_cell(sheet, current_row, col_idx)
+                cell.value = ""
+                
+            current_row += 1
 
         self._save(workbook, output_path)
         self._logger.info("Chronology Excel export completed successfully.")
@@ -216,6 +240,20 @@ class ChronologyExcelWriter:
             The 1-based index of the first data row.
         """
         return header_row + 1
+
+    def _is_instruction_row(self, sheet: Worksheet, row: int, header_map: dict[str, int]) -> bool:
+        """
+        Determines if a row is an instruction row (e.g., Row 16 with merged text).
+        Checks if it's merged or contains existing text.
+        """
+        if self._is_row_merged(sheet, row, header_map):
+            return True
+            
+        for col_idx in header_map.values():
+            val = sheet.cell(row=row, column=col_idx).value
+            if val and isinstance(val, str) and len(val.strip()) > 5:
+                return True
+        return False
 
     def _is_row_merged(self, sheet: Worksheet, row: int, header_map: dict[str, int]) -> bool:
         """

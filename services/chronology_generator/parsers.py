@@ -86,8 +86,8 @@ class FilenameParser:
         # Remove extension to prevent it from interfering with parsing
         name_only = cls.remove_extension(filename)
         
-        # Split into segments by underscore or dot
-        segments = re.split(r"[_\.]", name_only)
+        # Split into segments by underscore
+        segments = re.split(r"_", name_only)
         candidates: list[str] = []
 
         for segment in segments:
@@ -109,6 +109,37 @@ class FilenameParser:
         
         cls._logger.debug(f"Extracted PLC model: {plc_model}")
         return plc_model
+
+    @classmethod
+    def extract_bootloader_version(cls, filename: str) -> str:
+        """
+        Extracts the Bootloader Version from the filename.
+        It is assumed to be the token immediately following the PLC Model.
+
+        Args:
+            filename: The filename to parse.
+
+        Returns:
+            The extracted Bootloader Version string, or empty string if not found.
+        """
+        cls._logger.debug(f"Extracting Bootloader Version from filename: {filename}")
+        name_only = cls.remove_extension(filename)
+        segments = re.split(r"_", name_only)
+        
+        plc_model_index = -1
+        for i, segment in enumerate(segments):
+            if cls._VERSION_PATTERN.match(segment):
+                continue
+            if cls._PLC_MODEL_PATTERN.match(segment):
+                plc_model_index = i
+                
+        if plc_model_index != -1 and plc_model_index + 1 < len(segments):
+            bootloader_version = segments[plc_model_index + 1]
+            cls._logger.debug(f"Extracted Bootloader Version: {bootloader_version}")
+            return bootloader_version
+            
+        cls._logger.warning(f"Could not extract Bootloader Version from filename: {filename}")
+        return ""
 
     @staticmethod
     def remove_extension(filename: str) -> str:
