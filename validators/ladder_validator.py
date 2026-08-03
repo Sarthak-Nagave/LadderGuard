@@ -8,7 +8,7 @@ Initial and Final SDOC files.
 Responsibilities
 ----------------
 - Validate Initial and Final ladder folders.
-- Recursively discover SDOC files.
+- Discover stage-level SDOC files.
 - Ensure exactly one SDOC exists in each stage.
 - Cache discovered files in ValidationContext.
 
@@ -86,7 +86,7 @@ class LadderValidator(BaseValidator):
 
                 context.add_discovered_path(relative_path, child_folder)
 
-                files = self._file_search.recursive_files(
+                files = self._file_search.direct_files(
                     child_folder,
                     LADDER_EXTENSION,
                 )

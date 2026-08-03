@@ -86,6 +86,34 @@ class FileSearchService:
         )
 
     @staticmethod
+    def direct_files(
+        directory: Path,
+        extension: str | None = None,
+    ) -> list[Path]:
+        """
+        Returns only direct child files from the given directory.
+
+        If an extension is provided, matching is case-insensitive.
+        """
+
+        if not directory.exists():
+            return []
+
+        if extension is None or extension == "":
+            return sorted(
+                file
+                for file in directory.iterdir()
+                if file.is_file()
+            )
+
+        return sorted(
+            file
+            for file in directory.iterdir()
+            if file.is_file()
+            and file.suffix.casefold() == extension.casefold()
+        )
+
+    @staticmethod
     def first_file(
         directory: Path,
         extension: str,

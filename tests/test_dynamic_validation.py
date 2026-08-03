@@ -48,6 +48,56 @@ class DynamicValidationTests(unittest.TestCase):
                 ["Master/Initial", "Master/QC", "Slave/Voltage"],
             )
 
+    def test_ladder_validator_ignores_nested_sdoc_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
+            stage = ladders_root / "Master" / "Initial"
+            (stage / "Backup").mkdir(parents=True, exist_ok=True)
+            (stage / "GRP").mkdir(parents=True, exist_ok=True)
+            (stage / "LD_Project_V1.00.sdoc").write_text(
+                "top-level",
+                encoding="utf-8",
+            )
+            (stage / "Backup" / "Test.sdoc").write_text(
+                "ignored",
+                encoding="utf-8",
+            )
+            (stage / "GRP" / "Nested.sdoc").write_text(
+                "ignored",
+                encoding="utf-8",
+            )
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
+
+            validator = LadderValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.PASS)
+            self.assertEqual(
+                context.ladder_files["Master/Initial"].name,
+                "LD_Project_V1.00.sdoc",
+            )
+
+    def test_ladder_validator_fails_for_multiple_top_level_sdocs(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
+            stage = ladders_root / "Master" / "Initial"
+            stage.mkdir(parents=True, exist_ok=True)
+            (stage / "alpha.sdoc").write_text("alpha", encoding="utf-8")
+            (stage / "beta.sdoc").write_text("beta", encoding="utf-8")
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
+
+            validator = LadderValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.FAIL)
+            self.assertIn("Master/Initial has multiple .sdoc files.", result.reason)
+
     def test_ladder_validator_discovers_arbitrary_board_names(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
