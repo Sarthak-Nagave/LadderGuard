@@ -71,13 +71,36 @@ class BinValidator(BaseValidator):
         stages = [relative_path for relative_path, _ in context.discovered_paths]
         crc_records: dict[str, dict[str, str | None]] = {}
 
+        if not stages:
+            reason = "No firmware folders were discovered before BIN validation."
+            self.logger.error(reason)
+            stage_errors.append(reason)
+            return self.fail_result(
+                reason=reason,
+                checked_path=bin_root,
+                details={
+                    "stage_errors": stage_errors,
+                    "bin_crcs": crc_records,
+                    "bin_files": {key: str(path) for key, path in context.bin_files.items()},
+                },
+            )
+
         for relative_path in stages:
             stage_path = bin_root / Path(*relative_path.split("/"))
-            bin_candidates = self._file_search.recursive_files(stage_path, BIN_EXTENSION)
+
+            if not stage_path.exists() or not stage_path.is_dir():
+                reason = f"{relative_path}: Firmware folder not found in Bin File folder."
+                self.logger.error(reason)
+                stage_errors.append(reason)
+                failure_reasons.append(reason)
+                continue
+
+            bin_candidates = self._file_search.direct_files(stage_path, BIN_EXTENSION)
             latest_bin = self._select_latest_by_mtime(bin_candidates)
 
             if latest_bin is None:
                 reason = f"{relative_path}: No BIN file found in Bin File folder."
+                self.logger.warning(reason)
                 stage_errors.append(reason)
                 failure_reasons.append(reason)
                 continue

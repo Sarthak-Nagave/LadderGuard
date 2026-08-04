@@ -168,6 +168,101 @@ class DynamicValidationTests(unittest.TestCase):
             self.assertIn("Master/Initial", context.bin_files)
             self.assertEqual(context.bin_files["Master/Initial"].name, "alpha_new.bin")
 
+    def test_bin_validator_fails_when_discovered_paths_are_empty(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            bin_root = root / "2. Bin File"
+            bin_root.mkdir(parents=True, exist_ok=True)
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("2. Bin File", bin_root)
+
+            validator = BinValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.FAIL)
+            self.assertIn("No firmware folders were discovered before BIN validation.", result.reason)
+            self.assertIn("stage_errors", result.details)
+
+    def test_bin_validator_reports_missing_firmware_folder(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            bin_root = root / "2. Bin File"
+            bin_root.mkdir(parents=True, exist_ok=True)
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("2. Bin File", bin_root)
+            context.add_discovered_path("Master/Initial", root / "1. Ladders" / "Master" / "Initial")
+
+            validator = BinValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.FAIL)
+            self.assertIn("Master/Initial: Firmware folder not found in Bin File folder.", result.reason)
+            self.assertIn("stage_errors", result.details)
+
+    def test_bin_validator_ignores_nested_bin_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            bin_root = root / "2. Bin File"
+            stage = bin_root / "Master" / "Initial"
+            (stage / "Backup").mkdir(parents=True, exist_ok=True)
+            (stage / "firmware.bin").write_bytes(b"direct")
+            (stage / "Backup" / "nested.bin").write_bytes(b"nested")
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("2. Bin File", bin_root)
+            context.add_discovered_path("Master/Initial", root / "1. Ladders" / "Master" / "Initial")
+
+            validator = BinValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.PASS)
+            self.assertEqual(context.bin_files["Master/Initial"].name, "firmware.bin")
+
+    def test_bin_validator_fails_when_only_nested_bin_exists(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            bin_root = root / "2. Bin File"
+            stage = bin_root / "Master" / "Initial"
+            (stage / "Backup").mkdir(parents=True, exist_ok=True)
+            (stage / "Backup" / "nested.bin").write_bytes(b"nested")
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("2. Bin File", bin_root)
+            context.add_discovered_path("Master/Initial", root / "1. Ladders" / "Master" / "Initial")
+
+            validator = BinValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.FAIL)
+            self.assertIn("Master/Initial: No BIN file found in Bin File folder.", result.reason)
+
+    def test_bin_validator_keeps_report_contract_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            bin_root = root / "2. Bin File"
+            stage = bin_root / "Master" / "Initial"
+            stage.mkdir(parents=True, exist_ok=True)
+            (stage / "firmware.bin").write_bytes(b"abc")
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("2. Bin File", bin_root)
+            context.add_discovered_path("Master/Initial", root / "1. Ladders" / "Master" / "Initial")
+
+            validator = BinValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.PASS)
+            self.assertIn("bin_crcs", result.details)
+            self.assertIn("bin_files", result.details)
+
+            stage_crc = result.details["bin_crcs"]["Master/Initial"]
+            self.assertIn("bin_file", stage_crc)
+            self.assertIn("bin_name", stage_crc)
+            self.assertIn("crc", stage_crc)
+            self.assertEqual(stage_crc["bin_name"], "firmware.bin")
+
     def test_document_validator_uses_discovered_stage_folders(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)

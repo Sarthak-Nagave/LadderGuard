@@ -104,6 +104,7 @@ class MainWindow(QMainWindow):
         self._filesystem_watcher: QFileSystemWatcher | None = None
         self._watched_paths: set[str] = set()
         self._project_changed_pending = False
+        self._open_report_after_validation = False
 
         self._build_ui()
         self._create_menu()
@@ -179,13 +180,13 @@ class MainWindow(QMainWindow):
 
         button_layout = QHBoxLayout()
         button_layout.setSpacing(8)
-        self.report_button = QPushButton("Generate Report")
+        self.report_button = QPushButton("Validate & Generate Report")
         self.report_button.setEnabled(False)
         self.report_button.setObjectName("SecondaryButton")
-        self.report_button.setMinimumWidth(180)
-        self.generate_and_validate_button = QPushButton("Generate and Validate Folder Structure")
+        self.report_button.setMinimumWidth(240)
+        self.generate_and_validate_button = QPushButton("Generate Folder Structure")
         self.generate_and_validate_button.setObjectName("PrimaryButton")
-        self.generate_and_validate_button.setMinimumWidth(280)
+        self.generate_and_validate_button.setMinimumWidth(240)
         
         self.generate_chronology_button = QPushButton("Generate Chronology")
         self.generate_chronology_button.setObjectName("SecondaryButton")
@@ -221,7 +222,7 @@ class MainWindow(QMainWindow):
         """
         self.browse_button.clicked.connect(self._browse_project)
         self.report_button.clicked.connect(self._generate_report)
-        self.generate_and_validate_button.clicked.connect(self._generate_and_validate_folder_structure)
+        self.generate_and_validate_button.clicked.connect(self._generate_folder_structure)
         self.generate_chronology_button.clicked.connect(self.on_generate_chronology)
 
     # ---------------------------------------------------------
@@ -437,6 +438,7 @@ class MainWindow(QMainWindow):
         self._watch_project(self.project_path)
 
         self._reset_validation_state()
+        self.report_button.setEnabled(True)
         self.status_bar.showMessage("Project selected.")
         logger.info("Project selected: {}", self.project_path)
 
@@ -447,7 +449,8 @@ class MainWindow(QMainWindow):
         Enable or disable controls while validation is running.
         """
         self.browse_button.setEnabled(not running)
-        self.report_button.setEnabled(not running and self.summary is not None)
+        self.generate_and_validate_button.setEnabled(not running)
+        self.report_button.setEnabled(not running and self.project_path is not None)
 
     # ---------------------------------------------------------
 
@@ -565,6 +568,18 @@ class MainWindow(QMainWindow):
         self._set_validation_running(False)
         self.report_button.setEnabled(True)
 
+        if self._open_report_after_validation:
+            try:
+                self._show_report_window(summary)
+            except Exception as error:
+                logger.exception("Unable to open report window after validation. Traceback:\n%s", traceback.format_exc())
+                self._show_error(
+                    APP_NAME,
+                    f"Unable to open report window.\n\n{error}",
+                )
+            finally:
+                self._open_report_after_validation = False
+
         self.thread = None
         self.worker = None
 
@@ -580,6 +595,7 @@ class MainWindow(QMainWindow):
         self.status_bar.showMessage("Validation failed.")
 
         self._set_validation_running(False)
+        self._open_report_after_validation = False
 
         self.thread = None
         self.worker = None
@@ -640,26 +656,27 @@ class MainWindow(QMainWindow):
         self.status_bar.showMessage("Report window opened")
 
     def _generate_report(self) -> None:
-        """Open the native PySide6 report window for the latest validation summary."""
-        if self.summary is None:
-            self._show_information(
+        """Validate the selected project and open the report window."""
+        if self.project_path is None or not self.project_path.exists():
+            self._show_warning(
                 APP_NAME,
-                "Run validation before generating a report.",
+                "Please select a valid project folder.",
             )
             return
 
-        try:
-            logger.info("Opening report window...")
-            self._show_report_window(self.summary)
-        except Exception as error:
-            logger.exception("Unable to open report window. Traceback:\n%s", traceback.format_exc())
-            self._show_error(
-                APP_NAME,
-                f"Unable to open report window.\n\n{error}",
-            )
+        logger.info("Validate & Generate Report requested for {}", self.project_path)
+        self._open_report_after_validation = True
+        self._start_validation()
 
-    def _generate_and_validate_folder_structure(self) -> None:
-        """Generate the operational package folder structure and then validate it."""
+    def _generate_folder_structure(self) -> None:
+        """Generate the operational package folder structure only."""
+        if self.project_path is None or not self.project_path.exists():
+            self._show_warning(
+                APP_NAME,
+                "Please select a valid project folder.",
+            )
+            return
+
         try:
             generator = FolderStructureGenerator()
             generated_root = generator.generate_structure(source_project_path=self.project_path)
@@ -698,8 +715,28 @@ class MainWindow(QMainWindow):
         self.project_path = generated_root
         self.project_path_label.setText(str(generated_root))
         self._watch_project(generated_root)
+        self._reset_validation_state()
+        self.report_button.setEnabled(True)
         logger.info("Auto-selected generated folder as project: {}", generated_root)
-        self._start_validation()
+        self.status_bar.showMessage("Folder structure generated. Click Validate & Generate Report.")
+
+        message_box = QMessageBox(self)
+        message_box.setIcon(QMessageBox.Information)
+        message_box.setWindowTitle("Generation Completed")
+        message_box.setText(
+            "Operational Package Structure has been generated successfully.\n\n"
+            f"Location:\n{generated_root.resolve()}"
+        )
+
+        open_folder_button = message_box.addButton("Open Folder", QMessageBox.ActionRole)
+        message_box.addButton(QMessageBox.Ok)
+        message_box.exec()
+
+        if message_box.clickedButton() == open_folder_button:
+            try:
+                os.startfile(generated_root)
+            except Exception:
+                logger.exception("Unable to open generated folder.")
 
     # ---------------------------------------------------------
 
