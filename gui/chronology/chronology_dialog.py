@@ -21,6 +21,7 @@ import logging
 from pathlib import Path
 from typing import Any
 
+from config import FOLDER_KEYS
 from config import DEFAULT_OUTPUT_FILENAME
 from PySide6.QtWidgets import (
     QComboBox,
@@ -47,7 +48,12 @@ class ChronologyDialog(QDialog):
     Dialog for configuring and generating the Project Chronology report.
     """
 
-    def __init__(self, project_folder: Path, parent: QWidget | None = None) -> None:
+    def __init__(
+        self,
+        project_folder: Path,
+        parent: QWidget | None = None,
+        validation_bin_crc_records: dict[str, dict[str, Any]] | None = None,
+    ) -> None:
         """
         Initialize the chronology dialog.
 
@@ -65,6 +71,7 @@ class ChronologyDialog(QDialog):
         self._cards_scroll_area: QScrollArea | None = None
         self._cards_container: QWidget | None = None
         self._cards_layout: QVBoxLayout | None = None
+        self._validation_bin_crc_records = validation_bin_crc_records or {}
 
         # Standard PySide6 UI setup
         self.ui = Ui_ChronologyDialog()
@@ -145,6 +152,7 @@ class ChronologyDialog(QDialog):
             generator = ChronologyGenerator(self._project_folder, dummy_template)
             
             self._chronology = generator.scan_project()
+            self._apply_validation_crc_results()
             
             # Setup groups for dynamic card generation
             self._groups = list(self._chronology.group_by_firmware_folder().items())
@@ -154,6 +162,45 @@ class ChronologyDialog(QDialog):
         except Exception as exc:
             self._logger.exception("Failed to run initial chronology scan.")
             QMessageBox.critical(self, "Scan Error", f"Failed to scan project:\n{exc}")
+
+    def _apply_validation_crc_results(self) -> None:
+        if self._chronology is None:
+            return
+
+        for entry in self._chronology.entries:
+            stage_key = self._stage_key_from_bin_entry(entry.bin_file_path.parent)
+            crc_record = self._validation_bin_crc_records.get(stage_key)
+            if not isinstance(crc_record, dict):
+                entry.crc = ""
+                continue
+
+            selected_bin_file = crc_record.get("bin_file")
+            selected_bin_name = crc_record.get("bin_name")
+
+            if isinstance(selected_bin_file, str) and selected_bin_file.strip():
+                selected_bin_path = Path(selected_bin_file)
+                entry.bin_file_path = selected_bin_path
+                entry.source_code_path = selected_bin_path.resolve()
+                entry.bin_file_name = selected_bin_name or selected_bin_path.name
+
+            status = str(crc_record.get("status") or "").upper()
+            if status == "PASS":
+                entry.crc = str(
+                    crc_record.get("bin_crc")
+                    or crc_record.get("crc")
+                    or crc_record.get("ladder_crc")
+                    or ""
+                )
+            else:
+                entry.crc = ""
+
+    def _stage_key_from_bin_entry(self, firmware_folder: Path) -> str:
+        bin_root = self._project_folder / FOLDER_KEYS["bin_file"]
+        try:
+            relative = firmware_folder.resolve().relative_to(bin_root.resolve())
+            return relative.as_posix()
+        except Exception:
+            return firmware_folder.as_posix().replace("\\", "/")
 
     def _build_dynamic_cards(self) -> None:
         if self._cards_layout is None:

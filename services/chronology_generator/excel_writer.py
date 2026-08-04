@@ -300,6 +300,7 @@ class ChronologyExcelWriter:
             "serial no.": serial_no,
             "source code path": str(entry.source_code_path) if entry.source_code_path else "",
             "bin file name": entry.bin_file_name,
+            "crc": entry.crc,
             "ladder version no.": entry.version,
             "reason for upgrade": entry.reason_for_upgrade,
             "testing stage": entry.testing_stage,

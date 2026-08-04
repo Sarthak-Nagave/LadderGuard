@@ -643,15 +643,24 @@ pre {{
                 stage_bin_path = entries.get(relative_path)
                 crc_record = crc_records.get(relative_path, {})
 
+                ladder_bin_display = crc_record.get("ladder_bin_name")
+                ladder_crc_display = crc_record.get("ladder_crc")
                 bin_display = crc_record.get("bin_name") or stage_bin_path
-                crc_display = crc_record.get("crc")
-                status_text = "PASS" if crc_display else "FAILED"
+                bin_crc_display = crc_record.get("bin_crc") or crc_record.get("crc")
+                status_text = crc_record.get("status") or ("PASS" if crc_record.get("crc") else "FAILED")
+                reason_text = crc_record.get("reason")
 
                 rows = [
-                    f"<div class='details-row'><span class='details-label'>BIN File</span> : {html.escape(str(bin_display))}</div>",
-                    f"<div class='details-row'><span class='details-label'>CRC</span> : {html.escape(str(crc_display))}</div>",
-                    f"<div class='details-row'><span class='details-label'>Status</span> : {html.escape(status_text)}</div>",
+                    f"<div class='details-row'><span class='details-label'>Ladder BIN</span> : {html.escape(str(ladder_bin_display))}</div>",
+                    f"<div class='details-row'><span class='details-label'>Ladder CRC</span> : {html.escape(str(ladder_crc_display))}</div>",
+                    f"<div class='details-row'><span class='details-label'>Bin File BIN</span> : {html.escape(str(bin_display))}</div>",
+                    f"<div class='details-row'><span class='details-label'>Bin File CRC</span> : {html.escape(str(bin_crc_display))}</div>",
+                    f"<div class='details-row'><span class='details-label'>Validation Result</span> : {html.escape(str(status_text))}</div>",
                 ]
+                if reason_text:
+                    rows.append(
+                        f"<div class='details-row'><span class='details-label'>Reason</span> : {html.escape(str(reason_text))}</div>"
+                    )
 
                 cards.append(
                     f"<div class='details-card'><div class='details-heading'>{html.escape(heading)}</div>{''.join(rows)}</div>"

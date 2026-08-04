@@ -17,6 +17,7 @@ import sys
 import traceback
 import webbrowser
 from pathlib import Path
+from typing import Any
 
 from PySide6.QtGui import QAction, QCloseEvent, QColor, QGuiApplication
 from PySide6.QtCore import QObject, QThread, QFileSystemWatcher, Signal, Qt
@@ -105,6 +106,7 @@ class MainWindow(QMainWindow):
         self._watched_paths: set[str] = set()
         self._project_changed_pending = False
         self._open_report_after_validation = False
+        self._validation_summaries_by_project: dict[str, ValidationSummary] = {}
 
         self._build_ui()
         self._create_menu()
@@ -181,7 +183,7 @@ class MainWindow(QMainWindow):
         button_layout = QHBoxLayout()
         button_layout.setSpacing(8)
         self.report_button = QPushButton("Validate & Generate Report")
-        self.report_button.setEnabled(False)
+        self.report_button.setEnabled(True)
         self.report_button.setObjectName("SecondaryButton")
         self.report_button.setMinimumWidth(240)
         self.generate_and_validate_button = QPushButton("Generate Folder Structure")
@@ -450,7 +452,7 @@ class MainWindow(QMainWindow):
         """
         self.browse_button.setEnabled(not running)
         self.generate_and_validate_button.setEnabled(not running)
-        self.report_button.setEnabled(not running and self.project_path is not None)
+        self.report_button.setEnabled(not running)
 
     # ---------------------------------------------------------
 
@@ -567,6 +569,7 @@ class MainWindow(QMainWindow):
 
         self._set_validation_running(False)
         self.report_button.setEnabled(True)
+        self._validation_summaries_by_project[self._project_key(summary.project_path)] = summary
 
         if self._open_report_after_validation:
             try:
@@ -657,12 +660,30 @@ class MainWindow(QMainWindow):
 
     def _generate_report(self) -> None:
         """Validate the selected project and open the report window."""
-        if self.project_path is None or not self.project_path.exists():
+        default_path = ""
+        if self.project_path is not None and self.project_path.exists():
+            default_path = str(self.project_path)
+
+        directory = QFileDialog.getExistingDirectory(
+            self,
+            "Select Project Folder",
+            default_path,
+        )
+
+        if not directory:
+            return
+
+        selected_path = Path(directory)
+        if not selected_path.exists() or not selected_path.is_dir():
             self._show_warning(
                 APP_NAME,
                 "Please select a valid project folder.",
             )
             return
+
+        self.project_path = selected_path
+        self.project_path_label.setText(str(self.project_path))
+        self._watch_project(self.project_path)
 
         logger.info("Validate & Generate Report requested for {}", self.project_path)
         self._open_report_after_validation = True
@@ -752,10 +773,23 @@ class MainWindow(QMainWindow):
             )
             return
 
+        validation_summary = self._validation_summaries_by_project.get(self._project_key(self.project_path))
+        if validation_summary is None:
+            QMessageBox.information(
+                self,
+                "Validation Required",
+                "Please validate the generated Operational Package before generating the Chronology.",
+            )
+            return
+
         logger.info("Chronology generation started.")
         logger.info("Chronology dialog opened.")
 
-        dialog = ChronologyDialog(project_folder=self.project_path, parent=self)
+        dialog = ChronologyDialog(
+            project_folder=self.project_path,
+            parent=self,
+            validation_bin_crc_records=self._extract_bin_crc_records(validation_summary),
+        )
         dialog.exec()
 
         logger.info("Chronology generation completed.")
@@ -846,7 +880,7 @@ class MainWindow(QMainWindow):
         self.result_table.clear_results()
         self._update_summary_cards(None)
         
-        self.report_button.setEnabled(False)
+        self.report_button.setEnabled(True)
         
         self.status_bar.showMessage("Ready")
 
@@ -873,6 +907,23 @@ class MainWindow(QMainWindow):
         Display a warning dialog.
         """
         QMessageBox.warning(self, title, message)
+
+    def _project_key(self, project_path: Path) -> str:
+        return str(project_path.resolve()).casefold()
+
+    @staticmethod
+    def _extract_bin_crc_records(summary: ValidationSummary) -> dict[str, dict[str, Any]]:
+        for result in summary.results:
+            if result.step != ValidationStep.BIN_FILES:
+                continue
+            bin_crcs = result.details.get("bin_crcs")
+            if isinstance(bin_crcs, dict):
+                return {
+                    str(stage): value
+                    for stage, value in bin_crcs.items()
+                    if isinstance(value, dict)
+                }
+        return {}
 
     # ---------------------------------------------------------
 

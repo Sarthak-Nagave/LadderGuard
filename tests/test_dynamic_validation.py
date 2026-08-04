@@ -171,10 +171,13 @@ class DynamicValidationTests(unittest.TestCase):
     def test_bin_validator_fails_when_discovered_paths_are_empty(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
             bin_root = root / "2. Bin File"
+            ladders_root.mkdir(parents=True, exist_ok=True)
             bin_root.mkdir(parents=True, exist_ok=True)
 
             context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
             context.add_folder("2. Bin File", bin_root)
 
             validator = BinValidator(FileSearchService())
@@ -187,10 +190,15 @@ class DynamicValidationTests(unittest.TestCase):
     def test_bin_validator_reports_missing_firmware_folder(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
+            ladder_stage = ladders_root / "Master" / "Initial"
             bin_root = root / "2. Bin File"
+            ladder_stage.mkdir(parents=True, exist_ok=True)
+            (ladder_stage / "firmware.bin").write_bytes(b"ladder")
             bin_root.mkdir(parents=True, exist_ok=True)
 
             context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
             context.add_folder("2. Bin File", bin_root)
             context.add_discovered_path("Master/Initial", root / "1. Ladders" / "Master" / "Initial")
 
@@ -204,13 +212,18 @@ class DynamicValidationTests(unittest.TestCase):
     def test_bin_validator_ignores_nested_bin_files(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
+            ladder_stage = ladders_root / "Master" / "Initial"
             bin_root = root / "2. Bin File"
             stage = bin_root / "Master" / "Initial"
+            ladder_stage.mkdir(parents=True, exist_ok=True)
             (stage / "Backup").mkdir(parents=True, exist_ok=True)
+            (ladder_stage / "firmware.bin").write_bytes(b"direct")
             (stage / "firmware.bin").write_bytes(b"direct")
             (stage / "Backup" / "nested.bin").write_bytes(b"nested")
 
             context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
             context.add_folder("2. Bin File", bin_root)
             context.add_discovered_path("Master/Initial", root / "1. Ladders" / "Master" / "Initial")
 
@@ -223,12 +236,17 @@ class DynamicValidationTests(unittest.TestCase):
     def test_bin_validator_fails_when_only_nested_bin_exists(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
+            ladder_stage = ladders_root / "Master" / "Initial"
             bin_root = root / "2. Bin File"
             stage = bin_root / "Master" / "Initial"
+            ladder_stage.mkdir(parents=True, exist_ok=True)
+            (ladder_stage / "firmware.bin").write_bytes(b"ladder")
             (stage / "Backup").mkdir(parents=True, exist_ok=True)
             (stage / "Backup" / "nested.bin").write_bytes(b"nested")
 
             context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
             context.add_folder("2. Bin File", bin_root)
             context.add_discovered_path("Master/Initial", root / "1. Ladders" / "Master" / "Initial")
 
@@ -241,12 +259,17 @@ class DynamicValidationTests(unittest.TestCase):
     def test_bin_validator_keeps_report_contract_fields(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
+            ladder_stage = ladders_root / "Master" / "Initial"
             bin_root = root / "2. Bin File"
             stage = bin_root / "Master" / "Initial"
+            ladder_stage.mkdir(parents=True, exist_ok=True)
             stage.mkdir(parents=True, exist_ok=True)
+            (ladder_stage / "firmware.bin").write_bytes(b"abc")
             (stage / "firmware.bin").write_bytes(b"abc")
 
             context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
             context.add_folder("2. Bin File", bin_root)
             context.add_discovered_path("Master/Initial", root / "1. Ladders" / "Master" / "Initial")
 
@@ -258,10 +281,42 @@ class DynamicValidationTests(unittest.TestCase):
             self.assertIn("bin_files", result.details)
 
             stage_crc = result.details["bin_crcs"]["Master/Initial"]
+            self.assertIn("ladder_bin_file", stage_crc)
+            self.assertIn("ladder_bin_name", stage_crc)
+            self.assertIn("ladder_crc", stage_crc)
             self.assertIn("bin_file", stage_crc)
             self.assertIn("bin_name", stage_crc)
+            self.assertIn("bin_crc", stage_crc)
             self.assertIn("crc", stage_crc)
+            self.assertIn("status", stage_crc)
             self.assertEqual(stage_crc["bin_name"], "firmware.bin")
+
+    def test_bin_validator_marks_crc_mismatch_as_failed(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            ladders_root = root / "1. Ladders"
+            ladder_stage = ladders_root / "Master" / "Initial"
+            bin_root = root / "2. Bin File"
+            bin_stage = bin_root / "Master" / "Initial"
+            ladder_stage.mkdir(parents=True, exist_ok=True)
+            bin_stage.mkdir(parents=True, exist_ok=True)
+
+            (ladder_stage / "firmware.bin").write_bytes(b"ladder-bytes")
+            (bin_stage / "firmware.bin").write_bytes(b"bin-bytes")
+
+            context = ValidationContext(project_path=root)
+            context.add_folder("1. Ladders", ladders_root)
+            context.add_folder("2. Bin File", bin_root)
+            context.add_discovered_path("Master/Initial", ladder_stage)
+
+            validator = BinValidator(FileSearchService())
+            result = validator.validate(context)
+
+            self.assertEqual(result.status, ValidationStatus.FAIL)
+            stage_crc = result.details["bin_crcs"]["Master/Initial"]
+            self.assertEqual(stage_crc["status"], "FAILED")
+            self.assertEqual(stage_crc["reason"], "CRC Mismatch")
+            self.assertIsNone(stage_crc["crc"])
 
     def test_document_validator_uses_discovered_stage_folders(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

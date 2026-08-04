@@ -175,11 +175,22 @@ class ReportDataModel:
                 stage_bin_path = entries.get(relative_path)
                 crc_record = crc_records.get(relative_path, {})
 
+                ladder_bin_name = crc_record.get("ladder_bin_name")
+                ladder_crc = crc_record.get("ladder_crc")
+                bin_name = crc_record.get("bin_name") or stage_bin_path
+                bin_crc = crc_record.get("bin_crc") or crc_record.get("crc")
+                status_text = crc_record.get("status") or ("PASS" if crc_record.get("crc") else "FAILED")
+                reason_text = crc_record.get("reason")
+
                 rows = [
-                    ReportDetailRow("BIN File", cls._friendly_value(crc_record.get("bin_name") or stage_bin_path)),
-                    ReportDetailRow("CRC", cls._friendly_value(crc_record.get("crc"))),
-                    ReportDetailRow("Status", "PASS" if crc_record.get("crc") else "FAILED"),
+                    ReportDetailRow("Ladder BIN", cls._friendly_value(ladder_bin_name)),
+                    ReportDetailRow("Ladder CRC", cls._friendly_value(ladder_crc)),
+                    ReportDetailRow("Bin File BIN", cls._friendly_value(bin_name)),
+                    ReportDetailRow("Bin File CRC", cls._friendly_value(bin_crc)),
+                    ReportDetailRow("Validation Result", cls._friendly_value(status_text)),
                 ]
+                if reason_text:
+                    rows.append(ReportDetailRow("Reason", cls._friendly_value(reason_text)))
                 cards.append(ReportDetailCard(title=heading, rows=rows))
 
         failures = details.get("failures")

@@ -167,7 +167,7 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
                 plc_model="MIBRX-4M",
                 selpro_version="",
                 bootloader_version="BL20",
-                crc="",
+                crc="A3F91C7E",
                 testing_stage="Master Initial",
                 release_date="",
                 reason_for_upgrade="",
@@ -191,6 +191,7 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             self.assertEqual(sheet.cell(row=2, column=headers["plc model"]).value, "MIBRX-4M")
             self.assertEqual(sheet.cell(row=2, column=headers["bootloader version"]).value, "BL20")
             self.assertEqual(sheet.cell(row=2, column=headers["source code path"]).value, str(selected_bin.resolve()))
+            self.assertEqual(sheet.cell(row=2, column=headers["crc"]).value, "A3F91C7E")
             self.assertEqual(
                 sheet.cell(row=2, column=headers["release date"]).value,
                 datetime.now().strftime("%d/%m/%Y"),
@@ -465,6 +466,47 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             self.assertEqual(entry2.ladder_release_to_production, "No")
             self.assertEqual(entry2.operator_procedure_modification, "Yes")
             self.assertEqual(entry2.automation_setup_modification, "Yes")
+            dialog.close()
+
+    def test_dialog_populates_crc_only_for_passed_validation_records(self) -> None:
+        app = QApplication.instance() or QApplication([])
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            stage_pass = root / "2. Bin File" / "Master" / "Initial"
+            stage_fail = root / "2. Bin File" / "Slave" / "Final"
+            stage_pass.mkdir(parents=True, exist_ok=True)
+            stage_fail.mkdir(parents=True, exist_ok=True)
+
+            pass_bin = stage_pass / "FW_MST_INITIAL_MIBRX-4M_BL20_V1.00.bin"
+            fail_bin = stage_fail / "FW_SLV_FINAL_FLEXYS-2M_BL10_V1.01.bin"
+            pass_bin.write_bytes(b"pass")
+            fail_bin.write_bytes(b"fail")
+
+            records = {
+                "Master/Initial": {
+                    "status": "PASS",
+                    "bin_file": str(pass_bin),
+                    "bin_name": pass_bin.name,
+                    "bin_crc": "A3F91C7E",
+                },
+                "Slave/Final": {
+                    "status": "FAILED",
+                    "bin_file": str(fail_bin),
+                    "bin_name": fail_bin.name,
+                    "bin_crc": "DEADBEEF",
+                    "reason": "CRC Mismatch",
+                },
+            }
+
+            dialog = ChronologyDialog(
+                project_folder=root,
+                validation_bin_crc_records=records,
+            )
+
+            card_map = {card["line_firmware_folder"].text(): card for card in dialog._entry_cards}
+            self.assertEqual(card_map["Master/Initial"]["entry"].crc, "A3F91C7E")
+            self.assertEqual(card_map["Slave/Final"]["entry"].crc, "")
             dialog.close()
 
 
