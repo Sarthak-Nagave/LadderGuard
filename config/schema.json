@@ -1,0 +1,32 @@
+{
+  "config": {
+    "type": "object",
+    "properties": {
+      "config_version": { "type": "string" },
+      "app": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "version": { "type": "string" }
+        },
+        "required": ["name", "version"]
+      }
+    }
+  },
+  "signatures": {
+    "type": "object",
+    "properties": {
+      "config_version": { "type": "string" },
+      "document_validation": {
+        "type": "object",
+        "properties": {
+          "required_signers": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["required_signers"]
+      }
+    }
+  }
+}

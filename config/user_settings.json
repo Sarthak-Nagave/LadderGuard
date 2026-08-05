@@ -1,0 +1,9 @@
+{
+  "config_version": "1.0.0",
+  "_description": "User preferences and runtime states.",
+  "theme": "light",
+  "window_size": [1050, 700],
+  "recent_folders": [],
+  "recent_projects": [],
+  "recent_templates": []
+}

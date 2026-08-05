@@ -1,0 +1,159 @@
+{
+  "config_version": "1.0.0",
+  "_description": "Core business configuration for the Operational Package Validator.",
+  "app": {
+    "name": "Operational Package Validator",
+    "version": "1.0.0",
+    "company_name": "Selec Controls Pvt. Ltd.",
+    "organization_name": "Selec Controls Pvt. Ltd."
+  },
+  "paths": {
+    "log_directory": "logs",
+    "log_file_name": "validator.log",
+    "report_directory": "reports",
+    "report_name_prefix": "Validation_Report",
+    "stylesheet_path": "assets/styles.qss",
+    "icon_path": "assets/icons/app.ico",
+    "default_output_filename": "Ladder_Chronology.xlsx",
+    "document_validator_debug_log": "document_validator_debug.log",
+    "default_folder_generation_target": "Desktop"
+  },
+  "project_structure": {
+    "root_folder_name": "Operational Package Structure",
+    "required_folders": [
+      "1. Ladders",
+      "2. Bin File",
+      "3. Operational Flow",
+      "4. Test Report",
+      "5. Automation Input Doc",
+      "6. Ladder Flow",
+      "7. Chronology"
+    ],
+    "folder_tree": {
+      "1. Ladders": {},
+      "2. Bin File": {},
+      "3. Operational Flow": {},
+      "4. Test Report": {},
+      "5. Automation Input Doc": {},
+      "6. Ladder Flow": {},
+      "7. Chronology": {}
+    },
+    "ladder_initial_folder": "Initial",
+    "ladder_final_folder": "Final",
+    "bin_initial_folder": "Initial",
+    "bin_final_folder": "Final"
+  },
+  "folder_keys": {
+    "ladders": "1. Ladders",
+    "bin_file": "2. Bin File",
+    "operational_flow": "3. Operational Flow",
+    "test_report": "4. Test Report",
+    "automation_input": "5. Automation Input Doc",
+    "ladder_flow": "6. Ladder Flow",
+    "chronology": "7. Chronology"
+  },
+  "validation_limits": {
+    "expected_ladder_files": 1,
+    "expected_bin_files": 1
+  },
+  "search": {
+    "recursive_search": true,
+    "max_file_search_depth": 50
+  },
+  "crc": {
+    "algorithm": "CRC32",
+    "supported_algorithms": ["CRC16", "CRC32", "CRC32C", "CRC64"]
+  },
+  "gui": {
+    "window_width": 1050,
+    "window_height": 700,
+    "min_window_width": 900,
+    "min_window_height": 600
+  },
+  "theme": {
+    "primary_color": "#F57C00",
+    "success_color": "#2E7D32",
+    "warning_color": "#ED6C02",
+    "error_color": "#D32F2F",
+    "background_color": "#FFFFFF",
+    "card_background": "#F7F7F7"
+  },
+  "threading": {
+    "worker_timeout_seconds": 300
+  },
+  "chronology": {
+    "testing_stages": [
+      "Master Initial",
+      "Master Final",
+      "Slave Initial",
+      "Slave Final",
+      "Unknown"
+    ],
+    "headers": {
+      "serial_no": "Serial No.",
+      "source_code_path": "Source Code Path",
+      "bin_file_name": "Bin File Name",
+      "crc": "CRC",
+      "ladder_version": "Ladder Version No.",
+      "reason_for_upgrade": "Reason For Upgrade",
+      "testing_stage": "Testing Stage",
+      "plc_model": "PLC Model",
+      "selpro_version": "Selpro Version & Path",
+      "bootloader_version": "Bootloader Version",
+      "release_date": "Release Date",
+      "released_by": "Released By",
+      "ladder_release_to_prod": "Ladder Release - To Production",
+      "operator_proc_mod": "Operator Procedure Modification",
+      "automation_setup_mod": "Automation Set Up Modification",
+      "tested_by": "Tested By"
+    },
+    "required_headers": [
+      "Serial No.",
+      "Source Code Path",
+      "Bin File Name",
+      "CRC",
+      "Ladder Version No.",
+      "Reason For Upgrade",
+      "Testing Stage",
+      "PLC Model",
+      "Selpro Version & Path",
+      "Bootloader Version",
+      "Release Date",
+      "Released By",
+      "Ladder Release - To Production",
+      "Operator Procedure Modification",
+      "Automation Set Up Modification",
+      "Tested By"
+    ],
+    "defaults": {
+      "max_header_scan_rows": 50,
+      "worksheet_index": 0,
+      "starting_serial_no": 1,
+      "numeric_fallback": 0,
+      "value_yes": "Yes",
+      "value_no": "No",
+      "value_na": "N/A",
+      "value_unknown": "Unknown",
+      "value_empty": ""
+    }
+  },
+  "features": {
+    "enable_crc": true,
+    "enable_chronology": true,
+    "enable_reports": true,
+    "enable_pdf_validation": true,
+    "enable_signature_validation": true,
+    "developer_mode": false,
+    "debug_mode": false
+  },
+  "rules": {
+    "file_extensions": {
+      "ladder_extension": ".sdoc",
+      "bin_extension": ".bin",
+      "supported_document_extensions": [".pdf", ".doc", ".docx", ".xls", ".xlsx"],
+      "supported_excel_extensions": [".xlsx", ".xlsm"],
+      "supported_firmware_extensions": [".bin"],
+      "supported_ladder_extensions": [".sdoc"]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "config_version": "1.0.0",
+  "_description": "Configuration for document signature validation rules.",
+  "document_validation": {
+    "signed_document_suffix": "-sgn",
+    "document_validation_folders": [
+      "3. Operational Flow",
+      "4. Test Report",
+      "5. Automation Input Doc",
+      "6. Ladder Flow"
+    ],
+    "expected_signed_documents": 1,
+    "required_signers": [
+      "Arjun V.",
+      "Piyush S.",
+      "Mohit S."
+    ],
+    "case_sensitive_signer_match": false,
+    "require_digital_signature": true
+  }
+}
