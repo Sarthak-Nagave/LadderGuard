@@ -27,6 +27,7 @@ from pathlib import Path
 from config import (
     DOCUMENT_VALIDATOR_DEBUG_LOG,
     EXPECTED_SIGNED_DOCUMENTS,
+    LOG_DIRECTORY,
     REQUIRED_SIGNERS,
     SIGNED_DOCUMENT_SUFFIX,
 )
@@ -524,7 +525,8 @@ class DocumentValidator(BaseValidator):
 
     def _write_debug_log(self, message: str) -> None:
         """Append a line to the validator debug log for the real package run."""
-        log_path = Path(__file__).with_name(DOCUMENT_VALIDATOR_DEBUG_LOG)
+        LOG_DIRECTORY.mkdir(parents=True, exist_ok=True)
+        log_path = LOG_DIRECTORY / DOCUMENT_VALIDATOR_DEBUG_LOG
         with log_path.open('a', encoding='utf-8') as handle:
             handle.write(message + '\n')
     

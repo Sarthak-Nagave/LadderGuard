@@ -109,7 +109,7 @@ MAX_FILE_SEARCH_DEPTH: Final[int] = ConfigManager.get("config.search.max_file_se
 # LOGGING
 # ============================================================================
 
-LOG_DIRECTORY: Final[Path] = Path(ConfigManager.get("config.paths.log_directory"))
+LOG_DIRECTORY: Final[Path] = ConfigManager.get_base_dir() / ConfigManager.get("config.paths.log_directory")
 LOG_FILE_NAME: Final[str] = ConfigManager.get("config.paths.log_file_name")
 CRC_ALGORITHM: Final[str] = ConfigManager.get("config.crc.algorithm")
 SUPPORTED_CRC_ALGORITHMS: Final[tuple[str, ...]] = tuple(ConfigManager.get("config.crc.supported_algorithms"))
@@ -119,7 +119,7 @@ SUPPORTED_CRC_ALGORITHMS: Final[tuple[str, ...]] = tuple(ConfigManager.get("conf
 # REPORTS
 # ============================================================================
 
-REPORT_DIRECTORY: Final[Path] = Path(ConfigManager.get("config.paths.report_directory"))
+REPORT_DIRECTORY: Final[Path] = ConfigManager.get_base_dir() / ConfigManager.get("config.paths.report_directory")
 REPORT_NAME_PREFIX: Final[str] = ConfigManager.get("config.paths.report_name_prefix")
 
 
@@ -127,8 +127,8 @@ REPORT_NAME_PREFIX: Final[str] = ConfigManager.get("config.paths.report_name_pre
 # ASSET / FILE PATHS
 # ============================================================================
 
-STYLESHEET_PATH: Final[str] = ConfigManager.get("config.paths.stylesheet_path")
-ICON_PATH: Final[str] = ConfigManager.get("config.paths.icon_path")
+STYLESHEET_PATH: Final[str] = str(ConfigManager.get_base_dir() / ConfigManager.get("config.paths.stylesheet_path"))
+ICON_PATH: Final[str] = str(ConfigManager.get_base_dir() / ConfigManager.get("config.paths.icon_path"))
 DEFAULT_OUTPUT_FILENAME: Final[str] = ConfigManager.get("config.paths.default_output_filename")
 DOCUMENT_VALIDATOR_DEBUG_LOG: Final[str] = ConfigManager.get("config.paths.document_validator_debug_log")
 DEFAULT_FOLDER_GENERATION_TARGET: Final[str] = ConfigManager.get("config.paths.default_folder_generation_target")

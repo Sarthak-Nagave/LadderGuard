@@ -16,9 +16,17 @@ class ConfigManager:
     _instance = None
     
     if getattr(sys, 'frozen', False):
-        _config_dir: Path = Path(sys.executable).parent / "config"
+        _base_dir: Path = Path(sys.executable).parent
     else:
-        _config_dir: Path = Path(__file__).resolve().parent.parent / "config"
+        _base_dir: Path = Path(__file__).resolve().parent.parent
+        
+    _config_dir: Path = _base_dir / "config"
+
+    @classmethod
+    def get_base_dir(cls) -> Path:
+        """Returns the absolute base directory of the application."""
+        return cls._base_dir
+
         
     _cache: dict[str, dict] = {}
     
