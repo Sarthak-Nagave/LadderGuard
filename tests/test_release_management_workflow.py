@@ -80,9 +80,13 @@ class ReleaseManagementWorkflowTests(unittest.TestCase):
 
             with patch.object(
                 ChronologyDialog,
-                "_select_template_file_for_folder",
+                "_selected_template_path_for_card",
                 return_value=template_path,
-            ), patch("gui.chronology.chronology_dialog.QMessageBox.information") as info_mock:
+            ), patch("gui.chronology.chronology_dialog.QMessageBox.information") as info_mock, patch(
+                "gui.chronology.chronology_dialog.QMessageBox.warning"
+            ) as warn_mock, patch(
+                "gui.chronology.chronology_dialog.QMessageBox.critical"
+            ) as crit_mock:
                 dialog._on_generate_clicked()
 
             self.assertTrue((root / "7. Chronology" / "Master" / "Initial" / "Ladder_Chronology.xlsx").exists())
@@ -126,9 +130,13 @@ class ReleaseManagementWorkflowTests(unittest.TestCase):
 
             with patch.object(
                 ChronologyDialog,
-                "_select_template_file_for_folder",
+                "_selected_template_path_for_card",
                 return_value=template_path,
-            ), patch("gui.chronology.chronology_dialog.QMessageBox.information") as info_mock:
+            ), patch("gui.chronology.chronology_dialog.QMessageBox.information") as info_mock, patch(
+                "gui.chronology.chronology_dialog.QMessageBox.warning"
+            ) as warn_mock, patch(
+                "gui.chronology.chronology_dialog.QMessageBox.critical"
+            ) as crit_mock:
                 dialog._on_generate_clicked()
 
             self.assertTrue((root / "7. Chronology" / "Master" / "Initial" / "Ladder_Chronology.xlsx").exists())
@@ -187,14 +195,16 @@ class ReleaseManagementWorkflowTests(unittest.TestCase):
             dialog = ChronologyDialog(project_folder=root, validation_bin_crc_records=records)
             self._fill_required_fields(dialog)
 
-            with patch("gui.chronology.chronology_dialog.QMessageBox.information"):
+            with patch("gui.chronology.chronology_dialog.QMessageBox.information"), patch(
+                "gui.chronology.chronology_dialog.QMessageBox.warning"
+            ), patch("gui.chronology.chronology_dialog.QMessageBox.critical"):
                 dialog._on_generate_clicked()
 
             workbook = openpyxl.load_workbook(chronology_path)
             sheet = workbook.active
-            self.assertEqual(sheet.cell(row=2, column=1).value, 1)
+            self.assertEqual(sheet.cell(row=2, column=1).value, 2)
             self.assertEqual(sheet.cell(row=2, column=3).value, selected_bin.name)
-            self.assertEqual(sheet.cell(row=3, column=1).value, 2)
+            self.assertEqual(sheet.cell(row=3, column=1).value, 1)
             self.assertEqual(sheet.cell(row=3, column=3).value, "FW_MST_INITIAL_MIBRX-4M_BL20_V1.00.bin")
             self.assertEqual(sheet.cell(row=2, column=4).value, "CCCCDDDD")
             self.assertEqual(sheet.cell(row=3, column=4).value, "AABBCCDD")

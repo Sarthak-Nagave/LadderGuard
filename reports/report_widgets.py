@@ -11,6 +11,18 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSizePolicy, QSpacerItem, QVBoxLayout, QWidget
 
+from config import (
+    THEME_PRIMARY,
+    THEME_SUCCESS,
+    THEME_WARNING,
+    THEME_ERROR,
+    THEME_BG_LIGHT,
+    THEME_BG_DARK,
+    THEME_TEXT_MAIN,
+    THEME_TEXT_MUTED,
+    THEME_BORDER,
+)
+
 from core.validation_step import ValidationStatus
 from reports.report_model import ReportDetailCard, ReportDetailRow, ReportSection
 
@@ -29,10 +41,10 @@ class StatusBadge(QLabel):
     @staticmethod
     def _style_for_status(status: ValidationStatus) -> str:
         if status == ValidationStatus.FAIL:
-            return "background-color: #D32F2F; color: white; border-radius: 12px; padding: 0 10px;"
+            return f"background-color: {THEME_ERROR}; color: white; border-radius: 12px; padding: 0 10px;"
         if status == ValidationStatus.WARNING:
-            return "background-color: #ED6C02; color: white; border-radius: 12px; padding: 0 10px;"
-        return "background-color: #2E7D32; color: white; border-radius: 12px; padding: 0 10px;"
+            return f"background-color: {THEME_WARNING}; color: white; border-radius: 12px; padding: 0 10px;"
+        return f"background-color: {THEME_SUCCESS}; color: white; border-radius: 12px; padding: 0 10px;"
 
 
 class DetailRowWidget(QHBoxLayout):
@@ -45,14 +57,14 @@ class DetailRowWidget(QHBoxLayout):
 
         if row.label:
             label = QLabel(row.label)
-            label.setStyleSheet("font-weight: 700; color: #1f2937;")
+            label.setStyleSheet(f"font-weight: 700; color: {THEME_TEXT_MAIN};")
             label.setWordWrap(True)
             self.addWidget(label)
             self.addSpacerItem(QSpacerItem(8, 0, QSizePolicy.Fixed, QSizePolicy.Minimum))
 
         value = QLabel(row.value)
         value.setWordWrap(True)
-        value.setStyleSheet("color: #374151;")
+        value.setStyleSheet(f"color: {THEME_TEXT_MUTED};")
         self.addWidget(value, 1)
 
 
@@ -69,7 +81,7 @@ class DetailCardWidget(QWidget):
         if card.title:
             title = QLabel(card.title)
             title.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
-            title.setStyleSheet("color: #1f2937;")
+            title.setStyleSheet(f"color: {THEME_TEXT_MAIN};")
             layout.addWidget(title)
 
         if card.rows:
@@ -97,7 +109,7 @@ class ValidationRowWidget(QFrame):
         super().__init__()
         self.setObjectName("ValidationRow")
         self.setStyleSheet(
-            "QFrame#ValidationRow { background: white; border: 1px solid #E0E0E0; border-radius: 8px; }"
+            f"QFrame#ValidationRow {{ background: {THEME_BG_LIGHT}; border: 1px solid {THEME_BORDER}; border-radius: 8px; }}"
         )
 
         layout = QVBoxLayout(self)
@@ -107,7 +119,7 @@ class ValidationRowWidget(QFrame):
         header_layout = QHBoxLayout()
         header_layout.setSpacing(10)
         step_label = QLabel(section.title)
-        step_label.setStyleSheet("color: #111827; font-size: 11pt; font-weight: 700;")
+        step_label.setStyleSheet(f"color: {THEME_TEXT_MAIN}; font-size: 11pt; font-weight: 700;")
         step_label.setWordWrap(True)
         header_layout.addWidget(step_label, 1)
         header_layout.addWidget(StatusBadge(section.status))
@@ -115,17 +127,17 @@ class ValidationRowWidget(QFrame):
         layout.addLayout(header_layout)
 
         reason_title = QLabel("Reason")
-        reason_title.setStyleSheet("color: #1f2937; font-size: 9pt; font-weight: 700;")
+        reason_title.setStyleSheet(f"color: {THEME_TEXT_MAIN}; font-size: 9pt; font-weight: 700;")
         layout.addWidget(reason_title)
 
         reason_label = QLabel(section.reason)
         reason_label.setWordWrap(True)
-        reason_label.setStyleSheet("color: #374151; font-size: 9pt;")
+        reason_label.setStyleSheet(f"color: {THEME_TEXT_MUTED}; font-size: 9pt;")
         layout.addWidget(reason_label)
 
         if section.details:
             details_title = QLabel("Validation Details")
-            details_title.setStyleSheet("color: #1f2937; font-size: 9pt; font-weight: 700; margin-top: 4px;")
+            details_title.setStyleSheet(f"color: {THEME_TEXT_MAIN}; font-size: 9pt; font-weight: 700; margin-top: 4px;")
             layout.addWidget(details_title)
 
             for detail_card in section.details:

@@ -18,7 +18,6 @@ Python:
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
 
 @dataclass(slots=True, frozen=True)
@@ -50,9 +49,9 @@ class SignatureInfo:
 
     signature_found: bool = False
 
-    signed_at: Optional[str] = None
+    signed_at: str | None = None
 
-    certificate: Optional[str] = None
+    certificate: str | None = None
 
     @property
     def is_valid(self) -> bool:

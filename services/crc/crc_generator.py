@@ -8,9 +8,9 @@ from pathlib import Path
 from config import CRC_ALGORITHM
 from services.crc.crc_exceptions import (
     CRCEmptyFileError,
+    CRCMissingFileError,
     CRCPermissionError,
     CRCReadError,
-    CRCMissingFileError,
 )
 from services.crc.crc_factory import CRCFactory
 from services.crc.crc_result import CRCResult

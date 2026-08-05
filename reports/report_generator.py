@@ -113,9 +113,9 @@ class ReportGenerator:
                 continue
 
             color = {
-                "PASS": "#2E7D32",
-                "FAIL": "#D32F2F",
-                "WARNING": "#ED6C02",
+                "PASS": "{THEME_SUCCESS}",
+                "FAIL": "{THEME_ERROR}",
+                "WARNING": "{THEME_WARNING}",
                 "SKIPPED": "#757575",
             }.get(result.status.name, "#000000")
 
@@ -152,7 +152,7 @@ class ReportGenerator:
 body {{
     font-family: Segoe UI, Arial, sans-serif;
     margin:40px;
-    background:#f5f5f5;
+    background:{THEME_BG_DARK};
 }}
 
 .container {{
@@ -163,7 +163,7 @@ body {{
 }}
 
 h1 {{
-    color:#F57C00;
+    color:{THEME_PRIMARY};
     margin-bottom:0;
 }}
 
@@ -185,8 +185,8 @@ h2 {{
     flex:1;
     padding:15px;
     border-radius:8px;
-    background:#fafafa;
-    border-left:6px solid #F57C00;
+    background:{THEME_BG_LIGHT};
+    border-left:6px solid {THEME_PRIMARY};
 }}
 
 .card h3 {{
@@ -199,7 +199,7 @@ table {{
 }}
 
 th {{
-    background:#F57C00;
+    background:{THEME_PRIMARY};
     color:white;
     padding:10px;
 }}
@@ -219,8 +219,8 @@ pre {{
 .details-card {{
     margin: 8px 0 14px 0;
     padding: 12px 14px;
-    border-left: 4px solid #F57C00;
-    background: #fafafa;
+    border-left: 4px solid {THEME_PRIMARY};
+    background: {THEME_BG_LIGHT};
     border-radius: 6px;
 }}
 
@@ -228,18 +228,18 @@ pre {{
     display: block;
     font-size: 1.08em;
     font-weight: 700;
-    color: #1f2937;
+    color: {THEME_TEXT_MAIN};
     margin-bottom: 8px;
 }}
 
 .details-row {{
     margin: 4px 0;
-    color: #374151;
+    color: {THEME_TEXT_MUTED};
 }}
 
 .details-label {{
     font-weight: 700;
-    color: #1f2937;
+    color: {THEME_TEXT_MAIN};
 }}
 
 .details-list {{
@@ -250,16 +250,16 @@ pre {{
 .chronology-stage {{
     margin: 24px 0;
     padding: 20px;
-    border: 1px solid #E5E7EB;
+    border: 1px solid {THEME_BORDER};
     border-radius: 12px;
-    background: #ffffff;
+    background: {THEME_BG_LIGHT};
 }}
 
 .chronology-stage h3 {{
     margin: 0 0 18px 0;
     font-size: 1.25em;
-    color: #0F172A;
-    border-bottom: 1px solid #E5E7EB;
+    color: {THEME_TEXT_MAIN};
+    border-bottom: 1px solid {THEME_BORDER};
     padding-bottom: 10px;
 }}
 
@@ -274,20 +274,20 @@ pre {{
     text-align: left;
     font-weight: 700;
     margin-bottom: 8px;
-    color: #1F2937;
+    color: {THEME_TEXT_MAIN};
 }}
 
 .chronology-table td,
 .chronology-table th {{
     padding: 10px 12px;
-    border: 1px solid #E5E7EB;
+    border: 1px solid {THEME_BORDER};
     vertical-align: top;
 }}
 
 .chronology-table th {{
-    background: #F8FAFC;
+    background: {THEME_BG_DARK};
     font-weight: 700;
-    color: #0F172A;
+    color: {THEME_TEXT_MAIN};
     text-align: left;
 }}
 
@@ -297,33 +297,33 @@ pre {{
     gap: 10px;
     padding: 10px 14px;
     border-radius: 8px;
-    background: #F8FAFC;
-    border: 1px solid #E5E7EB;
-    color: #0F172A;
+    background: {THEME_BG_DARK};
+    border: 1px solid {THEME_BORDER};
+    color: {THEME_TEXT_MAIN};
     font-weight: 700;
 }}
 
 .stage-status.pass {{
-    border-color: #2E7D32;
-    color: #2E7D32;
+    border-color: {THEME_SUCCESS};
+    color: {THEME_SUCCESS};
 }}
 
 .stage-status.fail {{
-    border-color: #D32F2F;
-    color: #D32F2F;
+    border-color: {THEME_ERROR};
+    color: {THEME_ERROR};
 }}
 
 .validation-summary {{
     margin-top: 36px;
     padding: 22px;
-    border: 1px solid #E5E7EB;
+    border: 1px solid {THEME_BORDER};
     border-radius: 12px;
-    background: #ffffff;
+    background: {THEME_BG_LIGHT};
 }}
 
 .validation-summary h3 {{
     margin-top: 0;
-    color: #0F172A;
+    color: {THEME_TEXT_MAIN};
 }}
 
 .validation-summary table {{
@@ -336,11 +336,11 @@ pre {{
 .validation-summary td {{
     text-align: left;
     padding: 10px 12px;
-    border: 1px solid #E5E7EB;
+    border: 1px solid {THEME_BORDER};
 }}
 
 .validation-summary th {{
-    background: #F8FAFC;
+    background: {THEME_BG_DARK};
     font-weight: 700;
 }}
 
@@ -365,14 +365,14 @@ pre {{
 .chronology-overview {{
     margin: 30px 0 10px 0;
     padding: 20px;
-    border-left: 4px solid #F57C00;
-    background: #F9FAFB;
+    border-left: 4px solid {THEME_PRIMARY};
+    background: {THEME_BG_DARK};
     border-radius: 8px;
 }}
 
 .chronology-overview p {{
     margin: 0;
-    color: #334155;
+    color: {THEME_TEXT_MAIN};
     line-height: 1.6;
 }}
 

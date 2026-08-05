@@ -11,11 +11,10 @@ Author:
 import re
 import shutil
 from pathlib import Path
-from typing import Any, Tuple, Optional
 
-from services.logger import LoggerService
 from services.folder_structure_generator import FolderStructureGenerator
 from services.hierarchy_discovery import HierarchyDiscovery
+from services.logger import LoggerService
 
 logger = LoggerService.get_logger()
 
@@ -31,7 +30,7 @@ class ProjectOrganizerService:
         If it's already an Operational Package, return it.
         Otherwise, trigger the generation of the operational package.
         """
-        from config import PROJECT_ROOT_FOLDER_NAME, DEFAULT_FOLDER_GENERATION_TARGET
+        from config import PROJECT_ROOT_FOLDER_NAME
         
         # If the selected folder is already an operational package root
         if (project_path / "1. Ladders").exists() or (project_path / "2. Bin File").exists():

@@ -2,30 +2,108 @@
   "config": {
     "type": "object",
     "properties": {
-      "config_version": { "type": "string" },
+      "config_version": {
+        "type": "string"
+      },
       "app": {
         "type": "object",
         "properties": {
-          "name": { "type": "string" },
-          "version": { "type": "string" }
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "company_name": {
+            "type": "string"
+          },
+          "organization_name": {
+            "type": "string"
+          },
+          "subtitle": {
+            "type": "string"
+          }
         },
-        "required": ["name", "version"]
+        "required": [
+          "name",
+          "version",
+          "company_name"
+        ]
+      },
+      "gui": {
+        "type": "object",
+        "properties": {
+          "window_width": {
+            "type": "integer"
+          },
+          "window_height": {
+            "type": "integer"
+          },
+          "messages": {
+            "type": "object",
+            "properties": {
+              "export_success": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "window_width",
+          "window_height"
+        ]
       }
-    }
+    },
+    "required": [
+      "app",
+      "gui"
+    ]
   },
   "signatures": {
     "type": "object",
     "properties": {
-      "config_version": { "type": "string" },
+      "config_version": {
+        "type": "string"
+      },
       "document_validation": {
         "type": "object",
         "properties": {
           "required_signers": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           }
         },
-        "required": ["required_signers"]
+        "required": [
+          "required_signers"
+        ]
+      }
+    }
+  },
+  "defaults": {
+    "type": "object"
+  },
+  "user_settings": {
+    "type": "object",
+    "properties": {
+      "config_version": {
+        "type": "string"
+      },
+      "theme": {
+        "type": "string"
+      },
+      "window_size": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      },
+      "recent_folders": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     }
   }

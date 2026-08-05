@@ -1,8 +1,10 @@
 import json
 import logging
+import sys
 import shutil
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
+import jsonschema
 
 logger = logging.getLogger(__name__)
 
@@ -12,8 +14,13 @@ class ConfigManager:
     This is the ONLY class allowed to read JSON configuration files directly.
     """
     _instance = None
-    _config_dir: Path = Path(__file__).resolve().parent.parent / "config"
-    _cache: Dict[str, dict] = {}
+    
+    if getattr(sys, 'frozen', False):
+        _config_dir: Path = Path(sys.executable).parent / "config"
+    else:
+        _config_dir: Path = Path(__file__).resolve().parent.parent / "config"
+        
+    _cache: dict[str, dict] = {}
     
     # Core files
     CONFIG_FILE = "config.json"
@@ -56,7 +63,7 @@ class ConfigManager:
                 cls._restore_from_defaults(key, file_path)
                 with file_path.open("r", encoding="utf-8") as f:
                     cls._cache[key] = json.load(f)
-        except (json.JSONDecodeError, IOError) as e:
+        except (OSError, json.JSONDecodeError) as e:
             logger.error(f"Error reading {filename}: {e}. Restoring defaults.")
             cls._restore_from_defaults(key, file_path)
             with file_path.open("r", encoding="utf-8") as f:
@@ -88,8 +95,7 @@ class ConfigManager:
     @classmethod
     def _validate(cls, key: str, data: dict) -> bool:
         """
-        Validates the configuration using the simplified schema logic.
-        In an enterprise scenario this would use jsonschema.
+        Validates the configuration using jsonschema.
         """
         schema_path = cls._config_dir / cls.SCHEMA_FILE
         if not schema_path.exists():
@@ -102,13 +108,13 @@ class ConfigManager:
             if key not in schemas:
                 return True # No schema for this key
                 
-            # Basic required key validation logic as scaffold
-            req_keys = schemas[key].get("properties", {}).get("app", {}).get("required", [])
-            for rk in req_keys:
-                if "app" in data and rk not in data["app"]:
-                    return False
+            jsonschema.validate(instance=data, schema=schemas[key])
             return True
-        except Exception:
+        except jsonschema.exceptions.ValidationError as e:
+            logger.error(f"Validation failed for {key}: {e.message}")
+            return False
+        except Exception as e:
+            logger.error(f"Error validating {key}: {e}")
             return True
 
     @classmethod
@@ -163,15 +169,4 @@ class ConfigManager:
         cls._restore_from_defaults("user_settings", cls._config_dir / cls.USER_SETTINGS_FILE)
         cls.load()
 
-    @classmethod
-    def export(cls, export_path: str) -> None:
-        """Exports the config folder."""
-        # Simple implementation
-        shutil.copytree(cls._config_dir, export_path, dirs_exist_ok=True)
 
-    @classmethod
-    def import_config(cls, import_path: str) -> None:
-        """Imports config folder."""
-        # Simple implementation
-        shutil.copytree(import_path, cls._config_dir, dirs_exist_ok=True)
-        cls.load()

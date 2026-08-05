@@ -15,12 +15,14 @@ from __future__ import annotations
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
-    QWidget,
+    QFrame,
     QLabel,
     QProgressBar,
     QVBoxLayout,
-    QFrame,
+    QWidget,
 )
+
+from config import PROGRESS_TITLE
 
 
 class ProgressWidget(QFrame):
@@ -58,7 +60,7 @@ class ProgressWidget(QFrame):
 
         layout.setSpacing(4)
 
-        title = QLabel("Progress Bar")
+        title = QLabel(PROGRESS_TITLE)
 
         title.setObjectName("ProgressTitle")
 

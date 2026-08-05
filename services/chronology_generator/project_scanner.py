@@ -22,9 +22,9 @@ import logging
 from pathlib import Path
 
 from config import FOLDER_KEYS
-from services.hierarchy_discovery import HierarchyDiscovery
 from services.chronology_generator.models import ChronologyEntry, ProjectChronology
 from services.chronology_generator.parsers import FilenameParser
+from services.hierarchy_discovery import HierarchyDiscovery
 
 
 class ProjectScanner:
@@ -147,7 +147,7 @@ class ProjectScanner:
             mtime_ns = getattr(stat, "st_mtime_ns", int(stat.st_mtime * 1_000_000_000))
             return (-mtime_ns, path.name.casefold())
 
-        return sorted(bin_files, key=key)[0]
+        return min(bin_files, key=key)
 
     def _determine_testing_stage(self, stage: Path) -> str:
         """

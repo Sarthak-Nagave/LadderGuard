@@ -10,10 +10,8 @@ Author:
     Selec Controls Pvt. Ltd. - R&D
 """
 
-import os
 import shutil
 from pathlib import Path
-from typing import List
 
 from services.logger import LoggerService
 
@@ -24,7 +22,7 @@ class MirrorService:
     """Handles independent mirroring strategies for project generation."""
 
     @staticmethod
-    def mirror_ladder(source: Path, target_root: Path) -> List[str]:
+    def mirror_ladder(source: Path, target_root: Path) -> list[str]:
         """
         Strategy 1: Mirror Ladder
         Recursively copies everything from the Ladder source to the target.
@@ -48,7 +46,7 @@ class MirrorService:
         return errors
 
     @staticmethod
-    def mirror_bin_files(source: Path, target_root: Path) -> List[str]:
+    def mirror_bin_files(source: Path, target_root: Path) -> list[str]:
         """
         Strategy 2: Mirror Bin Files
         Recursively mirrors the Bin Files source to the target without filtering.
@@ -79,7 +77,7 @@ class MirrorService:
         return errors
 
     @staticmethod
-    def generate_chronology(firmware_dirs: List[Path], target_root: Path) -> List[str]:
+    def generate_chronology(firmware_dirs: list[Path], target_root: Path) -> list[str]:
         """
         Strategy 3: Generate Chronology
         Creates empty matching directories based on the pre-discovered firmware hierarchy.

@@ -30,6 +30,7 @@ APP_NAME: Final[str] = ConfigManager.get("config.app.name")
 APP_VERSION: Final[str] = ConfigManager.get("config.app.version")
 COMPANY_NAME: Final[str] = ConfigManager.get("config.app.company_name")
 ORGANIZATION_NAME: Final[str] = ConfigManager.get("config.app.organization_name")
+APP_SUBTITLE: Final[str] = ConfigManager.get("config.app.subtitle")
 
 
 # ============================================================================
@@ -143,18 +144,23 @@ WINDOW_HEIGHT: Final[int] = ConfigManager.get("config.gui.window_height")
 MIN_WINDOW_WIDTH: Final[int] = ConfigManager.get("config.gui.min_window_width")
 MIN_WINDOW_HEIGHT: Final[int] = ConfigManager.get("config.gui.min_window_height")
 
+PROGRESS_TITLE: Final[str] = ConfigManager.get("config.gui.progress_title")
+GUI_MESSAGES: Final[dict] = ConfigManager.get("config.gui.messages")
+
 
 # ============================================================================
 # THEME
 # ============================================================================
 
-PRIMARY_COLOR: Final[str] = ConfigManager.get("config.theme.primary_color")
-SUCCESS_COLOR: Final[str] = ConfigManager.get("config.theme.success_color")
-WARNING_COLOR: Final[str] = ConfigManager.get("config.theme.warning_color")
-ERROR_COLOR: Final[str] = ConfigManager.get("config.theme.error_color")
-
-BACKGROUND_COLOR: Final[str] = ConfigManager.get("config.theme.background_color")
-CARD_BACKGROUND: Final[str] = ConfigManager.get("config.theme.card_background")
+THEME_PRIMARY: Final[str] = ConfigManager.get("config.theme.primary_color")
+THEME_SUCCESS: Final[str] = ConfigManager.get("config.theme.success_color")
+THEME_WARNING: Final[str] = ConfigManager.get("config.theme.warning_color")
+THEME_ERROR: Final[str] = ConfigManager.get("config.theme.error_color")
+THEME_BG_LIGHT: Final[str] = ConfigManager.get("config.theme.background_light")
+THEME_BG_DARK: Final[str] = ConfigManager.get("config.theme.background_dark")
+THEME_TEXT_MAIN: Final[str] = ConfigManager.get("config.theme.text_main")
+THEME_TEXT_MUTED: Final[str] = ConfigManager.get("config.theme.text_muted")
+THEME_BORDER: Final[str] = ConfigManager.get("config.theme.border_color")
 
 
 # ============================================================================

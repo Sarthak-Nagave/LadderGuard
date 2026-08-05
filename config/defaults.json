@@ -8,7 +8,8 @@
       "name": "Operational Package Validator",
       "version": "1.0.0",
       "company_name": "Selec Controls Pvt. Ltd.",
-      "organization_name": "Selec Controls Pvt. Ltd."
+      "organization_name": "Selec Controls Pvt. Ltd.",
+      "subtitle": "Industrial-grade validation workspace for engineering package integrity"
     },
     "paths": {
       "log_directory": "logs",
@@ -65,13 +66,33 @@
     },
     "crc": {
       "algorithm": "CRC32",
-      "supported_algorithms": ["CRC16", "CRC32", "CRC32C", "CRC64"]
+      "supported_algorithms": [
+        "CRC16",
+        "CRC32",
+        "CRC32C",
+        "CRC64"
+      ]
     },
     "gui": {
       "window_width": 1050,
       "window_height": 700,
       "min_window_width": 900,
-      "min_window_height": 600
+      "min_window_height": 600,
+      "progress_title": "Progress Bar",
+      "messages": {
+        "chronology_template_missing": "Please select a chronology template for",
+        "chronology_no_crc": "No validated firmware folders with CRC PASS were discovered.",
+        "chronology_generation_completed": "Chronology Generation Completed",
+        "chronology_reason_empty": "'Reason for Upgrade' cannot be empty.",
+        "chronology_released_by_empty": "'Released By' cannot be empty.",
+        "chronology_tested_by_empty": "'Tested By' cannot be empty.",
+        "chronology_ladder_release_empty": "select 'Ladder Release To Production'.",
+        "chronology_operator_mod_empty": "select 'Operator Procedure Modification'.",
+        "chronology_automation_mod_empty": "select 'Automation Set Up Modification'.",
+        "export_success": "Validation report exported successfully.",
+        "export_denied": "Permission denied while exporting the PDF.",
+        "export_unexpected": "An unexpected filesystem error occurred."
+      }
     },
     "theme": {
       "primary_color": "#F57C00",
@@ -79,7 +100,12 @@
       "warning_color": "#ED6C02",
       "error_color": "#D32F2F",
       "background_color": "#FFFFFF",
-      "card_background": "#F7F7F7"
+      "card_background": "#F7F7F7",
+      "background_light": "#FFFFFF",
+      "background_dark": "#F7F7F7",
+      "text_main": "#333333",
+      "text_muted": "#666666",
+      "border_color": "#E0E0E0"
     },
     "threading": {
       "worker_timeout_seconds": 300
@@ -153,10 +179,23 @@
       "file_extensions": {
         "ladder_extension": ".sdoc",
         "bin_extension": ".bin",
-        "supported_document_extensions": [".pdf", ".doc", ".docx", ".xls", ".xlsx"],
-        "supported_excel_extensions": [".xlsx", ".xlsm"],
-        "supported_firmware_extensions": [".bin"],
-        "supported_ladder_extensions": [".sdoc"]
+        "supported_document_extensions": [
+          ".pdf",
+          ".doc",
+          ".docx",
+          ".xls",
+          ".xlsx"
+        ],
+        "supported_excel_extensions": [
+          ".xlsx",
+          ".xlsm"
+        ],
+        "supported_firmware_extensions": [
+          ".bin"
+        ],
+        "supported_ladder_extensions": [
+          ".sdoc"
+        ]
       }
     }
   },
@@ -185,7 +224,10 @@
     "config_version": "1.0.0",
     "_description": "User preferences and runtime states.",
     "theme": "light",
-    "window_size": [1050, 700],
+    "window_size": [
+      1050,
+      700
+    ],
     "recent_folders": [],
     "recent_projects": [],
     "recent_templates": []

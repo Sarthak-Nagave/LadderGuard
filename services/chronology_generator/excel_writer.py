@@ -17,10 +17,10 @@ Python:
 
 from __future__ import annotations
 
-from copy import copy
-from datetime import datetime
 import logging
 import re
+from copy import copy
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -35,7 +35,6 @@ class ChronologyTemplateError(Exception):
     """
     Raised when the provided Excel template is invalid or missing required headers.
     """
-    pass
 
 
 class ChronologyExcelWriter:
@@ -262,8 +261,10 @@ class ChronologyExcelWriter:
     def _is_instruction_row(self, sheet: Worksheet, row: int, header_map: dict[str, int]) -> bool:
         """
         Determines if a row is an instruction row (e.g., Row 16 with merged text).
-        Checks if it's merged or contains existing text.
+        Checks if it's merged or contains existing text, but must NOT be a valid history row.
         """
+        if self._has_history_row_data(sheet, row, header_map):
+            return False
         return self._is_row_merged(sheet, row, header_map)
 
     def _is_row_merged(self, sheet: Worksheet, row: int, header_map: dict[str, int]) -> bool:

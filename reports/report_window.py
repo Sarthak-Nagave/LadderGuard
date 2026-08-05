@@ -11,6 +11,7 @@ from datetime import datetime
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont
+from config import THEME_PRIMARY, THEME_SUCCESS, THEME_WARNING, THEME_ERROR, THEME_BG_LIGHT, THEME_BG_DARK, THEME_TEXT_MAIN, THEME_TEXT_MUTED, THEME_BORDER
 from PySide6.QtWidgets import (
     QFrame,
     QHBoxLayout,
@@ -79,7 +80,7 @@ class ReportWindow(QMainWindow):
 
         self._title_label = QLabel(APP_NAME)
         self._title_label.setFont(QFont("Segoe UI", 22, QFont.Weight.Bold))
-        self._title_label.setStyleSheet("color: #F57C00; margin: 0;")
+        self._title_label.setStyleSheet(f"color: {THEME_PRIMARY}; margin: 0;")
         container_layout.addWidget(self._title_label)
 
         self._info_layout = QVBoxLayout()
@@ -92,9 +93,9 @@ class ReportWindow(QMainWindow):
         ]:
             row = QHBoxLayout()
             label_widget = QLabel(label)
-            label_widget.setStyleSheet("font-weight: 700; color: #1f2937;")
+            label_widget.setStyleSheet(f"font-weight: 700; color: {THEME_TEXT_MAIN};")
             value_widget = QLabel(str(value))
-            value_widget.setStyleSheet("color: #374151;")
+            value_widget.setStyleSheet(f"color: {THEME_TEXT_MUTED};")
             value_widget.setWordWrap(True)
             row.addWidget(label_widget)
             row.addWidget(value_widget, 1)
@@ -118,9 +119,9 @@ class ReportWindow(QMainWindow):
             card_layout = QVBoxLayout(card)
             card_layout.setContentsMargins(12, 10, 12, 10)
             heading = QLabel(label)
-            heading.setStyleSheet("color: #666666; font-size: 9pt;")
+            heading.setStyleSheet(f"color: {THEME_TEXT_MUTED}; font-size: 9pt;")
             value_label = QLabel(str(value))
-            value_label.setStyleSheet("color: #111827; font-size: 11pt; font-weight: 700;")
+            value_label.setStyleSheet(f"color: {THEME_TEXT_MAIN}; font-size: 11pt; font-weight: 700;")
             card_layout.addWidget(heading)
             card_layout.addWidget(value_label)
             self._summary_layout.addWidget(card)
@@ -128,7 +129,7 @@ class ReportWindow(QMainWindow):
 
         self._heading = QLabel("Validation Results")
         self._heading.setFont(QFont("Segoe UI", 15, QFont.Weight.Bold))
-        self._heading.setStyleSheet("color: #111827; margin-top: 10px;")
+        self._heading.setStyleSheet(f"color: {THEME_TEXT_MAIN}; margin-top: 10px;")
         container_layout.addWidget(self._heading)
 
         self._sections_container = QWidget()
@@ -143,7 +144,7 @@ class ReportWindow(QMainWindow):
         container_layout.addWidget(self._sections_container)
 
         toolbar = QFrame()
-        toolbar.setStyleSheet("background: white; border: 1px solid #ddd; border-radius: 8px;")
+        toolbar.setStyleSheet(f"background: {THEME_BG_LIGHT}; border: 1px solid {THEME_BORDER}; border-radius: 8px;")
         toolbar_layout = QHBoxLayout(toolbar)
         toolbar_layout.setContentsMargins(10, 8, 10, 8)
         toolbar_layout.addStretch(1)
@@ -202,9 +203,9 @@ class ReportWindow(QMainWindow):
         ]:
             item_layout = QHBoxLayout()
             label_widget = QLabel(label)
-            label_widget.setStyleSheet("font-weight: 700; color: #1f2937;")
+            label_widget.setStyleSheet(f"font-weight: 700; color: {THEME_TEXT_MAIN};")
             value_widget = QLabel(str(value))
-            value_widget.setStyleSheet("color: #374151;")
+            value_widget.setStyleSheet(f"color: {THEME_TEXT_MUTED};")
             value_widget.setWordWrap(True)
             item_layout.addWidget(label_widget)
             item_layout.addWidget(value_widget, 1)
@@ -217,9 +218,9 @@ class ReportWindow(QMainWindow):
         card_layout = QVBoxLayout(card)
         card_layout.setContentsMargins(12, 10, 12, 10)
         heading = QLabel(label)
-        heading.setStyleSheet("color: #666666; font-size: 9pt;")
+        heading.setStyleSheet(f"color: {THEME_TEXT_MUTED}; font-size: 9pt;")
         value_label = QLabel(value)
-        value_label.setStyleSheet("color: #111827; font-size: 11pt; font-weight: 700;")
+        value_label.setStyleSheet(f"color: {THEME_TEXT_MAIN}; font-size: 11pt; font-weight: 700;")
         card_layout.addWidget(heading)
         card_layout.addWidget(value_label)
         return card

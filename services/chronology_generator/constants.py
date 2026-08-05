@@ -16,6 +16,7 @@ Python:
 """
 
 from typing import Final
+
 from core.config_manager import ConfigManager
 
 # =============================================================================

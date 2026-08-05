@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type
-
 from config import CRC_ALGORITHM
 from services.crc.crc_algorithms import (
     CRC16Algorithm,
@@ -18,7 +16,7 @@ from services.crc.crc_exceptions import CRCUnsupportedAlgorithmError
 class CRCFactory:
     """Create CRC algorithm instances by name."""
 
-    _registry: dict[str, Type[CRCAlgorithm]] = {
+    _registry: dict[str, type[CRCAlgorithm]] = {
         "crc16": CRC16Algorithm,
         "crc32": CRC32Algorithm,
         "crc32c": CRC32CAlgorithm,

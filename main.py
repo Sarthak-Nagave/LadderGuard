@@ -25,7 +25,6 @@ from config import (
     ORGANIZATION_NAME,
     STYLESHEET_PATH,
 )
-
 from gui.main_window import MainWindow
 from services.logger import LoggerService
 

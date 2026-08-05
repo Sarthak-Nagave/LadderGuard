@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from config import PROJECT_ROOT_FOLDER_NAME
 from services.folder_structure_generator import FolderStructureGenerator
 
 

@@ -4,7 +4,6 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import pdfplumber
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle

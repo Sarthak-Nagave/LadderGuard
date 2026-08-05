@@ -24,12 +24,10 @@ from __future__ import annotations
 from pathlib import Path
 
 from config import FOLDER_KEYS, LADDER_EXTENSION
-
 from core.base_validator import BaseValidator
 from core.validation_context import ValidationContext
 from core.validation_result import ValidationResult
 from core.validation_step import ValidationStep
-
 from services.file_search import FileSearchService
 
 

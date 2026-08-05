@@ -10,14 +10,16 @@ Author:
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
-from typing import Any
 
-from config import DEFAULT_FOLDER_GENERATION_TARGET, PROJECT_ROOT_FOLDER_NAME, REQUIRED_FOLDERS
+from config import (
+    DEFAULT_FOLDER_GENERATION_TARGET,
+    PROJECT_ROOT_FOLDER_NAME,
+    REQUIRED_FOLDERS,
+)
+from services.hierarchy_discovery import HierarchyDiscovery
 from services.logger import LoggerService
 from services.mirror_service import MirrorService
-from services.hierarchy_discovery import HierarchyDiscovery
 
 logger = LoggerService.get_logger()
 

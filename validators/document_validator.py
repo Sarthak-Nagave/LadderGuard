@@ -30,14 +30,11 @@ from config import (
     REQUIRED_SIGNERS,
     SIGNED_DOCUMENT_SUFFIX,
 )
-
 from core.base_validator import BaseValidator
 from core.validation_context import ValidationContext
 from core.validation_result import ValidationResult
-from core.validation_step import ValidationStatus, ValidationStep
-
+from core.validation_step import ValidationStep
 from models.signature_info import SignatureInfo
-
 from services.file_reader import FileReaderService
 from services.file_search import FileSearchService
 from services.signature_reader import SignatureReaderService

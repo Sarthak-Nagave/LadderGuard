@@ -320,13 +320,13 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             workbook = openpyxl.load_workbook(output_path)
             sheet = workbook.active
 
-            self.assertEqual(sheet.cell(row=2, column=headers["serial no."]).value, 3)
+            self.assertEqual(sheet.cell(row=2, column=headers["serial no."]).value, 2)
             self.assertEqual(sheet.cell(row=2, column=headers["bin file name"]).value, selected_bin.name)
-            self.assertEqual(sheet.cell(row=3, column=headers["serial no."]).value, 2)
-            self.assertEqual(sheet.max_row, 4)
+            self.assertEqual(sheet.cell(row=3, column=headers["serial no."]).value, 1)
+            self.assertEqual(sheet.max_row, 3)
 
     def test_dialog_builds_dynamic_cards_from_firmware_folders(self) -> None:
-        app = QApplication.instance() or QApplication([])
+        QApplication.instance() or QApplication([])
 
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
@@ -368,7 +368,7 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             dialog.close()
 
     def test_dialog_generate_button_waits_for_all_cards_required_fields(self) -> None:
-        app = QApplication.instance() or QApplication([])
+        QApplication.instance() or QApplication([])
 
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
@@ -417,7 +417,7 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             dialog.close()
 
     def test_dialog_user_edits_apply_to_matching_card_only(self) -> None:
-        app = QApplication.instance() or QApplication([])
+        QApplication.instance() or QApplication([])
 
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
@@ -483,7 +483,7 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             dialog.close()
 
     def test_dialog_populates_crc_only_for_passed_validation_records(self) -> None:
-        app = QApplication.instance() or QApplication([])
+        QApplication.instance() or QApplication([])
 
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)

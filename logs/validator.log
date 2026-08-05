@@ -18722,3 +18722,479 @@ C:\Users\SM 464\Desktop\Operational Package Structure
 2026-08-05 10:31:53 | INFO     | gui.main_window:on_generate_chronology:801 | Chronology dialog opened.
 2026-08-05 10:32:45 | INFO     | gui.main_window:on_generate_chronology:810 | Chronology generation completed.
 2026-08-05 10:35:14 | INFO     | gui.main_window:closeEvent:966 | Application closed.
+2026-08-05 10:57:06 | INFO     | gui.main_window:_generate_report:688 | Validate & Generate Report requested for C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 10:57:06 | INFO     | gui.main_window:_start_validation:476 | Validation started for C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 10:57:06 | INFO     | gui.main_window:run:84 | ValidationWorker started for: C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 10:57:06 | INFO     | core.validation_engine:validate:143 | Validation started for project: C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 10:57:06 | INFO     | core.validation_engine:validate:157 | Running validator: Folder Structure
+2026-08-05 10:57:06 | INFO     | validators.folder_validator:validate:49 | Folder validation started.
+2026-08-05 10:57:06 | INFO     | validators.folder_validator:validate:87 | Folder validation completed successfully.
+2026-08-05 10:57:06 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Files
+2026-08-05 10:57:06 | INFO     | validators.ladder_validator:validate:55 | Starting ladder validation.
+2026-08-05 10:57:06 | INFO     | validators.ladder_validator:validate:115 | Ladder validation completed successfully.
+2026-08-05 10:57:06 | INFO     | core.validation_engine:validate:157 | Running validator: Bin Files
+2026-08-05 10:57:06 | INFO     | validators.bin_validator:validate:58 | Starting BIN validation.
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 10:57:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 10:57:06 | INFO     | validators.bin_validator:validate:167 | BIN validation completed successfully.
+2026-08-05 10:57:06 | INFO     | core.validation_engine:validate:157 | Running validator: Operational Flow
+2026-08-05 10:57:06 | INFO     | validators.document_validator:validate:76 | Validating '3. Operational Flow'.
+2026-08-05 10:57:06 | INFO     | validators.document_validator:validate:127 | Found signed document: Operational_Flow-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\3. Operational Flow\Operational_Flow-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Operational_Flow-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:94 | Inspecting PDF signatures: Operational_Flow-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:161 | Validated 3 required signer(s).
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | INFO     | validators.document_validator:validate:211 | 3. Operational Flow validated successfully.
+2026-08-05 10:57:06 | INFO     | core.validation_engine:validate:157 | Running validator: Test Report
+2026-08-05 10:57:06 | INFO     | validators.document_validator:validate:76 | Validating '4. Test Report'.
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\4. Test Report\Master\Initial\M-Initial-report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from M-Initial-report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:94 | Inspecting PDF signatures: M-Initial-report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:161 | Validated 3 required signer(s).
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\4. Test Report\Slave\Final\S-final-report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from S-final-report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:94 | Inspecting PDF signatures: S-final-report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:161 | Validated 3 required signer(s).
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\4. Test Report\UUT\QC\U-QC-report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from U-QC-report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:94 | Inspecting PDF signatures: U-QC-report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:161 | Validated 3 required signer(s).
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | INFO     | core.validation_engine:validate:157 | Running validator: Automation Input
+2026-08-05 10:57:06 | INFO     | validators.document_validator:validate:76 | Validating '5. Automation Input Doc'.
+2026-08-05 10:57:06 | INFO     | validators.document_validator:validate:127 | Found signed document: Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\5. Automation Input Doc\Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:94 | Inspecting PDF signatures: Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:161 | Validated 3 required signer(s).
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | INFO     | validators.document_validator:validate:211 | 5. Automation Input Doc validated successfully.
+2026-08-05 10:57:06 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Flow
+2026-08-05 10:57:06 | INFO     | validators.document_validator:validate:76 | Validating '6. Ladder Flow'.
+2026-08-05 10:57:06 | INFO     | validators.document_validator:validate:127 | Found signed document: Ladder_flow-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\6. Ladder Flow\Ladder_flow-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Ladder_flow-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:94 | Inspecting PDF signatures: Ladder_flow-sgn.pdf
+2026-08-05 10:57:06 | INFO     | services.signature_reader:read:161 | Validated 3 required signer(s).
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | DEBUG    | validators.document_validator:_validate_signers:493 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 10:57:06 | INFO     | validators.document_validator:validate:211 | 6. Ladder Flow validated successfully.
+2026-08-05 10:57:06 | INFO     | core.validation_engine:validate:157 | Running validator: Chronology
+2026-08-05 10:57:06 | INFO     | validators.chronology_validator:validate:71 | Starting chronology validation.
+2026-08-05 10:57:06 | INFO     | validators.chronology_validator:validate:232 | Chronology validation failed (3 issue(s)).
+2026-08-05 10:57:06 | INFO     | core.validation_engine:validate:195 | Validation completed (FAIL) | Passed=7, Failed=1, Warnings=0
+2026-08-05 10:57:06 | INFO     | gui.main_window:_show_report_window:626 | Entering _show_report_window()
+2026-08-05 10:57:06 | INFO     | gui.main_window:_show_report_window:638 | Creating ReportDataModel...
+2026-08-05 10:57:06 | INFO     | gui.main_window:_show_report_window:640 | ReportDataModel created for project: %s
+2026-08-05 10:57:06 | INFO     | gui.main_window:_show_report_window:641 | Validation Summary ID: %s | Project Path: %s | Passed: %s | Failed: %s | Warnings: %s
+2026-08-05 10:57:06 | INFO     | gui.main_window:_show_report_window:643 | Creating ReportWindow...
+2026-08-05 10:57:06 | INFO     | gui.main_window:_show_report_window:646 | ReportWindow created: %s | receives summary id: %s
+2026-08-05 10:57:06 | INFO     | gui.main_window:_show_report_window:648 | Calling show()...
+2026-08-05 10:57:06 | INFO     | gui.main_window:_show_report_window:650 | show() completed. visible=%s hidden=%s geometry=%s
+2026-08-05 10:57:06 | INFO     | gui.main_window:_show_report_window:652 | Calling raise_()...
+2026-08-05 10:57:06 | INFO     | gui.main_window:_show_report_window:654 | Calling activateWindow()...
+2026-08-05 10:57:06 | INFO     | gui.main_window:_show_report_window:657 | Window visible=%s hidden=%s geometry=%s
+2026-08-05 10:57:06 | INFO     | gui.main_window:_validation_finished:589 | Validation completed successfully.
+2026-08-05 10:57:11 | INFO     | gui.main_window:on_generate_chronology:800 | Chronology generation started.
+2026-08-05 10:57:11 | INFO     | gui.main_window:on_generate_chronology:801 | Chronology dialog opened.
+2026-08-05 10:58:03 | INFO     | gui.main_window:on_generate_chronology:810 | Chronology generation completed.
+2026-08-05 11:23:57 | INFO     | gui.main_window:closeEvent:966 | Application closed.
+2026-08-05 11:24:58 | INFO     | gui.main_window:_generate_report:687 | Validate & Generate Report requested for C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 11:24:58 | INFO     | gui.main_window:_start_validation:475 | Validation started for C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 11:24:58 | INFO     | gui.main_window:run:83 | ValidationWorker started for: C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 11:24:58 | INFO     | core.validation_engine:validate:143 | Validation started for project: C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 11:24:58 | INFO     | core.validation_engine:validate:157 | Running validator: Folder Structure
+2026-08-05 11:24:58 | INFO     | validators.folder_validator:validate:49 | Folder validation started.
+2026-08-05 11:24:58 | INFO     | validators.folder_validator:validate:87 | Folder validation completed successfully.
+2026-08-05 11:24:58 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Files
+2026-08-05 11:24:58 | INFO     | validators.ladder_validator:validate:53 | Starting ladder validation.
+2026-08-05 11:24:58 | INFO     | validators.ladder_validator:validate:113 | Ladder validation completed successfully.
+2026-08-05 11:24:58 | INFO     | core.validation_engine:validate:157 | Running validator: Bin Files
+2026-08-05 11:24:58 | INFO     | validators.bin_validator:validate:56 | Starting BIN validation.
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 11:24:58 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 11:24:58 | INFO     | validators.bin_validator:validate:165 | BIN validation completed successfully.
+2026-08-05 11:24:58 | INFO     | core.validation_engine:validate:157 | Running validator: Operational Flow
+2026-08-05 11:24:58 | INFO     | validators.document_validator:validate:73 | Validating '3. Operational Flow'.
+2026-08-05 11:24:58 | INFO     | validators.document_validator:validate:124 | Found signed document: Operational_Flow-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\3. Operational Flow\Operational_Flow-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Operational_Flow-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: Operational_Flow-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | INFO     | validators.document_validator:validate:208 | 3. Operational Flow validated successfully.
+2026-08-05 11:24:58 | INFO     | core.validation_engine:validate:157 | Running validator: Test Report
+2026-08-05 11:24:58 | INFO     | validators.document_validator:validate:73 | Validating '4. Test Report'.
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\4. Test Report\Master\Initial\M-Initial-report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from M-Initial-report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: M-Initial-report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\4. Test Report\Slave\Final\S-final-report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from S-final-report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: S-final-report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\4. Test Report\UUT\QC\U-QC-report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from U-QC-report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: U-QC-report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | INFO     | core.validation_engine:validate:157 | Running validator: Automation Input
+2026-08-05 11:24:58 | INFO     | validators.document_validator:validate:73 | Validating '5. Automation Input Doc'.
+2026-08-05 11:24:58 | INFO     | validators.document_validator:validate:124 | Found signed document: Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\5. Automation Input Doc\Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | INFO     | validators.document_validator:validate:208 | 5. Automation Input Doc validated successfully.
+2026-08-05 11:24:58 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Flow
+2026-08-05 11:24:58 | INFO     | validators.document_validator:validate:73 | Validating '6. Ladder Flow'.
+2026-08-05 11:24:58 | INFO     | validators.document_validator:validate:124 | Found signed document: Ladder_flow-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\6. Ladder Flow\Ladder_flow-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Ladder_flow-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: Ladder_flow-sgn.pdf
+2026-08-05 11:24:58 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 11:24:58 | INFO     | validators.document_validator:validate:208 | 6. Ladder Flow validated successfully.
+2026-08-05 11:24:58 | INFO     | core.validation_engine:validate:157 | Running validator: Chronology
+2026-08-05 11:24:58 | INFO     | validators.chronology_validator:validate:69 | Starting chronology validation.
+2026-08-05 11:24:58 | INFO     | validators.chronology_validator:validate:230 | Chronology validation failed (3 issue(s)).
+2026-08-05 11:24:58 | INFO     | core.validation_engine:validate:195 | Validation completed (FAIL) | Passed=7, Failed=1, Warnings=0
+2026-08-05 11:24:58 | INFO     | gui.main_window:_show_report_window:625 | Entering _show_report_window()
+2026-08-05 11:24:58 | INFO     | gui.main_window:_show_report_window:637 | Creating ReportDataModel...
+2026-08-05 11:24:58 | INFO     | gui.main_window:_show_report_window:639 | ReportDataModel created for project: %s
+2026-08-05 11:24:58 | INFO     | gui.main_window:_show_report_window:640 | Validation Summary ID: %s | Project Path: %s | Passed: %s | Failed: %s | Warnings: %s
+2026-08-05 11:24:58 | INFO     | gui.main_window:_show_report_window:642 | Creating ReportWindow...
+2026-08-05 11:24:58 | INFO     | gui.main_window:_show_report_window:645 | ReportWindow created: %s | receives summary id: %s
+2026-08-05 11:24:58 | INFO     | gui.main_window:_show_report_window:647 | Calling show()...
+2026-08-05 11:24:58 | INFO     | gui.main_window:_show_report_window:649 | show() completed. visible=%s hidden=%s geometry=%s
+2026-08-05 11:24:58 | INFO     | gui.main_window:_show_report_window:651 | Calling raise_()...
+2026-08-05 11:24:58 | INFO     | gui.main_window:_show_report_window:653 | Calling activateWindow()...
+2026-08-05 11:24:58 | INFO     | gui.main_window:_show_report_window:656 | Window visible=%s hidden=%s geometry=%s
+2026-08-05 11:24:58 | INFO     | gui.main_window:_validation_finished:588 | Validation completed successfully.
+2026-08-05 11:25:00 | INFO     | gui.main_window:on_generate_chronology:799 | Chronology generation started.
+2026-08-05 11:25:00 | INFO     | gui.main_window:on_generate_chronology:800 | Chronology dialog opened.
+2026-08-05 11:25:44 | INFO     | gui.main_window:on_generate_chronology:809 | Chronology generation completed.
+2026-08-05 11:27:06 | INFO     | services.project_organizer:organize_if_needed:43 | Unorganized or raw engineering package detected at C:\Users\SM 464\Downloads\Ladder_Release - Copy. Reorganizing to Desktop...
+2026-08-05 11:27:06 | DEBUG    | services.folder_structure_generator:_create_required_roots:83 | Created required root folders at %s
+2026-08-05 11:27:06 | INFO     | services.folder_structure_generator:generate_structure:55 | Mirroring Ladder...
+2026-08-05 11:27:06 | INFO     | services.folder_structure_generator:generate_structure:60 | Mirroring Bin Files...
+2026-08-05 11:27:06 | INFO     | services.folder_structure_generator:generate_structure:65 | Creating Chronology hierarchy...
+2026-08-05 11:27:06 | INFO     | services.project_organizer:organize_if_needed:47 | Routing Test Reports and Signed PDFs...
+2026-08-05 11:27:06 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF Automation_Input_doc_report_of_test-sgn.pdf to 5. Automation Input Doc
+2026-08-05 11:27:06 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF Ladder_flow-sgn.pdf to 6. Ladder Flow
+2026-08-05 11:27:06 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF M-Initial-report_of_test-sgn.pdf to 4. Test Report\Master\Initial
+2026-08-05 11:27:06 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF Operational_Flow-sgn.pdf to 3. Operational Flow
+2026-08-05 11:27:06 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF S-final-report_of_test-sgn.pdf to 4. Test Report\Slave\Final
+2026-08-05 11:27:06 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF U-QC-report_of_test-sgn.pdf to 4. Test Report\UUT\QC
+2026-08-05 11:27:06 | INFO     | services.project_organizer:organize_if_needed:50 | Project reorganization complete.
+2026-08-05 11:27:06 | INFO     | gui.main_window:_browse_project:444 | Project selected: C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 11:27:06 | DEBUG    | services.folder_structure_generator:_create_required_roots:83 | Created required root folders at %s
+2026-08-05 11:27:06 | INFO     | gui.main_window:_generate_folder_structure:704 | Folder structure successfully generated at:
+C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 11:27:06 | INFO     | gui.main_window:_generate_folder_structure:740 | Auto-selected generated folder as project: C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 11:59:40 | INFO     | gui.main_window:_generate_report:694 | Validate & Generate Report requested for C:\Users\SM 464\Downloads\Ladder_Release - Copy
+2026-08-05 11:59:40 | INFO     | gui.main_window:_start_validation:482 | Validation started for C:\Users\SM 464\Downloads\Ladder_Release - Copy
+2026-08-05 11:59:40 | INFO     | gui.main_window:run:90 | ValidationWorker started for: C:\Users\SM 464\Downloads\Ladder_Release - Copy
+2026-08-05 11:59:40 | INFO     | core.validation_engine:validate:143 | Validation started for project: C:\Users\SM 464\Downloads\Ladder_Release - Copy
+2026-08-05 11:59:40 | INFO     | core.validation_engine:validate:157 | Running validator: Folder Structure
+2026-08-05 11:59:40 | INFO     | validators.folder_validator:validate:49 | Folder validation started.
+2026-08-05 11:59:40 | WARNING  | validators.folder_validator:validate:71 | Missing folders: ['1. Ladders', '2. Bin File', '3. Operational Flow', '4. Test Report', '5. Automation Input Doc', '6. Ladder Flow', '7. Chronology']
+2026-08-05 11:59:40 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Files
+2026-08-05 11:59:40 | INFO     | validators.ladder_validator:validate:53 | Starting ladder validation.
+2026-08-05 11:59:40 | INFO     | core.validation_engine:validate:157 | Running validator: Bin Files
+2026-08-05 11:59:40 | INFO     | validators.bin_validator:validate:56 | Starting BIN validation.
+2026-08-05 11:59:40 | INFO     | core.validation_engine:validate:157 | Running validator: Operational Flow
+2026-08-05 11:59:40 | INFO     | validators.document_validator:validate:73 | Validating '3. Operational Flow'.
+2026-08-05 11:59:40 | INFO     | core.validation_engine:validate:157 | Running validator: Test Report
+2026-08-05 11:59:40 | INFO     | validators.document_validator:validate:73 | Validating '4. Test Report'.
+2026-08-05 11:59:40 | INFO     | core.validation_engine:validate:157 | Running validator: Automation Input
+2026-08-05 11:59:40 | INFO     | validators.document_validator:validate:73 | Validating '5. Automation Input Doc'.
+2026-08-05 11:59:40 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Flow
+2026-08-05 11:59:40 | INFO     | validators.document_validator:validate:73 | Validating '6. Ladder Flow'.
+2026-08-05 11:59:40 | INFO     | core.validation_engine:validate:157 | Running validator: Chronology
+2026-08-05 11:59:40 | INFO     | validators.chronology_validator:validate:69 | Starting chronology validation.
+2026-08-05 11:59:40 | INFO     | core.validation_engine:validate:195 | Validation completed (FAIL) | Passed=0, Failed=1, Warnings=0
+2026-08-05 11:59:40 | INFO     | gui.main_window:_show_report_window:632 | Entering _show_report_window()
+2026-08-05 11:59:40 | INFO     | gui.main_window:_show_report_window:644 | Creating ReportDataModel...
+2026-08-05 11:59:40 | INFO     | gui.main_window:_show_report_window:646 | ReportDataModel created for project: %s
+2026-08-05 11:59:40 | INFO     | gui.main_window:_show_report_window:647 | Validation Summary ID: %s | Project Path: %s | Passed: %s | Failed: %s | Warnings: %s
+2026-08-05 11:59:40 | INFO     | gui.main_window:_show_report_window:649 | Creating ReportWindow...
+2026-08-05 11:59:40 | INFO     | gui.main_window:_show_report_window:652 | ReportWindow created: %s | receives summary id: %s
+2026-08-05 11:59:40 | INFO     | gui.main_window:_show_report_window:654 | Calling show()...
+2026-08-05 11:59:40 | INFO     | gui.main_window:_show_report_window:656 | show() completed. visible=%s hidden=%s geometry=%s
+2026-08-05 11:59:40 | INFO     | gui.main_window:_show_report_window:658 | Calling raise_()...
+2026-08-05 11:59:40 | INFO     | gui.main_window:_show_report_window:660 | Calling activateWindow()...
+2026-08-05 11:59:40 | INFO     | gui.main_window:_show_report_window:663 | Window visible=%s hidden=%s geometry=%s
+2026-08-05 11:59:40 | INFO     | gui.main_window:_validation_finished:595 | Validation completed successfully.
+2026-08-05 12:00:12 | INFO     | gui.main_window:_generate_report:694 | Validate & Generate Report requested for C:\Users\SM 464\Downloads\Ladder_Release - Copy
+2026-08-05 12:00:12 | INFO     | gui.main_window:_start_validation:482 | Validation started for C:\Users\SM 464\Downloads\Ladder_Release - Copy
+2026-08-05 12:00:12 | INFO     | gui.main_window:run:90 | ValidationWorker started for: C:\Users\SM 464\Downloads\Ladder_Release - Copy
+2026-08-05 12:00:12 | INFO     | core.validation_engine:validate:143 | Validation started for project: C:\Users\SM 464\Downloads\Ladder_Release - Copy
+2026-08-05 12:00:12 | INFO     | core.validation_engine:validate:157 | Running validator: Folder Structure
+2026-08-05 12:00:12 | INFO     | validators.folder_validator:validate:49 | Folder validation started.
+2026-08-05 12:00:12 | WARNING  | validators.folder_validator:validate:71 | Missing folders: ['1. Ladders', '2. Bin File', '3. Operational Flow', '4. Test Report', '5. Automation Input Doc', '6. Ladder Flow', '7. Chronology']
+2026-08-05 12:00:12 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Files
+2026-08-05 12:00:12 | INFO     | validators.ladder_validator:validate:53 | Starting ladder validation.
+2026-08-05 12:00:12 | INFO     | core.validation_engine:validate:157 | Running validator: Bin Files
+2026-08-05 12:00:12 | INFO     | validators.bin_validator:validate:56 | Starting BIN validation.
+2026-08-05 12:00:12 | INFO     | core.validation_engine:validate:157 | Running validator: Operational Flow
+2026-08-05 12:00:12 | INFO     | validators.document_validator:validate:73 | Validating '3. Operational Flow'.
+2026-08-05 12:00:12 | INFO     | core.validation_engine:validate:157 | Running validator: Test Report
+2026-08-05 12:00:12 | INFO     | validators.document_validator:validate:73 | Validating '4. Test Report'.
+2026-08-05 12:00:12 | INFO     | core.validation_engine:validate:157 | Running validator: Automation Input
+2026-08-05 12:00:12 | INFO     | validators.document_validator:validate:73 | Validating '5. Automation Input Doc'.
+2026-08-05 12:00:12 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Flow
+2026-08-05 12:00:12 | INFO     | validators.document_validator:validate:73 | Validating '6. Ladder Flow'.
+2026-08-05 12:00:12 | INFO     | core.validation_engine:validate:157 | Running validator: Chronology
+2026-08-05 12:00:12 | INFO     | validators.chronology_validator:validate:69 | Starting chronology validation.
+2026-08-05 12:00:12 | INFO     | core.validation_engine:validate:195 | Validation completed (FAIL) | Passed=0, Failed=1, Warnings=0
+2026-08-05 12:00:12 | INFO     | gui.main_window:_show_report_window:632 | Entering _show_report_window()
+2026-08-05 12:00:12 | INFO     | gui.main_window:_show_report_window:635 | Refreshing existing ReportWindow with latest validation summary
+2026-08-05 12:00:12 | INFO     | reports.report_window:_refresh_ui:165 | Refreshing ReportWindow with data model project: %s
+2026-08-05 12:00:12 | INFO     | gui.main_window:_validation_finished:595 | Validation completed successfully.
+2026-08-05 12:00:39 | DEBUG    | services.folder_structure_generator:_create_required_roots:83 | Created required root folders at %s
+2026-08-05 12:00:39 | INFO     | services.folder_structure_generator:generate_structure:55 | Mirroring Ladder...
+2026-08-05 12:00:39 | INFO     | services.folder_structure_generator:generate_structure:60 | Mirroring Bin Files...
+2026-08-05 12:00:39 | INFO     | services.folder_structure_generator:generate_structure:65 | Creating Chronology hierarchy...
+2026-08-05 12:00:39 | INFO     | gui.main_window:_generate_folder_structure:711 | Folder structure successfully generated at:
+C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 12:00:39 | INFO     | gui.main_window:_generate_folder_structure:747 | Auto-selected generated folder as project: C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 12:00:50 | INFO     | services.project_organizer:organize_if_needed:43 | Unorganized or raw engineering package detected at C:\Users\SM 464\Downloads\Ladder_Release - Copy. Reorganizing to Desktop...
+2026-08-05 12:00:50 | DEBUG    | services.folder_structure_generator:_create_required_roots:83 | Created required root folders at %s
+2026-08-05 12:00:50 | INFO     | services.folder_structure_generator:generate_structure:55 | Mirroring Ladder...
+2026-08-05 12:00:50 | INFO     | services.folder_structure_generator:generate_structure:60 | Mirroring Bin Files...
+2026-08-05 12:00:50 | INFO     | services.folder_structure_generator:generate_structure:65 | Creating Chronology hierarchy...
+2026-08-05 12:00:50 | INFO     | services.project_organizer:organize_if_needed:47 | Routing Test Reports and Signed PDFs...
+2026-08-05 12:00:50 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF Automation_Input_doc_report_of_test-sgn.pdf to 5. Automation Input Doc
+2026-08-05 12:00:50 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF Ladder_flow-sgn.pdf to 6. Ladder Flow
+2026-08-05 12:00:50 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF M-Initial-report_of_test-sgn.pdf to 4. Test Report\Master\Initial
+2026-08-05 12:00:50 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF Operational_Flow-sgn.pdf to 3. Operational Flow
+2026-08-05 12:00:50 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF S-final-report_of_test-sgn.pdf to 4. Test Report\Slave\Final
+2026-08-05 12:00:50 | INFO     | services.project_organizer:_copy_pdfs:101 | Copied PDF U-QC-report_of_test-sgn.pdf to 4. Test Report\UUT\QC
+2026-08-05 12:00:50 | INFO     | services.project_organizer:organize_if_needed:50 | Project reorganization complete.
+2026-08-05 12:00:50 | INFO     | gui.main_window:_browse_project:451 | Project selected: C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 12:00:51 | DEBUG    | services.folder_structure_generator:_create_required_roots:83 | Created required root folders at %s
+2026-08-05 12:00:51 | INFO     | gui.main_window:_generate_folder_structure:711 | Folder structure successfully generated at:
+C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 12:00:51 | INFO     | gui.main_window:_generate_folder_structure:747 | Auto-selected generated folder as project: C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 12:01:02 | INFO     | gui.main_window:_generate_report:694 | Validate & Generate Report requested for C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 12:01:02 | INFO     | gui.main_window:_start_validation:482 | Validation started for C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 12:01:02 | INFO     | gui.main_window:run:90 | ValidationWorker started for: C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 12:01:02 | INFO     | core.validation_engine:validate:143 | Validation started for project: C:\Users\SM 464\Desktop\Operational Package Structure
+2026-08-05 12:01:02 | INFO     | core.validation_engine:validate:157 | Running validator: Folder Structure
+2026-08-05 12:01:02 | INFO     | validators.folder_validator:validate:49 | Folder validation started.
+2026-08-05 12:01:02 | INFO     | validators.folder_validator:validate:87 | Folder validation completed successfully.
+2026-08-05 12:01:02 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Files
+2026-08-05 12:01:02 | INFO     | validators.ladder_validator:validate:53 | Starting ladder validation.
+2026-08-05 12:01:02 | INFO     | validators.ladder_validator:validate:113 | Ladder validation completed successfully.
+2026-08-05 12:01:02 | INFO     | core.validation_engine:validate:157 | Running validator: Bin Files
+2026-08-05 12:01:02 | INFO     | validators.bin_validator:validate:56 | Starting BIN validation.
+2026-08-05 12:01:02 | WARNING  | validators.bin_validator:validate:116 | Master/Initial: No BIN file found in Ladders folder.
+2026-08-05 12:01:02 | WARNING  | validators.bin_validator:validate:116 | Slave/Final: No BIN file found in Ladders folder.
+2026-08-05 12:01:02 | WARNING  | validators.bin_validator:validate:116 | UUT/QC: No BIN file found in Ladders folder.
+2026-08-05 12:01:02 | INFO     | core.validation_engine:validate:157 | Running validator: Operational Flow
+2026-08-05 12:01:02 | INFO     | validators.document_validator:validate:73 | Validating '3. Operational Flow'.
+2026-08-05 12:01:02 | INFO     | validators.document_validator:validate:124 | Found signed document: Operational_Flow-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package Structure\3. Operational Flow\Operational_Flow-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Operational_Flow-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: Operational_Flow-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | INFO     | validators.document_validator:validate:208 | 3. Operational Flow validated successfully.
+2026-08-05 12:01:02 | INFO     | core.validation_engine:validate:157 | Running validator: Test Report
+2026-08-05 12:01:02 | INFO     | validators.document_validator:validate:73 | Validating '4. Test Report'.
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package Structure\4. Test Report\Master\Initial\M-Initial-report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from M-Initial-report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: M-Initial-report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package Structure\4. Test Report\Slave\Final\S-final-report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from S-final-report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: S-final-report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package Structure\4. Test Report\UUT\QC\U-QC-report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from U-QC-report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: U-QC-report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | INFO     | core.validation_engine:validate:157 | Running validator: Automation Input
+2026-08-05 12:01:02 | INFO     | validators.document_validator:validate:73 | Validating '5. Automation Input Doc'.
+2026-08-05 12:01:02 | INFO     | validators.document_validator:validate:124 | Found signed document: Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package Structure\5. Automation Input Doc\Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | INFO     | validators.document_validator:validate:208 | 5. Automation Input Doc validated successfully.
+2026-08-05 12:01:02 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Flow
+2026-08-05 12:01:02 | INFO     | validators.document_validator:validate:73 | Validating '6. Ladder Flow'.
+2026-08-05 12:01:02 | INFO     | validators.document_validator:validate:124 | Found signed document: Ladder_flow-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package Structure\6. Ladder Flow\Ladder_flow-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Ladder_flow-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: Ladder_flow-sgn.pdf
+2026-08-05 12:01:02 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:02 | INFO     | validators.document_validator:validate:208 | 6. Ladder Flow validated successfully.
+2026-08-05 12:01:02 | INFO     | core.validation_engine:validate:157 | Running validator: Chronology
+2026-08-05 12:01:02 | INFO     | validators.chronology_validator:validate:69 | Starting chronology validation.
+2026-08-05 12:01:02 | INFO     | validators.chronology_validator:validate:230 | Chronology validation failed (3 issue(s)).
+2026-08-05 12:01:02 | INFO     | core.validation_engine:validate:195 | Validation completed (FAIL) | Passed=6, Failed=2, Warnings=0
+2026-08-05 12:01:02 | INFO     | gui.main_window:_show_report_window:632 | Entering _show_report_window()
+2026-08-05 12:01:02 | INFO     | gui.main_window:_show_report_window:635 | Refreshing existing ReportWindow with latest validation summary
+2026-08-05 12:01:02 | INFO     | reports.report_window:_refresh_ui:165 | Refreshing ReportWindow with data model project: %s
+2026-08-05 12:01:02 | INFO     | gui.main_window:_validation_finished:595 | Validation completed successfully.
+2026-08-05 12:01:28 | INFO     | gui.main_window:_generate_report:694 | Validate & Generate Report requested for C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 12:01:28 | INFO     | gui.main_window:_start_validation:482 | Validation started for C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 12:01:28 | INFO     | gui.main_window:run:90 | ValidationWorker started for: C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 12:01:28 | INFO     | core.validation_engine:validate:143 | Validation started for project: C:\Users\SM 464\Desktop\Operational Package
+2026-08-05 12:01:28 | INFO     | core.validation_engine:validate:157 | Running validator: Folder Structure
+2026-08-05 12:01:28 | INFO     | validators.folder_validator:validate:49 | Folder validation started.
+2026-08-05 12:01:28 | INFO     | validators.folder_validator:validate:87 | Folder validation completed successfully.
+2026-08-05 12:01:28 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Files
+2026-08-05 12:01:28 | INFO     | validators.ladder_validator:validate:53 | Starting ladder validation.
+2026-08-05 12:01:28 | INFO     | validators.ladder_validator:validate:113 | Ladder validation completed successfully.
+2026-08-05 12:01:28 | INFO     | core.validation_engine:validate:157 | Running validator: Bin Files
+2026-08-05 12:01:28 | INFO     | validators.bin_validator:validate:56 | Starting BIN validation.
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-05 12:01:28 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-05 12:01:28 | INFO     | validators.bin_validator:validate:165 | BIN validation completed successfully.
+2026-08-05 12:01:28 | INFO     | core.validation_engine:validate:157 | Running validator: Operational Flow
+2026-08-05 12:01:28 | INFO     | validators.document_validator:validate:73 | Validating '3. Operational Flow'.
+2026-08-05 12:01:28 | INFO     | validators.document_validator:validate:124 | Found signed document: Operational_Flow-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\3. Operational Flow\Operational_Flow-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Operational_Flow-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: Operational_Flow-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | INFO     | validators.document_validator:validate:208 | 3. Operational Flow validated successfully.
+2026-08-05 12:01:28 | INFO     | core.validation_engine:validate:157 | Running validator: Test Report
+2026-08-05 12:01:28 | INFO     | validators.document_validator:validate:73 | Validating '4. Test Report'.
+2026-08-05 12:01:28 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\4. Test Report\Master\Initial\M-Initial-report_of_test-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from M-Initial-report_of_test-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: M-Initial-report_of_test-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\4. Test Report\Slave\Final\S-final-report_of_test-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from S-final-report_of_test-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: S-final-report_of_test-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\4. Test Report\UUT\QC\U-QC-report_of_test-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from U-QC-report_of_test-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: U-QC-report_of_test-sgn.pdf
+2026-08-05 12:01:28 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:28 | INFO     | core.validation_engine:validate:157 | Running validator: Automation Input
+2026-08-05 12:01:28 | INFO     | validators.document_validator:validate:73 | Validating '5. Automation Input Doc'.
+2026-08-05 12:01:28 | INFO     | validators.document_validator:validate:124 | Found signed document: Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 12:01:29 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\5. Automation Input Doc\Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 12:01:29 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 12:01:29 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: Automation_Input_doc_report_of_test-sgn.pdf
+2026-08-05 12:01:29 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:29 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:29 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:29 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:29 | INFO     | validators.document_validator:validate:208 | 5. Automation Input Doc validated successfully.
+2026-08-05 12:01:29 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Flow
+2026-08-05 12:01:29 | INFO     | validators.document_validator:validate:73 | Validating '6. Ladder Flow'.
+2026-08-05 12:01:29 | INFO     | validators.document_validator:validate:124 | Found signed document: Ladder_flow-sgn.pdf
+2026-08-05 12:01:29 | INFO     | services.pdf_reader:read:69 | Reading PDF: C:\Users\SM 464\Desktop\Operational Package\6. Ladder Flow\Ladder_flow-sgn.pdf
+2026-08-05 12:01:29 | INFO     | services.pdf_reader:read:91 | Successfully extracted 11756 characters from Ladder_flow-sgn.pdf
+2026-08-05 12:01:29 | INFO     | services.signature_reader:read:93 | Inspecting PDF signatures: Ladder_flow-sgn.pdf
+2026-08-05 12:01:29 | INFO     | services.signature_reader:read:160 | Validated 3 required signer(s).
+2026-08-05 12:01:29 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:29 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:29 | DEBUG    | validators.document_validator:_validate_signers:490 | Signer '%s' | text_match=%s | signature_match=%s
+2026-08-05 12:01:29 | INFO     | validators.document_validator:validate:208 | 6. Ladder Flow validated successfully.
+2026-08-05 12:01:29 | INFO     | core.validation_engine:validate:157 | Running validator: Chronology
+2026-08-05 12:01:29 | INFO     | validators.chronology_validator:validate:69 | Starting chronology validation.
+2026-08-05 12:01:29 | INFO     | validators.chronology_validator:validate:230 | Chronology validation failed (3 issue(s)).
+2026-08-05 12:01:29 | INFO     | core.validation_engine:validate:195 | Validation completed (FAIL) | Passed=7, Failed=1, Warnings=0
+2026-08-05 12:01:29 | INFO     | gui.main_window:_show_report_window:632 | Entering _show_report_window()
+2026-08-05 12:01:29 | INFO     | gui.main_window:_show_report_window:635 | Refreshing existing ReportWindow with latest validation summary
+2026-08-05 12:01:29 | INFO     | reports.report_window:_refresh_ui:165 | Refreshing ReportWindow with data model project: %s
+2026-08-05 12:01:29 | INFO     | gui.main_window:_validation_finished:595 | Validation completed successfully.
+2026-08-05 12:01:35 | INFO     | gui.main_window:on_generate_chronology:806 | Chronology generation started.
+2026-08-05 12:01:35 | INFO     | gui.main_window:on_generate_chronology:807 | Chronology dialog opened.
+2026-08-05 12:02:28 | INFO     | gui.main_window:on_generate_chronology:816 | Chronology generation completed.
+2026-08-05 12:03:04 | INFO     | gui.main_window:closeEvent:972 | Application closed.

@@ -21,24 +21,26 @@ import logging
 from pathlib import Path
 from typing import Any
 
-from config import FOLDER_KEYS
-from config import DEFAULT_OUTPUT_FILENAME
 from PySide6.QtWidgets import (
     QComboBox,
     QDialog,
     QFileDialog,
     QFormLayout,
-    QHBoxLayout,
     QGroupBox,
+    QHBoxLayout,
     QLineEdit,
+    QMessageBox,
     QPushButton,
     QScrollArea,
-    QMessageBox,
     QVBoxLayout,
     QWidget,
 )
 
-from services.chronology_generator.excel_writer import ChronologyExcelWriter, ChronologyTemplateError
+from config import DEFAULT_OUTPUT_FILENAME, FOLDER_KEYS, GUI_MESSAGES
+from services.chronology_generator.excel_writer import (
+    ChronologyExcelWriter,
+    ChronologyTemplateError,
+)
 from services.chronology_generator.models import ChronologyEntry, ProjectChronology
 from services.chronology_generator.parsers import FilenameParser
 
@@ -88,7 +90,7 @@ class ChronologyDialog(QDialog):
         """
         Configures the base dialog layout and dynamic cards container.
         """
-        self.setWindowTitle("Generate Ladder Chronology")
+        self.setWindowTitle(GUI_MESSAGES.get("chronology_window_title", "Generate Ladder Chronology"))
         self.resize(900, 600)
 
         # Set project folder path in the read-only field
@@ -191,7 +193,7 @@ class ChronologyDialog(QDialog):
             
         except Exception as exc:
             self._logger.exception("Failed to run initial chronology scan.")
-            QMessageBox.critical(self, "Scan Error", f"Failed to scan project:\n{exc}")
+            QMessageBox.critical(self, GUI_MESSAGES.get("scan_error", "Scan Error"), f"Failed to scan project:\n{exc}")
 
     def _build_entry_from_validation_record(self, relative_path: str, crc_record: dict[str, Any]) -> ChronologyEntry | None:
         selected_bin_file = crc_record.get("bin_file")
@@ -450,7 +452,7 @@ class ChronologyDialog(QDialog):
                         if template_path is None:
                             QMessageBox.warning(
                                 self,
-                                "Validation Error",
+                                GUI_MESSAGES.get("validation_error", "Validation Error"),
                                 f"Please select a chronology template for\n{card['line_firmware_folder'].text()}",
                             )
                             return
@@ -490,7 +492,7 @@ class ChronologyDialog(QDialog):
                 )
             else:
                 summary_lines = [
-                    "Chronology Generation Completed",
+                    GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"),
                     "",
                     f"Generated: {generated_count}",
                     f"Skipped: {len(skipped_records)}",
@@ -502,12 +504,12 @@ class ChronologyDialog(QDialog):
                         summary_lines.append(item.get("firmware_folder", "Unknown"))
                         summary_lines.append(f"Reason: {item.get('reason', 'Unknown')}")
 
-                QMessageBox.information(self, "Chronology Generation Completed", "\n".join(summary_lines))
+                QMessageBox.information(self, GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"), "\n".join(summary_lines))
             self.accept()
 
         except Exception as exc:
             self._logger.exception("Unexpected error during chronology generation.")
-            QMessageBox.critical(self, "Unexpected Error", f"An unexpected error occurred:\n{exc}")
+            QMessageBox.critical(self, GUI_MESSAGES.get("unexpected_error", "Unexpected Error"), f"An unexpected error occurred:\n{exc}")
 
     def _validate_inputs(self) -> bool:
         """
@@ -517,38 +519,38 @@ class ChronologyDialog(QDialog):
             True if all inputs are valid, False otherwise.
         """
         if not self._entry_cards:
-            QMessageBox.warning(self, "Validation Error", "No validated firmware folders with CRC PASS were discovered.")
+            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_no_crc", "No validated firmware folders with CRC PASS were discovered."))
             return False
 
         for index, card in enumerate(self._entry_cards, start=1):
             if not card["line_reason"].text().strip():
-                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: 'Reason for Upgrade' cannot be empty.")
+                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_reason_empty", "'Reason for Upgrade' cannot be empty."))
                 card["line_reason"].setFocus()
                 return False
             if not card["line_released_by"].text().strip():
-                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: 'Released By' cannot be empty.")
+                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_released_by_empty", "'Released By' cannot be empty."))
                 card["line_released_by"].setFocus()
                 return False
             if not card["line_tested_by"].text().strip():
-                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: 'Tested By' cannot be empty.")
+                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_tested_by_empty", "'Tested By' cannot be empty."))
                 card["line_tested_by"].setFocus()
                 return False
             if card["combo_ladder_release"].currentText() == "Select...":
-                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: select 'Ladder Release To Production'.")
+                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_ladder_release_empty", "select 'Ladder Release To Production'."))
                 card["combo_ladder_release"].setFocus()
                 return False
             if card["combo_operator_modification"].currentText() == "Select...":
-                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: select 'Operator Procedure Modification'.")
+                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_operator_mod_empty", "select 'Operator Procedure Modification'."))
                 card["combo_operator_modification"].setFocus()
                 return False
             if card["combo_automation_modification"].currentText() == "Select...":
-                QMessageBox.warning(self, "Validation Error", f"Chronology {index}: select 'Automation Set Up Modification'.")
+                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_automation_mod_empty", "select 'Automation Set Up Modification'."))
                 card["combo_automation_modification"].setFocus()
                 return False
             if not self._is_template_selected_for_card(card):
                 QMessageBox.warning(
                     self,
-                    "Validation Error",
+                    GUI_MESSAGES.get("validation_error", "Validation Error"),
                     f"Please select a chronology template for\n{card['line_firmware_folder'].text()}",
                 )
                 card["btn_browse_template"].setFocus()

@@ -1,16 +1,16 @@
 from pathlib import Path
 
 from PySide6.QtWidgets import QApplication, QLabel
+from reports.report_model import ReportDataModel
+from reports.report_window import ReportWindow
 
 from core.validation_result import ValidationResult
 from core.validation_step import ValidationStatus, ValidationStep
 from core.validation_summary import ValidationSummary
-from reports.report_model import ReportDataModel
-from reports.report_window import ReportWindow
 
 
 def test_report_window_refreshes_from_new_report_model() -> None:
-    app = QApplication.instance() or QApplication([])
+    QApplication.instance() or QApplication([])
 
     old_summary = ValidationSummary(
         project_path=Path("/tmp/old-project"),

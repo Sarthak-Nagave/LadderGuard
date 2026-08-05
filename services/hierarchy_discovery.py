@@ -11,7 +11,6 @@ Author:
 
 import os
 from pathlib import Path
-from typing import List, Set
 
 from services.logger import LoggerService
 
@@ -22,7 +21,7 @@ class HierarchyDiscovery:
     """Helper to extract the true engineering hierarchy from the source project."""
 
     @staticmethod
-    def discover_firmware_hierarchy(sources: List[Path]) -> List[Path]:
+    def discover_firmware_hierarchy(sources: list[Path]) -> list[Path]:
         """
         Scan the source directories and return a distinct list of relative paths
         representing the firmware directory hierarchy (e.g. ['Master/Initial', 'StationA/QC']).
@@ -30,7 +29,7 @@ class HierarchyDiscovery:
         It determines a firmware directory by searching for standard engineering folders
         (Backup, GRP, POU) or firmware files (.bin, .sdoc, .ld, .ssx) inside it.
         """
-        firmware_dirs: Set[Path] = set()
+        firmware_dirs: set[Path] = set()
         
         for source in sources:
             if not source.exists() or not source.is_dir():

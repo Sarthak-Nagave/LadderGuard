@@ -23,9 +23,9 @@ Python:
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from datetime import datetime
 from pathlib import Path
-from typing import Callable
 
 from loguru import logger
 
@@ -56,16 +56,16 @@ class ValidationEngine:
         """Register validators for the run."""
 
         if validators is None:
-            from services.file_search import FileSearchService
+            from config import DOCUMENT_VALIDATION_FOLDERS
+            from core.validation_step import ValidationStep
             from services.file_reader import FileReaderService
+            from services.file_search import FileSearchService
             from services.signature_reader import SignatureReaderService
             from validators.bin_validator import BinValidator
             from validators.chronology_validator import ChronologyValidator
             from validators.document_validator import DocumentValidator
             from validators.folder_validator import FolderValidator
             from validators.ladder_validator import LadderValidator
-            from config import DOCUMENT_VALIDATION_FOLDERS
-            from core.validation_step import ValidationStep
 
             file_search = FileSearchService()
             file_reader = FileReaderService()

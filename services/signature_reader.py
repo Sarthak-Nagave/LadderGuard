@@ -26,14 +26,13 @@ import datetime
 import re
 from pathlib import Path
 
-import asn1crypto.cms as cms
 import fitz
+from asn1crypto import cms
 
 from config import (
     CASE_SENSITIVE_SIGNER_MATCH,
     REQUIRED_SIGNERS,
 )
-
 from exceptions.file_not_found_error import FileNotFoundValidationError
 from models.signature_info import SignatureInfo
 from services.logger import LoggerService

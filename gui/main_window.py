@@ -19,13 +19,13 @@ import webbrowser
 from pathlib import Path
 from typing import Any
 
+from PySide6.QtCore import QFileSystemWatcher, QObject, Qt, QThread, Signal
 from PySide6.QtGui import QAction, QCloseEvent, QColor, QGuiApplication
-from PySide6.QtCore import QObject, QThread, QFileSystemWatcher, Signal, Qt
 from PySide6.QtWidgets import (
     QApplication,
-    QGraphicsDropShadowEffect,
     QFileDialog,
     QFrame,
+    QGraphicsDropShadowEffect,
     QGridLayout,
     QHBoxLayout,
     QLabel,
@@ -37,13 +37,23 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+from reports.report_model import ReportDataModel
+from reports.report_window import ReportWindow
 
-from config import APP_NAME, APP_VERSION, COMPANY_NAME, DOCUMENT_VALIDATION_FOLDERS
+from config import (
+    APP_NAME,
+    APP_VERSION,
+    COMPANY_NAME,
+    DOCUMENT_VALIDATION_FOLDERS,
+    APP_SUBTITLE,
+    GUI_MESSAGES,
+)
 from core.validation_engine import ValidationEngine
 from core.validation_step import ValidationStep
 from core.validation_summary import ValidationSummary
-from reports.report_model import ReportDataModel
-from reports.report_window import ReportWindow
+from gui.chronology.chronology_dialog import ChronologyDialog
+from gui.progress_widget import ProgressWidget
+from gui.result_table import ResultTable
 from services.file_reader import FileReaderService
 from services.file_search import FileSearchService
 from services.folder_structure_generator import FolderStructureGenerator
@@ -55,10 +65,6 @@ from validators.chronology_validator import ChronologyValidator
 from validators.document_validator import DocumentValidator
 from validators.folder_validator import FolderValidator
 from validators.ladder_validator import LadderValidator
-
-from gui.progress_widget import ProgressWidget
-from gui.result_table import ResultTable
-from gui.chronology.chronology_dialog import ChronologyDialog
 
 logger = LoggerService.get_logger()
 
@@ -136,9 +142,9 @@ class MainWindow(QMainWindow):
         header_layout.setContentsMargins(12, 8, 12, 8)
         header_layout.setSpacing(2)
 
-        title_label = QLabel("Operational Package Validator")
+        title_label = QLabel(APP_NAME)
         title_label.setObjectName("WindowTitle")
-        subtitle_label = QLabel("Industrial-grade validation workspace for engineering package integrity")
+        subtitle_label = QLabel(APP_SUBTITLE)
         subtitle_label.setObjectName("WindowSubtitle")
 
         header_layout.addWidget(title_label)
@@ -742,8 +748,8 @@ class MainWindow(QMainWindow):
         self.status_bar.showMessage("Folder structure generated. Click Validate & Generate Report.")
 
         message_box = QMessageBox(self)
-        message_box.setIcon(QMessageBox.Information)
-        message_box.setWindowTitle("Generation Completed")
+        message_box.setIcon(QMessageBox.Icon.Information)
+        message_box.setWindowTitle(GUI_MESSAGES.get("generation_completed", "Generation Completed"))
         message_box.setText(
             "Operational Package Structure has been generated successfully.\n\n"
             f"Location:\n{generated_root.resolve()}"

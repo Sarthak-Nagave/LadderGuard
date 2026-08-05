@@ -30,7 +30,6 @@ class ChronologyGenerationError(Exception):
     """
     Raised when the chronology generation workflow fails.
     """
-    pass
 
 
 class ChronologyGenerator:

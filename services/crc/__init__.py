@@ -1,35 +1,40 @@
 """Operational Package Validator CRC subsystem."""
 
-from .crc_algorithms import CRCAlgorithm
-from .crc_algorithms import CRC16Algorithm, CRC32Algorithm, CRC32CAlgorithm, CRC64Algorithm
+from .crc_algorithms import (
+    CRC16Algorithm,
+    CRC32Algorithm,
+    CRC32CAlgorithm,
+    CRC64Algorithm,
+    CRCAlgorithm,
+)
+from .crc_comparison_service import BinCRCResult, CRCComparisonService
 from .crc_exceptions import (
-    CRCError,
     CRCEmptyFileError,
+    CRCError,
+    CRCMissingFileError,
     CRCPermissionError,
     CRCReadError,
     CRCUnsupportedAlgorithmError,
-    CRCMissingFileError,
 )
 from .crc_factory import CRCFactory
-from .crc_comparison_service import BinCRCResult, CRCComparisonService
 from .crc_generator import CRCGenerator
 from .crc_result import CRCResult
 
 __all__ = [
-    "CRCAlgorithm",
+    "BinCRCResult",
     "CRC16Algorithm",
     "CRC32Algorithm",
     "CRC32CAlgorithm",
     "CRC64Algorithm",
-    "CRCFactory",
-    "BinCRCResult",
+    "CRCAlgorithm",
     "CRCComparisonService",
-    "CRCGenerator",
-    "CRCResult",
-    "CRCError",
-    "CRCMissingFileError",
     "CRCEmptyFileError",
+    "CRCError",
+    "CRCFactory",
+    "CRCGenerator",
+    "CRCMissingFileError",
     "CRCPermissionError",
     "CRCReadError",
+    "CRCResult",
     "CRCUnsupportedAlgorithmError",
 ]

@@ -3,10 +3,11 @@ from __future__ import annotations
 from datetime import datetime
 from pathlib import Path
 
+from reports.report_model import ReportDataModel
+
 from core.validation_result import ValidationResult
 from core.validation_step import ValidationStatus, ValidationStep
 from core.validation_summary import ValidationSummary
-from reports.report_model import ReportDataModel
 
 
 def test_report_model_shows_ladder_and_bin_crc_details() -> None:
