@@ -28,17 +28,19 @@ from PySide6.QtWidgets import (
     QDialog,
     QFileDialog,
     QFormLayout,
+    QHBoxLayout,
     QGroupBox,
     QLineEdit,
+    QPushButton,
     QScrollArea,
     QMessageBox,
     QVBoxLayout,
     QWidget,
 )
 
-from services.chronology_generator.exceptions import ChronologyGenerationError
-from services.chronology_generator.generator import ChronologyGenerator
-from services.chronology_generator.models import ProjectChronology
+from services.chronology_generator.excel_writer import ChronologyExcelWriter, ChronologyTemplateError
+from services.chronology_generator.models import ChronologyEntry, ProjectChronology
+from services.chronology_generator.parsers import FilenameParser
 
 from .ui_chronology_dialog import Ui_ChronologyDialog
 
@@ -72,6 +74,7 @@ class ChronologyDialog(QDialog):
         self._cards_container: QWidget | None = None
         self._cards_layout: QVBoxLayout | None = None
         self._validation_bin_crc_records = validation_bin_crc_records or {}
+        self._skipped_firmware: list[dict[str, str]] = []
 
         # Standard PySide6 UI setup
         self.ui = Ui_ChronologyDialog()
@@ -91,6 +94,14 @@ class ChronologyDialog(QDialog):
         # Set project folder path in the read-only field
         if hasattr(self.ui, "line_project_folder"):
             self.ui.line_project_folder.setText(str(self._project_folder))
+
+        # The legacy single-template control is no longer part of the workflow.
+        if hasattr(self.ui, "lbl_excel_template"):
+            self.ui.lbl_excel_template.hide()
+        if hasattr(self.ui, "line_excel_template"):
+            self.ui.line_excel_template.hide()
+        if hasattr(self.ui, "btn_browse_template"):
+            self.ui.btn_browse_template.hide()
 
         # Hide output file UI elements since paths are now automatic
         if hasattr(self.ui, "lbl_output_file"):
@@ -142,19 +153,38 @@ class ChronologyDialog(QDialog):
 
     def _run_initial_scan(self) -> None:
         """
-        Executes the initial project scan to discover chronology entries
-        and populates the table.
+        Builds chronology cards from validated firmware folders.
         """
         try:
-            # We supply a dummy template path for the initial scan since 
-            # the generator requires it in the constructor.
-            dummy_template = Path("dummy.xlsx")
-            generator = ChronologyGenerator(self._project_folder, dummy_template)
-            
-            self._chronology = generator.scan_project()
-            self._apply_validation_crc_results()
-            
-            # Setup groups for dynamic card generation
+            self._chronology = ProjectChronology(project_root=self._project_folder)
+            self._skipped_firmware.clear()
+
+            for relative_path, crc_record in sorted(self._validation_bin_crc_records.items()):
+                if not isinstance(crc_record, dict):
+                    continue
+
+                status = str(crc_record.get("status") or "").upper()
+                if status != "PASS":
+                    self._skipped_firmware.append(
+                        {
+                            "firmware_folder": self._format_firmware_folder(Path(relative_path)),
+                            "reason": str(crc_record.get("reason") or "CRC Mismatch"),
+                        }
+                    )
+                    continue
+
+                entry = self._build_entry_from_validation_record(relative_path, crc_record)
+                if entry is None:
+                    self._skipped_firmware.append(
+                        {
+                            "firmware_folder": self._format_firmware_folder(Path(relative_path)),
+                            "reason": "Invalid validation record.",
+                        }
+                    )
+                    continue
+
+                self._chronology.add_entry(entry)
+
             self._groups = list(self._chronology.group_by_firmware_folder().items())
             self._build_dynamic_cards()
             self._update_generate_button_state()
@@ -163,44 +193,57 @@ class ChronologyDialog(QDialog):
             self._logger.exception("Failed to run initial chronology scan.")
             QMessageBox.critical(self, "Scan Error", f"Failed to scan project:\n{exc}")
 
-    def _apply_validation_crc_results(self) -> None:
-        if self._chronology is None:
-            return
+    def _build_entry_from_validation_record(self, relative_path: str, crc_record: dict[str, Any]) -> ChronologyEntry | None:
+        selected_bin_file = crc_record.get("bin_file")
+        selected_bin_name = crc_record.get("bin_name")
+        selected_bin_crc = str(
+            crc_record.get("bin_crc")
+            or crc_record.get("crc")
+            or crc_record.get("ladder_crc")
+            or ""
+        )
 
-        for entry in self._chronology.entries:
-            stage_key = self._stage_key_from_bin_entry(entry.bin_file_path.parent)
-            crc_record = self._validation_bin_crc_records.get(stage_key)
-            if not isinstance(crc_record, dict):
-                entry.crc = ""
-                continue
+        if not isinstance(selected_bin_file, str) or not selected_bin_file.strip():
+            return None
 
-            selected_bin_file = crc_record.get("bin_file")
-            selected_bin_name = crc_record.get("bin_name")
-
-            if isinstance(selected_bin_file, str) and selected_bin_file.strip():
-                selected_bin_path = Path(selected_bin_file)
-                entry.bin_file_path = selected_bin_path
-                entry.source_code_path = selected_bin_path.resolve()
-                entry.bin_file_name = selected_bin_name or selected_bin_path.name
-
-            status = str(crc_record.get("status") or "").upper()
-            if status == "PASS":
-                entry.crc = str(
-                    crc_record.get("bin_crc")
-                    or crc_record.get("crc")
-                    or crc_record.get("ladder_crc")
-                    or ""
-                )
-            else:
-                entry.crc = ""
-
-    def _stage_key_from_bin_entry(self, firmware_folder: Path) -> str:
-        bin_root = self._project_folder / FOLDER_KEYS["bin_file"]
+        selected_bin_path = Path(selected_bin_file)
         try:
-            relative = firmware_folder.resolve().relative_to(bin_root.resolve())
-            return relative.as_posix()
+            selected_bin_path = selected_bin_path.resolve()
         except Exception:
-            return firmware_folder.as_posix().replace("\\", "/")
+            pass
+
+        bin_name = selected_bin_name or selected_bin_path.name
+
+        try:
+            version = FilenameParser.extract_version(bin_name)
+        except Exception:
+            version = "Unknown"
+
+        try:
+            plc_model = FilenameParser.extract_plc_model(bin_name)
+        except Exception:
+            plc_model = "Unknown"
+
+        try:
+            bootloader_version = FilenameParser.extract_bootloader_version(bin_name)
+        except Exception:
+            bootloader_version = ""
+
+        return ChronologyEntry(
+            source_code_path=selected_bin_path,
+            bin_file_path=selected_bin_path,
+            sdoc_file_path=None,
+            bin_file_name=bin_name,
+            sdoc_file_name=None,
+            version=version,
+            plc_model=plc_model,
+            selpro_version="",
+            bootloader_version=bootloader_version,
+            crc=selected_bin_crc,
+            testing_stage=relative_path.replace("/", " "),
+            release_date="",
+            reason_for_upgrade="",
+        )
 
     def _build_dynamic_cards(self) -> None:
         if self._cards_layout is None:
@@ -240,6 +283,16 @@ class ChronologyDialog(QDialog):
         line_bootloader = self._read_only_line(entry.bootloader_version or "")
         line_stage = self._read_only_line(entry.testing_stage)
         line_source_path = self._read_only_line(str(entry.source_code_path))
+        line_template_path = self._read_only_line("")
+
+        template_widget = QWidget(card_box)
+        template_layout = QHBoxLayout(template_widget)
+        template_layout.setContentsMargins(0, 0, 0, 0)
+        template_layout.setSpacing(6)
+        template_layout.addWidget(line_template_path)
+
+        btn_browse_template = QPushButton("Browse Template", card_box)
+        template_layout.addWidget(btn_browse_template)
 
         line_reason = QLineEdit(card_box)
         line_released_by = QLineEdit(card_box)
@@ -257,6 +310,7 @@ class ChronologyDialog(QDialog):
         form.addRow("Bootloader Version:", line_bootloader)
         form.addRow("Testing Stage:", line_stage)
         form.addRow("Source Code Path:", line_source_path)
+        form.addRow("Chronology Template:", template_widget)
 
         form.addRow("Reason for Upgrade:", line_reason)
         form.addRow("Released By:", line_released_by)
@@ -273,13 +327,16 @@ class ChronologyDialog(QDialog):
         combo_ladder_release.currentTextChanged.connect(self._update_generate_button_state)
         combo_operator_modification.currentTextChanged.connect(self._update_generate_button_state)
         combo_automation_modification.currentTextChanged.connect(self._update_generate_button_state)
+        btn_browse_template.clicked.connect(lambda _checked=False, card=None: self._on_browse_template_clicked(card or card_data))
 
-        return {
+        card_data = {
             "group_box": card_box,
             "folder": folder,
             "entry": entry,
             "line_firmware_folder": line_firmware_folder,
             "line_source_path": line_source_path,
+            "line_template_path": line_template_path,
+            "btn_browse_template": btn_browse_template,
             "line_reason": line_reason,
             "line_released_by": line_released_by,
             "line_tested_by": line_tested_by,
@@ -289,6 +346,8 @@ class ChronologyDialog(QDialog):
             "combo_operator_modification": combo_operator_modification,
             "combo_automation_modification": combo_automation_modification,
         }
+
+        return card_data
 
     def _format_firmware_folder(self, folder: Path) -> str:
         try:
@@ -315,7 +374,6 @@ class ChronologyDialog(QDialog):
         return combo
 
     def _update_generate_button_state(self) -> None:
-        template_ready = bool(self.ui.line_excel_template.text().strip())
         card_ready = bool(self._entry_cards)
 
         for card in self._entry_cards:
@@ -338,15 +396,22 @@ class ChronologyDialog(QDialog):
                 card_ready = False
                 break
 
-        self.ui.btn_generate.setEnabled(template_ready and card_ready)
+        self.ui.btn_generate.setEnabled(card_ready)
 
-    def _on_browse_template_clicked(self) -> None:
+    def _on_browse_template_clicked(self, card: dict[str, Any] | None = None) -> None:
         """
-        Opens file dialog to select the template and updates the UI line edit.
+        Opens file dialog to select the template and updates the matching line edit.
         """
-        path = self._select_template_file()
-        if path and hasattr(self.ui, "line_excel_template"):
-            self.ui.line_excel_template.setText(str(path))
+        if card is None:
+            path = self._select_template_file()
+            if path and hasattr(self.ui, "line_excel_template"):
+                self.ui.line_excel_template.setText(str(path))
+                self._update_generate_button_state()
+            return
+
+        path = self._select_template_file_for_folder(card["line_firmware_folder"].text())
+        if path is not None:
+            card["line_template_path"].setText(str(path))
             self._update_generate_button_state()
 
     def _on_browse_output_clicked(self) -> None:
@@ -367,33 +432,79 @@ class ChronologyDialog(QDialog):
 
         self._update_chronology_models()
 
-        # Fetch template path
-        if hasattr(self.ui, "line_excel_template") and self.ui.line_excel_template.text().strip():
-            template_path = Path(self.ui.line_excel_template.text().strip())
-        else:
-            template_path = self._select_template_file()
-            if not template_path:
-                return
+        generated_count = 0
+        skipped_records = list(self._skipped_firmware)
 
         try:
-            generator = ChronologyGenerator(self._project_folder, template_path)
-            
-            # Monkey-patch the scan_project method to inject our updated, user-edited 
-            # chronology model instead of re-scanning and wiping the inputs.
-            generator.scan_project = lambda: self._chronology
-            
-            generator.generate(output_path=None)
-            
-            QMessageBox.information(
-                self, 
-                "Success", 
-                "Chronology Excel report(s) generated successfully."
-            )
+            for card in self._entry_cards:
+                entry = card["entry"]
+
+                try:
+                    target_path = self._resolve_chronology_output_path(entry.bin_file_path.parent)
+                    target_path.parent.mkdir(parents=True, exist_ok=True)
+
+                    if target_path.exists():
+                        template_path = target_path
+                    else:
+                        template_path = self._selected_template_path_for_card(card)
+                        if template_path is None:
+                            QMessageBox.warning(
+                                self,
+                                "Validation Error",
+                                f"Please select a chronology template for\n{card['line_firmware_folder'].text()}",
+                            )
+                            return
+
+                    chronology = ProjectChronology(project_root=self._project_folder, entries=[entry])
+                    writer = ChronologyExcelWriter(template_path)
+                    writer.write(chronology, target_path)
+                    generated_count += 1
+
+                except ChronologyTemplateError as exc:
+                    self._logger.error(f"Chronology generation failed for {card['line_firmware_folder'].text()}: {exc}")
+                    skipped_records.append(
+                        {
+                            "firmware_folder": card["line_firmware_folder"].text(),
+                            "reason": str(exc),
+                        }
+                    )
+                    continue
+                except Exception as exc:
+                    self._logger.exception(
+                        "Unexpected error during chronology generation for %s",
+                        card["line_firmware_folder"].text(),
+                    )
+                    skipped_records.append(
+                        {
+                            "firmware_folder": card["line_firmware_folder"].text(),
+                            "reason": str(exc),
+                        }
+                    )
+                    continue
+
+            if generated_count == 0:
+                QMessageBox.information(
+                    self,
+                    "No Chronology Generated",
+                    "All firmware folders failed CRC validation.",
+                )
+            else:
+                summary_lines = [
+                    "Chronology Generation Completed",
+                    "",
+                    f"Generated: {generated_count}",
+                    f"Skipped: {len(skipped_records)}",
+                ]
+
+                if skipped_records:
+                    summary_lines.extend(["", "Skipped Firmware:"])
+                    for item in skipped_records:
+                        summary_lines.append(item.get("firmware_folder", "Unknown"))
+                        summary_lines.append(f"Reason: {item.get('reason', 'Unknown')}")
+
+                QMessageBox.information(self, "Chronology Generation Completed", "\n".join(summary_lines))
             self.accept()
-            
-        except ChronologyGenerationError as exc:
-            self._logger.error(f"Chronology generation failed: {exc}")
-            QMessageBox.critical(self, "Generation Error", str(exc))
+
         except Exception as exc:
             self._logger.exception("Unexpected error during chronology generation.")
             QMessageBox.critical(self, "Unexpected Error", f"An unexpected error occurred:\n{exc}")
@@ -406,12 +517,7 @@ class ChronologyDialog(QDialog):
             True if all inputs are valid, False otherwise.
         """
         if not self._entry_cards:
-            QMessageBox.warning(self, "Validation Error", "No firmware folders with BIN files were discovered.")
-            return False
-
-        if hasattr(self.ui, "line_excel_template") and not self.ui.line_excel_template.text().strip():
-            QMessageBox.warning(self, "Validation Error", "Please select an Excel Template.")
-            self.ui.btn_browse_template.setFocus()
+            QMessageBox.warning(self, "Validation Error", "No validated firmware folders with CRC PASS were discovered.")
             return False
 
         for index, card in enumerate(self._entry_cards, start=1):
@@ -439,6 +545,14 @@ class ChronologyDialog(QDialog):
                 QMessageBox.warning(self, "Validation Error", f"Chronology {index}: select 'Automation Set Up Modification'.")
                 card["combo_automation_modification"].setFocus()
                 return False
+            if not self._is_template_selected_for_card(card):
+                QMessageBox.warning(
+                    self,
+                    "Validation Error",
+                    f"Please select a chronology template for\n{card['line_firmware_folder'].text()}",
+                )
+                card["btn_browse_template"].setFocus()
+                return False
 
         return True
 
@@ -449,13 +563,57 @@ class ChronologyDialog(QDialog):
         Returns:
             The selected Path, or None if cancelled.
         """
+        return self._select_template_file_for_folder(None)
+
+    def _select_template_file_for_folder(self, firmware_folder: str | None) -> Path | None:
+        """
+        Opens a file dialog to select the chronology template for a firmware folder.
+        """
         filepath, _ = QFileDialog.getOpenFileName(
             self,
-            "Select Chronology Excel Template",
+            (
+                f"Select Chronology Excel Template for {firmware_folder}"
+                if firmware_folder
+                else "Select Chronology Excel Template"
+            ),
             str(self._project_folder),
             "Excel Files (*.xlsx *.xlsm)"
         )
         return Path(filepath) if filepath else None
+
+    def _selected_template_path(self) -> Path | None:
+        if hasattr(self.ui, "line_excel_template"):
+            value = self.ui.line_excel_template.text().strip()
+            if value:
+                path = Path(value)
+                if path.exists():
+                    return path
+        return None
+
+    def _selected_template_path_for_card(self, card: dict[str, Any]) -> Path | None:
+        value = card["line_template_path"].text().strip()
+        if not value:
+            return None
+
+        path = Path(value)
+        if path.exists():
+            return path
+        return None
+
+    def _is_template_selected_for_card(self, card: dict[str, Any]) -> bool:
+        target_path = self._resolve_chronology_output_path(card["folder"])
+        if target_path.exists():
+            return True
+        return self._selected_template_path_for_card(card) is not None
+
+    def _resolve_chronology_output_path(self, firmware_folder: Path) -> Path:
+        bin_root = self._project_folder / FOLDER_KEYS["bin_file"]
+        chronology_root = self._project_folder / FOLDER_KEYS["chronology"]
+        try:
+            relative_folder = firmware_folder.resolve().relative_to(bin_root.resolve())
+        except Exception:
+            relative_folder = Path(firmware_folder.name)
+        return chronology_root / relative_folder / "Ladder_Chronology.xlsx"
 
     def _select_output_file(self) -> Path | None:
         """

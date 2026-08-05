@@ -1,0 +1,2749 @@
+﻿
+ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê
+Γûê  SCENARIO A: Simple template ΓÇö headers at row 1, NO merged cells
+ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê
+
+
+##########################################################################################
+# TRACE: Scenario A: V1.00 -> V1.01 (simple)
+# template = C:\Users\SM464~1\AppData\Local\Temp\tmphm3t8zlf\scenario_a\output.xlsx
+# output   = C:\Users\SM464~1\AppData\Local\Temp\tmphm3t8zlf\scenario_a\output.xlsx
+##########################################################################################
+
+>>> STEP 1: _load_workbook()
+>>> STEP 2: _find_header_row() + _build_header_map()
+  header_row_idx   = 1
+  first_data_row   = 2
+  header_map keys  = ['automation set up modification', 'bin file name', 'bootloader version', 'crc', 'ladder release-to production', 'ladder version no.', 'operator procedure modification', 'plc model', 'reason for upgrade', 'release date', 'released by', 'selpro version & path', 'serial no.', 'source code path', 'tested by', 'testing stage']
+  history_row (first real data row) = 2
+
+>>> STEP 4: Detect existing workbook
+  using_existing_workbook  = True
+  has_existing_history     = True
+
+==========================================================================================
+  STATE: BEFORE ANY MODIFICATION
+==========================================================================================
+  sheet.max_row = 2
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (BEFORE ANY MODIFICATION): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  Pre-insertion populated rows: [2]
+
+>>> STEP 5: sheet.insert_rows(2, amount=1)
+
+==========================================================================================
+  STATE: AFTER insert_rows()
+==========================================================================================
+  sheet.max_row = 3
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (AFTER insert_rows()): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = <<EMPTY/None>>
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 2):
+
+  DATA ROW (Row 3):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 3):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ VERIFICATION: Did insert_rows() preserve old row values? ΓöÇΓöÇ
+    Row 2 -> 3: ALL VALUES PRESERVED Γ£ô
+
+>>> STEP 6: _copy_row_format(sheet, source_row=3, target_row=2)
+
+==========================================================================================
+  STATE: AFTER _copy_row_format()
+==========================================================================================
+  sheet.max_row = 3
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (AFTER _copy_row_format()): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = <<EMPTY/None>>
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 3):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 3):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ VERIFICATION: Did _copy_row_format() preserve old row values? ΓöÇΓöÇ
+    Row 2 -> 3: ALL VALUES PRESERVED Γ£ô
+
+  ΓöÇΓöÇ New row 2 after _copy_row_format(): ΓöÇΓöÇ
+
+>>> STEP 7: _write_entry() into row 2
+
+==========================================================================================
+  STATE: AFTER _write_entry()
+==========================================================================================
+  sheet.max_row = 3
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (AFTER _write_entry()): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 3):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 3):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ VERIFICATION: Did _write_entry() preserve old row values? ΓöÇΓöÇ
+    Row 2 -> 3: ALL VALUES PRESERVED Γ£ô
+
+>>> STEP 8: _renumber_serials() starting at row 2
+
+==========================================================================================
+  STATE: AFTER _renumber_serials()
+==========================================================================================
+  sheet.max_row = 3
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (AFTER _renumber_serials()): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 3):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 3):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ VERIFICATION: Did _renumber_serials() preserve old row values? ΓöÇΓöÇ
+    Row 2 -> 3: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+
+>>> STEP 9: workbook.save(C:\Users\SM464~1\AppData\Local\Temp\tmphm3t8zlf\scenario_a\output.xlsx)
+
+>>> STEP 10: Reload saved workbook and verify
+
+==========================================================================================
+  STATE: AFTER SAVE + RELOAD
+==========================================================================================
+  sheet.max_row = 3
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (AFTER SAVE + RELOAD): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 3):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 3):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ VERIFICATION: Did save+reload preserve old row values? ΓöÇΓöÇ
+    Row 2 -> 3: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+
+
+ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê
+Γûê  SCENARIO B: Merged-cell template ΓÇö headers at row 15, instruction row at 16
+ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê
+
+
+##########################################################################################
+# TRACE: Scenario B: V1.00 -> V1.01 (merged cells)
+# template = C:\Users\SM464~1\AppData\Local\Temp\tmphm3t8zlf\scenario_b\output.xlsx
+# output   = C:\Users\SM464~1\AppData\Local\Temp\tmphm3t8zlf\scenario_b\output.xlsx
+##########################################################################################
+
+>>> STEP 1: _load_workbook()
+>>> STEP 2: _find_header_row() + _build_header_map()
+  header_row_idx   = 15
+  first_data_row   = 16
+  header_map keys  = ['automation set up modification', 'bin file name', 'bootloader version', 'crc', 'ladder release-to production', 'ladder version no.', 'operator procedure modification', 'plc model', 'reason for upgrade', 'release date', 'released by', 'selpro version & path', 'serial no.', 'source code path', 'tested by', 'testing stage']
+  Skipping instruction row 16
+  history_row (first real data row) = 17
+
+>>> STEP 4: Detect existing workbook
+  using_existing_workbook  = True
+  has_existing_history     = True
+
+==========================================================================================
+  STATE: BEFORE ANY MODIFICATION
+==========================================================================================
+  sheet.max_row = 17
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (BEFORE ANY MODIFICATION): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  DATA ROW (Row 17):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 17):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  Pre-insertion populated rows: [17]
+
+>>> STEP 5: sheet.insert_rows(17, amount=1)
+
+==========================================================================================
+  STATE: AFTER insert_rows()
+==========================================================================================
+  sheet.max_row = 18
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (AFTER insert_rows()): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  Row 17: <<ALL EMPTY>> ΓÇö stopping scan.
+==========================================================================================
+
+  ΓöÇΓöÇ VERIFICATION: Did insert_rows() preserve old row values? ΓöÇΓöÇ
+    Row 17 -> 18: ALL VALUES PRESERVED Γ£ô
+
+>>> STEP 6: _copy_row_format(sheet, source_row=18, target_row=17)
+
+==========================================================================================
+  STATE: AFTER _copy_row_format()
+==========================================================================================
+  sheet.max_row = 18
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (AFTER _copy_row_format()): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  Row 17: <<ALL EMPTY>> ΓÇö stopping scan.
+==========================================================================================
+
+  ΓöÇΓöÇ VERIFICATION: Did _copy_row_format() preserve old row values? ΓöÇΓöÇ
+    Row 17 -> 18: ALL VALUES PRESERVED Γ£ô
+
+  ΓöÇΓöÇ New row 17 after _copy_row_format(): ΓöÇΓöÇ
+
+>>> STEP 7: _write_entry() into row 17
+
+==========================================================================================
+  STATE: AFTER _write_entry()
+==========================================================================================
+  sheet.max_row = 18
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (AFTER _write_entry()): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  DATA ROW (Row 17):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 17):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 18):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 18):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ VERIFICATION: Did _write_entry() preserve old row values? ΓöÇΓöÇ
+    Row 17 -> 18: ALL VALUES PRESERVED Γ£ô
+
+>>> STEP 8: _renumber_serials() starting at row 17
+
+==========================================================================================
+  STATE: AFTER _renumber_serials()
+==========================================================================================
+  sheet.max_row = 18
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (AFTER _renumber_serials()): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  DATA ROW (Row 17):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 17):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 18):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 18):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ VERIFICATION: Did _renumber_serials() preserve old row values? ΓöÇΓöÇ
+    Row 17 -> 18: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+
+>>> STEP 9: workbook.save(C:\Users\SM464~1\AppData\Local\Temp\tmphm3t8zlf\scenario_b\output.xlsx)
+
+>>> STEP 10: Reload saved workbook and verify
+
+==========================================================================================
+  STATE: AFTER SAVE + RELOAD
+==========================================================================================
+  sheet.max_row = 18
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (AFTER SAVE + RELOAD): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  DATA ROW (Row 17):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 17):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 18):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 18):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ VERIFICATION: Did save+reload preserve old row values? ΓöÇΓöÇ
+    Row 17 -> 18: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+
+
+ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê
+Γûê  SCENARIO C: Multi-release ΓÇö V1.00 -> V1.01 -> V2.00 -> V3.00 (simple template)
+ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê
+
+
+##########################################################################################
+# MULTI-RELEASE TRACE: Scenario C (simple) ΓÇö Release #2 (V1.01)
+# using_existing=True, has_history=True
+##########################################################################################
+  Pre-existing data rows: [2]
+
+==========================================================================================
+  STATE: BEFORE V1.01
+==========================================================================================
+  sheet.max_row = 2
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (BEFORE V1.01): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+==========================================================================================
+  STATE: AFTER V1.01 COMPLETE
+==========================================================================================
+  sheet.max_row = 3
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (AFTER V1.01 COMPLETE): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 3):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 3):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ FINAL VERIFICATION for V1.01: ΓöÇΓöÇ
+    Row 2 -> 3: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+
+
+##########################################################################################
+# MULTI-RELEASE TRACE: Scenario C (simple) ΓÇö Release #3 (V2.00)
+# using_existing=True, has_history=True
+##########################################################################################
+  Pre-existing data rows: [2, 3]
+
+==========================================================================================
+  STATE: BEFORE V2.00
+==========================================================================================
+  sheet.max_row = 3
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (BEFORE V2.00): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 3):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 3):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+==========================================================================================
+  STATE: AFTER V2.00 COMPLETE
+==========================================================================================
+  sheet.max_row = 4
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (AFTER V2.00 COMPLETE): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = 3
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V2.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V2.00.bin'
+                                           crc = 'C5D93E0A'
+                            ladder version no. = 'V2.00'
+                            reason for upgrade = 'Major Upgrade'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP5.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer C'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team C'
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 3):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 3):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 4):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 4):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ FINAL VERIFICATION for V2.00: ΓöÇΓöÇ
+    Row 2 -> 3: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+    Row 3 -> 4: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+
+
+##########################################################################################
+# MULTI-RELEASE TRACE: Scenario C (simple) ΓÇö Release #4 (V3.00)
+# using_existing=True, has_history=True
+##########################################################################################
+  Pre-existing data rows: [2, 3, 4]
+
+==========================================================================================
+  STATE: BEFORE V3.00
+==========================================================================================
+  sheet.max_row = 4
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (BEFORE V3.00): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = 3
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V2.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V2.00.bin'
+                                           crc = 'C5D93E0A'
+                            ladder version no. = 'V2.00'
+                            reason for upgrade = 'Major Upgrade'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP5.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer C'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team C'
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 3):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 3):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 4):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 4):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+==========================================================================================
+  STATE: AFTER V3.00 COMPLETE
+==========================================================================================
+  sheet.max_row = 5
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (AFTER V3.00 COMPLETE): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = 4
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V3.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V3.00.bin'
+                                           crc = 'D6EA4F1B'
+                            ladder version no. = 'V3.00'
+                            reason for upgrade = 'Feature Addition'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP6.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer D'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team D'
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 3):
+                                    serial no. = 3
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V2.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V2.00.bin'
+                                           crc = 'C5D93E0A'
+                            ladder version no. = 'V2.00'
+                            reason for upgrade = 'Major Upgrade'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP5.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer C'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team C'
+
+  Styles DATA ROW (Row 3):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 4):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 4):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 5):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 5):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ FINAL VERIFICATION for V3.00: ΓöÇΓöÇ
+    Row 2 -> 3: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+    Row 3 -> 4: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+    Row 4 -> 5: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+
+
+==========================================================================================
+FINAL RELOAD CHECK AFTER ALL 4 RELEASES
+==========================================================================================
+
+==========================================================================================
+  STATE: FINAL STATE (4 releases)
+==========================================================================================
+  sheet.max_row = 5
+  sheet.max_column = 16
+  header_row = 1
+
+  Merged ranges (FINAL STATE (4 releases)): 0
+
+  DATA ROW (Row 2):
+                                    serial no. = 4
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V3.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V3.00.bin'
+                                           crc = 'D6EA4F1B'
+                            ladder version no. = 'V3.00'
+                            reason for upgrade = 'Feature Addition'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP6.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer D'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team D'
+
+  Styles DATA ROW (Row 2):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 3):
+                                    serial no. = 3
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V2.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V2.00.bin'
+                                           crc = 'C5D93E0A'
+                            ladder version no. = 'V2.00'
+                            reason for upgrade = 'Major Upgrade'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP5.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer C'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team C'
+
+  Styles DATA ROW (Row 3):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 4):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 4):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 5):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 5):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+
+ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê
+Γûê  SCENARIO D: Multi-release ΓÇö V1.00 -> V1.01 -> V2.00 -> V3.00 (merged template)
+ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê
+
+
+##########################################################################################
+# MULTI-RELEASE TRACE: Scenario D (merged) ΓÇö Release #2 (V1.01)
+# using_existing=True, has_history=True
+##########################################################################################
+  Pre-existing data rows: [17]
+
+==========================================================================================
+  STATE: BEFORE V1.01
+==========================================================================================
+  sheet.max_row = 17
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (BEFORE V1.01): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  DATA ROW (Row 17):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 17):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+==========================================================================================
+  STATE: AFTER V1.01 COMPLETE
+==========================================================================================
+  sheet.max_row = 18
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (AFTER V1.01 COMPLETE): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  DATA ROW (Row 17):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 17):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 18):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 18):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ FINAL VERIFICATION for V1.01: ΓöÇΓöÇ
+    Row 17 -> 18: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+
+
+##########################################################################################
+# MULTI-RELEASE TRACE: Scenario D (merged) ΓÇö Release #3 (V2.00)
+# using_existing=True, has_history=True
+##########################################################################################
+  Pre-existing data rows: [17, 18]
+
+==========================================================================================
+  STATE: BEFORE V2.00
+==========================================================================================
+  sheet.max_row = 18
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (BEFORE V2.00): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  DATA ROW (Row 17):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 17):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 18):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 18):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+==========================================================================================
+  STATE: AFTER V2.00 COMPLETE
+==========================================================================================
+  sheet.max_row = 19
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (AFTER V2.00 COMPLETE): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  DATA ROW (Row 17):
+                                    serial no. = 3
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V2.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V2.00.bin'
+                                           crc = 'C5D93E0A'
+                            ladder version no. = 'V2.00'
+                            reason for upgrade = 'Major Upgrade'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP5.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer C'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team C'
+
+  Styles DATA ROW (Row 17):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 18):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 18):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 19):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 19):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ FINAL VERIFICATION for V2.00: ΓöÇΓöÇ
+    Row 17 -> 18: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+    Row 18 -> 19: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+
+
+##########################################################################################
+# MULTI-RELEASE TRACE: Scenario D (merged) ΓÇö Release #4 (V3.00)
+# using_existing=True, has_history=True
+##########################################################################################
+  Pre-existing data rows: [17, 18, 19]
+
+==========================================================================================
+  STATE: BEFORE V3.00
+==========================================================================================
+  sheet.max_row = 19
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (BEFORE V3.00): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  DATA ROW (Row 17):
+                                    serial no. = 3
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V2.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V2.00.bin'
+                                           crc = 'C5D93E0A'
+                            ladder version no. = 'V2.00'
+                            reason for upgrade = 'Major Upgrade'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP5.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer C'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team C'
+
+  Styles DATA ROW (Row 17):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 18):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 18):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 19):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 19):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+==========================================================================================
+  STATE: AFTER V3.00 COMPLETE
+==========================================================================================
+  sheet.max_row = 20
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (AFTER V3.00 COMPLETE): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  DATA ROW (Row 17):
+                                    serial no. = 4
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V3.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V3.00.bin'
+                                           crc = 'D6EA4F1B'
+                            ladder version no. = 'V3.00'
+                            reason for upgrade = 'Feature Addition'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP6.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer D'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team D'
+
+  Styles DATA ROW (Row 17):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 18):
+                                    serial no. = 3
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V2.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V2.00.bin'
+                                           crc = 'C5D93E0A'
+                            ladder version no. = 'V2.00'
+                            reason for upgrade = 'Major Upgrade'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP5.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer C'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team C'
+
+  Styles DATA ROW (Row 18):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 19):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 19):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 20):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 20):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+  ΓöÇΓöÇ FINAL VERIFICATION for V3.00: ΓöÇΓöÇ
+    Row 17 -> 18: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+    Row 18 -> 19: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+    Row 19 -> 20: ALL NON-SERIAL VALUES PRESERVED Γ£ô
+
+
+==========================================================================================
+FINAL RELOAD CHECK AFTER ALL 4 RELEASES
+==========================================================================================
+
+==========================================================================================
+  STATE: FINAL STATE (4 releases)
+==========================================================================================
+  sheet.max_row = 20
+  sheet.max_column = 16
+  header_row = 15
+
+  Merged ranges (FINAL STATE (4 releases)): 2
+    A16:P16
+    A1:P1
+
+  DATA ROW (Row 16):
+                                    serial no. = 'Fill in the fields below for each release'
+                              source code path = <<EMPTY/None>>
+                                 bin file name = <<EMPTY/None>>
+                                           crc = <<EMPTY/None>>
+                            ladder version no. = <<EMPTY/None>>
+                            reason for upgrade = <<EMPTY/None>>
+                                 testing stage = <<EMPTY/None>>
+                                     plc model = <<EMPTY/None>>
+                         selpro version & path = <<EMPTY/None>>
+                            bootloader version = <<EMPTY/None>>
+                                  release date = <<EMPTY/None>>
+                                   released by = <<EMPTY/None>>
+                  ladder release-to production = <<EMPTY/None>>
+               operator procedure modification = <<EMPTY/None>>
+                automation set up modification = <<EMPTY/None>>
+                                     tested by = <<EMPTY/None>>
+
+  Styles DATA ROW (Row 16):
+
+  DATA ROW (Row 17):
+                                    serial no. = 4
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V3.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V3.00.bin'
+                                           crc = 'D6EA4F1B'
+                            ladder version no. = 'V3.00'
+                            reason for upgrade = 'Feature Addition'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP6.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer D'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team D'
+
+  Styles DATA ROW (Row 17):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 18):
+                                    serial no. = 3
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V2.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V2.00.bin'
+                                           crc = 'C5D93E0A'
+                            ladder version no. = 'V2.00'
+                            reason for upgrade = 'Major Upgrade'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP5.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer C'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team C'
+
+  Styles DATA ROW (Row 18):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 19):
+                                    serial no. = 2
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.01.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.01.bin'
+                                           crc = 'B4C82D9F'
+                            ladder version no. = 'V1.01'
+                            reason for upgrade = 'Bug Fix Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP4.0 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '05/08/2026'
+                                   released by = 'Engineer B'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team B'
+
+  Styles DATA ROW (Row 19):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+
+  DATA ROW (Row 20):
+                                    serial no. = 1
+                              source code path = 'C:\\Project\\2. Bin File\\Master\\Initial\\FW_MIBRX-4M_BL20_V1.00.bin'
+                                 bin file name = 'FW_MIBRX-4M_BL20_V1.00.bin'
+                                           crc = 'A3F91C7E'
+                            ladder version no. = 'V1.00'
+                            reason for upgrade = 'Initial Release'
+                                 testing stage = 'Master Initial'
+                                     plc model = 'MIBRX-4M'
+                         selpro version & path = 'SP3.5 C:/Selpro'
+                            bootloader version = 'BL20'
+                                  release date = '01/07/2026'
+                                   released by = 'Engineer A'
+                  ladder release-to production = 'Yes'
+               operator procedure modification = 'No'
+                automation set up modification = 'No'
+                                     tested by = 'QA Team A'
+
+  Styles DATA ROW (Row 20):
+                                    serial no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                              source code path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 bin file name : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                           crc : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            ladder version no. : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            reason for upgrade : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                 testing stage : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     plc model : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                         selpro version & path : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                            bootloader version : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                  release date : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                   released by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                  ladder release-to production : borders=[L:thin R:thin T:thin B:thin], align_h=center
+               operator procedure modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                automation set up modification : borders=[L:thin R:thin T:thin B:thin], align_h=center
+                                     tested by : borders=[L:thin R:thin T:thin B:thin], align_h=center
+==========================================================================================
+
+
+ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê
+Γûê  ALL SCENARIOS COMPLETE
+ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê

@@ -40,16 +40,23 @@ class ChronologyGenerator:
     Delegates scanning to ProjectScanner and writing to ChronologyExcelWriter.
     """
 
-    def __init__(self, project_root: Path, template_path: Path) -> None:
+    def __init__(
+        self,
+        project_root: Path,
+        template_path: Path,
+        template_paths_by_folder: dict[Path, Path] | None = None,
+    ) -> None:
         """
         Initializes the ChronologyGenerator.
 
         Args:
             project_root: The root directory of the operational package project.
             template_path: The path to the existing Excel template.
+            template_paths_by_folder: Optional per-firmware template overrides.
         """
         self._project_root = project_root
         self._template_path = template_path
+        self._template_paths_by_folder = template_paths_by_folder or {}
         self._logger = logging.getLogger(__name__)
 
     def scan_project(self) -> ProjectChronology:
@@ -114,7 +121,7 @@ class ChronologyGenerator:
                 target_path = self._resolve_chronology_output_path(folder)
                 target_path.parent.mkdir(parents=True, exist_ok=True)
 
-                template_path = target_path if target_path.exists() else self._template_path
+                template_path = target_path if target_path.exists() else self._template_paths_by_folder.get(folder, self._template_path)
                 writer = ChronologyExcelWriter(template_path)
 
                 self._logger.info(f"Generating chronology for group {folder} at {target_path}")

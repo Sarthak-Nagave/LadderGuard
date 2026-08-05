@@ -1,0 +1,616 @@
+﻿
+====================================================================================================
+FILE: C:\Users\SM 464\Desktop\Operational Package\7. Chronology\Master\Initial\Ladder_Chronology.xlsx
+Sheet: Product Name ___Chronology, max_row=33, max_col=30
+
+Merged ranges (3):
+  A6:J6                 rows=6-6 cols=1-10 (span 10x1)  master_val='Applicable Products:'
+  B15:P15               rows=15-15 cols=2-16 (span 15x1)  master_val='xdbdf'
+  B16:P16               rows=16-16 cols=2-16 (span 15x1)  master_val='C:\\Users\\SM 464\\Desktop\\Operational Package\\
+
+Header row: 14
+  Col  1: norm=serial no.                                    raw='Serial No. '
+  Col  2: norm=source code path                              raw='Source Code Path'
+  Col  3: norm=bin file name                                 raw='Bin File Name'
+  Col  4: norm=crc                                           raw='CRC'
+  Col  5: norm=ladder version no.                            raw='Ladder Version No.'
+  Col  6: norm=reason for upgrade                            raw='Reason For Upgrade'
+  Col  7: norm=testing stage                                 raw='Testing Stage'
+  Col  8: norm=plc model                                     raw='PLC Model'
+  Col  9: norm=selpro version & path                         raw='Selpro Version & Path '
+  Col 10: norm=bootloader version                            raw='Bootloader Version'
+  Col 11: norm=release date                                  raw='Release Date'
+  Col 12: norm=released by                                   raw='Released By'
+  Col 13: norm=ladder release-to production                  raw='Ladder  Release ΓÇô To Production'
+  Col 14: norm=operator procedure modification               raw='Operator Procedure Modification'
+  Col 15: norm=automation set up modification                raw='Automation Set Up Modification'
+  Col 16: norm=tested by                                     raw='Tested By'
+  Col 17: norm=                                              raw=None
+  Col 18: norm=                                              raw=None
+  Col 19: norm=                                              raw=None
+  Col 20: norm=                                              raw=None
+  Col 21: norm=                                              raw=None
+  Col 22: norm=                                              raw=None
+  Col 23: norm=                                              raw=None
+  Col 24: norm=                                              raw=None
+  Col 25: norm=                                              raw=None
+  Col 26: norm=                                              raw=None
+  Col 27: norm=                                              raw=None
+  Col 28: norm=                                              raw=None
+  Col 29: norm=                                              raw=None
+  Col 30: norm=                                              raw=None
+
+Data rows (15 to 24):
+
+  Row 15 [MERGED/INSTRUCTION]:
+    Col  1 serial no.                                 = 1
+    Col  2 source code path                           = 'xdbdf' [M]
+    Col  3 bin file name                              = <<EMPTY>> [M]
+    Col  4 crc                                        = <<EMPTY>> [M]
+    Col  5 ladder version no.                         = <<EMPTY>> [M]
+    Col  6 reason for upgrade                         = <<EMPTY>> [M]
+    Col  7 testing stage                              = <<EMPTY>> [M]
+    Col  8 plc model                                  = <<EMPTY>> [M]
+    Col  9 selpro version & path                      = <<EMPTY>> [M]
+    Col 10 bootloader version                         = <<EMPTY>> [M]
+    Col 11 release date                               = <<EMPTY>> [M]
+    Col 12 released by                                = <<EMPTY>> [M]
+    Col 13 ladder release-to production               = <<EMPTY>> [M]
+    Col 14 operator procedure modification            = <<EMPTY>> [M]
+    Col 15 automation set up modification             = <<EMPTY>> [M]
+    Col 16 tested by                                  = <<EMPTY>> [M]
+
+  Row 16 [MERGED/INSTRUCTION]:
+    Col  1 serial no.                                 = 1
+    Col  2 source code path                           = 'C:\\Users\\SM 464\\Desktop\\Operational Package\\2. Bin Fil... [M]
+    Col  3 bin file name                              = <<EMPTY>> [M]
+    Col  4 crc                                        = <<EMPTY>> [M]
+    Col  5 ladder version no.                         = <<EMPTY>> [M]
+    Col  6 reason for upgrade                         = <<EMPTY>> [M]
+    Col  7 testing stage                              = <<EMPTY>> [M]
+    Col  8 plc model                                  = <<EMPTY>> [M]
+    Col  9 selpro version & path                      = <<EMPTY>> [M]
+    Col 10 bootloader version                         = <<EMPTY>> [M]
+    Col 11 release date                               = <<EMPTY>> [M]
+    Col 12 released by                                = <<EMPTY>> [M]
+    Col 13 ladder release-to production               = <<EMPTY>> [M]
+    Col 14 operator procedure modification            = <<EMPTY>> [M]
+    Col 15 automation set up modification             = <<EMPTY>> [M]
+    Col 16 tested by                                  = <<EMPTY>> [M]
+
+  Row 17 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 18 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 19 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 20 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 21 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 22 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 23 :
+    Col  1 serial no.                                 = 'Prepared By:                                               ...
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+====================================================================================================
+FILE: C:\Users\SM 464\Desktop\Operational Package\7. Chronology\Slave\Final\Ladder_Chronology.xlsx
+Sheet: Product Name ___Chronology, max_row=32, max_col=30
+
+Merged ranges (2):
+  A6:J6                 rows=6-6 cols=1-10 (span 10x1)  master_val='Applicable Products:'
+  B16:P16               rows=16-16 cols=2-16 (span 15x1)  master_val=None
+
+Header row: 14
+  Col  1: norm=serial no.                                    raw='Serial No. '
+  Col  2: norm=source code path                              raw='Source Code Path'
+  Col  3: norm=bin file name                                 raw='Bin File Name'
+  Col  4: norm=crc                                           raw='CRC'
+  Col  5: norm=ladder version no.                            raw='Ladder Version No.'
+  Col  6: norm=reason for upgrade                            raw='Reason For Upgrade'
+  Col  7: norm=testing stage                                 raw='Testing Stage'
+  Col  8: norm=plc model                                     raw='PLC Model'
+  Col  9: norm=selpro version & path                         raw='Selpro Version & Path '
+  Col 10: norm=bootloader version                            raw='Bootloader Version'
+  Col 11: norm=release date                                  raw='Release Date'
+  Col 12: norm=released by                                   raw='Released By'
+  Col 13: norm=ladder release-to production                  raw='Ladder  Release ΓÇô To Production'
+  Col 14: norm=operator procedure modification               raw='Operator Procedure Modification'
+  Col 15: norm=automation set up modification                raw='Automation Set Up Modification'
+  Col 16: norm=tested by                                     raw='Tested By'
+  Col 17: norm=                                              raw=None
+  Col 18: norm=                                              raw=None
+  Col 19: norm=                                              raw=None
+  Col 20: norm=                                              raw=None
+  Col 21: norm=                                              raw=None
+  Col 22: norm=                                              raw=None
+  Col 23: norm=                                              raw=None
+  Col 24: norm=                                              raw=None
+  Col 25: norm=                                              raw=None
+  Col 26: norm=                                              raw=None
+  Col 27: norm=                                              raw=None
+  Col 28: norm=                                              raw=None
+  Col 29: norm=                                              raw=None
+  Col 30: norm=                                              raw=None
+
+Data rows (15 to 24):
+
+  Row 15 :
+    Col  1 serial no.                                 = 1
+    Col  2 source code path                           = 'C:\\Users\\SM 464\\Desktop\\Operational Package\\2. Bin Fil...
+    Col  3 bin file name                              = 'LD_TCX03_TCX13_TCX33_TCX44_TCX38_DTCXXX-final_CALB_MST_MIBR...
+    Col  4 crc                                        = '43C49979'
+    Col  5 ladder version no.                         = 'V1.00'
+    Col  6 reason for upgrade                         = 'dfbf'
+    Col  7 testing stage                              = 'Slave Final'
+    Col  8 plc model                                  = 'MIBRX-4M'
+    Col  9 selpro version & path                      = 'xdb bgdfbx'
+    Col 10 bootloader version                         = '20.1-4'
+    Col 11 release date                               = '05/08/2026'
+    Col 12 released by                                = 'cfb'
+    Col 13 ladder release-to production               = 'No'
+    Col 14 operator procedure modification            = 'No'
+    Col 15 automation set up modification             = 'Yes'
+    Col 16 tested by                                  = 'cbdf'
+
+  Row 16 [MERGED/INSTRUCTION]:
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>> [M]
+    Col  3 bin file name                              = <<EMPTY>> [M]
+    Col  4 crc                                        = <<EMPTY>> [M]
+    Col  5 ladder version no.                         = <<EMPTY>> [M]
+    Col  6 reason for upgrade                         = <<EMPTY>> [M]
+    Col  7 testing stage                              = <<EMPTY>> [M]
+    Col  8 plc model                                  = <<EMPTY>> [M]
+    Col  9 selpro version & path                      = <<EMPTY>> [M]
+    Col 10 bootloader version                         = <<EMPTY>> [M]
+    Col 11 release date                               = <<EMPTY>> [M]
+    Col 12 released by                                = <<EMPTY>> [M]
+    Col 13 ladder release-to production               = <<EMPTY>> [M]
+    Col 14 operator procedure modification            = <<EMPTY>> [M]
+    Col 15 automation set up modification             = <<EMPTY>> [M]
+    Col 16 tested by                                  = <<EMPTY>> [M]
+
+  Row 17 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 18 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 19 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 20 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 21 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 22 :
+    Col  1 serial no.                                 = 'Prepared By:                                               ...
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 23 :
+    Col  1 serial no.                                 = 'Checked By:            '
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+====================================================================================================
+FILE: C:\Users\SM 464\Desktop\Operational Package\7. Chronology\UUT\QC\Ladder_Chronology.xlsx
+Sheet: Product Name ___Chronology, max_row=32, max_col=30
+
+Merged ranges (2):
+  A6:J6                 rows=6-6 cols=1-10 (span 10x1)  master_val='Applicable Products:'
+  B16:P16               rows=16-16 cols=2-16 (span 15x1)  master_val=None
+
+Header row: 14
+  Col  1: norm=serial no.                                    raw='Serial No. '
+  Col  2: norm=source code path                              raw='Source Code Path'
+  Col  3: norm=bin file name                                 raw='Bin File Name'
+  Col  4: norm=crc                                           raw='CRC'
+  Col  5: norm=ladder version no.                            raw='Ladder Version No.'
+  Col  6: norm=reason for upgrade                            raw='Reason For Upgrade'
+  Col  7: norm=testing stage                                 raw='Testing Stage'
+  Col  8: norm=plc model                                     raw='PLC Model'
+  Col  9: norm=selpro version & path                         raw='Selpro Version & Path '
+  Col 10: norm=bootloader version                            raw='Bootloader Version'
+  Col 11: norm=release date                                  raw='Release Date'
+  Col 12: norm=released by                                   raw='Released By'
+  Col 13: norm=ladder release-to production                  raw='Ladder  Release ΓÇô To Production'
+  Col 14: norm=operator procedure modification               raw='Operator Procedure Modification'
+  Col 15: norm=automation set up modification                raw='Automation Set Up Modification'
+  Col 16: norm=tested by                                     raw='Tested By'
+  Col 17: norm=                                              raw=None
+  Col 18: norm=                                              raw=None
+  Col 19: norm=                                              raw=None
+  Col 20: norm=                                              raw=None
+  Col 21: norm=                                              raw=None
+  Col 22: norm=                                              raw=None
+  Col 23: norm=                                              raw=None
+  Col 24: norm=                                              raw=None
+  Col 25: norm=                                              raw=None
+  Col 26: norm=                                              raw=None
+  Col 27: norm=                                              raw=None
+  Col 28: norm=                                              raw=None
+  Col 29: norm=                                              raw=None
+  Col 30: norm=                                              raw=None
+
+Data rows (15 to 24):
+
+  Row 15 :
+    Col  1 serial no.                                 = 1
+    Col  2 source code path                           = 'C:\\Users\\SM 464\\Desktop\\Operational Package\\2. Bin Fil...
+    Col  3 bin file name                              = 'LD_TCX03_TCX13_TCX33_TCX44_TCX38_DTCXXX-QC_CALB_MST_FLYXES-...
+    Col  4 crc                                        = 'CB8191F8'
+    Col  5 ladder version no.                         = 'V1.00'
+    Col  6 reason for upgrade                         = 'x'
+    Col  7 testing stage                              = 'UUT QC'
+    Col  8 plc model                                  = 'FLYXES-4M'
+    Col  9 selpro version & path                      = 'cv c'
+    Col 10 bootloader version                         = '20.1-4'
+    Col 11 release date                               = '05/08/2026'
+    Col 12 released by                                = 'cc'
+    Col 13 ladder release-to production               = 'No'
+    Col 14 operator procedure modification            = 'No'
+    Col 15 automation set up modification             = 'Yes'
+    Col 16 tested by                                  = 'c'
+
+  Row 16 [MERGED/INSTRUCTION]:
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>> [M]
+    Col  3 bin file name                              = <<EMPTY>> [M]
+    Col  4 crc                                        = <<EMPTY>> [M]
+    Col  5 ladder version no.                         = <<EMPTY>> [M]
+    Col  6 reason for upgrade                         = <<EMPTY>> [M]
+    Col  7 testing stage                              = <<EMPTY>> [M]
+    Col  8 plc model                                  = <<EMPTY>> [M]
+    Col  9 selpro version & path                      = <<EMPTY>> [M]
+    Col 10 bootloader version                         = <<EMPTY>> [M]
+    Col 11 release date                               = <<EMPTY>> [M]
+    Col 12 released by                                = <<EMPTY>> [M]
+    Col 13 ladder release-to production               = <<EMPTY>> [M]
+    Col 14 operator procedure modification            = <<EMPTY>> [M]
+    Col 15 automation set up modification             = <<EMPTY>> [M]
+    Col 16 tested by                                  = <<EMPTY>> [M]
+
+  Row 17 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 18 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 19 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 20 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 21 :
+    Col  1 serial no.                                 = <<EMPTY>>
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 22 :
+    Col  1 serial no.                                 = 'Prepared By:                                               ...
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+  Row 23 :
+    Col  1 serial no.                                 = 'Checked By:            '
+    Col  2 source code path                           = <<EMPTY>>
+    Col  3 bin file name                              = <<EMPTY>>
+    Col  4 crc                                        = <<EMPTY>>
+    Col  5 ladder version no.                         = <<EMPTY>>
+    Col  6 reason for upgrade                         = <<EMPTY>>
+    Col  7 testing stage                              = <<EMPTY>>
+    Col  8 plc model                                  = <<EMPTY>>
+    Col  9 selpro version & path                      = <<EMPTY>>
+    Col 10 bootloader version                         = <<EMPTY>>
+    Col 11 release date                               = <<EMPTY>>
+    Col 12 released by                                = <<EMPTY>>
+    Col 13 ladder release-to production               = <<EMPTY>>
+    Col 14 operator procedure modification            = <<EMPTY>>
+    Col 15 automation set up modification             = <<EMPTY>>
+    Col 16 tested by                                  = <<EMPTY>>
+
+
+Done.

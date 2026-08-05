@@ -254,9 +254,9 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             sheet = workbook.active
             headers = self._header_map(sheet)
 
-            self.assertEqual(sheet.cell(row=2, column=headers["serial no."]).value, 1)
+            self.assertEqual(sheet.cell(row=2, column=headers["serial no."]).value, 2)
             self.assertEqual(sheet.cell(row=2, column=headers["ladder version no."]).value, "V1.01")
-            self.assertEqual(sheet.cell(row=3, column=headers["serial no."]).value, 2)
+            self.assertEqual(sheet.cell(row=3, column=headers["serial no."]).value, 1)
             self.assertEqual(sheet.cell(row=3, column=headers["ladder version no."]).value, "V1.00")
             self.assertEqual(sheet.cell(row=2, column=headers["source code path"]).value, str(selected_bin.resolve()))
 
@@ -320,10 +320,10 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             workbook = openpyxl.load_workbook(output_path)
             sheet = workbook.active
 
-            self.assertEqual(sheet.cell(row=2, column=headers["serial no."]).value, 1)
+            self.assertEqual(sheet.cell(row=2, column=headers["serial no."]).value, 3)
             self.assertEqual(sheet.cell(row=2, column=headers["bin file name"]).value, selected_bin.name)
             self.assertEqual(sheet.cell(row=3, column=headers["serial no."]).value, 2)
-            self.assertEqual(sheet.max_row, 3)
+            self.assertEqual(sheet.max_row, 4)
 
     def test_dialog_builds_dynamic_cards_from_firmware_folders(self) -> None:
         app = QApplication.instance() or QApplication([])
@@ -344,7 +344,13 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             bin2.write_bytes(b"2")
             bin3.write_bytes(b"3")
 
-            dialog = ChronologyDialog(project_folder=root)
+            records = {
+                "Master/Initial": {"status": "PASS", "bin_file": str(bin1), "bin_name": bin1.name, "bin_crc": "AAAABBBB"},
+                "Slave/Final": {"status": "PASS", "bin_file": str(bin2), "bin_name": bin2.name, "bin_crc": "CCCCDDDD"},
+                "UUT/QC": {"status": "PASS", "bin_file": str(bin3), "bin_name": bin3.name, "bin_crc": "EEEEFFFF"},
+            }
+
+            dialog = ChronologyDialog(project_folder=root, validation_bin_crc_records=records)
             self.assertEqual(len(dialog._entry_cards), 3)
 
             source_paths = {card["line_source_path"].text() for card in dialog._entry_cards}
@@ -377,8 +383,12 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             (stage1 / "FW_MST_INITIAL_MIBRX-4M_BL20_V1.00.bin").write_bytes(b"1")
             (stage2 / "FW_SLV_FINAL_FLEXYS-2M_BL10_V1.01.bin").write_bytes(b"2")
 
-            dialog = ChronologyDialog(project_folder=root)
-            dialog.ui.line_excel_template.setText(str(template_path))
+            records = {
+                "Master/Initial": {"status": "PASS", "bin_file": str(stage1 / "FW_MST_INITIAL_MIBRX-4M_BL20_V1.00.bin"), "bin_name": "FW_MST_INITIAL_MIBRX-4M_BL20_V1.00.bin", "bin_crc": "AAAABBBB"},
+                "Slave/Final": {"status": "PASS", "bin_file": str(stage2 / "FW_SLV_FINAL_FLEXYS-2M_BL10_V1.01.bin"), "bin_name": "FW_SLV_FINAL_FLEXYS-2M_BL10_V1.01.bin", "bin_crc": "CCCCDDDD"},
+            }
+
+            dialog = ChronologyDialog(project_folder=root, validation_bin_crc_records=records)
             dialog._update_generate_button_state()
             self.assertFalse(dialog.ui.btn_generate.isEnabled())
 
@@ -422,8 +432,12 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             (stage1 / "FW_MST_INITIAL_MIBRX-4M_BL20_V1.00.bin").write_bytes(b"1")
             (stage2 / "FW_SLV_FINAL_FLEXYS-2M_BL10_V1.01.bin").write_bytes(b"2")
 
-            dialog = ChronologyDialog(project_folder=root)
-            dialog.ui.line_excel_template.setText(str(template_path))
+            records = {
+                "Master/Initial": {"status": "PASS", "bin_file": str(stage1 / "FW_MST_INITIAL_MIBRX-4M_BL20_V1.00.bin"), "bin_name": "FW_MST_INITIAL_MIBRX-4M_BL20_V1.00.bin", "bin_crc": "AAAABBBB"},
+                "Slave/Final": {"status": "PASS", "bin_file": str(stage2 / "FW_SLV_FINAL_FLEXYS-2M_BL10_V1.01.bin"), "bin_name": "FW_SLV_FINAL_FLEXYS-2M_BL10_V1.01.bin", "bin_crc": "CCCCDDDD"},
+            }
+
+            dialog = ChronologyDialog(project_folder=root, validation_bin_crc_records=records)
 
             card1 = dialog._entry_cards[0]
             card2 = dialog._entry_cards[1]
@@ -505,8 +519,10 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             )
 
             card_map = {card["line_firmware_folder"].text(): card for card in dialog._entry_cards}
+            self.assertEqual(len(card_map), 1)
             self.assertEqual(card_map["Master/Initial"]["entry"].crc, "A3F91C7E")
-            self.assertEqual(card_map["Slave/Final"]["entry"].crc, "")
+            self.assertEqual(dialog._skipped_firmware[0]["firmware_folder"], "Slave/Final")
+            self.assertEqual(dialog._skipped_firmware[0]["reason"], "CRC Mismatch")
             dialog.close()
 
 

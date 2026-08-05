@@ -782,13 +782,28 @@ class MainWindow(QMainWindow):
             )
             return
 
+        bin_records = self._extract_bin_crc_records(validation_summary)
+        pass_records = {
+            stage: record
+            for stage, record in bin_records.items()
+            if isinstance(record, dict) and str(record.get("status") or "").upper() == "PASS"
+        }
+
+        if not pass_records:
+            QMessageBox.information(
+                self,
+                "No Chronology Generated",
+                "All firmware folders failed CRC validation.",
+            )
+            return
+
         logger.info("Chronology generation started.")
         logger.info("Chronology dialog opened.")
 
         dialog = ChronologyDialog(
             project_folder=self.project_path,
             parent=self,
-            validation_bin_crc_records=self._extract_bin_crc_records(validation_summary),
+            validation_bin_crc_records=bin_records,
         )
         dialog.exec()
 

@@ -83,6 +83,49 @@ class MainWindowChronologyGateTests(unittest.TestCase):
 
             window.close()
 
+    def test_all_failed_crc_validation_shows_no_chronology_notification(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            project_root = Path(temp_dir)
+            summary = ValidationSummary(
+                project_path=project_root,
+                started_at=datetime.now(),
+                finished_at=datetime.now(),
+                results=[
+                    ValidationResult(
+                        step=ValidationStep.BIN_FILES,
+                        status=ValidationStatus.FAIL,
+                        reason="CRC comparison failed",
+                        details={
+                            "bin_crcs": {
+                                "Master/Initial": {
+                                    "status": "FAILED",
+                                    "reason": "CRC Mismatch",
+                                    "bin_file": str(project_root / "2. Bin File" / "Master" / "Initial" / "FW.bin"),
+                                    "bin_name": "FW.bin",
+                                }
+                            }
+                        },
+                    )
+                ],
+            )
+
+            window = MainWindow()
+            window.project_path = project_root
+            window._validation_summaries_by_project[window._project_key(project_root)] = summary
+
+            with patch("gui.main_window.QMessageBox.information") as info_mock, patch(
+                "gui.main_window.ChronologyDialog"
+            ) as dialog_mock:
+                window.on_generate_chronology()
+
+                info_mock.assert_called_once()
+                args = info_mock.call_args[0]
+                self.assertEqual(args[1], "No Chronology Generated")
+                self.assertIn("All firmware folders failed CRC validation.", args[2])
+                dialog_mock.assert_not_called()
+
+            window.close()
+
 
 if __name__ == "__main__":
     unittest.main()

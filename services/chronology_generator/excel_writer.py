@@ -17,6 +17,7 @@ Python:
 
 from __future__ import annotations
 
+from copy import copy
 from datetime import datetime
 import logging
 import re
@@ -112,15 +113,44 @@ class ChronologyExcelWriter:
         using_existing_workbook = self._is_existing_workbook(output_path)
         has_existing_history = self._has_history_row_data(sheet, history_row, header_map)
 
+        is_duplicate = False
         if using_existing_workbook and has_existing_history:
-            if self._is_same_release_row(sheet, history_row, newest_entry, header_map):
-                self._logger.info("Selected release already exists at top of chronology history; skipping duplicate insert.")
-                self._renumber_serials(sheet, history_row, header_map)
-                self._save(workbook, output_path)
-                self._logger.info("Chronology Excel export completed successfully.")
-                return
+            is_duplicate = self._is_same_release_row(sheet, history_row, newest_entry, header_map)
+
+        if using_existing_workbook and has_existing_history and not is_duplicate:
+            # Locate the end of the history table
+            last_history_row = history_row
+            temp_row = history_row
+            while temp_row <= sheet.max_row:
+                if self._is_instruction_row(sheet, temp_row, header_map):
+                    last_history_row = temp_row
+                    temp_row += 1
+                    continue
+                if self._has_history_row_data(sheet, temp_row, header_map):
+                    last_history_row = temp_row
+                    temp_row += 1
+                    continue
+                break
+            
+            # Collect and temporarily unmerge ranges that belong ONLY to the history table
+            ranges_to_shift = []
+            for merged_range in list(sheet.merged_cells.ranges):
+                if merged_range.min_row >= history_row and merged_range.max_row <= last_history_row:
+                    sheet.unmerge_cells(str(merged_range))
+                    shifted = copy(merged_range)
+                    shifted.shift(row_shift=1, col_shift=0)
+                    ranges_to_shift.append(shifted)
 
             sheet.insert_rows(history_row, amount=1)
+            
+            # Re-apply shifted merged ranges
+            for shifted_range in ranges_to_shift:
+                try:
+                    sheet.merge_cells(str(shifted_range))
+                except Exception:
+                    pass
+
+            self._copy_row_format(sheet, history_row + 1, history_row)
 
         release_date = datetime.now().strftime("%d/%m/%Y")
         self._write_entry(sheet, history_row, newest_entry, header_map, serial_no=1, release_date=release_date)
@@ -325,7 +355,7 @@ class ChronologyExcelWriter:
         if serial_column is None:
             return
 
-        serial_no = 1
+        history_rows: list[int] = []
         row_index = start_row
         while row_index <= sheet.max_row:
             if self._is_instruction_row(sheet, row_index, header_map):
@@ -335,10 +365,15 @@ class ChronologyExcelWriter:
             if not self._has_history_row_data(sheet, row_index, header_map):
                 break
 
+            history_rows.append(row_index)
+            row_index += 1
+
+        serial_no = len(history_rows)
+        for row_index in history_rows:
+            self._copy_row_dimensions(sheet, start_row, row_index)
             serial_cell = self._get_writable_cell(sheet, row_index, serial_column)
             serial_cell.value = serial_no
-            serial_no += 1
-            row_index += 1
+            serial_no -= 1
 
     @staticmethod
     def _has_history_row_data(sheet: Worksheet, row: int, header_map: dict[str, int]) -> bool:
@@ -405,6 +440,63 @@ class ChronologyExcelWriter:
             workbook.save(filename=output_path)
         except Exception as exc:
             raise ChronologyTemplateError(f"Failed to save Excel file to {output_path}: {exc}") from exc
+
+    def _copy_row_format(self, sheet: Worksheet, source_row: int, target_row: int) -> None:
+        """Copy style, dimensions, and merged-cell behavior from one row to another."""
+        self._copy_row_dimensions(sheet, source_row, target_row)
+
+        for column_idx in range(1, sheet.max_column + 1):
+            source_cell = sheet.cell(row=source_row, column=column_idx)
+            target_cell = sheet.cell(row=target_row, column=column_idx)
+
+            if source_cell.has_style:
+                target_cell._style = copy(source_cell._style)
+            if source_cell.number_format:
+                target_cell.number_format = source_cell.number_format
+            if source_cell.font:
+                target_cell.font = copy(source_cell.font)
+            if source_cell.fill:
+                target_cell.fill = copy(source_cell.fill)
+            if source_cell.border:
+                target_cell.border = copy(source_cell.border)
+            if source_cell.alignment:
+                target_cell.alignment = copy(source_cell.alignment)
+            if source_cell.protection:
+                target_cell.protection = copy(source_cell.protection)
+            if source_cell.comment is not None:
+                target_cell.comment = copy(source_cell.comment)
+            if source_cell.hyperlink is not None:
+                target_cell._hyperlink = copy(source_cell.hyperlink)
+
+        merged_ranges = list(sheet.merged_cells.ranges)
+        row_delta = target_row - source_row
+        for merged_range in merged_ranges:
+            if merged_range.min_row <= source_row <= merged_range.max_row:
+                shifted_range = copy(merged_range)
+                shifted_range.shift(row_shift=row_delta, col_shift=0)
+                try:
+                    sheet.merge_cells(str(shifted_range))
+                except Exception:
+                    continue
+
+    def _copy_row_dimensions(self, sheet: Worksheet, source_row: int, target_row: int) -> None:
+        """Copy row-level dimensions such as height and hidden state."""
+        source_dimension = sheet.row_dimensions[source_row]
+        target_dimension = sheet.row_dimensions[target_row]
+
+        if source_dimension.height is not None:
+            target_dimension.height = source_dimension.height
+        if source_dimension.hidden is not None:
+            target_dimension.hidden = source_dimension.hidden
+        if source_dimension.outlineLevel is not None:
+            target_dimension.outlineLevel = source_dimension.outlineLevel
+        if source_dimension.collapsed is not None:
+            target_dimension.collapsed = source_dimension.collapsed
+        if hasattr(source_dimension, "style") and source_dimension.style is not None:
+            try:
+                target_dimension.style = source_dimension.style
+            except Exception:
+                pass
 
     @staticmethod
     def _normalize_header(value: Any) -> str:
