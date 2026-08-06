@@ -21,8 +21,21 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 
+
+@dataclass(slots=True)
+class ProductInfo:
+    source_pdf: Path | None = None
+    mode: str = "Single"
+    series_name: str | None = None
+    single_product: str | None = None
+    products: list[str] = field(default_factory=list)
+    page_number: int = -1
+    parse_status: str = "Pending"
+    warning: str = ""
+
 @dataclass(slots=True)
 class ChronologyEntry:
+
     """
     Represents a single row in the Ladder Chronology.
     
@@ -55,6 +68,7 @@ class ChronologyEntry:
     ladder_release_to_production: str = ""
     operator_procedure_modification: str = ""
     automation_setup_modification: str = ""
+    test_report_path: Path | None = None
 
     @property
     def version_tuple(self) -> tuple[int, ...]:

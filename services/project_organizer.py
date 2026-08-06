@@ -44,14 +44,14 @@ class ProjectOrganizerService:
         
         operational_pkg_path = self.generator.generate_structure(source_project_path=project_path)
         
-        logger.info("Routing Test Reports and Signed PDFs...")
-        self._copy_pdfs(project_path, operational_pkg_path)
+        logger.info("Routing Document Files...")
+        self._copy_document_files(project_path, operational_pkg_path)
             
         logger.info("Project reorganization complete.")
         return operational_pkg_path
 
-    def _copy_pdfs(self, source_dir: Path, target_root: Path) -> None:
-        """Copy PDFs from the root of source_dir to the appropriate generated folders based on filename."""
+    def _copy_document_files(self, source_dir: Path, target_root: Path) -> None:
+        """Copy document files from the root of source_dir to the appropriate generated folders based on filename."""
         ladder_src = source_dir / "Ladder"
         bin_src = source_dir / "Bin Files"
         sources_to_scan = []
@@ -61,46 +61,63 @@ class ProjectOrganizerService:
         firmware_dirs = HierarchyDiscovery.discover_firmware_hierarchy(sources_to_scan)
         test_report_root = target_root / "4. Test Report"
 
-        for fw_dir in firmware_dirs:
-            (test_report_root / fw_dir).mkdir(parents=True, exist_ok=True)
-        
-        # Use glob to only scan the root level.
-        for file_path in source_dir.glob("*.pdf"):
+        # Scan all files at the root level for standard documents.
+        for file_path in source_dir.iterdir():
             if not file_path.is_file():
                 continue
                 
             filename_lower = file_path.name.lower()
+            normalized_filename = filename_lower.replace("-", " ").replace("_", " ")
             dest_folder = None
             
-            if "operational_flow" in filename_lower:
+            if "operational flow" in normalized_filename:
                 dest_folder = target_root / "3. Operational Flow"
-            elif "automation_input_doc" in filename_lower:
+            elif "automation input doc" in normalized_filename:
                 dest_folder = target_root / "5. Automation Input Doc"
-            elif "ladder_flow" in filename_lower:
+            elif "ladder flow" in normalized_filename:
                 dest_folder = target_root / "6. Ladder Flow"
-            elif "test_report" in filename_lower or "report_of_test" in filename_lower:
-                dest_folder = test_report_root
-                matches = []
-
-                for fw_dir in firmware_dirs:
-                    if self._matches_firmware_dir(file_path.stem, fw_dir):
-                        matches.append(fw_dir)
+            elif "test report" in normalized_filename or "report of test" in normalized_filename or "validation" in normalized_filename:
+                stem_norm = file_path.stem.lower().replace("-", " ").replace("_", " ")
+                tokens = set(stem_norm.split())
                 
-                if len(matches) == 1:
-                    dest_folder = dest_folder / matches[0]
-                elif len(matches) > 1:
-                    logger.warning(f"PDF {file_path.name} matched multiple folders ({matches}). Leaving at root.")
-                else:
-                    logger.warning(f"PDF {file_path.name} could not be routed with certainty. Leaving at root.")
+                fw_type = None
+                if "master" in tokens or "m" in tokens:
+                    fw_type = "Master"
+                elif "slave" in tokens or "s" in tokens:
+                    fw_type = "Slave"
+                elif "uut" in tokens or "u" in tokens:
+                    fw_type = "UUT"
+                    
+                stage = None
+                if "initial" in tokens:
+                    stage = "Initial"
+                elif "final" in tokens:
+                    stage = "Final"
+                elif "qc" in tokens:
+                    stage = "QC"
+                    
+                if fw_type and stage:
+                    dest_folder = test_report_root / fw_type / stage
+                    try:
+                        dest_folder.mkdir(parents=True, exist_ok=True)
+                        dest_path = dest_folder / file_path.name
+                        shutil.copy2(str(file_path), str(dest_path))
+                        logger.info(f"Copied test report {file_path.name} to {dest_folder.relative_to(target_root)}")
+                    except Exception as e:
+                        logger.error(f"Failed to copy test report {file_path.name}: {e}")
+                    continue
+                
+                logger.warning(f"File {file_path.name} could not be mapped dynamically. Leaving at root.")
+                continue # Skip the default dest_folder block below since we handled it
             
             if dest_folder:
                 try:
                     dest_folder.mkdir(parents=True, exist_ok=True)
                     dest_path = dest_folder / file_path.name
                     shutil.copy2(str(file_path), str(dest_path))
-                    logger.info(f"Copied PDF {file_path.name} to {dest_folder.relative_to(target_root)}")
+                    logger.info(f"Copied file {file_path.name} to {dest_folder.relative_to(target_root)}")
                 except Exception as e:
-                    logger.error(f"Failed to copy PDF {file_path.name}: {e}")
+                    logger.error(f"Failed to copy file {file_path.name}: {e}")
 
     @staticmethod
     def _matches_firmware_dir(filename_stem: str, fw_dir: Path) -> bool:

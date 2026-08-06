@@ -97,11 +97,15 @@ class ProjectScanner:
                 f"Model={plc_model}, Stage={testing_stage}"
             )
 
+            # Find corresponding test report
+            test_report_path = self._find_test_report_for_stage(stage)
+
             # One firmware folder -> one chronology entry (newest BIN only).
             entry = ChronologyEntry(
                 source_code_path=source_code_path,
                 bin_file_path=selected_bin,
                 sdoc_file_path=None,
+                test_report_path=test_report_path,
                 bin_file_name=bin_name,
                 sdoc_file_name=None,
                 version=version,
@@ -136,6 +140,15 @@ class ProjectScanner:
 
     def _resolve_bin_root(self) -> Path:
         return self._project_root / FOLDER_KEYS["bin_file"]
+
+    def _find_test_report_for_stage(self, stage: Path) -> Path | None:
+        """Finds the signed test report for the given firmware stage."""
+        stage_root = self._project_root / FOLDER_KEYS.get("test_report", "4. Test Report") / stage
+        if stage_root.exists():
+            # Search for signed pdf
+            for pdf in stage_root.glob("*-sgn.pdf"):
+                return pdf
+        return None
 
     @staticmethod
     def _select_newest_bin(bin_files: list[Path]) -> Path | None:

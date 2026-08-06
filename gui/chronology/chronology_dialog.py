@@ -257,6 +257,8 @@ class ChronologyDialog(QDialog):
         except Exception:
             bootloader_version = ""
 
+        test_report_path = self._find_signed_test_report_for_relative_path(relative_path)
+
         return ChronologyEntry(
             source_code_path=selected_bin_path,
             bin_file_path=selected_bin_path,
@@ -271,7 +273,26 @@ class ChronologyDialog(QDialog):
             testing_stage=relative_path.replace("/", " "),
             release_date="",
             reason_for_upgrade="",
+            test_report_path=test_report_path,
         )
+
+    def _find_signed_test_report_for_relative_path(self, relative_path: str) -> Path | None:
+        """Resolve signed test report for a firmware path key like Master/Initial."""
+        report_root = self._project_folder / FOLDER_KEYS.get("test_report", "4. Test Report")
+        stage_path = report_root / Path(relative_path)
+        if stage_path.exists():
+            matches = sorted(stage_path.glob("*-sgn.pdf"))
+            if matches:
+                return matches[0]
+
+        # Backward-compatible fallback: allow one-level stage folders.
+        flat_stage = report_root / Path(relative_path).parts[0]
+        if flat_stage.exists():
+            matches = sorted(flat_stage.glob("*-sgn.pdf"))
+            if matches:
+                return matches[0]
+
+        return None
 
     def _build_dynamic_cards(self) -> None:
         if self._stacked_cards is None:
@@ -540,6 +561,10 @@ class ChronologyDialog(QDialog):
                 return
 
             entry = card["entry"]
+            print("\n================================================")
+            print("1.\nChronologyDialog._on_generate_clicked()\nentered\n")
+            print(f"2.\nEntry selected\nFirmware: {entry.plc_model}\nStage: {entry.testing_stage}\n")
+            print(f"3.\nentry.test_report_path: {entry.test_report_path}\n")
 
             target_path = self._resolve_chronology_output_path(entry.bin_file_path.parent)
             target_path.parent.mkdir(parents=True, exist_ok=True)
@@ -560,23 +585,42 @@ class ChronologyDialog(QDialog):
             writer = ChronologyExcelWriter(template_path)
             writer.write(chronology, target_path)
 
+            pdf_path = writer.last_pdf_path or target_path.with_suffix(".pdf")
+            pdf_succeeded = writer.last_pdf_export_succeeded
+
             msg_box = QMessageBox(self)
             msg_box.setWindowTitle(GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"))
-            msg_box.setText("Chronology generated successfully.")
-            
-            btn_view_excel = msg_box.addButton("View Chronology Excel", QMessageBox.ActionRole)
-            btn_close = msg_box.addButton("Close", QMessageBox.RejectRole)
-            
+
+            if pdf_succeeded:
+                msg_box.setIcon(QMessageBox.Information)
+                msg_box.setText(
+                    "Chronology generated successfully.\n\n"
+                    "Files created:\n\n"
+                    f"\u2713 {target_path.name}\n"
+                    f"\u2713 {pdf_path.name}"
+                )
+            else:
+                msg_box.setIcon(QMessageBox.Warning)
+                msg_box.setText(
+                    "Chronology Excel generated successfully.\n\n"
+                    "PDF export failed. Please check logs for details.\n\n"
+                    "Files created:\n\n"
+                    f"\u2713 {target_path.name}"
+                )
+
+            btn_view_excel = msg_box.addButton("View Chronology", QMessageBox.ActionRole)
+            msg_box.addButton("Close", QMessageBox.RejectRole)
+
             msg_box.exec()
-            
+
             if msg_box.clickedButton() == btn_view_excel:
                 try:
                     os.startfile(str(target_path))
-                except Exception as e:
+                except Exception:
                     self._logger.exception("Failed to open chronology Excel.")
                     QMessageBox.warning(
-                        self, 
-                        "Error", 
+                        self,
+                        "Error",
                         f"Failed to open the Excel file. It might not be associated with any application.\n\nFile: {target_path}"
                     )
             
