@@ -595,25 +595,37 @@ class ChronologyDialog(QDialog):
                 msg_box.setIcon(QMessageBox.Information)
                 msg_box.setText(
                     "Chronology generated successfully.\n\n"
-                    "Files created:\n\n"
+                    "Generated Files\n\n"
                     f"\u2713 {target_path.name}\n"
                     f"\u2713 {pdf_path.name}"
                 )
             else:
                 msg_box.setIcon(QMessageBox.Warning)
+                export_message = writer.last_pdf_export_message or "PDF export failed. Please check logs for details."
                 msg_box.setText(
                     "Chronology Excel generated successfully.\n\n"
-                    "PDF export failed. Please check logs for details.\n\n"
-                    "Files created:\n\n"
+                    f"{export_message}\n\n"
+                    "Generated Files\n\n"
                     f"\u2713 {target_path.name}"
                 )
 
-            btn_view_excel = msg_box.addButton("View Chronology", QMessageBox.ActionRole)
-            msg_box.addButton("Close", QMessageBox.RejectRole)
+            btn_view_excel = msg_box.addButton("View Excel", QMessageBox.ActionRole)
+            btn_view_pdf = msg_box.addButton("View PDF", QMessageBox.ActionRole)
+            btn_close = msg_box.addButton("Close", QMessageBox.RejectRole)
+
+            msg_box.setDefaultButton(btn_close)
+            msg_box.setEscapeButton(btn_close)
+
+            btn_view_excel.setEnabled(target_path.exists())
+            btn_view_pdf.setEnabled(pdf_path.exists())
 
             msg_box.exec()
 
             if msg_box.clickedButton() == btn_view_excel:
+                if not target_path.exists():
+                    QMessageBox.warning(self, "File Not Found", "Generated Excel file could not be found.")
+                    self.accept()
+                    return
                 try:
                     os.startfile(str(target_path))
                 except Exception:
@@ -622,6 +634,20 @@ class ChronologyDialog(QDialog):
                         self,
                         "Error",
                         f"Failed to open the Excel file. It might not be associated with any application.\n\nFile: {target_path}"
+                    )
+            elif msg_box.clickedButton() == btn_view_pdf:
+                if not pdf_path.exists():
+                    QMessageBox.warning(self, "File Not Found", "Generated PDF file could not be found.")
+                    self.accept()
+                    return
+                try:
+                    os.startfile(str(pdf_path))
+                except Exception:
+                    self._logger.exception("Failed to open chronology PDF.")
+                    QMessageBox.warning(
+                        self,
+                        "Error",
+                        f"Failed to open the PDF file. It might not be associated with any application.\n\nFile: {pdf_path}"
                     )
             
             self.accept()

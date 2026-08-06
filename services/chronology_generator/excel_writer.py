@@ -105,6 +105,7 @@ class ChronologyExcelWriter:
         self._logger = logging.getLogger(__name__)
         self._last_pdf_export_succeeded = False
         self._last_pdf_path: Path | None = None
+        self._last_pdf_export_message: str = ""
         self._last_column_layout_report: list[dict[str, Any]] = []
 
     @property
@@ -114,6 +115,10 @@ class ChronologyExcelWriter:
     @property
     def last_pdf_path(self) -> Path | None:
         return self._last_pdf_path
+
+    @property
+    def last_pdf_export_message(self) -> str:
+        return self._last_pdf_export_message
 
     @property
     def last_column_layout_report(self) -> list[dict[str, Any]]:
@@ -134,6 +139,7 @@ class ChronologyExcelWriter:
         self._logger.info(f"Starting chronology Excel export to {output_path}")
         self._last_pdf_export_succeeded = False
         self._last_pdf_path = output_path.with_suffix(".pdf")
+        self._last_pdf_export_message = ""
 
         workbook = self._load_workbook()
         sheet = workbook.active
@@ -237,6 +243,7 @@ class ChronologyExcelWriter:
 
         soffice_path = self._resolve_soffice_executable()
         if soffice_path is None:
+            self._last_pdf_export_message = "PDF export skipped: LibreOffice is not installed or not available."
             self._logger.warning(
                 "Chronology PDF export skipped: LibreOffice soffice executable not found. Excel kept at %s",
                 excel_path,
@@ -246,8 +253,19 @@ class ChronologyExcelWriter:
         try:
             if pdf_path.exists():
                 pdf_path.unlink()
+                self._logger.info("Removed previous chronology PDF before export: %s", pdf_path)
+        except PermissionError as exc:
+            self._last_pdf_export_message = "Previous Chronology PDF is currently open. Please close it and generate again."
+            self._logger.warning(
+                "Could not remove previous chronology PDF because it is likely open: %s (%s)",
+                pdf_path,
+                exc,
+            )
+            return False
         except Exception as exc:
+            self._last_pdf_export_message = "PDF export failed while replacing previous chronology PDF."
             self._logger.warning("Failed to remove existing chronology PDF %s: %s", pdf_path, exc)
+            return False
 
         command = [
             str(soffice_path),
@@ -262,6 +280,7 @@ class ChronologyExcelWriter:
         try:
             result = subprocess.run(command, capture_output=True, text=True, check=False)
         except Exception as exc:
+            self._last_pdf_export_message = "PDF export failed while running LibreOffice."
             self._logger.warning(
                 "Chronology PDF export failed for %s using %s: %s",
                 excel_path,
@@ -273,6 +292,7 @@ class ChronologyExcelWriter:
         if result.returncode != 0:
             stderr = (result.stderr or "").strip()
             stdout = (result.stdout or "").strip()
+            self._last_pdf_export_message = "PDF export failed. Please check LibreOffice installation and logs."
             self._logger.warning(
                 "Chronology PDF export failed for %s (exit=%s). stdout=%r stderr=%r",
                 excel_path,
@@ -282,13 +302,15 @@ class ChronologyExcelWriter:
             )
             return False
 
-        if not pdf_path.exists():
+        if not pdf_path.exists() or pdf_path.stat().st_size <= 0:
+            self._last_pdf_export_message = "PDF export failed: output file was not created correctly."
             self._logger.warning(
-                "Chronology PDF export command succeeded but output PDF was not created: %s",
+                "Chronology PDF export command succeeded but output PDF is missing/empty: %s",
                 pdf_path,
             )
             return False
 
+        self._last_pdf_export_message = ""
         self._logger.info("Chronology PDF export completed successfully: %s", pdf_path)
         return True
 
