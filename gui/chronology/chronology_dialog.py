@@ -32,6 +32,8 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QPushButton,
     QScrollArea,
+    QStackedWidget,
+    QLabel,
     QVBoxLayout,
     QWidget,
 )
@@ -75,6 +77,10 @@ class ChronologyDialog(QDialog):
         self._cards_scroll_area: QScrollArea | None = None
         self._cards_container: QWidget | None = None
         self._cards_layout: QVBoxLayout | None = None
+        self._combo_type: QComboBox | None = None
+        self._combo_stage: QComboBox | None = None
+        self._stacked_cards: QStackedWidget | None = None
+        self._card_map: dict[str, dict[str, Any]] = {}
         self._validation_bin_crc_records = validation_bin_crc_records or {}
         self._skipped_firmware: list[dict[str, str]] = []
 
@@ -133,12 +139,31 @@ class ChronologyDialog(QDialog):
 
         self._cards_container = QWidget(self._cards_scroll_area)
         self._cards_layout = QVBoxLayout(self._cards_container)
-        self._cards_layout.setContentsMargins(0, 0, 0, 0)
+        self._cards_layout.setContentsMargins(10, 10, 10, 10)
         self._cards_layout.setSpacing(12)
+
+        # Dropdowns Layout
+        dropdown_layout = QHBoxLayout()
+        dropdown_layout.addWidget(QLabel("Firmware Type:"))
+        self._combo_type = QComboBox()
+        dropdown_layout.addWidget(self._combo_type)
+        dropdown_layout.addWidget(QLabel("Firmware Stage:"))
+        self._combo_stage = QComboBox()
+        dropdown_layout.addWidget(self._combo_stage)
+        dropdown_layout.addStretch(1)
+        self._cards_layout.addLayout(dropdown_layout)
+
+        # Stacked Widget for Cards
+        self._stacked_cards = QStackedWidget()
+        self._cards_layout.addWidget(self._stacked_cards)
+        
         self._cards_layout.addStretch(1)
 
         self._cards_scroll_area.setWidget(self._cards_container)
         self.ui.verticalLayoutFirmware.addWidget(self._cards_scroll_area)
+        
+        self._combo_type.currentTextChanged.connect(self._on_type_changed)
+        self._combo_stage.currentTextChanged.connect(self._on_stage_changed)
 
     def _connect_signals(self) -> None:
         """
@@ -248,17 +273,19 @@ class ChronologyDialog(QDialog):
         )
 
     def _build_dynamic_cards(self) -> None:
-        if self._cards_layout is None:
+        if self._stacked_cards is None:
             return
 
         self._entry_cards.clear()
+        self._card_map.clear()
 
-        while self._cards_layout.count() > 1:
-            item = self._cards_layout.takeAt(0)
-            widget = item.widget()
-            if widget is not None:
-                widget.deleteLater()
+        while self._stacked_cards.count() > 0:
+            widget = self._stacked_cards.widget(0)
+            self._stacked_cards.removeWidget(widget)
+            widget.deleteLater()
 
+        types = set()
+        
         for index, (folder, entries) in enumerate(self._groups, start=1):
             if not entries:
                 continue
@@ -266,9 +293,56 @@ class ChronologyDialog(QDialog):
             entry = entries[0]
             card = self._create_card(index, folder, entry)
             self._entry_cards.append(card)
-            self._cards_layout.insertWidget(self._cards_layout.count() - 1, card["group_box"])
+            self._stacked_cards.addWidget(card["group_box"])
+            
+            fw_folder_str = self._format_firmware_folder(folder)
+            self._card_map[fw_folder_str] = card
+            t, _ = self._split_fw_key(fw_folder_str)
+            types.add(t)
 
-        self.ui.grp_firmware_entries.setTitle(f"Detected Firmware Entries ({len(self._entry_cards)} card(s))")
+        self.ui.grp_firmware_entries.setTitle("Detected Firmware Entries")
+        
+        self._combo_type.blockSignals(True)
+        self._combo_type.clear()
+        self._combo_type.addItems(sorted(list(types)))
+        self._combo_type.blockSignals(False)
+        
+        if self._combo_type.count() > 0:
+            self._on_type_changed(self._combo_type.currentText())
+    def _on_type_changed(self, fw_type: str) -> None:
+        if not self._combo_stage:
+            return
+        self._combo_stage.blockSignals(True)
+        self._combo_stage.clear()
+        
+        stages = []
+        for key in self._card_map:
+            t, s = self._split_fw_key(key)
+            if t == fw_type and s not in stages:
+                stages.append(s)
+                
+        self._combo_stage.addItems(sorted(stages))
+        self._combo_stage.blockSignals(False)
+        if stages:
+            self._on_stage_changed(self._combo_stage.currentText())
+
+    def _on_stage_changed(self, fw_stage: str) -> None:
+        fw_type = self._combo_type.currentText()
+        if not fw_type:
+            return
+            
+        key = f"{fw_type}/{fw_stage}" if fw_stage and fw_stage != "(Root)" else fw_type
+        if key in self._card_map:
+            card = self._card_map[key]
+            self._stacked_cards.setCurrentWidget(card["group_box"])
+        self._update_generate_button_state()
+        
+    def _split_fw_key(self, key: str) -> tuple[str, str]:
+        parts = key.split("/")
+        if len(parts) == 1:
+            return parts[0], "(Root)"
+        return parts[0], "/".join(parts[1:])
+
 
     def _create_card(self, index: int, folder: Path, entry: Any) -> dict[str, Any]:
         card_box = QGroupBox(f"Chronology {index}", self._cards_container)
@@ -284,7 +358,18 @@ class ChronologyDialog(QDialog):
         line_plc = self._read_only_line(entry.plc_model)
         line_bootloader = self._read_only_line(entry.bootloader_version or "")
         line_stage = self._read_only_line(entry.testing_stage)
-        line_source_path = self._read_only_line(str(entry.source_code_path))
+        
+        line_source_path = QLineEdit(card_box)
+        line_source_path.setText("")
+        
+        source_widget = QWidget(card_box)
+        source_layout = QHBoxLayout(source_widget)
+        source_layout.setContentsMargins(0, 0, 0, 0)
+        source_layout.setSpacing(6)
+        source_layout.addWidget(line_source_path)
+        btn_browse_source = QPushButton("Browse...", card_box)
+        source_layout.addWidget(btn_browse_source)
+
         line_template_path = self._read_only_line("")
 
         template_widget = QWidget(card_box)
@@ -311,7 +396,7 @@ class ChronologyDialog(QDialog):
         form.addRow("PLC Model:", line_plc)
         form.addRow("Bootloader Version:", line_bootloader)
         form.addRow("Testing Stage:", line_stage)
-        form.addRow("Source Code Path:", line_source_path)
+        form.addRow("Source Code Path:", source_widget)
         form.addRow("Chronology Template:", template_widget)
 
         form.addRow("Reason for Upgrade:", line_reason)
@@ -330,6 +415,7 @@ class ChronologyDialog(QDialog):
         combo_operator_modification.currentTextChanged.connect(self._update_generate_button_state)
         combo_automation_modification.currentTextChanged.connect(self._update_generate_button_state)
         btn_browse_template.clicked.connect(lambda _checked=False, card=None: self._on_browse_template_clicked(card or card_data))
+        btn_browse_source.clicked.connect(lambda _checked=False, card=None: self._on_browse_source_clicked(card or card_data))
 
         card_data = {
             "group_box": card_box,
@@ -376,26 +462,28 @@ class ChronologyDialog(QDialog):
         return combo
 
     def _update_generate_button_state(self) -> None:
-        card_ready = bool(self._entry_cards)
+        if not self._stacked_cards or self._stacked_cards.count() == 0:
+            self.ui.btn_generate.setEnabled(False)
+            return
 
+        active_widget = self._stacked_cards.currentWidget()
+        card_ready = False
+        
         for card in self._entry_cards:
-            if not card["line_reason"].text().strip():
-                card_ready = False
-                break
-            if not card["line_released_by"].text().strip():
-                card_ready = False
-                break
-            if not card["line_tested_by"].text().strip():
-                card_ready = False
-                break
-            if card["combo_ladder_release"].currentText() == "Select...":
-                card_ready = False
-                break
-            if card["combo_operator_modification"].currentText() == "Select...":
-                card_ready = False
-                break
-            if card["combo_automation_modification"].currentText() == "Select...":
-                card_ready = False
+            if card["group_box"] == active_widget:
+                card_ready = True
+                if not card["line_reason"].text().strip():
+                    card_ready = False
+                if not card["line_released_by"].text().strip():
+                    card_ready = False
+                if not card["line_tested_by"].text().strip():
+                    card_ready = False
+                if card["combo_ladder_release"].currentText() == "Select...":
+                    card_ready = False
+                if card["combo_operator_modification"].currentText() == "Select...":
+                    card_ready = False
+                if card["combo_automation_modification"].currentText() == "Select...":
+                    card_ready = False
                 break
 
         self.ui.btn_generate.setEnabled(card_ready)
@@ -416,6 +504,15 @@ class ChronologyDialog(QDialog):
             card["line_template_path"].setText(str(path))
             self._update_generate_button_state()
 
+
+    def _on_browse_source_clicked(self, card: dict[str, Any]) -> None:
+        filepath = QFileDialog.getExistingDirectory(
+            self,
+            "Select Source Code Folder",
+            str(self._project_folder)
+        )
+        if filepath:
+            card["line_source_path"].setText(filepath)
     def _on_browse_output_clicked(self) -> None:
         """
         Opens file dialog to select the output destination and updates the UI line edit.
@@ -425,86 +522,59 @@ class ChronologyDialog(QDialog):
             self.ui.line_output_file.setText(str(path))
 
     def _on_generate_clicked(self) -> None:
-        """
-        Handles the generate/next button click. Validates inputs, updates the 
-        current group's models, and advances the wizard or finishes generation.
-        """
         if not self._validate_inputs():
             return
 
         self._update_chronology_models()
 
-        generated_count = 0
-        skipped_records = list(self._skipped_firmware)
-
         try:
-            for card in self._entry_cards:
-                entry = card["entry"]
+            active_widget = self._stacked_cards.currentWidget()
+            card = None
+            for c in self._entry_cards:
+                if c["group_box"] == active_widget:
+                    card = c
+                    break
+            
+            if not card:
+                return
 
-                try:
-                    target_path = self._resolve_chronology_output_path(entry.bin_file_path.parent)
-                    target_path.parent.mkdir(parents=True, exist_ok=True)
+            entry = card["entry"]
 
-                    if target_path.exists():
-                        template_path = target_path
-                    else:
-                        template_path = self._selected_template_path_for_card(card)
-                        if template_path is None:
-                            QMessageBox.warning(
-                                self,
-                                GUI_MESSAGES.get("validation_error", "Validation Error"),
-                                f"Please select a chronology template for\n{card['line_firmware_folder'].text()}",
-                            )
-                            return
+            target_path = self._resolve_chronology_output_path(entry.bin_file_path.parent)
+            target_path.parent.mkdir(parents=True, exist_ok=True)
 
-                    chronology = ProjectChronology(project_root=self._project_folder, entries=[entry])
-                    writer = ChronologyExcelWriter(template_path)
-                    writer.write(chronology, target_path)
-                    generated_count += 1
-
-                except ChronologyTemplateError as exc:
-                    self._logger.error(f"Chronology generation failed for {card['line_firmware_folder'].text()}: {exc}")
-                    skipped_records.append(
-                        {
-                            "firmware_folder": card["line_firmware_folder"].text(),
-                            "reason": str(exc),
-                        }
-                    )
-                    continue
-                except Exception as exc:
-                    self._logger.exception(
-                        "Unexpected error during chronology generation for %s",
-                        card["line_firmware_folder"].text(),
-                    )
-                    skipped_records.append(
-                        {
-                            "firmware_folder": card["line_firmware_folder"].text(),
-                            "reason": str(exc),
-                        }
-                    )
-                    continue
-
-            if generated_count == 0:
-                QMessageBox.information(
-                    self,
-                    "No Chronology Generated",
-                    "All firmware folders failed CRC validation.",
-                )
+            if target_path.exists():
+                template_path = target_path
             else:
-                summary_lines = [
-                    GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"),
-                    "",
-                    f"Generated: {generated_count}",
-                    f"Skipped: {len(skipped_records)}",
-                ]
+                template_path = self._selected_template_path_for_card(card)
+                if template_path is None:
+                    QMessageBox.warning(
+                        self,
+                        GUI_MESSAGES.get("validation_error", "Validation Error"),
+                        f"Please select a chronology template for\n{card['line_firmware_folder'].text()}",
+                    )
+                    return
 
-                if skipped_records:
-                    summary_lines.extend(["", "Skipped Firmware:"])
-                    for item in skipped_records:
-                        summary_lines.append(item.get("firmware_folder", "Unknown"))
-                        summary_lines.append(f"Reason: {item.get('reason', 'Unknown')}")
+            chronology = ProjectChronology(project_root=self._project_folder, entries=[entry])
+            writer = ChronologyExcelWriter(template_path)
+            writer.write(chronology, target_path)
 
-                QMessageBox.information(self, GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"), "\n".join(summary_lines))
+            msg_box = QMessageBox(self)
+            msg_box.setWindowTitle(GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"))
+            msg_box.setText("Chronology generated successfully.")
+            
+            btn_validate = msg_box.addButton("Validate Chronology", QMessageBox.ActionRole)
+            btn_close = msg_box.addButton("Close", QMessageBox.RejectRole)
+            
+            msg_box.exec()
+            
+            if msg_box.clickedButton() == btn_validate:
+                # We can communicate back to the main window or signal, but the simplest is to close this and let the parent know.
+                # Since we don't have a direct reference to open validation directly from here cleanly, 
+                # we'll set a special property or result code.
+                self.setProperty("validate_requested", True)
+                self.setProperty("generated_chronology_path", str(target_path))
+            
             self.accept()
 
         except Exception as exc:
@@ -512,49 +582,48 @@ class ChronologyDialog(QDialog):
             QMessageBox.critical(self, GUI_MESSAGES.get("unexpected_error", "Unexpected Error"), f"An unexpected error occurred:\n{exc}")
 
     def _validate_inputs(self) -> bool:
-        """
-        Validates the user input fields.
-
-        Returns:
-            True if all inputs are valid, False otherwise.
-        """
-        if not self._entry_cards:
+        if not self._stacked_cards or self._stacked_cards.count() == 0:
             QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_no_crc", "No validated firmware folders with CRC PASS were discovered."))
             return False
 
-        for index, card in enumerate(self._entry_cards, start=1):
-            if not card["line_reason"].text().strip():
-                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_reason_empty", "'Reason for Upgrade' cannot be empty."))
-                card["line_reason"].setFocus()
-                return False
-            if not card["line_released_by"].text().strip():
-                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_released_by_empty", "'Released By' cannot be empty."))
-                card["line_released_by"].setFocus()
-                return False
-            if not card["line_tested_by"].text().strip():
-                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_tested_by_empty", "'Tested By' cannot be empty."))
-                card["line_tested_by"].setFocus()
-                return False
-            if card["combo_ladder_release"].currentText() == "Select...":
-                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_ladder_release_empty", "select 'Ladder Release To Production'."))
-                card["combo_ladder_release"].setFocus()
-                return False
-            if card["combo_operator_modification"].currentText() == "Select...":
-                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_operator_mod_empty", "select 'Operator Procedure Modification'."))
-                card["combo_operator_modification"].setFocus()
-                return False
-            if card["combo_automation_modification"].currentText() == "Select...":
-                QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Chronology {index}: " + GUI_MESSAGES.get("chronology_automation_mod_empty", "select 'Automation Set Up Modification'."))
-                card["combo_automation_modification"].setFocus()
-                return False
-            if not self._is_template_selected_for_card(card):
-                QMessageBox.warning(
-                    self,
-                    GUI_MESSAGES.get("validation_error", "Validation Error"),
-                    f"Please select a chronology template for\n{card['line_firmware_folder'].text()}",
-                )
-                card["btn_browse_template"].setFocus()
-                return False
+        active_widget = self._stacked_cards.currentWidget()
+        card = None
+        for c in self._entry_cards:
+            if c["group_box"] == active_widget:
+                card = c
+                break
+                
+        if not card:
+            return False
+
+        if not card["line_reason"].text().strip():
+            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_reason_empty", "'Reason for Upgrade' cannot be empty."))
+            card["line_reason"].setFocus()
+            return False
+        if not card["line_released_by"].text().strip():
+            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_released_by_empty", "'Released By' cannot be empty."))
+            card["line_released_by"].setFocus()
+            return False
+        if not card["line_tested_by"].text().strip():
+            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_tested_by_empty", "'Tested By' cannot be empty."))
+            card["line_tested_by"].setFocus()
+            return False
+        if card["combo_ladder_release"].currentText() == "Select...":
+            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_ladder_release_empty", "select 'Ladder Release To Production'."))
+            card["combo_ladder_release"].setFocus()
+            return False
+        if card["combo_operator_modification"].currentText() == "Select...":
+            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_operator_mod_empty", "select 'Operator Procedure Modification'."))
+            card["combo_operator_modification"].setFocus()
+            return False
+        if card["combo_automation_modification"].currentText() == "Select...":
+            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_automation_mod_empty", "select 'Automation Set Up Modification'."))
+            card["combo_automation_modification"].setFocus()
+            return False
+        if not self._is_template_selected_for_card(card):
+            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Please select a chronology template for\n{card['line_firmware_folder'].text()}")
+            card["btn_browse_template"].setFocus()
+            return False
 
         return True
 
@@ -638,6 +707,10 @@ class ChronologyDialog(QDialog):
 
         for card in self._entry_cards:
             entry = card["entry"]
+            
+            if card["line_source_path"].text().strip():
+                entry.source_code_path = Path(card["line_source_path"].text().strip())
+                
             reason = card["line_reason"].text().strip()
             released_by = card["line_released_by"].text().strip()
             tested_by = card["line_tested_by"].text().strip()

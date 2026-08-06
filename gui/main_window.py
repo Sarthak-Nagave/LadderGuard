@@ -815,6 +815,11 @@ class MainWindow(QMainWindow):
 
         logger.info("Chronology generation completed.")
 
+        if dialog.property("validate_requested"):
+            logger.info("User requested validation of newly generated chronology.")
+            self._open_report_after_validation = True
+            self._start_validation()
+
     # ---------------------------------------------------------
 
     @staticmethod

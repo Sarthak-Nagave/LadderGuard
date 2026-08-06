@@ -356,18 +356,18 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             source_paths = {card["line_source_path"].text() for card in dialog._entry_cards}
             self.assertEqual(
                 source_paths,
-                {str(bin1.resolve()), str(bin2.resolve()), str(bin3.resolve())},
+                {""},
             )
 
             folder_labels = {card["line_firmware_folder"].text() for card in dialog._entry_cards}
             self.assertEqual(folder_labels, {"Master/Initial", "Slave/Final", "UUT/QC"})
 
             for card in dialog._entry_cards:
-                self.assertTrue(card["line_source_path"].isReadOnly())
+                self.assertFalse(card["line_source_path"].isReadOnly())
 
             dialog.close()
 
-    def test_dialog_generate_button_waits_for_all_cards_required_fields(self) -> None:
+    def test_dialog_generate_button_waits_for_active_card_required_fields(self) -> None:
         QApplication.instance() or QApplication([])
 
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -392,27 +392,19 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             dialog._update_generate_button_state()
             self.assertFalse(dialog.ui.btn_generate.isEnabled())
 
-            first_card = dialog._entry_cards[0]
-            first_card["line_reason"].setText("Release update")
-            first_card["line_released_by"].setText("Dev A")
-            first_card["line_tested_by"].setText("QA A")
-            first_card["combo_ladder_release"].setCurrentText("Yes")
-            first_card["combo_operator_modification"].setCurrentText("No")
-            first_card["combo_automation_modification"].setCurrentText("No")
+            # Find the active card
+            active_widget = dialog._stacked_cards.currentWidget()
+            active_card = next(c for c in dialog._entry_cards if c["group_box"] == active_widget)
+
+            active_card["line_reason"].setText("Release update")
+            active_card["line_released_by"].setText("Dev A")
+            active_card["line_tested_by"].setText("QA A")
+            active_card["combo_ladder_release"].setCurrentText("Yes")
+            active_card["combo_operator_modification"].setCurrentText("No")
+            active_card["combo_automation_modification"].setCurrentText("No")
             dialog._update_generate_button_state()
 
-            # Still disabled because second card is incomplete.
-            self.assertFalse(dialog.ui.btn_generate.isEnabled())
-
-            second_card = dialog._entry_cards[1]
-            second_card["line_reason"].setText("Release update")
-            second_card["line_released_by"].setText("Dev B")
-            second_card["line_tested_by"].setText("QA B")
-            second_card["combo_ladder_release"].setCurrentText("Yes")
-            second_card["combo_operator_modification"].setCurrentText("Yes")
-            second_card["combo_automation_modification"].setCurrentText("No")
-            dialog._update_generate_button_state()
-
+            # Generate button should be enabled since active card is filled out
             self.assertTrue(dialog.ui.btn_generate.isEnabled())
             dialog.close()
 

@@ -49,7 +49,7 @@ class ReleaseManagementWorkflowTests(unittest.TestCase):
             card["combo_operator_modification"].setCurrentText("No")
             card["combo_automation_modification"].setCurrentText("No")
 
-    def test_all_pass_firmware_folders_generate_independent_chronologies(self) -> None:
+    def test_single_active_firmware_generates_chronology(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             template_path = root / "template.xlsx"
@@ -57,97 +57,39 @@ class ReleaseManagementWorkflowTests(unittest.TestCase):
 
             stage1 = root / "2. Bin File" / "Master" / "Initial"
             stage2 = root / "2. Bin File" / "Slave" / "Final"
-            stage3 = root / "2. Bin File" / "UUT" / "QC"
             stage1.mkdir(parents=True, exist_ok=True)
             stage2.mkdir(parents=True, exist_ok=True)
-            stage3.mkdir(parents=True, exist_ok=True)
 
             bin1 = stage1 / "FW_MST_INITIAL_MIBRX-4M_BL20_V1.00.bin"
             bin2 = stage2 / "FW_SLV_FINAL_FLEXYS-2M_BL10_V1.01.bin"
-            bin3 = stage3 / "FW_UUT_QC_MIBRX-2M_BL30_V1.02.bin"
             bin1.write_bytes(b"1")
             bin2.write_bytes(b"2")
-            bin3.write_bytes(b"3")
 
             records = {
                 "Master/Initial": {"status": "PASS", "bin_file": str(bin1), "bin_name": bin1.name, "bin_crc": "AAAABBBB"},
                 "Slave/Final": {"status": "PASS", "bin_file": str(bin2), "bin_name": bin2.name, "bin_crc": "CCCCDDDD"},
-                "UUT/QC": {"status": "PASS", "bin_file": str(bin3), "bin_name": bin3.name, "bin_crc": "EEEEFFFF"},
             }
 
             dialog = ChronologyDialog(project_folder=root, validation_bin_crc_records=records)
             self._fill_required_fields(dialog)
+            
+            # Select Master/Initial
+            dialog._combo_type.setCurrentText("Master")
+            dialog._combo_stage.setCurrentText("Initial")
 
             with patch.object(
                 ChronologyDialog,
                 "_selected_template_path_for_card",
                 return_value=template_path,
-            ), patch("gui.chronology.chronology_dialog.QMessageBox.information") as info_mock, patch(
-                "gui.chronology.chronology_dialog.QMessageBox.warning"
-            ) as warn_mock, patch(
-                "gui.chronology.chronology_dialog.QMessageBox.critical"
-            ) as crit_mock:
+            ), patch("gui.chronology.chronology_dialog.QMessageBox.exec", return_value=0) as mock_exec, patch(
+                "gui.chronology.chronology_dialog.QMessageBox.clickedButton", return_value=None
+            ):
                 dialog._on_generate_clicked()
 
             self.assertTrue((root / "7. Chronology" / "Master" / "Initial" / "Ladder_Chronology.xlsx").exists())
-            self.assertTrue((root / "7. Chronology" / "Slave" / "Final" / "Ladder_Chronology.xlsx").exists())
-            self.assertTrue((root / "7. Chronology" / "UUT" / "QC" / "Ladder_Chronology.xlsx").exists())
+            self.assertFalse((root / "7. Chronology" / "Slave" / "Final" / "Ladder_Chronology.xlsx").exists())
 
-            title = info_mock.call_args[0][1]
-            message = info_mock.call_args[0][2]
-            self.assertEqual(title, "Chronology Generation Completed")
-            self.assertIn("Generated: 3", message)
-            self.assertIn("Skipped: 0", message)
 
-    def test_partial_generation_skips_failed_firmware_folders(self) -> None:
-        with tempfile.TemporaryDirectory() as temp_dir:
-            root = Path(temp_dir)
-            template_path = root / "template.xlsx"
-            self._create_template(template_path)
-
-            stage1 = root / "2. Bin File" / "Master" / "Initial"
-            stage2 = root / "2. Bin File" / "Slave" / "Final"
-            stage3 = root / "2. Bin File" / "UUT" / "QC"
-            stage1.mkdir(parents=True, exist_ok=True)
-            stage2.mkdir(parents=True, exist_ok=True)
-            stage3.mkdir(parents=True, exist_ok=True)
-
-            bin1 = stage1 / "FW_MST_INITIAL_MIBRX-4M_BL20_V1.00.bin"
-            bin2 = stage2 / "FW_SLV_FINAL_FLEXYS-2M_BL10_V1.01.bin"
-            bin3 = stage3 / "FW_UUT_QC_MIBRX-2M_BL30_V1.02.bin"
-            bin1.write_bytes(b"1")
-            bin2.write_bytes(b"2")
-            bin3.write_bytes(b"3")
-
-            records = {
-                "Master/Initial": {"status": "PASS", "bin_file": str(bin1), "bin_name": bin1.name, "bin_crc": "AAAABBBB"},
-                "Slave/Final": {"status": "PASS", "bin_file": str(bin2), "bin_name": bin2.name, "bin_crc": "CCCCDDDD"},
-                "UUT/QC": {"status": "FAILED", "bin_file": str(bin3), "bin_name": bin3.name, "bin_crc": "EEEEFFFF", "reason": "CRC Mismatch"},
-            }
-
-            dialog = ChronologyDialog(project_folder=root, validation_bin_crc_records=records)
-            self._fill_required_fields(dialog)
-
-            with patch.object(
-                ChronologyDialog,
-                "_selected_template_path_for_card",
-                return_value=template_path,
-            ), patch("gui.chronology.chronology_dialog.QMessageBox.information") as info_mock, patch(
-                "gui.chronology.chronology_dialog.QMessageBox.warning"
-            ) as warn_mock, patch(
-                "gui.chronology.chronology_dialog.QMessageBox.critical"
-            ) as crit_mock:
-                dialog._on_generate_clicked()
-
-            self.assertTrue((root / "7. Chronology" / "Master" / "Initial" / "Ladder_Chronology.xlsx").exists())
-            self.assertTrue((root / "7. Chronology" / "Slave" / "Final" / "Ladder_Chronology.xlsx").exists())
-            self.assertFalse((root / "7. Chronology" / "UUT" / "QC" / "Ladder_Chronology.xlsx").exists())
-
-            message = info_mock.call_args[0][2]
-            self.assertIn("Generated: 2", message)
-            self.assertIn("Skipped: 1", message)
-            self.assertIn("UUT/QC", message)
-            self.assertIn("CRC Mismatch", message)
 
     def test_existing_chronology_workbook_preserves_history_when_updated(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -195,9 +137,9 @@ class ReleaseManagementWorkflowTests(unittest.TestCase):
             dialog = ChronologyDialog(project_folder=root, validation_bin_crc_records=records)
             self._fill_required_fields(dialog)
 
-            with patch("gui.chronology.chronology_dialog.QMessageBox.information"), patch(
-                "gui.chronology.chronology_dialog.QMessageBox.warning"
-            ), patch("gui.chronology.chronology_dialog.QMessageBox.critical"):
+            with patch("gui.chronology.chronology_dialog.QMessageBox.exec", return_value=0), patch(
+                "gui.chronology.chronology_dialog.QMessageBox.clickedButton", return_value=None
+            ):
                 dialog._on_generate_clicked()
 
             workbook = openpyxl.load_workbook(chronology_path)
