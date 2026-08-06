@@ -18,6 +18,7 @@ Python:
 from __future__ import annotations
 
 import logging
+import os
 from pathlib import Path
 from typing import Any
 
@@ -563,17 +564,21 @@ class ChronologyDialog(QDialog):
             msg_box.setWindowTitle(GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"))
             msg_box.setText("Chronology generated successfully.")
             
-            btn_validate = msg_box.addButton("Validate Chronology", QMessageBox.ActionRole)
+            btn_view_excel = msg_box.addButton("View Chronology Excel", QMessageBox.ActionRole)
             btn_close = msg_box.addButton("Close", QMessageBox.RejectRole)
             
             msg_box.exec()
             
-            if msg_box.clickedButton() == btn_validate:
-                # We can communicate back to the main window or signal, but the simplest is to close this and let the parent know.
-                # Since we don't have a direct reference to open validation directly from here cleanly, 
-                # we'll set a special property or result code.
-                self.setProperty("validate_requested", True)
-                self.setProperty("generated_chronology_path", str(target_path))
+            if msg_box.clickedButton() == btn_view_excel:
+                try:
+                    os.startfile(str(target_path))
+                except Exception as e:
+                    self._logger.exception("Failed to open chronology Excel.")
+                    QMessageBox.warning(
+                        self, 
+                        "Error", 
+                        f"Failed to open the Excel file. It might not be associated with any application.\n\nFile: {target_path}"
+                    )
             
             self.accept()
 

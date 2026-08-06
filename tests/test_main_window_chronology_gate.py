@@ -70,7 +70,6 @@ class MainWindowChronologyGateTests(unittest.TestCase):
 
             with patch("gui.main_window.ChronologyDialog") as dialog_mock:
                 dialog_instance = MagicMock()
-                dialog_instance.property.return_value = False
                 dialog_mock.return_value = dialog_instance
 
                 window.on_generate_chronology()
