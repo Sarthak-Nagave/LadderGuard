@@ -56,9 +56,9 @@ class ProgressWidget(QFrame):
 
         layout = QVBoxLayout(self)
 
-        layout.setContentsMargins(10, 8, 10, 8)
+        layout.setContentsMargins(8, 6, 8, 6)
 
-        layout.setSpacing(4)
+        layout.setSpacing(2)
 
         title = QLabel(PROGRESS_TITLE)
 
@@ -70,23 +70,18 @@ class ProgressWidget(QFrame):
 
         self.progress_bar.setMaximum(100)
 
-        self.progress_bar.setTextVisible(False)
-        self.progress_bar.setFormat("")
+        self.progress_bar.setTextVisible(True)
+        self.progress_bar.setFormat("%p%")
 
         self.progress_bar.setAlignment(Qt.AlignCenter)
-
-        self.percent_label = QLabel("0%")
-        self.percent_label.setAlignment(Qt.AlignCenter)
-        self.percent_label.setObjectName("ProgressPercent")
 
         self.status_label = QLabel()
 
         self.status_label.setAlignment(Qt.AlignCenter)
-        self.status_label.setObjectName("StatusBadge")
+        self.status_label.setObjectName("ProgressStatusText")
 
         layout.addWidget(title)
         layout.addWidget(self.progress_bar)
-        layout.addWidget(self.percent_label)
         layout.addWidget(self.status_label)
 
     # ---------------------------------------------------------
@@ -97,11 +92,8 @@ class ProgressWidget(QFrame):
         """
 
         self.progress_bar.setValue(0)
-        self.percent_label.setText("0%")
 
-        self.status_label.setText(
-            "Ready"
-        )
+        self.status_label.setText("Ready")
 
         self.status_label.setStyleSheet(
             ""
@@ -117,8 +109,6 @@ class ProgressWidget(QFrame):
         Update current validation step.
         """
 
-        self.percent_label.setText(self.percent_label.text())
-
     # ---------------------------------------------------------
 
     def set_progress(
@@ -132,7 +122,6 @@ class ProgressWidget(QFrame):
         value = max(0, min(100, value))
 
         self.progress_bar.setValue(value)
-        self.percent_label.setText(f"{value}%")
 
     # ---------------------------------------------------------
 
@@ -155,10 +144,9 @@ class ProgressWidget(QFrame):
         """
 
         self.progress_bar.setValue(100)
-        self.percent_label.setText("100%")
 
         self.status_label.setText(
-            "Validation Completed"
+            "Validation Completed Successfully"
         )
 
         self.status_label.setStyleSheet("")

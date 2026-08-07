@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSizePolicy, QSpacerItem, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSizePolicy, QSpacerItem, QToolButton, QVBoxLayout, QWidget
 
 from config import (
     THEME_PRIMARY,
@@ -47,8 +47,8 @@ class StatusBadge(QLabel):
         super().__init__()
         self.setText(status.name)
         self.setAlignment(Qt.AlignCenter)
-        self.setFixedHeight(24)
-        self.setMinimumWidth(85)
+        self.setFixedHeight(20)
+        self.setMinimumWidth(74)
         self.setStyleSheet(self._style_for_status(status))
 
     @staticmethod
@@ -65,20 +65,21 @@ class DetailRowWidget(QWidget):
 
     def __init__(self, row: ReportDetailRow, parent: QWidget | None = None) -> None:
         super().__init__(parent)
+        self.setStyleSheet("background: transparent; border: none;")
         layout = QHBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
-        layout.setSpacing(6)
+        layout.setSpacing(4)
 
         if row.label:
             label = QLabel(row.label or "")
-            label.setStyleSheet(f"font-weight: 700; color: {UI_THEME_TEXT_MAIN};")
+            label.setStyleSheet(f"font-size: 10px; font-weight: 600; color: {UI_THEME_TEXT_MAIN}; background: transparent; border: none;")
             label.setWordWrap(True)
             layout.addWidget(label)
             layout.addSpacerItem(QSpacerItem(8, 0, QSizePolicy.Fixed, QSizePolicy.Minimum))
 
         value = QLabel(row.value or "")
         value.setWordWrap(True)
-        value.setStyleSheet(f"color: {UI_THEME_TEXT_MUTED};")
+        value.setStyleSheet(f"font-size: 10px; color: {UI_THEME_TEXT_MUTED}; background: transparent; border: none;")
         layout.addWidget(value, 1)
 
 
@@ -90,25 +91,19 @@ class DetailCardWidget(QWidget):
         self.setStyleSheet("background: transparent;")
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
-        layout.setSpacing(4)
-        print(
-            f"[TRACE_REPORT_UI] DetailCardWidget.__init__: card.title={card.title!r} len(rows)={len(card.rows)}",
-            flush=True,
-        )
+        layout.setSpacing(3)
 
         if card.title:
             title = QLabel(card.title or "")
-            title.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
-            title.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN};")
+            title.setFont(QFont("Segoe UI", 10, QFont.Weight.DemiBold))
+            title.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN}; background: transparent; border: none;")
             layout.addWidget(title)
 
         if card.rows:
             for row in card.rows:
-                print(f"[TRACE_REPORT_UI] DetailCardWidget: before DetailRowWidget row.label={row.label!r} row.value={row.value!r}", flush=True)
                 row_widget = DetailRowWidget(row)
                 row_widget.setStyleSheet("background: transparent;")
                 layout.addWidget(row_widget)
-                print(f"[TRACE_REPORT_UI] DetailCardWidget: after layout.addWidget(detail_row) layout.count()={layout.count()}", flush=True)
 
         for child in card.children:
             child_container = QWidget()
@@ -125,20 +120,19 @@ class ValidationRowWidget(QFrame):
 
     def __init__(self, section: ReportSection) -> None:
         super().__init__()
-        print(f"[TRACE_REPORT_UI] ValidationRowWidget.__init__: len(section.details)={len(section.details)}", flush=True)
         self.setObjectName("ValidationRow")
         self.setStyleSheet(
-            f"QFrame#ValidationRow {{ background: {UI_THEME_BG_LIGHT}; border: 1px solid {UI_THEME_BORDER}; border-radius: 8px; }}"
+            f"QFrame#ValidationRow {{ background: {UI_THEME_BG_LIGHT}; border: 1px solid {UI_THEME_BORDER}; border-radius: 6px; }}"
         )
 
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(16, 14, 16, 14)
-        layout.setSpacing(10)
+        layout.setContentsMargins(10, 8, 10, 8)
+        layout.setSpacing(6)
 
         header_layout = QHBoxLayout()
-        header_layout.setSpacing(10)
+        header_layout.setSpacing(6)
         step_label = QLabel(section.title or "")
-        step_label.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN}; font-size: 11pt; font-weight: 700;")
+        step_label.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN}; font-size: 14px; font-weight: 700; background: transparent; border: none;")
         step_label.setWordWrap(True)
         header_layout.addWidget(step_label, 1)
         header_layout.addWidget(StatusBadge(section.status))
@@ -146,24 +140,36 @@ class ValidationRowWidget(QFrame):
         layout.addLayout(header_layout)
 
         reason_title = QLabel("Reason")
-        reason_title.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN}; font-size: 9pt; font-weight: 700;")
+        reason_title.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN}; font-size: 10px; font-weight: 600; background: transparent; border: none;")
         layout.addWidget(reason_title)
 
         reason_label = QLabel(section.reason or "")
         reason_label.setWordWrap(True)
-        reason_label.setStyleSheet(f"color: {UI_THEME_TEXT_MUTED}; font-size: 9pt;")
+        reason_label.setStyleSheet(f"color: {UI_THEME_TEXT_MUTED}; font-size: 10px; background: transparent; border: none;")
         layout.addWidget(reason_label)
 
         if section.details:
-            details_title = QLabel("Validation Details")
-            details_title.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN}; font-size: 9pt; font-weight: 700; margin-top: 4px;")
-            layout.addWidget(details_title)
+            details_toggle = QToolButton()
+            details_toggle.setObjectName("DetailsToggle")
+            details_toggle.setText("Validation Details")
+            details_toggle.setCheckable(True)
+            details_toggle.setChecked(True)
+            details_toggle.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
+            details_toggle.setArrowType(Qt.ArrowType.DownArrow)
+            layout.addWidget(details_toggle)
+
+            details_container = QWidget()
+            details_container.setObjectName("DetailsContainer")
+            details_layout = QVBoxLayout(details_container)
+            details_layout.setContentsMargins(6, 2, 2, 0)
+            details_layout.setSpacing(4)
 
             for detail_card in section.details:
-                print(
-                    f"[TRACE_REPORT_UI] ValidationRowWidget: detail card.title={detail_card.title!r} len(card.rows)={len(detail_card.rows)}",
-                    flush=True,
-                )
-                layout.addWidget(DetailCardWidget(detail_card))
+                details_layout.addWidget(DetailCardWidget(detail_card))
 
-        print(f"[TRACE_REPORT_UI] ValidationRowWidget.__init__: self.layout().count()={self.layout().count()}", flush=True)
+            def _toggle_details(expanded: bool) -> None:
+                details_container.setVisible(expanded)
+                details_toggle.setArrowType(Qt.ArrowType.DownArrow if expanded else Qt.ArrowType.RightArrow)
+
+            details_toggle.toggled.connect(_toggle_details)
+            layout.addWidget(details_container)

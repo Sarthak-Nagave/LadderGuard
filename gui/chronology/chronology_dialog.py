@@ -30,7 +30,6 @@ from PySide6.QtWidgets import (
     QGroupBox,
     QHBoxLayout,
     QLineEdit,
-    QMessageBox,
     QPushButton,
     QScrollArea,
     QStackedWidget,
@@ -46,6 +45,7 @@ from services.chronology_generator.excel_writer import (
 )
 from services.chronology_generator.models import ChronologyEntry, ProjectChronology
 from services.chronology_generator.parsers import FilenameParser
+from gui.ui_dialogs import show_action_dialog, show_styled_message
 
 from .ui_chronology_dialog import Ui_ChronologyDialog
 
@@ -219,7 +219,7 @@ class ChronologyDialog(QDialog):
             
         except Exception as exc:
             self._logger.exception("Failed to run initial chronology scan.")
-            QMessageBox.critical(self, GUI_MESSAGES.get("scan_error", "Scan Error"), f"Failed to scan project:\n{exc}")
+            self._show_error(GUI_MESSAGES.get("scan_error", "Scan Error"), f"Failed to scan project:\n{exc}")
 
     def _build_entry_from_validation_record(self, relative_path: str, crc_record: dict[str, Any]) -> ChronologyEntry | None:
         selected_bin_file = crc_record.get("bin_file")
@@ -309,7 +309,7 @@ class ChronologyDialog(QDialog):
         types = set()
         
         for index, (folder, entries) in enumerate(self._groups, start=1):
-            if not entries:
+            for relative_path, crc_record in sorted(self._validation_bin_crc_records.items()):
                 continue
 
             entry = entries[0]
@@ -574,8 +574,7 @@ class ChronologyDialog(QDialog):
             else:
                 template_path = self._selected_template_path_for_card(card)
                 if template_path is None:
-                    QMessageBox.warning(
-                        self,
+                    self._show_warning(
                         GUI_MESSAGES.get("validation_error", "Validation Error"),
                         f"Please select a chronology template for\n{card['line_firmware_folder'].text()}",
                     )
@@ -588,64 +587,61 @@ class ChronologyDialog(QDialog):
             pdf_path = writer.last_pdf_path or target_path.with_suffix(".pdf")
             pdf_succeeded = writer.last_pdf_export_succeeded
 
-            msg_box = QMessageBox(self)
-            msg_box.setWindowTitle(GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"))
-
             if pdf_succeeded:
-                msg_box.setIcon(QMessageBox.Information)
-                msg_box.setText(
-                    "Chronology generated successfully.\n\n"
+                text = (
+                    "Chronology Generated Successfully\n\n"
                     "Generated Files\n\n"
                     f"\u2713 {target_path.name}\n"
                     f"\u2713 {pdf_path.name}"
                 )
+                choice = show_action_dialog(
+                    self,
+                    title=GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"),
+                    subtitle="Chronology Generated Successfully",
+                    description=text,
+                    accent="success",
+                    actions=[("View Excel", "excel"), ("View PDF", "pdf"), ("Close", "close")],
+                )
             else:
-                msg_box.setIcon(QMessageBox.Warning)
                 export_message = writer.last_pdf_export_message or "PDF export failed. Please check logs for details."
-                msg_box.setText(
+                text = (
                     "Chronology Excel generated successfully.\n\n"
                     f"{export_message}\n\n"
                     "Generated Files\n\n"
                     f"\u2713 {target_path.name}"
                 )
+                choice = show_action_dialog(
+                    self,
+                    title=GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"),
+                    subtitle="Chronology Generated with Warnings",
+                    description=text,
+                    accent="warning",
+                    actions=[("View Excel", "excel"), ("View PDF", "pdf"), ("Close", "close")],
+                )
 
-            btn_view_excel = msg_box.addButton("View Excel", QMessageBox.ActionRole)
-            btn_view_pdf = msg_box.addButton("View PDF", QMessageBox.ActionRole)
-            btn_close = msg_box.addButton("Close", QMessageBox.RejectRole)
-
-            msg_box.setDefaultButton(btn_close)
-            msg_box.setEscapeButton(btn_close)
-
-            btn_view_excel.setEnabled(target_path.exists())
-            btn_view_pdf.setEnabled(pdf_path.exists())
-
-            msg_box.exec()
-
-            if msg_box.clickedButton() == btn_view_excel:
+            if choice == "excel":
                 if not target_path.exists():
-                    QMessageBox.warning(self, "File Not Found", "Generated Excel file could not be found.")
+                    self._show_warning("File Not Found", "Generated Excel file could not be found.")
                     self.accept()
                     return
                 try:
                     os.startfile(str(target_path))
                 except Exception:
                     self._logger.exception("Failed to open chronology Excel.")
-                    QMessageBox.warning(
-                        self,
+                    self._show_warning(
                         "Error",
                         f"Failed to open the Excel file. It might not be associated with any application.\n\nFile: {target_path}"
                     )
-            elif msg_box.clickedButton() == btn_view_pdf:
+            elif choice == "pdf":
                 if not pdf_path.exists():
-                    QMessageBox.warning(self, "File Not Found", "Generated PDF file could not be found.")
+                    self._show_warning("File Not Found", "Generated PDF file could not be found.")
                     self.accept()
                     return
                 try:
                     os.startfile(str(pdf_path))
                 except Exception:
                     self._logger.exception("Failed to open chronology PDF.")
-                    QMessageBox.warning(
-                        self,
+                    self._show_warning(
                         "Error",
                         f"Failed to open the PDF file. It might not be associated with any application.\n\nFile: {pdf_path}"
                     )
@@ -654,11 +650,11 @@ class ChronologyDialog(QDialog):
 
         except Exception as exc:
             self._logger.exception("Unexpected error during chronology generation.")
-            QMessageBox.critical(self, GUI_MESSAGES.get("unexpected_error", "Unexpected Error"), f"An unexpected error occurred:\n{exc}")
+            self._show_error(GUI_MESSAGES.get("unexpected_error", "Unexpected Error"), f"An unexpected error occurred:\n{exc}")
 
     def _validate_inputs(self) -> bool:
         if not self._stacked_cards or self._stacked_cards.count() == 0:
-            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_no_crc", "No validated firmware folders with CRC PASS were discovered."))
+            self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_no_crc", "No validated firmware folders with CRC PASS were discovered."))
             return False
 
         active_widget = self._stacked_cards.currentWidget()
@@ -672,31 +668,31 @@ class ChronologyDialog(QDialog):
             return False
 
         if not card["line_reason"].text().strip():
-            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_reason_empty", "'Reason for Upgrade' cannot be empty."))
+            self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_reason_empty", "'Reason for Upgrade' cannot be empty."))
             card["line_reason"].setFocus()
             return False
         if not card["line_released_by"].text().strip():
-            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_released_by_empty", "'Released By' cannot be empty."))
+            self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_released_by_empty", "'Released By' cannot be empty."))
             card["line_released_by"].setFocus()
             return False
         if not card["line_tested_by"].text().strip():
-            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_tested_by_empty", "'Tested By' cannot be empty."))
+            self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_tested_by_empty", "'Tested By' cannot be empty."))
             card["line_tested_by"].setFocus()
             return False
         if card["combo_ladder_release"].currentText() == "Select...":
-            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_ladder_release_empty", "select 'Ladder Release To Production'."))
+            self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_ladder_release_empty", "select 'Ladder Release To Production'."))
             card["combo_ladder_release"].setFocus()
             return False
         if card["combo_operator_modification"].currentText() == "Select...":
-            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_operator_mod_empty", "select 'Operator Procedure Modification'."))
+            self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_operator_mod_empty", "select 'Operator Procedure Modification'."))
             card["combo_operator_modification"].setFocus()
             return False
         if card["combo_automation_modification"].currentText() == "Select...":
-            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_automation_mod_empty", "select 'Automation Set Up Modification'."))
+            self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_automation_mod_empty", "select 'Automation Set Up Modification'."))
             card["combo_automation_modification"].setFocus()
             return False
         if not self._is_template_selected_for_card(card):
-            QMessageBox.warning(self, GUI_MESSAGES.get("validation_error", "Validation Error"), f"Please select a chronology template for\n{card['line_firmware_folder'].text()}")
+            self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), f"Please select a chronology template for\n{card['line_firmware_folder'].text()}")
             card["btn_browse_template"].setFocus()
             return False
 
@@ -803,3 +799,9 @@ class ChronologyDialog(QDialog):
             entry.ladder_release_to_production = ladder_release if ladder_release != "Select..." else ""
             entry.operator_procedure_modification = operator_mod if operator_mod != "Select..." else ""
             entry.automation_setup_modification = automation_mod if automation_mod != "Select..." else ""
+
+    def _show_error(self, title: str, message: str) -> None:
+        show_styled_message(self, title, message, variant="error")
+
+    def _show_warning(self, title: str, message: str) -> None:
+        show_styled_message(self, title, message, variant="warning")

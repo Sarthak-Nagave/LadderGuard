@@ -33,6 +33,7 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QPushButton,
     QSizePolicy,
+    QStyle,
     QStatusBar,
     QVBoxLayout,
     QWidget,
@@ -45,7 +46,6 @@ from config import (
     APP_VERSION,
     COMPANY_NAME,
     DOCUMENT_VALIDATION_FOLDERS,
-    APP_SUBTITLE,
     GUI_MESSAGES,
 )
 from core.validation_engine import ValidationEngine
@@ -54,6 +54,7 @@ from core.validation_summary import ValidationSummary
 from gui.chronology.chronology_dialog import ChronologyDialog
 from gui.progress_widget import ProgressWidget
 from gui.result_table import ResultTable
+from gui.ui_dialogs import show_action_dialog, show_styled_message
 from services.file_reader import FileReaderService
 from services.file_search import FileSearchService
 from services.folder_structure_generator import FolderStructureGenerator
@@ -133,18 +134,19 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central_widget)
 
         main_layout = QVBoxLayout(central_widget)
-        main_layout.setContentsMargins(12, 12, 12, 12)
-        main_layout.setSpacing(8)
+        main_layout.setContentsMargins(0, 0, 0, 0)
+        main_layout.setSpacing(0)
 
         header_frame = QFrame()
         header_frame.setObjectName("HeaderPanel")
+        header_frame.setMinimumHeight(70)
         header_layout = QVBoxLayout(header_frame)
-        header_layout.setContentsMargins(12, 8, 12, 8)
+        header_layout.setContentsMargins(14, 10, 14, 10)
         header_layout.setSpacing(2)
 
         title_label = QLabel(APP_NAME)
         title_label.setObjectName("WindowTitle")
-        subtitle_label = QLabel(APP_SUBTITLE)
+        subtitle_label = QLabel(f"Version {APP_VERSION}")
         subtitle_label.setObjectName("WindowSubtitle")
 
         header_layout.addWidget(title_label)
@@ -152,20 +154,26 @@ class MainWindow(QMainWindow):
 
         main_layout.addWidget(header_frame)
 
+        content_widget = QWidget()
+        content_layout = QVBoxLayout(content_widget)
+        content_layout.setContentsMargins(16, 12, 16, 16)
+        content_layout.setSpacing(10)
+        main_layout.addWidget(content_widget, 1)
+
         self.summary_container = QFrame()
         self.summary_container.setObjectName("SummaryPanel")
         self.summary_layout = QGridLayout(self.summary_container)
         self.summary_layout.setContentsMargins(10, 10, 10, 10)
-        self.summary_layout.setSpacing(6)
+        self.summary_layout.setSpacing(8)
         self.summary_cards: dict[str, QFrame] = {}
         self.summary_value_labels: dict[str, QLabel] = {}
         self._build_summary_cards()
-        main_layout.addWidget(self.summary_container)
+        content_layout.addWidget(self.summary_container)
 
         project_frame = QFrame()
         project_frame.setObjectName("ProjectPanel")
         project_layout = QHBoxLayout(project_frame)
-        project_layout.setContentsMargins(10, 6, 10, 6)
+        project_layout.setContentsMargins(10, 8, 10, 8)
         project_layout.setSpacing(8)
 
         project_label = QLabel("Project Folder")
@@ -175,46 +183,55 @@ class MainWindow(QMainWindow):
             QSizePolicy.Expanding,
             QSizePolicy.Preferred,
         )
-        self.project_path_label.setWordWrap(True)
+        self.project_path_label.setWordWrap(False)
         self.project_path_label.setMinimumHeight(24)
         self.project_path_label.setObjectName("ProjectPathLabel")
         self.browse_button = QPushButton("Browse...")
+        self.browse_button.setObjectName("BrowseButton")
+        self.browse_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DirOpenIcon))
 
         project_layout.addWidget(project_label)
         project_layout.addWidget(self.project_path_label, 1)
         project_layout.addWidget(self.browse_button)
 
-        main_layout.addWidget(project_frame)
+        content_layout.addWidget(project_frame)
 
         button_layout = QHBoxLayout()
         button_layout.setSpacing(8)
         self.report_button = QPushButton("Validate & Generate Report")
         self.report_button.setEnabled(True)
         self.report_button.setObjectName("SecondaryButton")
-        self.report_button.setMinimumWidth(240)
+        self.report_button.setMinimumWidth(220)
+        self.report_button.setMinimumHeight(38)
+        self.report_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        self.report_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogApplyButton))
         self.generate_and_validate_button = QPushButton("Generate Folder Structure")
         self.generate_and_validate_button.setObjectName("PrimaryButton")
-        self.generate_and_validate_button.setMinimumWidth(240)
+        self.generate_and_validate_button.setMinimumWidth(220)
+        self.generate_and_validate_button.setMinimumHeight(38)
+        self.generate_and_validate_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        self.generate_and_validate_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
         
         self.generate_chronology_button = QPushButton("Generate Chronology")
         self.generate_chronology_button.setObjectName("SecondaryButton")
-        self.generate_chronology_button.setMinimumWidth(180)
+        self.generate_chronology_button.setMinimumWidth(220)
+        self.generate_chronology_button.setMinimumHeight(38)
+        self.generate_chronology_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        self.generate_chronology_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_FileDialogDetailedView))
 
-        button_layout.addStretch(1)
-        button_layout.addWidget(self.report_button)
-        button_layout.addWidget(self.generate_and_validate_button)
-        button_layout.addWidget(self.generate_chronology_button)
-        button_layout.addStretch(1)
+        button_layout.addWidget(self.report_button, 1)
+        button_layout.addWidget(self.generate_and_validate_button, 1)
+        button_layout.addWidget(self.generate_chronology_button, 1)
 
-        main_layout.addLayout(button_layout)
+        content_layout.addLayout(button_layout)
 
         self.progress_widget = ProgressWidget()
         self.progress_widget.setObjectName("ProgressWidget")
-        main_layout.addWidget(self.progress_widget)
+        content_layout.addWidget(self.progress_widget)
 
         self.result_table = ResultTable()
         self.result_table.setObjectName("ResultTable")
-        main_layout.addWidget(self.result_table, 1)
+        content_layout.addWidget(self.result_table, 1)
 
         self._apply_initial_geometry()
 
@@ -238,18 +255,23 @@ class MainWindow(QMainWindow):
     def _build_summary_cards(self) -> None:
         """Create the summary cards shown at the top of the dashboard."""
         cards = [
-            ("pass", "PASS"),
-            ("fail", "FAIL"),
-            ("warning", "WARNING"),
-            ("duration", "DURATION"),
+            ("pass", "PASS", "\u2713"),
+            ("fail", "FAIL", "\u2715"),
+            ("warning", "WARNING", "!"),
+            ("duration", "DURATION", "\u23F1"),
         ]
 
-        for index, (key, title) in enumerate(cards):
+        for index, (key, title, icon_text) in enumerate(cards):
             card = QFrame()
             card.setObjectName("SummaryCard")
+            card.setProperty("cardType", key)
             card_layout = QVBoxLayout(card)
-            card_layout.setContentsMargins(8, 6, 8, 6)
-            card_layout.setSpacing(1)
+            card_layout.setContentsMargins(10, 8, 10, 8)
+            card_layout.setSpacing(2)
+
+            icon_label = QLabel(icon_text)
+            icon_label.setObjectName("SummaryIcon")
+            icon_label.setAlignment(Qt.AlignCenter)
 
             title_label = QLabel(title)
             title_label.setObjectName("SummaryTitle")
@@ -258,11 +280,12 @@ class MainWindow(QMainWindow):
             value_label.setObjectName("SummaryValue")
             value_label.setAlignment(Qt.AlignCenter)
 
+            card_layout.addWidget(icon_label)
             card_layout.addWidget(title_label)
             card_layout.addWidget(value_label)
 
             card.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-            card.setMinimumHeight(46)
+            card.setMinimumHeight(80)
             self._apply_card_shadow(card)
             self.summary_cards[key] = card
             self.summary_value_labels[key] = value_label
@@ -328,6 +351,22 @@ class MainWindow(QMainWindow):
         self.summary_value_labels["fail"].setText(str(summary.failed))
         self.summary_value_labels["warning"].setText(str(summary.warnings))
         self.summary_value_labels["duration"].setText(duration)
+
+    def _set_project_path_label(self, path: Path | None) -> None:
+        if path is None:
+            self.project_path_label.setText("No project selected")
+            self.project_path_label.setToolTip("")
+            return
+
+        metrics = self.project_path_label.fontMetrics()
+        width = max(120, self.project_path_label.width() - 16)
+        text = str(path)
+        self.project_path_label.setText(metrics.elidedText(text, Qt.TextElideMode.ElideMiddle, width))
+        self.project_path_label.setToolTip(text)
+
+    def resizeEvent(self, event) -> None:
+        super().resizeEvent(event)
+        self._set_project_path_label(self.project_path)
 
     # ---------------------------------------------------------
 
@@ -442,7 +481,7 @@ class MainWindow(QMainWindow):
             self._show_warning(APP_NAME, f"Project organization failed: {e}")
 
         self.project_path = selected_path
-        self.project_path_label.setText(str(self.project_path))
+        self._set_project_path_label(self.project_path)
         self._watch_project(self.project_path)
 
         self._reset_validation_state()
@@ -688,7 +727,7 @@ class MainWindow(QMainWindow):
             return
 
         self.project_path = selected_path
-        self.project_path_label.setText(str(self.project_path))
+        self._set_project_path_label(self.project_path)
         self._watch_project(self.project_path)
 
         logger.info("Validate & Generate Report requested for {}", self.project_path)
@@ -740,26 +779,23 @@ class MainWindow(QMainWindow):
 
         # Auto-select the generated folder as the project and start validation
         self.project_path = generated_root
-        self.project_path_label.setText(str(generated_root))
+        self._set_project_path_label(generated_root)
         self._watch_project(generated_root)
         self._reset_validation_state()
         self.report_button.setEnabled(True)
         logger.info("Auto-selected generated folder as project: {}", generated_root)
         self.status_bar.showMessage("Folder structure generated. Click Validate & Generate Report.")
 
-        message_box = QMessageBox(self)
-        message_box.setIcon(QMessageBox.Icon.Information)
-        message_box.setWindowTitle(GUI_MESSAGES.get("generation_completed", "Generation Completed"))
-        message_box.setText(
-            "Operational Package Structure has been generated successfully.\n\n"
-            f"Location:\n{generated_root.resolve()}"
+        choice = show_action_dialog(
+            self,
+            title=GUI_MESSAGES.get("generation_completed", "Generation Completed"),
+            subtitle="Folder Structure Generated Successfully",
+            description=f"Location:\n{generated_root.resolve()}",
+            accent="success",
+            actions=[("Open Folder", "open_folder"), ("Close", "close")],
         )
 
-        open_folder_button = message_box.addButton("Open Folder", QMessageBox.ActionRole)
-        message_box.addButton(QMessageBox.Ok)
-        message_box.exec()
-
-        if message_box.clickedButton() == open_folder_button:
+        if choice == "open_folder":
             try:
                 os.startfile(generated_root)
             except Exception:
@@ -898,7 +934,7 @@ class MainWindow(QMainWindow):
         self.summary = None
         self.project_path = None
         
-        self.project_path_label.setText("No project selected")
+        self._set_project_path_label(None)
         self.progress_widget.reset()
         self.result_table.clear_results()
         self._update_summary_cards(None)
@@ -913,7 +949,7 @@ class MainWindow(QMainWindow):
         """
         Display an error dialog.
         """
-        QMessageBox.critical(self, title, message)
+        show_styled_message(self, title, message, variant="error")
 
     # ---------------------------------------------------------
 
@@ -921,7 +957,7 @@ class MainWindow(QMainWindow):
         """
         Display an information dialog.
         """
-        QMessageBox.information(self, title, message)
+        show_styled_message(self, title, message, variant="info")
 
     # ---------------------------------------------------------
 
@@ -929,7 +965,7 @@ class MainWindow(QMainWindow):
         """
         Display a warning dialog.
         """
-        QMessageBox.warning(self, title, message)
+        show_styled_message(self, title, message, variant="warning")
 
     def _project_key(self, project_path: Path) -> str:
         return str(project_path.resolve()).casefold()

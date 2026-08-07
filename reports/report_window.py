@@ -52,7 +52,6 @@ class ReportWindow(QMainWindow):
     def __init__(self, data_model: ReportDataModel) -> None:
         super().__init__()
         self._data_model = data_model
-        print(f"[TRACE_REPORT_UI] ReportWindow.__init__: len(report.sections)={len(self._data_model.sections)}", flush=True)
         self._build_ui()
 
     def set_data_model(self, data_model: ReportDataModel) -> None:
@@ -71,6 +70,25 @@ class ReportWindow(QMainWindow):
 
         root_layout = QVBoxLayout(central)
         root_layout.setContentsMargins(0, 0, 0, 0)
+        root_layout.setSpacing(0)
+
+        header = QFrame()
+        header.setObjectName("ReportHeader")
+        header.setMinimumHeight(70)
+        header.setStyleSheet("QFrame#ReportHeader { background: #F57C00; border: none; }")
+        header_layout = QVBoxLayout(header)
+        header_layout.setContentsMargins(16, 10, 16, 10)
+        header_layout.setSpacing(2)
+
+        self._title_label = QLabel(APP_NAME)
+        self._title_label.setFont(QFont("Segoe UI", 22, QFont.Weight.Bold))
+        self._title_label.setStyleSheet("color: #FFFFFF; background: transparent;")
+        header_layout.addWidget(self._title_label)
+
+        subtitle = QLabel(f"Version {APP_VERSION}")
+        subtitle.setStyleSheet("color: rgba(255, 255, 255, 0.88); font-size: 10pt; font-weight: 500; background: transparent;")
+        header_layout.addWidget(subtitle)
+        root_layout.addWidget(header)
 
         scroll_area = QScrollArea()
         scroll_area.setWidgetResizable(True)
@@ -79,25 +97,20 @@ class ReportWindow(QMainWindow):
 
         scroll_container = QWidget()
         scroll_layout = QVBoxLayout(scroll_container)
-        scroll_layout.setContentsMargins(40, 40, 40, 40)
-        scroll_layout.setSpacing(20)
+        scroll_layout.setContentsMargins(16, 12, 16, 12)
+        scroll_layout.setSpacing(10)
         scroll_area.setWidget(scroll_container)
 
         container = QFrame()
         container.setObjectName("ReportContainer")
-        container.setStyleSheet("QFrame#ReportContainer { background: white; }")
+        container.setStyleSheet(f"QFrame#ReportContainer {{ background: #FFFFFF; border: 1px solid {UI_THEME_BORDER}; border-radius: 6px; }}")
         container_layout = QVBoxLayout(container)
-        container_layout.setContentsMargins(30, 30, 30, 30)
-        container_layout.setSpacing(20)
+        container_layout.setContentsMargins(16, 16, 16, 16)
+        container_layout.setSpacing(8)
         scroll_layout.addWidget(container)
 
-        self._title_label = QLabel(APP_NAME)
-        self._title_label.setFont(QFont("Segoe UI", 22, QFont.Weight.Bold))
-        self._title_label.setStyleSheet(f"color: {UI_THEME_PRIMARY}; margin: 0;")
-        container_layout.addWidget(self._title_label)
-
         self._info_layout = QVBoxLayout()
-        self._info_layout.setSpacing(4)
+        self._info_layout.setSpacing(2)
         for label, value in [
             ("Company", COMPANY_NAME),
             ("Version", APP_VERSION),
@@ -106,9 +119,9 @@ class ReportWindow(QMainWindow):
         ]:
             row = QHBoxLayout()
             label_widget = QLabel(label)
-            label_widget.setStyleSheet(f"font-weight: 700; color: {UI_THEME_TEXT_MAIN};")
+            label_widget.setStyleSheet(f"font-weight: 700; color: {UI_THEME_TEXT_MAIN}; background: transparent; border: none;")
             value_widget = QLabel(str(value))
-            value_widget.setStyleSheet(f"color: {UI_THEME_TEXT_MUTED};")
+            value_widget.setStyleSheet(f"color: {UI_THEME_TEXT_MUTED}; background: transparent; border: none;")
             value_widget.setWordWrap(True)
             row.addWidget(label_widget)
             row.addWidget(value_widget, 1)
@@ -116,10 +129,10 @@ class ReportWindow(QMainWindow):
         container_layout.addLayout(self._info_layout)
 
         self._summary_frame = QFrame()
-        self._summary_frame.setStyleSheet("background: white; border: 0px;")
+        self._summary_frame.setStyleSheet("background: transparent; border: 0px;")
         self._summary_layout = QHBoxLayout(self._summary_frame)
         self._summary_layout.setContentsMargins(0, 0, 0, 0)
-        self._summary_layout.setSpacing(20)
+        self._summary_layout.setSpacing(8)
         for label, value in [
             ("Overall", self._data_model.status_text()),
             ("Passed", str(self._data_model.passed)),
@@ -128,20 +141,20 @@ class ReportWindow(QMainWindow):
             ("Duration", f"{self._data_model.duration_seconds:.2f}s"),
         ]:
             card = QFrame()
-            card.setStyleSheet("background: white;")
+            card.setStyleSheet("background: transparent; border: none;")
             card_layout = QVBoxLayout(card)
-            card_layout.setContentsMargins(12, 10, 12, 10)
+            card_layout.setContentsMargins(8, 6, 8, 6)
             heading = QLabel(label)
             heading.setStyleSheet(f"color: {UI_THEME_TEXT_MUTED}; font-size: 9pt;")
             value_label = QLabel(str(value))
-            value_label.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN}; font-size: 11pt; font-weight: 700;")
+            value_label.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN}; font-size: 10pt; font-weight: 700;")
             card_layout.addWidget(heading)
             card_layout.addWidget(value_label)
             self._summary_layout.addWidget(card)
         container_layout.addWidget(self._summary_frame)
 
         self._heading = QLabel("Validation Results")
-        self._heading.setFont(QFont("Segoe UI", 15, QFont.Weight.Bold))
+        self._heading.setFont(QFont("Segoe UI", 13, QFont.Weight.Bold))
         self._heading.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN}; margin-top: 10px;")
         container_layout.addWidget(self._heading)
 
@@ -149,21 +162,17 @@ class ReportWindow(QMainWindow):
         self._sections_container.setStyleSheet("background: transparent;")
         self._sections_layout = QVBoxLayout(self._sections_container)
         self._sections_layout.setContentsMargins(0, 0, 0, 0)
-        self._sections_layout.setSpacing(12)
+        self._sections_layout.setSpacing(8)
 
         for section in self._data_model.sections:
-            print(
-                f"[TRACE_REPORT_UI] ReportWindow._build_ui: before ValidationRowWidget section.title={section.title!r} len(section.details)={len(section.details)}",
-                flush=True,
-            )
             self._sections_layout.addWidget(ValidationRowWidget(section))
 
         container_layout.addWidget(self._sections_container)
 
         toolbar = QFrame()
-        toolbar.setStyleSheet(f"background: {UI_THEME_BG_LIGHT}; border: 1px solid {UI_THEME_BORDER}; border-radius: 8px;")
+        toolbar.setStyleSheet("background: transparent; border: none;")
         toolbar_layout = QHBoxLayout(toolbar)
-        toolbar_layout.setContentsMargins(10, 8, 10, 8)
+        toolbar_layout.setContentsMargins(0, 4, 0, 0)
         toolbar_layout.addStretch(1)
 
         export_button = QPushButton("Export PDF")
@@ -176,7 +185,6 @@ class ReportWindow(QMainWindow):
         close_button.clicked.connect(self.close)
         toolbar_layout.addWidget(close_button)
         container_layout.addWidget(toolbar)
-        print(f"[TRACE_REPORT_UI] ReportWindow._build_ui: scroll_layout.count()={scroll_layout.count()}", flush=True)
 
     def _refresh_ui(self) -> None:
         """Rebuild the visible report contents from the latest data model."""
@@ -195,10 +203,6 @@ class ReportWindow(QMainWindow):
         self._summary_layout.addWidget(self._build_summary_card("Warnings", str(self._data_model.warnings)))
         self._summary_layout.addWidget(self._build_summary_card("Duration", f"{self._data_model.duration_seconds:.2f}s"))
         for section in self._data_model.sections:
-            print(
-                f"[TRACE_REPORT_UI] ReportWindow._refresh_ui: before ValidationRowWidget section.title={section.title!r} len(section.details)={len(section.details)}",
-                flush=True,
-            )
             self._sections_layout.addWidget(ValidationRowWidget(section))
 
         self._central_widget.update()
@@ -214,9 +218,9 @@ class ReportWindow(QMainWindow):
             elif item.layout() is not None:
                 ReportWindow._clear_layout(item.layout())
 
-    def _build_info_layout(self) -> QHBoxLayout:
-        layout = QHBoxLayout()
-        layout.setSpacing(4)
+    def _build_info_layout(self) -> QVBoxLayout:
+        layout = QVBoxLayout()
+        layout.setSpacing(2)
         for label, value in [
             ("Company", COMPANY_NAME),
             ("Version", APP_VERSION),
@@ -224,10 +228,11 @@ class ReportWindow(QMainWindow):
             ("Project", self._data_model.project_path),
         ]:
             item_layout = QHBoxLayout()
+            item_layout.setSpacing(6)
             label_widget = QLabel(label)
-            label_widget.setStyleSheet(f"font-weight: 700; color: {UI_THEME_TEXT_MAIN};")
+            label_widget.setStyleSheet(f"font-weight: 700; color: {UI_THEME_TEXT_MAIN}; background: transparent; border: none;")
             value_widget = QLabel(str(value))
-            value_widget.setStyleSheet(f"color: {UI_THEME_TEXT_MUTED};")
+            value_widget.setStyleSheet(f"color: {UI_THEME_TEXT_MUTED}; background: transparent; border: none;")
             value_widget.setWordWrap(True)
             item_layout.addWidget(label_widget)
             item_layout.addWidget(value_widget, 1)
@@ -236,13 +241,13 @@ class ReportWindow(QMainWindow):
 
     def _build_summary_card(self, label: str, value: str) -> QFrame:
         card = QFrame()
-        card.setStyleSheet("background: white;")
+        card.setStyleSheet("background: transparent; border: none;")
         card_layout = QVBoxLayout(card)
-        card_layout.setContentsMargins(12, 10, 12, 10)
+        card_layout.setContentsMargins(8, 6, 8, 6)
         heading = QLabel(label)
         heading.setStyleSheet(f"color: {UI_THEME_TEXT_MUTED}; font-size: 9pt;")
         value_label = QLabel(value)
-        value_label.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN}; font-size: 11pt; font-weight: 700;")
+        value_label.setStyleSheet(f"color: {UI_THEME_TEXT_MAIN}; font-size: 10pt; font-weight: 700;")
         card_layout.addWidget(heading)
         card_layout.addWidget(value_label)
         return card

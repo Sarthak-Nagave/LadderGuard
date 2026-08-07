@@ -20,10 +20,12 @@ from PySide6.QtGui import QColor
 from PySide6.QtWidgets import (
     QAbstractItemView,
     QHeaderView,
+    QLabel,
     QSizePolicy,
+    QHBoxLayout,
+    QWidget,
     QTableWidget,
     QTableWidgetItem,
-    QWidget,
 )
 
 from core.validation_result import ValidationResult
@@ -88,7 +90,7 @@ class ResultTable(QTableWidget):
 
         header.setSectionResizeMode(
             0,
-            QHeaderView.ResizeToContents,
+            QHeaderView.Interactive,
         )
 
         header.setSectionResizeMode(
@@ -102,6 +104,7 @@ class ResultTable(QTableWidget):
         )
 
         self.setSortingEnabled(False)
+        self.setColumnWidth(0, 260)
 
         self.clear_results()
 
@@ -156,10 +159,7 @@ class ResultTable(QTableWidget):
             self._format_reason(result.reason)
         )
 
-        self._apply_status_color(
-            status_item,
-            result.status.name,
-        )
+        self._apply_status_color(status_item, result.status.name)
 
         self.setItem(
             row,
@@ -172,12 +172,17 @@ class ResultTable(QTableWidget):
             1,
             status_item,
         )
+        self.setCellWidget(row, 1, self._status_badge(result.status.name))
 
         self.setItem(
             row,
             2,
             reason_item,
         )
+
+        step_item.setTextAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        reason_item.setTextAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        self.setRowHeight(row, 30)
 
     # ---------------------------------------------------------
 
@@ -230,6 +235,22 @@ class ResultTable(QTableWidget):
         item.setTextAlignment(
             Qt.AlignCenter
         )
+
+    @staticmethod
+    def _status_badge(status: str) -> QWidget:
+        container = QWidget()
+        layout = QHBoxLayout(container)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setAlignment(Qt.AlignCenter)
+
+        badge = QLabel(status.upper())
+        badge.setObjectName("TableStatusBadge")
+        badge.setProperty("status", status.lower())
+        badge.setAlignment(Qt.AlignCenter)
+        badge.setMinimumWidth(86)
+        badge.setFixedHeight(22)
+        layout.addWidget(badge)
+        return container
 
     # ---------------------------------------------------------
 
