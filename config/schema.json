@@ -68,15 +68,34 @@
       "document_validation": {
         "type": "object",
         "properties": {
-          "required_signers": {
-            "type": "array",
-            "items": {
-              "type": "string"
+          "required_sections_by_folder": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "section": {
+                    "type": "string"
+                  },
+                  "aliases": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1
+                  }
+                },
+                "required": [
+                  "section",
+                  "aliases"
+                ]
+              }
             }
           }
         },
         "required": [
-          "required_signers"
+          "required_sections_by_folder"
         ]
       }
     }

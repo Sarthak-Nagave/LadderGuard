@@ -2,15 +2,13 @@
 services.signature_reader
 =========================
 
-Provides PDF digital signature inspection for the Operational Package
-Validator.
+Provides PDF page-level signature extraction for section-based validation.
 
 Responsibilities
 ----------------
-- Detect whether a PDF contains digital signatures.
-- Extract signer metadata where available.
-- Match discovered signatures with required signers.
-- Return structured SignatureInfo objects.
+- Read PDF pages and extract page text.
+- Detect signed signature widgets on each page.
+- Return page snapshots required by DocumentValidator.
 - Never perform business validation.
 
 Author:
@@ -22,49 +20,98 @@ Python:
 
 from __future__ import annotations
 
-import datetime
-import re
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import fitz
-from asn1crypto import cms
 
-from config import (
-    CASE_SENSITIVE_SIGNER_MATCH,
-    REQUIRED_SIGNERS,
-)
 from exceptions.file_not_found_error import FileNotFoundValidationError
-from models.signature_info import SignatureInfo
 from services.logger import LoggerService
+
+
+@dataclass(slots=True, frozen=True)
+class PageTextLine:
+    """One extracted text line with its vertical position."""
+
+    text: str
+    x0: float
+    x1: float
+    y0: float
+    y1: float
+
+
+@dataclass(slots=True, frozen=True)
+class PageTextBlock:
+    """One text block extracted from page.get_text("blocks") with coordinates."""
+
+    text: str
+    x0: float
+    y0: float
+    x1: float
+    y1: float
+
+
+@dataclass(slots=True, frozen=True)
+class PageOcrBlock:
+    """One OCR block extracted with coordinates when OCR is available."""
+
+    text: str
+    x0: float
+    y0: float
+    x1: float
+    y1: float
+
+
+@dataclass(slots=True, frozen=True)
+class PageWord:
+    """One word with coordinates for precise per-column extraction."""
+
+    text: str
+    x0: float
+    y0: float
+    x1: float
+    y1: float
+
+
+@dataclass(slots=True, frozen=True)
+class PageSignatureSnapshot:
+    """Extracted page content required for signature section validation."""
+
+    page_number: int
+    page_height: float
+    page_width: float
+    lines: tuple[PageTextLine, ...]
+    text_blocks: tuple[PageTextBlock, ...]
+    signed_signature_rects: tuple[tuple[float, float, float, float], ...]
+    image_rects: tuple[tuple[float, float, float, float], ...]
+    vector_rects: tuple[tuple[float, float, float, float], ...]
+    ocr_blocks: tuple[PageOcrBlock, ...]
+    words: tuple[PageWord, ...]
+
+    @property
+    def text(self) -> str:
+        return "\n".join(line.text for line in self.lines)
 
 
 class SignatureReaderService:
     """
-    Reads digital signature metadata from PDF documents.
+    Reads digital signature markers from PDF documents.
 
     Notes
     -----
-    This service extracts signer metadata from signed PDF signature
-    dictionaries. It does not perform certificate trust validation.
+    This service does not perform certificate trust validation.
     """
 
     logger = LoggerService.get_logger()
 
-    _SIGNER_PATTERN = re.compile(rb"CN=([^,\r\n]+)", re.IGNORECASE)
-    _DN_PATTERN = re.compile(rb"DN:\s*([^\r\n]+)", re.IGNORECASE)
-    _DATE_PATTERN = re.compile(
-        rb"Date:\s*([0-9]{4}\.[0-9]{2}\.[0-9]{2} \d{2}:\d{2}:\d{2} [+\-]\d{2}'\d{2}')"
-    )
-    _CONTENTS_PATTERN = re.compile(rb"/Contents\s*<([0-9A-Fa-f\s]+)>", re.DOTALL)
-    _VREF_PATTERN = re.compile(rb"/V\s+(\d+)\s+0\s+R")
-
     @classmethod
-    def read(
+    def read_page_snapshots(
         cls,
         file_path: Path,
-    ) -> list[SignatureInfo]:
+    ) -> list[PageSignatureSnapshot]:
         """
-        Read digital signatures from a PDF.
+        Read all pages and signed signature widgets from a PDF.
 
         Parameters
         ----------
@@ -73,8 +120,8 @@ class SignatureReaderService:
 
         Returns
         -------
-        list[SignatureInfo]
-            Validation information for every required signer.
+        list[PageSignatureSnapshot]
+            Page text and signed signature widget geometry.
 
         Raises
         ------
@@ -97,71 +144,53 @@ class SignatureReaderService:
         document = fitz.open(file_path)
 
         try:
-            discovered_signers: dict[str, SignatureInfo] = {}
+            snapshots: list[PageSignatureSnapshot] = []
 
-            for page in document:
+            for page_index, page in enumerate(document):
                 widgets = page.widgets()
+                signed_signature_rects: list[tuple[float, float, float, float]] = []
 
-                if widgets is None:
-                    continue
+                if widgets is not None:
+                    for widget in widgets:
+                        if getattr(widget, "field_type", None) != fitz.PDF_WIDGET_TYPE_SIGNATURE:
+                            continue
+                        if not getattr(widget, "is_signed", False):
+                            continue
 
-                for widget in widgets:
-                    if getattr(widget, "field_type", None) != fitz.PDF_WIDGET_TYPE_SIGNATURE:
-                        continue
+                        rect = getattr(widget, "rect", None)
+                        if rect is None:
+                            continue
 
-                    if not getattr(widget, "is_signed", False):
-                        continue
+                        signed_signature_rects.append(
+                            (float(rect.x0), float(rect.y0), float(rect.x1), float(rect.y1))
+                        )
 
-                    signature_bytes = cls._extract_signature_bytes(document, widget)
-                    signer = cls._parse_signer_name(signature_bytes)
-                    signing_time = cls._parse_signing_time(signature_bytes)
-                    certificate = cls._parse_certificate_summary(signature_bytes)
+                text_blocks = cls._extract_text_blocks(page)
+                image_rects = cls._extract_image_rects(page)
+                vector_rects = cls._extract_vector_rects(page)
+                ocr_blocks = cls._extract_ocr_blocks(page)
+                words = cls._extract_words(page)
 
-                    if not signer:
-                        continue
-
-                    lookup = (
-                        signer
-                        if CASE_SENSITIVE_SIGNER_MATCH
-                        else signer.casefold()
-                    )
-
-                    discovered_signers.setdefault(
-                        lookup,
-                        SignatureInfo(
-                            signer_name=signer,
-                            name_found=True,
-                            signature_found=True,
-                            signed_at=signing_time,
-                            certificate=certificate,
-                        ),
-                    )
-
-            signatures: list[SignatureInfo] = []
-
-            for required_signer in REQUIRED_SIGNERS:
-                lookup = (
-                    required_signer
-                    if CASE_SENSITIVE_SIGNER_MATCH
-                    else required_signer.casefold()
-                )
-                matched = discovered_signers.get(lookup)
-
-                signatures.append(
-                    SignatureInfo(
-                        signer_name=required_signer,
-                        name_found=matched is not None,
-                        signature_found=matched is not None,
-                        signed_at=matched.signed_at if matched else None,
-                        certificate=matched.certificate if matched else None,
+                snapshots.append(
+                    PageSignatureSnapshot(
+                        page_number=page_index + 1,
+                        page_height=float(page.rect.height),
+                        page_width=float(page.rect.width),
+                        lines=cls._extract_page_lines(page),
+                        text_blocks=text_blocks,
+                        signed_signature_rects=tuple(signed_signature_rects),
+                        image_rects=image_rects,
+                        vector_rects=vector_rects,
+                        ocr_blocks=ocr_blocks,
+                        words=words,
                     )
                 )
 
             cls.logger.info(
-                f"Validated {len(signatures)} required signer(s)."
+                f"Extracted signature snapshots for {len(snapshots)} page(s)."
             )
 
-            return signatures
+            return snapshots
 
         except Exception as exc:
             cls.logger.exception(exc)
@@ -173,171 +202,152 @@ class SignatureReaderService:
             document.close()
 
     @classmethod
-    def _extract_signature_bytes(
+    def read(
         cls,
-        document: fitz.Document,
-        widget: fitz.Widget,
-    ) -> bytes:
-        raw = cls._get_xref_bytes(document, widget.xref)
-        if not raw:
-            return b""
-
-        vref_match = cls._VREF_PATTERN.search(raw)
-        if not vref_match:
-            return b""
-
-        try:
-            vref = int(vref_match.group(1))
-        except ValueError:
-            return b""
-
-        vobj = cls._get_xref_bytes(document, vref)
-        if not vobj:
-            return b""
-
-        contents_match = cls._CONTENTS_PATTERN.search(vobj)
-        if not contents_match:
-            return b""
-
-        hex_value = re.sub(rb"\s+", b"", contents_match.group(1))
-        try:
-            return bytes.fromhex(hex_value.decode("ascii", errors="ignore"))
-        except ValueError:
-            return b""
+        file_path: Path,
+    ) -> list[PageSignatureSnapshot]:
+        """Backward-compatible wrapper returning page snapshots."""
+        return cls.read_page_snapshots(file_path)
 
     @classmethod
-    def _get_xref_bytes(
+    def _extract_page_lines(
         cls,
-        document: fitz.Document,
-        xref: int,
-    ) -> bytes:
-        try:
-            xref_object = document.xref_object(xref)
-        except Exception:
-            return b""
-
-        if isinstance(xref_object, bytes):
-            return xref_object
-
-        return str(xref_object).encode("latin1", errors="ignore")
-
-    @classmethod
-    def _parse_signer_name(
-        cls,
-        signature_bytes: bytes,
-    ) -> str | None:
-        if not signature_bytes:
-            return None
-
-        signer_name = cls._parse_name_from_certificate(signature_bytes)
-        if signer_name:
-            return signer_name
-
-        signature_text = signature_bytes.decode("utf-8", errors="ignore")
-        for required_signer in REQUIRED_SIGNERS:
-            if required_signer in signature_text:
-                return required_signer
-
-        dn_match = cls._DN_PATTERN.search(signature_bytes)
-        if dn_match:
-            dn = dn_match.group(1).decode("utf-8", errors="ignore")
-            cn_match = re.search(r"CN=([^,]+)", dn)
-            if cn_match:
-                return cn_match.group(1).strip()
-
-        return None
-
-    @classmethod
-    def _parse_name_from_certificate(
-        cls,
-        signature_bytes: bytes,
-    ) -> str | None:
-        try:
-            content_info = cms.ContentInfo.load(signature_bytes)
-            if content_info["content_type"].native != "signed_data":
-                return None
-
-            signed_data = content_info["content"]
-            for cert_choice in signed_data["certificates"] or []:
-                if cert_choice.name != "certificate":
+        page: fitz.Page,
+    ) -> tuple[PageTextLine, ...]:
+        lines: list[PageTextLine] = []
+        page_dict = page.get_text("dict")
+        for block in page_dict.get("blocks", []):
+            if block.get("type") != 0:
+                continue
+            for line in block.get("lines", []):
+                spans = line.get("spans", [])
+                parts = []
+                for span in spans:
+                    text = str(span.get("text", ""))
+                    if text:
+                        parts.append(text)
+                merged = "".join(parts).strip()
+                if not merged:
                     continue
-
-                subject = cert_choice.chosen.subject
-                common_name = subject.native.get("common_name")
-                if isinstance(common_name, str) and common_name.strip():
-                    return common_name.strip()
-
-                if hasattr(subject, "human_friendly"):
-                    return subject.human_friendly
-        except Exception:
-            return None
-
-        return None
+                bbox = line.get("bbox", (0.0, 0.0, 0.0, 0.0))
+                x0 = float(bbox[0]) if len(bbox) >= 1 else 0.0
+                x1 = float(bbox[2]) if len(bbox) >= 3 else x0
+                y0 = float(bbox[1]) if len(bbox) >= 2 else 0.0
+                y1 = float(bbox[3]) if len(bbox) >= 4 else y0
+                lines.append(PageTextLine(text=merged, x0=x0, x1=x1, y0=y0, y1=y1))
+        return tuple(lines)
 
     @classmethod
-    def _parse_signing_time(
+    def _extract_text_blocks(
         cls,
-        signature_bytes: bytes,
-    ) -> str | None:
-        if not signature_bytes:
-            return None
-
-        try:
-            content_info = cms.ContentInfo.load(signature_bytes)
-            if content_info["content_type"].native == "signed_data":
-                signed_data = content_info["content"]
-                for signer_info in signed_data["signer_infos"] or []:
-                    signed_attrs = signer_info["signed_attrs"]
-                    if signed_attrs is None:
-                        continue
-
-                    for attr in signed_attrs:
-                        if attr["type"].native == "signing_time":
-                            values = attr["values"]
-                            if values:
-                                signed_at = values[0].native
-                                if isinstance(signed_at, datetime.datetime):
-                                    if signed_at.tzinfo is None:
-                                        signed_at = signed_at.replace(tzinfo=datetime.timezone.utc)
-                                    return signed_at.strftime("%Y.%m.%d %H:%M:%S %z")
-                                return str(signed_at)
-        except Exception:
-            pass
-
-        match = cls._DATE_PATTERN.search(signature_bytes)
-        if match:
-            return match.group(1).decode("ascii", errors="ignore").strip()
-
-        custom_match = re.search(rb"/M\s*\(([^)]+)\)", signature_bytes)
-        if custom_match:
-            return custom_match.group(1).decode("utf-8", errors="ignore").strip()
-
-        return None
+        page: fitz.Page,
+    ) -> tuple[PageTextBlock, ...]:
+        """Extract text blocks from page.get_text('blocks') exactly as required by role parser."""
+        blocks: list[PageTextBlock] = []
+        for raw in page.get_text("blocks"):
+            if len(raw) < 7:
+                continue
+            x0, y0, x1, y1, text, _block_no, block_type = raw[:7]
+            if int(block_type) != 0:
+                continue
+            merged = str(text or "").strip()
+            if not merged:
+                continue
+            blocks.append(
+                PageTextBlock(
+                    text=merged,
+                    x0=float(x0),
+                    y0=float(y0),
+                    x1=float(x1),
+                    y1=float(y1),
+                )
+            )
+        return tuple(blocks)
 
     @classmethod
-    def _parse_certificate_summary(
+    def _extract_image_rects(
         cls,
-        signature_bytes: bytes,
-    ) -> str | None:
-        if not signature_bytes:
-            return None
+        page: fitz.Page,
+    ) -> tuple[tuple[float, float, float, float], ...]:
+        image_rects: list[tuple[float, float, float, float]] = []
+        for raw in page.get_text("blocks"):
+            if len(raw) < 7:
+                continue
+            x0, y0, x1, y1, _text, _block_no, block_type = raw[:7]
+            if int(block_type) != 1:
+                continue
+            image_rects.append((float(x0), float(y0), float(x1), float(y1)))
+        return tuple(image_rects)
 
+    @classmethod
+    def _extract_vector_rects(
+        cls,
+        page: fitz.Page,
+    ) -> tuple[tuple[float, float, float, float], ...]:
+        vector_rects: list[tuple[float, float, float, float]] = []
         try:
-            content_info = cms.ContentInfo.load(signature_bytes)
-            if content_info["content_type"].native == "signed_data":
-                signed_data = content_info["content"]
-                for cert_choice in signed_data["certificates"] or []:
-                    if cert_choice.name != "certificate":
-                        continue
-                    subject = cert_choice.chosen.subject
-                    if hasattr(subject, "human_friendly"):
-                        return subject.human_friendly
-                    return str(subject.native)
+            drawings: list[dict[str, Any]] = page.get_drawings()
         except Exception:
-            pass
+            return tuple(vector_rects)
 
-        dn_match = cls._DN_PATTERN.search(signature_bytes)
-        if dn_match:
-            return dn_match.group(1).decode("utf-8", errors="ignore").strip()
+        for drawing in drawings:
+            rect = drawing.get("rect")
+            if rect is None:
+                continue
+            vector_rects.append((float(rect.x0), float(rect.y0), float(rect.x1), float(rect.y1)))
+        return tuple(vector_rects)
 
-        return None
+    @classmethod
+    def _extract_ocr_blocks(
+        cls,
+        page: fitz.Page,
+    ) -> tuple[PageOcrBlock, ...]:
+        """Try OCR extraction for scanned/signature-like text; returns empty when OCR backend is unavailable."""
+        ocr_blocks: list[PageOcrBlock] = []
+        try:
+            text_page = page.get_textpage_ocr(dpi=150)
+            raw_blocks = text_page.extractBLOCKS()
+        except Exception:
+            return tuple(ocr_blocks)
+
+        for raw in raw_blocks:
+            if len(raw) < 5:
+                continue
+            x0, y0, x1, y1, text = raw[:5]
+            merged = str(text or "").strip()
+            if not merged:
+                continue
+            ocr_blocks.append(
+                PageOcrBlock(
+                    text=merged,
+                    x0=float(x0),
+                    y0=float(y0),
+                    x1=float(x1),
+                    y1=float(y1),
+                )
+            )
+        return tuple(ocr_blocks)
+
+    @classmethod
+    def _extract_words(
+        cls,
+        page: fitz.Page,
+    ) -> tuple[PageWord, ...]:
+        words: list[PageWord] = []
+        for raw in page.get_text("words"):
+            if len(raw) < 5:
+                continue
+            x0, y0, x1, y1, text = raw[:5]
+            token = str(text or "").strip()
+            if not token:
+                continue
+            words.append(
+                PageWord(
+                    text=token,
+                    x0=float(x0),
+                    y0=float(y0),
+                    x1=float(x1),
+                    y1=float(y1),
+                )
+            )
+        return tuple(words)

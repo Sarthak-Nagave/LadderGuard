@@ -94,7 +94,7 @@ class Ui_ChronologyDialog:
         self.layout_output.addWidget(self.btn_browse_output)
 
 
-        self.formLayoutProjectInfo.setLayout(2, QFormLayout.FieldRole, self.layout_output)
+        self.formLayoutProjectInfo.setLayout(7, QFormLayout.FieldRole, self.layout_output)
 
 
         self.verticalLayout.addWidget(self.grp_project_info)

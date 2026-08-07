@@ -22,6 +22,7 @@ import math
 import re
 import shutil
 import subprocess
+import tempfile
 from copy import copy
 from dataclasses import dataclass
 from datetime import datetime
@@ -94,6 +95,8 @@ class ChronologyExcelWriter:
         "reason for upgrade",
     }
 
+    EXCEL_HEADER_LINE_BREAK = chr(10)
+
     def __init__(self, template_path: Path) -> None:
         """
         Initialize the Excel writer.
@@ -107,6 +110,8 @@ class ChronologyExcelWriter:
         self._last_pdf_path: Path | None = None
         self._last_pdf_export_message: str = ""
         self._last_column_layout_report: list[dict[str, Any]] = []
+        self._last_department_code: str = ""
+        self._native_header_override: dict[str, str] | None = None
 
     @property
     def last_pdf_export_succeeded(self) -> bool:
@@ -140,6 +145,7 @@ class ChronologyExcelWriter:
         self._last_pdf_export_succeeded = False
         self._last_pdf_path = output_path.with_suffix(".pdf")
         self._last_pdf_export_message = ""
+        self._native_header_override = None
 
         workbook = self._load_workbook()
         sheet = workbook.active
@@ -227,8 +233,14 @@ class ChronologyExcelWriter:
             template_data_height,
         )
         self._restore_print_layout(sheet, layout_snapshot)
+        self._debug_print_header_state(sheet, "before save")
 
         self._save(workbook, output_path)
+        self._debug_print_header_state(sheet, "after save")
+        workbook.close()
+
+        self._recalculate_page_setup_from_saved_workbook(output_path)
+
         self._last_pdf_export_succeeded = self._export_generated_excel_to_pdf(output_path)
 
         if product_write_result is not None:
@@ -240,6 +252,8 @@ class ChronologyExcelWriter:
         """Export the just-generated chronology workbook to a PDF beside it using headless LibreOffice."""
         pdf_path = excel_path.with_suffix(".pdf")
         self._last_pdf_path = pdf_path
+        print("Export engine: soffice")
+        self._logger.info("Export engine: soffice")
 
         soffice_path = self._resolve_soffice_executable()
         if soffice_path is None:
@@ -277,6 +291,8 @@ class ChronologyExcelWriter:
             str(excel_path),
         ]
 
+        self._apply_header_with_soffice_uno(excel_path, soffice_path)
+
         try:
             result = subprocess.run(command, capture_output=True, text=True, check=False)
         except Exception as exc:
@@ -313,6 +329,244 @@ class ChronologyExcelWriter:
         self._last_pdf_export_message = ""
         self._logger.info("Chronology PDF export completed successfully: %s", pdf_path)
         return True
+
+    def _recalculate_page_setup_from_saved_workbook(self, output_path: Path) -> None:
+        """Reopen saved workbook and normalize page setup before PDF export."""
+        workbook = openpyxl.load_workbook(filename=output_path)
+        sheet = workbook.active
+        if sheet is None:
+            workbook.close()
+            raise ChronologyTemplateError("Saved workbook contains no active worksheet for page-setup recalculation.")
+
+        self._debug_print_header_state(sheet, "after reopening workbook")
+
+        self._validate_merged_ranges(sheet)
+
+        max_row, max_col = self._last_used_cell(sheet)
+        end_col = get_column_letter(max_col)
+        sheet.print_area = f"$A$1:${end_col}${max_row}"
+
+        # Keep print titles unchanged.
+        # Fit to width exactly one page, and allow natural vertical pagination.
+        sheet.page_setup.fitToWidth = 1
+        sheet.page_setup.fitToHeight = 0
+        sheet.page_setup.scale = None
+
+        if sheet.sheet_properties.pageSetUpPr is None:
+            from openpyxl.worksheet.properties import PageSetupProperties
+
+            sheet.sheet_properties.pageSetUpPr = PageSetupProperties()
+        sheet.sheet_properties.pageSetUpPr.fitToPage = True
+
+        self._recalculate_page_breaks(sheet)
+
+        workbook.save(filename=output_path)
+        workbook.close()
+
+        verify_workbook = openpyxl.load_workbook(filename=output_path)
+        verify_sheet = verify_workbook.active
+        if verify_sheet is None:
+            verify_workbook.close()
+            raise ChronologyTemplateError("Saved workbook contains no active worksheet during header verification.")
+        self._debug_print_header_state(verify_sheet, "after recalculation save+reopen")
+        verify_workbook.close()
+
+    def _normalize_header_footer_linebreaks(self, sheet: Worksheet) -> None:
+        """Replace Excel escaped newline tokens with real newlines in header/footer text."""
+        for header in (sheet.oddHeader, sheet.evenHeader, sheet.firstHeader):
+            header.left.text = self._decode_excel_newlines(self.safe_val(header.left.text))
+            header.center.text = self._decode_excel_newlines(self.safe_val(header.center.text))
+            header.right.text = self._decode_excel_newlines(self.safe_val(header.right.text))
+
+    def _debug_print_header_state(self, sheet: Worksheet, stage: str) -> None:
+        """Print exact oddHeader text values at critical persistence checkpoints."""
+        print(f"[{stage}] worksheet.oddHeader.left.text = {sheet.oddHeader.left.text!r}")
+        print(f"[{stage}] worksheet.oddHeader.center.text = {sheet.oddHeader.center.text!r}")
+        print(f"[{stage}] worksheet.oddHeader.right.text = {sheet.oddHeader.right.text!r}")
+
+    def _apply_header_with_soffice_uno(self, excel_path: Path, soffice_path: Path) -> None:
+        """Write page headers via LibreOffice UNO before PDF conversion."""
+        if not self._native_header_override:
+            return
+
+        lo_python = self._resolve_soffice_python_executable(soffice_path)
+        if lo_python is None:
+            self._logger.warning(
+                "Native header override skipped: LibreOffice python executable not found for UNO header write."
+            )
+            return
+
+        script_source = """
+import sys
+import uno
+import officehelper
+from com.sun.star.beans import PropertyValue
+
+
+def _prop(name, value):
+    p = PropertyValue()
+    p.Name = name
+    p.Value = value
+    return p
+
+
+def _apply_header_to_style(style, left_text, center_text, right_text):
+    style.HeaderIsOn = True
+
+    right_content = style.RightPageHeaderContent
+    right_content.LeftText.String = left_text
+    right_content.CenterText.String = center_text
+    right_content.RightText.String = right_text
+    style.RightPageHeaderContent = right_content
+
+    left_content = style.LeftPageHeaderContent
+    left_content.LeftText.String = left_text
+    left_content.CenterText.String = center_text
+    left_content.RightText.String = right_text
+    style.LeftPageHeaderContent = left_content
+
+
+def main():
+    workbook_path = sys.argv[1]
+    left_text = sys.argv[2]
+    center_text = sys.argv[3]
+    right_text = sys.argv[4]
+
+    context = officehelper.bootstrap()
+    desktop = context.ServiceManager.createInstanceWithContext("com.sun.star.frame.Desktop", context)
+    hidden = (_prop("Hidden", True),)
+    doc = None
+    try:
+        url = uno.systemPathToFileUrl(workbook_path)
+        doc = desktop.loadComponentFromURL(url, "_blank", 0, hidden)
+        sheets = doc.getSheets()
+        page_styles = doc.StyleFamilies.getByName("PageStyles")
+
+        for idx in range(sheets.getCount()):
+            sheet = sheets.getByIndex(idx)
+            style = page_styles.getByName(sheet.PageStyle)
+            _apply_header_to_style(style, left_text, center_text, right_text)
+
+        doc.store()
+    finally:
+        if doc is not None:
+            doc.close(True)
+        desktop.terminate()
+
+
+if __name__ == "__main__":
+    main()
+"""
+
+        script_path: Path | None = None
+        try:
+            with tempfile.NamedTemporaryFile("w", suffix="_uno_header_write.py", delete=False, encoding="utf-8") as tf:
+                tf.write(script_source)
+                script_path = Path(tf.name)
+
+            left = self._native_header_override.get("left", "")
+            center = self._native_header_override.get("center", "")
+            right = self._native_header_override.get("right", "")
+
+            result = subprocess.run(
+                [
+                    str(lo_python),
+                    str(script_path),
+                    str(excel_path.resolve()),
+                    left,
+                    center,
+                    right,
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            if result.returncode != 0:
+                self._logger.warning(
+                    "Native header override via LibreOffice UNO failed (exit=%s). stdout=%r stderr=%r",
+                    result.returncode,
+                    (result.stdout or "").strip(),
+                    (result.stderr or "").strip(),
+                )
+            else:
+                self._logger.info("Applied page header through LibreOffice UNO before PDF export.")
+        except Exception as exc:
+            self._logger.warning("Native header override via LibreOffice UNO failed: %s", exc)
+        finally:
+            if script_path is not None:
+                try:
+                    script_path.unlink(missing_ok=True)
+                except Exception:
+                    pass
+
+    def _resolve_soffice_python_executable(self, soffice_path: Path) -> Path | None:
+        """Resolve LibreOffice bundled python executable used for UNO automation."""
+        candidate = soffice_path.parent / "python.exe"
+        if candidate.exists():
+            return candidate
+        return None
+
+    def _validate_merged_ranges(self, sheet: Worksheet) -> None:
+        """Validate merged-cell ranges remain structurally valid after dynamic row insertion."""
+        for merged_range in list(sheet.merged_cells.ranges):
+            if merged_range.min_row > merged_range.max_row or merged_range.min_col > merged_range.max_col:
+                raise ChronologyTemplateError(f"Invalid merged-cell range detected: {merged_range}")
+
+    def _last_used_cell(self, sheet: Worksheet) -> tuple[int, int]:
+        """Determine last used row/column for print-area recomputation."""
+        max_row = max(1, sheet.max_row)
+        max_col = max(1, sheet.max_column)
+
+        used_max_row = 1
+        used_max_col = 1
+        for row_idx in range(1, max_row + 1):
+            row_has_content = False
+            for col_idx in range(1, max_col + 1):
+                cell = sheet.cell(row=row_idx, column=col_idx)
+                value = cell.value
+                if value is not None and str(value).strip() != "":
+                    row_has_content = True
+                    if col_idx > used_max_col:
+                        used_max_col = col_idx
+            if row_has_content:
+                used_max_row = row_idx
+
+        return used_max_row, used_max_col
+
+    def _recalculate_page_breaks(self, sheet: Worksheet) -> None:
+        """Recalculate manual page-break anchors to remain in worksheet bounds after row shifts."""
+        max_row = max(1, sheet.max_row)
+        max_col = max(1, sheet.max_column)
+
+        try:
+            row_breaks = [brk for brk in getattr(sheet.row_breaks, "brk", []) if getattr(brk, "id", None) is not None]
+            row_breaks = [brk for brk in row_breaks if 1 <= brk.id <= max_row]
+            row_breaks.sort(key=lambda brk: brk.id)
+            dedup_row_breaks = []
+            last_id = None
+            for brk in row_breaks:
+                if brk.id == last_id:
+                    continue
+                dedup_row_breaks.append(brk)
+                last_id = brk.id
+            sheet.row_breaks.brk = dedup_row_breaks
+        except Exception:
+            pass
+
+        try:
+            col_breaks = [brk for brk in getattr(sheet.col_breaks, "brk", []) if getattr(brk, "id", None) is not None]
+            col_breaks = [brk for brk in col_breaks if 1 <= brk.id <= max_col]
+            col_breaks.sort(key=lambda brk: brk.id)
+            dedup_col_breaks = []
+            last_id = None
+            for brk in col_breaks:
+                if brk.id == last_id:
+                    continue
+                dedup_col_breaks.append(brk)
+                last_id = brk.id
+            sheet.col_breaks.brk = dedup_col_breaks
+        except Exception:
+            pass
 
     def _resolve_soffice_executable(self) -> Path | None:
         """Resolve LibreOffice soffice path from PATH or standard Windows install locations."""
@@ -535,7 +789,7 @@ class ChronologyExcelWriter:
             "crc": entry.crc,
             "ladder version no.": entry.version,
             "reason for upgrade": entry.reason_for_upgrade,
-            "testing stage": entry.testing_stage,
+            "testing stage": self._normalize_testing_stage_display(entry.testing_stage),
             "plc model": entry.plc_model,
             "selpro version & path": entry.selpro_version,
             "bootloader version": entry.bootloader_version,
@@ -551,6 +805,14 @@ class ChronologyExcelWriter:
             if header_name in data:
                 writable_cell = self._get_writable_cell(sheet, row_idx, col_idx)
                 writable_cell.value = safe_val(data[header_name])
+
+    @staticmethod
+    def _normalize_testing_stage_display(value: str | None) -> str:
+        """Normalize only the Excel display value for testing stage."""
+        stage = "" if value is None else str(value)
+        if "/" in stage:
+            return stage
+        return "/".join(stage.split())
 
     def _renumber_serials(self, sheet: Worksheet, start_row: int, header_map: dict[str, int]) -> None:
         serial_column = header_map.get("serial no.")
@@ -1321,34 +1583,69 @@ class ChronologyExcelWriter:
             )
             return
 
+        department_code = self._decode_excel_newlines(self.safe_val(department_code)).strip()
+        self._last_department_code = department_code
+
         today_text = datetime.now().strftime("%d/%m/%Y")
 
         # Left header: fixed company line + dynamic DDHW suffix.
-        left_text = f"Selec Controls Pvt Ltd\n{department_code}"
+        left_text = self._decode_excel_newlines(
+            f"Selec Controls Pvt Ltd{self.EXCEL_HEADER_LINE_BREAK}{department_code}"
+        )
 
         # Right header: keep existing code text and refresh Date line only.
         def refresh_right_text(original: str) -> str:
-            base = self.safe_val(original)
+            base = self._decode_excel_newlines(self.safe_val(original))
             if not base:
                 base = "FF/PM/DD-1120724"
 
             if re.search(r"(?i)Date\s*:", base):
-                return re.sub(r"(?i)Date\s*:\s*[^\n\r]*", f"Date : {today_text}", base)
+                updated = re.sub(r"(?i)Date\s*:\s*[^\n\r]*", f"Date : {today_text}", base)
+                return self._decode_excel_newlines(updated)
 
             if "FF/PM/DD-1120724" in base:
-                return f"FF/PM/DD-1120724\nDate : {today_text}"
+                return self._decode_excel_newlines(
+                    f"FF/PM/DD-1120724{self.EXCEL_HEADER_LINE_BREAK}Date : {today_text}"
+                )
 
-            return f"{base}\nDate : {today_text}"
+            return self._decode_excel_newlines(
+                f"{base}{self.EXCEL_HEADER_LINE_BREAK}Date : {today_text}"
+            )
 
         for header in (sheet.oddHeader, sheet.evenHeader, sheet.firstHeader):
             header.left.text = left_text
             header.right.text = refresh_right_text(header.right.text)
+
+        center_text = self._decode_excel_newlines(self.safe_val(sheet.oddHeader.center.text))
+        if not center_text:
+            center_text = "Title- Ladder Release Chronology"
+            for header in (sheet.oddHeader, sheet.evenHeader, sheet.firstHeader):
+                header.center.text = center_text
+
+        self._native_header_override = {
+            "left": left_text,
+            "center": center_text,
+            "right": refresh_right_text(sheet.oddHeader.right.text),
+        }
 
         self._logger.info(
             "Updated page header from signed report: left=%r right-date=%s",
             department_code,
             today_text,
         )
+
+    @staticmethod
+    def _decode_excel_newlines(text: str) -> str:
+        """Convert escaped/newline tokens into LibreOffice-compatible header line breaks."""
+        line_sep = ChronologyExcelWriter.EXCEL_HEADER_LINE_BREAK
+        normalized = text.replace("\\n", line_sep)
+        normalized = re.sub(r"(?i)_x000a_", line_sep, normalized)
+        normalized = re.sub(r"(?i)_x000d_", "", normalized)
+        normalized = normalized.replace("\r\n", line_sep).replace("\r", line_sep)
+        normalized = normalized.replace("&10", line_sep)
+        parts = [part.strip() for part in normalized.split(line_sep)]
+        parts = [part for part in parts if part]
+        return line_sep.join(parts)
 
     def _shift_row_breaks(self, sheet: Worksheet, start_row: int, delta: int) -> None:
         """Shift manual row breaks after row insert/delete to preserve print pagination."""

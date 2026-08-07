@@ -119,7 +119,7 @@ class ReportDataModel:
         if step in {ValidationStep.OPERATIONAL_FLOW, ValidationStep.TEST_REPORT, ValidationStep.AUTOMATION_INPUT, ValidationStep.LADDER_FLOW}:
             return cls._render_signed_document_details(step, details)
 
-        if "signers" in details and isinstance(details["signers"], list):
+        if "sections" in details and isinstance(details["sections"], list):
             return cls._render_signed_document_details(step, details)
         if "document" in details or "documents" in details:
             return cls._render_signed_document_details(step, details)
@@ -206,25 +206,50 @@ class ReportDataModel:
     def _render_signed_document_details(cls, step: ValidationStep | None, details: dict[str, Any]) -> list[ReportDetailCard]:
         cards: list[ReportDetailCard] = []
         document_name = details.get("document")
-        if document_name:
-            cards.append(ReportDetailCard(title="Document", rows=[ReportDetailRow("", str(document_name))]))
+        document_type = details.get("document_type")
+        if document_name or document_type:
+            rows: list[ReportDetailRow] = []
+            if document_type:
+                rows.append(ReportDetailRow("Type", str(document_type)))
+            if document_name:
+                rows.append(ReportDetailRow("", str(document_name)))
+            cards.append(ReportDetailCard(title="Document", rows=rows))
 
-        signers = details.get("signers")
-        if isinstance(signers, list):
-            signer_rows: list[ReportDetailRow] = []
-            for signer in signers:
-                if not isinstance(signer, dict):
+        sections = details.get("sections")
+        if isinstance(sections, list):
+            for section in sections:
+                if not isinstance(section, dict):
                     continue
-                name = signer.get("signer_name") or signer.get("name")
-                status = signer.get("is_valid")
+                section_name = section.get("section_name") or section.get("name")
+                if section_name is None:
+                    continue
+
+                digital_signature_found = section.get("digital_signature_found")
+
+                status = section.get("status")
                 if status is None:
-                    status = signer.get("signature_found")
-                if name is None:
-                    continue
-                signer_rows.append(ReportDetailRow("", str(name)))
-                signer_rows.append(ReportDetailRow("Digital Signature", "Valid" if status else "Invalid"))
-            if signer_rows:
-                cards.append(ReportDetailCard(title="Signers", rows=signer_rows))
+                    status = "PASS" if section.get("is_valid") else "FAIL"
+
+                require_printed_name = bool(section.get("require_printed_name", True))
+
+                rows = []
+                page_number = section.get("page_number")
+                if page_number is not None:
+                    rows.append(ReportDetailRow("Page", str(page_number)))
+                if require_printed_name:
+                    rows.append(ReportDetailRow("Printed Name", str(section.get("printed_name") or "-")))
+                rows.append(
+                    ReportDetailRow(
+                        "Digital Signature",
+                        "Present" if bool(digital_signature_found) else "Missing",
+                    )
+                )
+                rows.append(ReportDetailRow("Status", str(status)))
+                reason = section.get("reason")
+                if reason:
+                    rows.append(ReportDetailRow("Reason", str(reason)))
+
+                cards.append(ReportDetailCard(title=str(section_name), rows=rows))
 
         documents = details.get("documents")
         if isinstance(documents, list):
@@ -262,7 +287,7 @@ class ReportDataModel:
             "crc_match": "CRC Match",
             "reason_for_upgrade": "Upgrade Reason",
             "document": "Document",
-            "signers": "Signers",
+            "sections": "Sections",
             "validated": "Validated Folders",
             "missing_folders": "Missing Folders",
             "missing": "Missing Count",

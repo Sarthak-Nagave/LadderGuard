@@ -211,13 +211,92 @@
         "6. Ladder Flow"
       ],
       "expected_signed_documents": 1,
-      "required_signers": [
-        "Arjun V.",
-        "Piyush S.",
-        "Mohit S."
-      ],
-      "case_sensitive_signer_match": false,
-      "require_digital_signature": true
+      "required_sections_by_folder": {
+        "3. Operational Flow": [
+          {
+            "section": "Prepared By",
+            "aliases": [
+              "Prepared By"
+            ]
+          },
+          {
+            "section": "Checked By / Verified By",
+            "aliases": [
+              "Checked By",
+              "Verified By"
+            ]
+          },
+          {
+            "section": "Approved By",
+            "aliases": [
+              "Approved By"
+            ]
+          }
+        ],
+        "4. Test Report": [
+          {
+            "section": "Prepared By",
+            "aliases": [
+              "Prepared By"
+            ]
+          },
+          {
+            "section": "Checked By / Verified By",
+            "aliases": [
+              "Checked By",
+              "Verified By"
+            ]
+          },
+          {
+            "section": "Approved By",
+            "aliases": [
+              "Approved By"
+            ]
+          }
+        ],
+        "5. Automation Input Doc": [
+          {
+            "section": "Prepared By",
+            "aliases": [
+              "Prepared By"
+            ]
+          },
+          {
+            "section": "Checked By / Verified By",
+            "aliases": [
+              "Checked By",
+              "Verified By"
+            ]
+          },
+          {
+            "section": "Approved By",
+            "aliases": [
+              "Approved By"
+            ]
+          }
+        ],
+        "6. Ladder Flow": [
+          {
+            "section": "Process Representative",
+            "aliases": [
+              "Process Representative"
+            ]
+          },
+          {
+            "section": "Production / QC",
+            "aliases": [
+              "Production/QC",
+              "Production QC"
+            ]
+          },
+          {
+            "section": "HOD",
+            "aliases": [
+              "HOD"
+            ]
+          }
+        ]
+      }
     }
   },
   "user_settings": {

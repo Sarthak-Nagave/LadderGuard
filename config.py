@@ -37,11 +37,11 @@ APP_SUBTITLE: Final[str] = ConfigManager.get("config.app.subtitle")
 # PROJECT STRUCTURE
 # ============================================================================
 
-REQUIRED_FOLDERS: Final[tuple[str, ...]] = tuple(ConfigManager.get("config.project_structure.required_folders"))
+REQUIRED_FOLDERS: Final[tuple[str, ...]] = tuple(ConfigManager.get("config.project_structure.required_folders") or [])
 
 PROJECT_ROOT_FOLDER_NAME: Final[str] = ConfigManager.get("config.project_structure.root_folder_name")
 
-PROJECT_STRUCTURE: Final[dict] = ConfigManager.get("config.project_structure.folder_tree")
+PROJECT_STRUCTURE: Final[dict] = ConfigManager.get("config.project_structure.folder_tree") or {}
 
 LADDER_INITIAL_FOLDER: Final[str] = ConfigManager.get("config.project_structure.ladder_initial_folder")
 LADDER_FINAL_FOLDER: Final[str] = ConfigManager.get("config.project_structure.ladder_final_folder")
@@ -58,7 +58,7 @@ LADDER_EXTENSION: Final[str] = ConfigManager.get("config.rules.file_extensions.l
 BIN_EXTENSION: Final[str] = ConfigManager.get("config.rules.file_extensions.bin_extension")
 
 SUPPORTED_DOCUMENT_EXTENSIONS: Final[tuple[str, ...]] = tuple(
-    ConfigManager.get("config.rules.file_extensions.supported_document_extensions")
+    ConfigManager.get("config.rules.file_extensions.supported_document_extensions") or []
 )
 
 # Signed document naming convention
@@ -73,28 +73,23 @@ SIGNATURE_FILE_SUFFIX: Final[str] = SIGNED_DOCUMENT_SUFFIX
 # ============================================================================
 
 DOCUMENT_VALIDATION_FOLDERS: Final[tuple[str, ...]] = tuple(
-    ConfigManager.get("signatures.document_validation.document_validation_folders")
+    ConfigManager.get("signatures.document_validation.document_validation_folders") or []
 )
 
 EXPECTED_SIGNED_DOCUMENTS: Final[int] = ConfigManager.get("signatures.document_validation.expected_signed_documents")
 
-# Names that MUST appear in every signed document
-REQUIRED_SIGNERS: Final[tuple[str, ...]] = tuple(
-    ConfigManager.get("signatures.document_validation.required_signers")
+# Required signing sections by folder. Each entry contains a canonical label
+# and accepted aliases used during case-insensitive section detection.
+DOCUMENT_SIGNING_SECTIONS: Final[dict[str, list[dict[str, object]]]] = (
+    ConfigManager.get("signatures.document_validation.required_sections_by_folder") or {}
 )
-
-# Name comparison
-CASE_SENSITIVE_SIGNER_MATCH: Final[bool] = ConfigManager.get("signatures.document_validation.case_sensitive_signer_match")
-
-# Signature validation
-REQUIRE_DIGITAL_SIGNATURE: Final[bool] = ConfigManager.get("signatures.document_validation.require_digital_signature")
 
 
 # ============================================================================
 # FOLDER KEYS  (canonical lookup keys for context.folders)
 # ============================================================================
 
-FOLDER_KEYS: Final[dict[str, str]] = ConfigManager.get("config.folder_keys")
+FOLDER_KEYS: Final[dict[str, str]] = ConfigManager.get("config.folder_keys") or {}
 
 
 # ============================================================================
@@ -112,7 +107,7 @@ MAX_FILE_SEARCH_DEPTH: Final[int] = ConfigManager.get("config.search.max_file_se
 LOG_DIRECTORY: Final[Path] = ConfigManager.get_base_dir() / ConfigManager.get("config.paths.log_directory")
 LOG_FILE_NAME: Final[str] = ConfigManager.get("config.paths.log_file_name")
 CRC_ALGORITHM: Final[str] = ConfigManager.get("config.crc.algorithm")
-SUPPORTED_CRC_ALGORITHMS: Final[tuple[str, ...]] = tuple(ConfigManager.get("config.crc.supported_algorithms"))
+SUPPORTED_CRC_ALGORITHMS: Final[tuple[str, ...]] = tuple(ConfigManager.get("config.crc.supported_algorithms") or [])
 
 
 # ============================================================================
@@ -145,7 +140,7 @@ MIN_WINDOW_WIDTH: Final[int] = ConfigManager.get("config.gui.min_window_width")
 MIN_WINDOW_HEIGHT: Final[int] = ConfigManager.get("config.gui.min_window_height")
 
 PROGRESS_TITLE: Final[str] = ConfigManager.get("config.gui.progress_title")
-GUI_MESSAGES: Final[dict] = ConfigManager.get("config.gui.messages")
+GUI_MESSAGES: Final[dict] = ConfigManager.get("config.gui.messages") or {}
 
 
 # ============================================================================
