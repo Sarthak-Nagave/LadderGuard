@@ -6787,3 +6787,411 @@ C:\Users\SM 464\Desktop\Operational Package Structure
 2026-08-07 11:25:50 | INFO     | gui.main_window:on_generate_chronology:852 | Chronology generation completed.
 2026-08-07 11:26:29 | INFO     | gui.main_window:closeEvent:1010 | Application closed.
 2026-08-07 11:46:54 | INFO     | gui.main_window:closeEvent:1010 | Application closed.
+2026-08-07 14:50:06 | INFO     | gui.main_window:_generate_report:733 | Validate & Generate Report requested for C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 14:50:06 | INFO     | gui.main_window:_start_validation:521 | Validation started for C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 14:50:06 | INFO     | gui.main_window:run:91 | ValidationWorker started for: C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 14:50:06 | INFO     | core.validation_engine:validate:143 | Validation started for project: C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 14:50:06 | INFO     | core.validation_engine:validate:157 | Running validator: Folder Structure
+2026-08-07 14:50:06 | INFO     | validators.folder_validator:validate:49 | Folder validation started.
+2026-08-07 14:50:06 | INFO     | validators.folder_validator:validate:87 | Folder validation completed successfully.
+2026-08-07 14:50:06 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Files
+2026-08-07 14:50:06 | INFO     | validators.ladder_validator:validate:53 | Starting ladder validation.
+2026-08-07 14:50:06 | INFO     | validators.ladder_validator:validate:113 | Ladder validation completed successfully.
+2026-08-07 14:50:06 | INFO     | core.validation_engine:validate:157 | Running validator: Bin Files
+2026-08-07 14:50:06 | INFO     | validators.bin_validator:validate:56 | Starting BIN validation.
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 14:50:06 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 14:50:06 | INFO     | validators.bin_validator:validate:165 | BIN validation completed successfully.
+2026-08-07 14:50:06 | INFO     | core.validation_engine:validate:157 | Running validator: Operational Flow
+2026-08-07 14:50:06 | INFO     | validators.document_validator:validate:97 | Validating '3. Operational Flow'.
+2026-08-07 14:50:06 | INFO     | validators.document_validator:validate:137 | Found signed document: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-07 14:50:06 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-07 14:50:07 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 8 page(s).
+2026-08-07 14:50:07 | INFO     | validators.document_validator:_validate_single_document:303 | 3. Operational Flow validated successfully.
+2026-08-07 14:50:07 | INFO     | core.validation_engine:validate:157 | Running validator: Test Report
+2026-08-07 14:50:07 | INFO     | validators.document_validator:validate:97 | Validating '4. Test Report'.
+2026-08-07 14:50:07 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: M-final_Functional validation report_JIG-sgn.pdf
+2026-08-07 14:50:08 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 14:50:08 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 14:50:08 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: M-initial_Functional validation report_JIG-sgn.pdf
+2026-08-07 14:50:08 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 14:50:08 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 14:50:08 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: S-final_Functional validation report_JIG-sgn.pdf
+2026-08-07 14:50:08 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 3 page(s).
+2026-08-07 14:50:08 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 14:50:08 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: U-QC_Functional validation report_JIG-sgn.pdf
+2026-08-07 14:50:08 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 14:50:08 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 14:50:08 | INFO     | core.validation_engine:validate:157 | Running validator: Automation Input
+2026-08-07 14:50:08 | INFO     | validators.document_validator:validate:97 | Validating '5. Automation Input Doc'.
+2026-08-07 14:50:08 | INFO     | validators.document_validator:validate:137 | Found signed document: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-07 14:50:08 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-07 14:50:09 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 5 page(s).
+2026-08-07 14:50:09 | INFO     | validators.document_validator:_validate_single_document:303 | 5. Automation Input Doc validated successfully.
+2026-08-07 14:50:09 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Flow
+2026-08-07 14:50:09 | INFO     | validators.document_validator:validate:97 | Validating '6. Ladder Flow'.
+2026-08-07 14:50:09 | INFO     | validators.document_validator:validate:137 | Found signed document: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-07 14:50:09 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-07 14:50:09 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 2 page(s).
+2026-08-07 14:50:09 | WARNING  | validators.document_validator:_validate_single_document:317 | 6. Ladder Flow validation failed.
+2026-08-07 14:50:09 | INFO     | core.validation_engine:validate:157 | Running validator: Chronology
+2026-08-07 14:50:09 | INFO     | validators.chronology_validator:validate:69 | Starting chronology validation.
+2026-08-07 14:50:09 | INFO     | validators.chronology_validator:validate:230 | Chronology validation failed (8 issue(s)).
+2026-08-07 14:50:09 | INFO     | core.validation_engine:validate:195 | Validation completed (FAIL) | Passed=6, Failed=2, Warnings=0
+2026-08-07 14:50:09 | INFO     | gui.main_window:_show_report_window:671 | Entering _show_report_window()
+2026-08-07 14:50:09 | INFO     | gui.main_window:_show_report_window:683 | Creating ReportDataModel...
+2026-08-07 14:50:09 | INFO     | gui.main_window:_show_report_window:685 | ReportDataModel created for project: %s
+2026-08-07 14:50:09 | INFO     | gui.main_window:_show_report_window:686 | Validation Summary ID: %s | Project Path: %s | Passed: %s | Failed: %s | Warnings: %s
+2026-08-07 14:50:09 | INFO     | gui.main_window:_show_report_window:688 | Creating ReportWindow...
+2026-08-07 14:50:10 | INFO     | gui.main_window:_show_report_window:691 | ReportWindow created: %s | receives summary id: %s
+2026-08-07 14:50:10 | INFO     | gui.main_window:_show_report_window:693 | Calling show()...
+2026-08-07 14:50:10 | INFO     | gui.main_window:_show_report_window:695 | show() completed. visible=%s hidden=%s geometry=%s
+2026-08-07 14:50:10 | INFO     | gui.main_window:_show_report_window:697 | Calling raise_()...
+2026-08-07 14:50:10 | INFO     | gui.main_window:_show_report_window:699 | Calling activateWindow()...
+2026-08-07 14:50:10 | INFO     | gui.main_window:_show_report_window:702 | Window visible=%s hidden=%s geometry=%s
+2026-08-07 14:50:10 | INFO     | gui.main_window:_validation_finished:634 | Validation completed successfully.
+2026-08-07 14:50:54 | INFO     | gui.main_window:on_generate_chronology:842 | Chronology generation started.
+2026-08-07 14:50:54 | INFO     | gui.main_window:on_generate_chronology:843 | Chronology dialog opened.
+2026-08-07 15:26:12 | INFO     | gui.main_window:on_generate_chronology:852 | Chronology generation completed.
+2026-08-07 15:26:13 | INFO     | gui.main_window:closeEvent:1010 | Application closed.
+2026-08-07 15:26:27 | INFO     | gui.main_window:_generate_report:733 | Validate & Generate Report requested for C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:26:27 | INFO     | gui.main_window:_start_validation:521 | Validation started for C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:26:27 | INFO     | gui.main_window:run:91 | ValidationWorker started for: C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:26:27 | INFO     | core.validation_engine:validate:143 | Validation started for project: C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:26:27 | INFO     | core.validation_engine:validate:157 | Running validator: Folder Structure
+2026-08-07 15:26:27 | INFO     | validators.folder_validator:validate:49 | Folder validation started.
+2026-08-07 15:26:27 | INFO     | validators.folder_validator:validate:87 | Folder validation completed successfully.
+2026-08-07 15:26:27 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Files
+2026-08-07 15:26:27 | INFO     | validators.ladder_validator:validate:53 | Starting ladder validation.
+2026-08-07 15:26:27 | INFO     | validators.ladder_validator:validate:113 | Ladder validation completed successfully.
+2026-08-07 15:26:27 | INFO     | core.validation_engine:validate:157 | Running validator: Bin Files
+2026-08-07 15:26:27 | INFO     | validators.bin_validator:validate:56 | Starting BIN validation.
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:26:27 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:26:27 | INFO     | validators.bin_validator:validate:165 | BIN validation completed successfully.
+2026-08-07 15:26:27 | INFO     | core.validation_engine:validate:157 | Running validator: Operational Flow
+2026-08-07 15:26:27 | INFO     | validators.document_validator:validate:97 | Validating '3. Operational Flow'.
+2026-08-07 15:26:27 | INFO     | validators.document_validator:validate:137 | Found signed document: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-07 15:26:27 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-07 15:26:28 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 8 page(s).
+2026-08-07 15:26:28 | INFO     | validators.document_validator:_validate_single_document:303 | 3. Operational Flow validated successfully.
+2026-08-07 15:26:28 | INFO     | core.validation_engine:validate:157 | Running validator: Test Report
+2026-08-07 15:26:28 | INFO     | validators.document_validator:validate:97 | Validating '4. Test Report'.
+2026-08-07 15:26:28 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: M-final_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:26:28 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:26:28 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:26:28 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: M-initial_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:26:28 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:26:28 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:26:28 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: S-final_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:26:29 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 3 page(s).
+2026-08-07 15:26:29 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:26:29 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: U-QC_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:26:29 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:26:29 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:26:29 | INFO     | core.validation_engine:validate:157 | Running validator: Automation Input
+2026-08-07 15:26:29 | INFO     | validators.document_validator:validate:97 | Validating '5. Automation Input Doc'.
+2026-08-07 15:26:29 | INFO     | validators.document_validator:validate:137 | Found signed document: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-07 15:26:29 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-07 15:26:30 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 5 page(s).
+2026-08-07 15:26:30 | INFO     | validators.document_validator:_validate_single_document:303 | 5. Automation Input Doc validated successfully.
+2026-08-07 15:26:30 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Flow
+2026-08-07 15:26:30 | INFO     | validators.document_validator:validate:97 | Validating '6. Ladder Flow'.
+2026-08-07 15:26:30 | INFO     | validators.document_validator:validate:137 | Found signed document: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-07 15:26:30 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-07 15:26:30 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 2 page(s).
+2026-08-07 15:26:30 | WARNING  | validators.document_validator:_validate_single_document:317 | 6. Ladder Flow validation failed.
+2026-08-07 15:26:30 | INFO     | core.validation_engine:validate:157 | Running validator: Chronology
+2026-08-07 15:26:30 | INFO     | validators.chronology_validator:validate:69 | Starting chronology validation.
+2026-08-07 15:26:30 | INFO     | validators.chronology_validator:validate:230 | Chronology validation failed (8 issue(s)).
+2026-08-07 15:26:30 | INFO     | core.validation_engine:validate:195 | Validation completed (FAIL) | Passed=6, Failed=2, Warnings=0
+2026-08-07 15:26:30 | INFO     | gui.main_window:_show_report_window:671 | Entering _show_report_window()
+2026-08-07 15:26:30 | INFO     | gui.main_window:_show_report_window:683 | Creating ReportDataModel...
+2026-08-07 15:26:30 | INFO     | gui.main_window:_show_report_window:685 | ReportDataModel created for project: %s
+2026-08-07 15:26:30 | INFO     | gui.main_window:_show_report_window:686 | Validation Summary ID: %s | Project Path: %s | Passed: %s | Failed: %s | Warnings: %s
+2026-08-07 15:26:30 | INFO     | gui.main_window:_show_report_window:688 | Creating ReportWindow...
+2026-08-07 15:26:30 | INFO     | gui.main_window:_show_report_window:691 | ReportWindow created: %s | receives summary id: %s
+2026-08-07 15:26:30 | INFO     | gui.main_window:_show_report_window:693 | Calling show()...
+2026-08-07 15:26:30 | INFO     | gui.main_window:_show_report_window:695 | show() completed. visible=%s hidden=%s geometry=%s
+2026-08-07 15:26:30 | INFO     | gui.main_window:_show_report_window:697 | Calling raise_()...
+2026-08-07 15:26:30 | INFO     | gui.main_window:_show_report_window:699 | Calling activateWindow()...
+2026-08-07 15:26:30 | INFO     | gui.main_window:_show_report_window:702 | Window visible=%s hidden=%s geometry=%s
+2026-08-07 15:26:30 | INFO     | gui.main_window:_validation_finished:634 | Validation completed successfully.
+2026-08-07 15:26:38 | INFO     | gui.main_window:on_generate_chronology:842 | Chronology generation started.
+2026-08-07 15:26:38 | INFO     | gui.main_window:on_generate_chronology:843 | Chronology dialog opened.
+2026-08-07 15:27:10 | INFO     | gui.main_window:on_generate_chronology:852 | Chronology generation completed.
+2026-08-07 15:33:52 | INFO     | gui.main_window:closeEvent:1010 | Application closed.
+2026-08-07 15:34:05 | INFO     | gui.main_window:_generate_report:733 | Validate & Generate Report requested for C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:34:05 | INFO     | gui.main_window:_start_validation:521 | Validation started for C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:34:05 | INFO     | gui.main_window:run:91 | ValidationWorker started for: C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:34:05 | INFO     | core.validation_engine:validate:143 | Validation started for project: C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:34:05 | INFO     | core.validation_engine:validate:157 | Running validator: Folder Structure
+2026-08-07 15:34:05 | INFO     | validators.folder_validator:validate:49 | Folder validation started.
+2026-08-07 15:34:05 | INFO     | validators.folder_validator:validate:87 | Folder validation completed successfully.
+2026-08-07 15:34:05 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Files
+2026-08-07 15:34:05 | INFO     | validators.ladder_validator:validate:53 | Starting ladder validation.
+2026-08-07 15:34:05 | INFO     | validators.ladder_validator:validate:113 | Ladder validation completed successfully.
+2026-08-07 15:34:05 | INFO     | core.validation_engine:validate:157 | Running validator: Bin Files
+2026-08-07 15:34:05 | INFO     | validators.bin_validator:validate:56 | Starting BIN validation.
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:34:05 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:34:05 | INFO     | validators.bin_validator:validate:165 | BIN validation completed successfully.
+2026-08-07 15:34:05 | INFO     | core.validation_engine:validate:157 | Running validator: Operational Flow
+2026-08-07 15:34:05 | INFO     | validators.document_validator:validate:97 | Validating '3. Operational Flow'.
+2026-08-07 15:34:05 | INFO     | validators.document_validator:validate:137 | Found signed document: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-07 15:34:05 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-07 15:34:06 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 8 page(s).
+2026-08-07 15:34:06 | INFO     | validators.document_validator:_validate_single_document:303 | 3. Operational Flow validated successfully.
+2026-08-07 15:34:06 | INFO     | core.validation_engine:validate:157 | Running validator: Test Report
+2026-08-07 15:34:06 | INFO     | validators.document_validator:validate:97 | Validating '4. Test Report'.
+2026-08-07 15:34:06 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: M-final_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:34:06 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:34:06 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:34:06 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: M-initial_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:34:06 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:34:06 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:34:06 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: S-final_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:34:07 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 3 page(s).
+2026-08-07 15:34:07 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:34:07 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: U-QC_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:34:07 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:34:07 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:34:07 | INFO     | core.validation_engine:validate:157 | Running validator: Automation Input
+2026-08-07 15:34:07 | INFO     | validators.document_validator:validate:97 | Validating '5. Automation Input Doc'.
+2026-08-07 15:34:07 | INFO     | validators.document_validator:validate:137 | Found signed document: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-07 15:34:07 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-07 15:34:07 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 5 page(s).
+2026-08-07 15:34:07 | INFO     | validators.document_validator:_validate_single_document:303 | 5. Automation Input Doc validated successfully.
+2026-08-07 15:34:07 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Flow
+2026-08-07 15:34:07 | INFO     | validators.document_validator:validate:97 | Validating '6. Ladder Flow'.
+2026-08-07 15:34:07 | INFO     | validators.document_validator:validate:137 | Found signed document: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-07 15:34:07 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-07 15:34:08 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 2 page(s).
+2026-08-07 15:34:08 | WARNING  | validators.document_validator:_validate_single_document:317 | 6. Ladder Flow validation failed.
+2026-08-07 15:34:08 | INFO     | core.validation_engine:validate:157 | Running validator: Chronology
+2026-08-07 15:34:08 | INFO     | validators.chronology_validator:validate:69 | Starting chronology validation.
+2026-08-07 15:34:08 | INFO     | validators.chronology_validator:validate:230 | Chronology validation failed (8 issue(s)).
+2026-08-07 15:34:08 | INFO     | core.validation_engine:validate:195 | Validation completed (FAIL) | Passed=6, Failed=2, Warnings=0
+2026-08-07 15:34:08 | INFO     | gui.main_window:_show_report_window:671 | Entering _show_report_window()
+2026-08-07 15:34:08 | INFO     | gui.main_window:_show_report_window:683 | Creating ReportDataModel...
+2026-08-07 15:34:08 | INFO     | gui.main_window:_show_report_window:685 | ReportDataModel created for project: %s
+2026-08-07 15:34:08 | INFO     | gui.main_window:_show_report_window:686 | Validation Summary ID: %s | Project Path: %s | Passed: %s | Failed: %s | Warnings: %s
+2026-08-07 15:34:08 | INFO     | gui.main_window:_show_report_window:688 | Creating ReportWindow...
+2026-08-07 15:34:08 | INFO     | gui.main_window:_show_report_window:691 | ReportWindow created: %s | receives summary id: %s
+2026-08-07 15:34:08 | INFO     | gui.main_window:_show_report_window:693 | Calling show()...
+2026-08-07 15:34:08 | INFO     | gui.main_window:_show_report_window:695 | show() completed. visible=%s hidden=%s geometry=%s
+2026-08-07 15:34:08 | INFO     | gui.main_window:_show_report_window:697 | Calling raise_()...
+2026-08-07 15:34:08 | INFO     | gui.main_window:_show_report_window:699 | Calling activateWindow()...
+2026-08-07 15:34:08 | INFO     | gui.main_window:_show_report_window:702 | Window visible=%s hidden=%s geometry=%s
+2026-08-07 15:34:08 | INFO     | gui.main_window:_validation_finished:634 | Validation completed successfully.
+2026-08-07 15:34:11 | INFO     | gui.main_window:on_generate_chronology:842 | Chronology generation started.
+2026-08-07 15:34:11 | INFO     | gui.main_window:on_generate_chronology:843 | Chronology dialog opened.
+2026-08-07 15:34:41 | INFO     | gui.main_window:on_generate_chronology:852 | Chronology generation completed.
+2026-08-07 15:39:32 | INFO     | gui.main_window:closeEvent:1010 | Application closed.
+2026-08-07 15:39:43 | INFO     | gui.main_window:_generate_report:733 | Validate & Generate Report requested for C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:39:43 | INFO     | gui.main_window:_start_validation:521 | Validation started for C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:39:43 | INFO     | gui.main_window:run:91 | ValidationWorker started for: C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:39:43 | INFO     | core.validation_engine:validate:143 | Validation started for project: C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:39:43 | INFO     | core.validation_engine:validate:157 | Running validator: Folder Structure
+2026-08-07 15:39:43 | INFO     | validators.folder_validator:validate:49 | Folder validation started.
+2026-08-07 15:39:43 | INFO     | validators.folder_validator:validate:87 | Folder validation completed successfully.
+2026-08-07 15:39:43 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Files
+2026-08-07 15:39:43 | INFO     | validators.ladder_validator:validate:53 | Starting ladder validation.
+2026-08-07 15:39:43 | INFO     | validators.ladder_validator:validate:113 | Ladder validation completed successfully.
+2026-08-07 15:39:43 | INFO     | core.validation_engine:validate:157 | Running validator: Bin Files
+2026-08-07 15:39:43 | INFO     | validators.bin_validator:validate:56 | Starting BIN validation.
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:39:43 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:39:43 | INFO     | validators.bin_validator:validate:165 | BIN validation completed successfully.
+2026-08-07 15:39:43 | INFO     | core.validation_engine:validate:157 | Running validator: Operational Flow
+2026-08-07 15:39:43 | INFO     | validators.document_validator:validate:97 | Validating '3. Operational Flow'.
+2026-08-07 15:39:43 | INFO     | validators.document_validator:validate:137 | Found signed document: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-07 15:39:43 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-07 15:39:44 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 8 page(s).
+2026-08-07 15:39:44 | INFO     | validators.document_validator:_validate_single_document:303 | 3. Operational Flow validated successfully.
+2026-08-07 15:39:44 | INFO     | core.validation_engine:validate:157 | Running validator: Test Report
+2026-08-07 15:39:44 | INFO     | validators.document_validator:validate:97 | Validating '4. Test Report'.
+2026-08-07 15:39:44 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: M-final_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:39:44 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:39:44 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:39:44 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: M-initial_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:39:44 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:39:44 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:39:44 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: S-final_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:39:45 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 3 page(s).
+2026-08-07 15:39:45 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:39:45 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: U-QC_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:39:45 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:39:45 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:39:45 | INFO     | core.validation_engine:validate:157 | Running validator: Automation Input
+2026-08-07 15:39:45 | INFO     | validators.document_validator:validate:97 | Validating '5. Automation Input Doc'.
+2026-08-07 15:39:45 | INFO     | validators.document_validator:validate:137 | Found signed document: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-07 15:39:45 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-07 15:39:46 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 5 page(s).
+2026-08-07 15:39:46 | INFO     | validators.document_validator:_validate_single_document:303 | 5. Automation Input Doc validated successfully.
+2026-08-07 15:39:46 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Flow
+2026-08-07 15:39:46 | INFO     | validators.document_validator:validate:97 | Validating '6. Ladder Flow'.
+2026-08-07 15:39:46 | INFO     | validators.document_validator:validate:137 | Found signed document: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-07 15:39:46 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-07 15:39:46 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 2 page(s).
+2026-08-07 15:39:46 | WARNING  | validators.document_validator:_validate_single_document:317 | 6. Ladder Flow validation failed.
+2026-08-07 15:39:46 | INFO     | core.validation_engine:validate:157 | Running validator: Chronology
+2026-08-07 15:39:46 | INFO     | validators.chronology_validator:validate:69 | Starting chronology validation.
+2026-08-07 15:39:46 | INFO     | validators.chronology_validator:validate:230 | Chronology validation failed (8 issue(s)).
+2026-08-07 15:39:46 | INFO     | core.validation_engine:validate:195 | Validation completed (FAIL) | Passed=6, Failed=2, Warnings=0
+2026-08-07 15:39:46 | INFO     | gui.main_window:_show_report_window:671 | Entering _show_report_window()
+2026-08-07 15:39:46 | INFO     | gui.main_window:_show_report_window:683 | Creating ReportDataModel...
+2026-08-07 15:39:46 | INFO     | gui.main_window:_show_report_window:685 | ReportDataModel created for project: %s
+2026-08-07 15:39:46 | INFO     | gui.main_window:_show_report_window:686 | Validation Summary ID: %s | Project Path: %s | Passed: %s | Failed: %s | Warnings: %s
+2026-08-07 15:39:46 | INFO     | gui.main_window:_show_report_window:688 | Creating ReportWindow...
+2026-08-07 15:39:46 | INFO     | gui.main_window:_show_report_window:691 | ReportWindow created: %s | receives summary id: %s
+2026-08-07 15:39:46 | INFO     | gui.main_window:_show_report_window:693 | Calling show()...
+2026-08-07 15:39:46 | INFO     | gui.main_window:_show_report_window:695 | show() completed. visible=%s hidden=%s geometry=%s
+2026-08-07 15:39:46 | INFO     | gui.main_window:_show_report_window:697 | Calling raise_()...
+2026-08-07 15:39:46 | INFO     | gui.main_window:_show_report_window:699 | Calling activateWindow()...
+2026-08-07 15:39:46 | INFO     | gui.main_window:_show_report_window:702 | Window visible=%s hidden=%s geometry=%s
+2026-08-07 15:39:46 | INFO     | gui.main_window:_validation_finished:634 | Validation completed successfully.
+2026-08-07 15:39:52 | INFO     | gui.main_window:on_generate_chronology:842 | Chronology generation started.
+2026-08-07 15:39:52 | INFO     | gui.main_window:on_generate_chronology:843 | Chronology dialog opened.
+2026-08-07 15:40:13 | INFO     | gui.main_window:on_generate_chronology:852 | Chronology generation completed.
+2026-08-07 15:41:49 | INFO     | gui.main_window:on_generate_chronology:842 | Chronology generation started.
+2026-08-07 15:41:49 | INFO     | gui.main_window:on_generate_chronology:843 | Chronology dialog opened.
+2026-08-07 15:42:10 | INFO     | gui.main_window:on_generate_chronology:852 | Chronology generation completed.
+2026-08-07 15:42:30 | INFO     | gui.main_window:closeEvent:1010 | Application closed.
+2026-08-07 15:55:07 | INFO     | gui.main_window:_generate_report:733 | Validate & Generate Report requested for C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:55:07 | INFO     | gui.main_window:_start_validation:521 | Validation started for C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:55:07 | INFO     | gui.main_window:run:91 | ValidationWorker started for: C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:55:07 | INFO     | core.validation_engine:validate:143 | Validation started for project: C:\Users\SM 464\Desktop\Operational Package
+2026-08-07 15:55:07 | INFO     | core.validation_engine:validate:157 | Running validator: Folder Structure
+2026-08-07 15:55:07 | INFO     | validators.folder_validator:validate:49 | Folder validation started.
+2026-08-07 15:55:07 | INFO     | validators.folder_validator:validate:87 | Folder validation completed successfully.
+2026-08-07 15:55:07 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Files
+2026-08-07 15:55:07 | INFO     | validators.ladder_validator:validate:53 | Starting ladder validation.
+2026-08-07 15:55:07 | INFO     | validators.ladder_validator:validate:113 | Ladder validation completed successfully.
+2026-08-07 15:55:07 | INFO     | core.validation_engine:validate:157 | Running validator: Bin Files
+2026-08-07 15:55:07 | INFO     | validators.bin_validator:validate:56 | Starting BIN validation.
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:30 | Starting CRC generation for file %s using %s
+2026-08-07 15:55:07 | INFO     | services.crc.crc_generator:generate_from_file:84 | CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-07 15:55:07 | INFO     | validators.bin_validator:validate:165 | BIN validation completed successfully.
+2026-08-07 15:55:07 | INFO     | core.validation_engine:validate:157 | Running validator: Operational Flow
+2026-08-07 15:55:07 | INFO     | validators.document_validator:validate:97 | Validating '3. Operational Flow'.
+2026-08-07 15:55:07 | INFO     | validators.document_validator:validate:137 | Found signed document: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-07 15:55:07 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-07 15:55:08 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 8 page(s).
+2026-08-07 15:55:08 | INFO     | validators.document_validator:_validate_single_document:303 | 3. Operational Flow validated successfully.
+2026-08-07 15:55:08 | INFO     | core.validation_engine:validate:157 | Running validator: Test Report
+2026-08-07 15:55:08 | INFO     | validators.document_validator:validate:97 | Validating '4. Test Report'.
+2026-08-07 15:55:08 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: M-final_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:55:08 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:55:08 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:55:08 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: M-initial_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:55:08 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:55:08 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:55:08 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: S-final_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:55:09 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 3 page(s).
+2026-08-07 15:55:09 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:55:09 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: U-QC_Functional validation report_JIG-sgn.pdf
+2026-08-07 15:55:09 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 1 page(s).
+2026-08-07 15:55:09 | INFO     | validators.document_validator:_validate_single_document:303 | 4. Test Report validated successfully.
+2026-08-07 15:55:09 | INFO     | core.validation_engine:validate:157 | Running validator: Automation Input
+2026-08-07 15:55:09 | INFO     | validators.document_validator:validate:97 | Validating '5. Automation Input Doc'.
+2026-08-07 15:55:09 | INFO     | validators.document_validator:validate:137 | Found signed document: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-07 15:55:09 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-07 15:55:10 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 5 page(s).
+2026-08-07 15:55:10 | INFO     | validators.document_validator:_validate_single_document:303 | 5. Automation Input Doc validated successfully.
+2026-08-07 15:55:10 | INFO     | core.validation_engine:validate:157 | Running validator: Ladder Flow
+2026-08-07 15:55:10 | INFO     | validators.document_validator:validate:97 | Validating '6. Ladder Flow'.
+2026-08-07 15:55:10 | INFO     | validators.document_validator:validate:137 | Found signed document: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-07 15:55:10 | INFO     | services.signature_reader:read_page_snapshots:140 | Inspecting PDF signatures: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-07 15:55:10 | INFO     | services.signature_reader:read_page_snapshots:189 | Extracted signature snapshots for 2 page(s).
+2026-08-07 15:55:10 | WARNING  | validators.document_validator:_validate_single_document:317 | 6. Ladder Flow validation failed.
+2026-08-07 15:55:10 | INFO     | core.validation_engine:validate:157 | Running validator: Chronology
+2026-08-07 15:55:10 | INFO     | validators.chronology_validator:validate:69 | Starting chronology validation.
+2026-08-07 15:55:10 | INFO     | validators.chronology_validator:validate:230 | Chronology validation failed (8 issue(s)).
+2026-08-07 15:55:10 | INFO     | core.validation_engine:validate:195 | Validation completed (FAIL) | Passed=6, Failed=2, Warnings=0
+2026-08-07 15:55:10 | INFO     | gui.main_window:_show_report_window:671 | Entering _show_report_window()
+2026-08-07 15:55:10 | INFO     | gui.main_window:_show_report_window:683 | Creating ReportDataModel...
+2026-08-07 15:55:10 | INFO     | gui.main_window:_show_report_window:685 | ReportDataModel created for project: %s
+2026-08-07 15:55:10 | INFO     | gui.main_window:_show_report_window:686 | Validation Summary ID: %s | Project Path: %s | Passed: %s | Failed: %s | Warnings: %s
+2026-08-07 15:55:10 | INFO     | gui.main_window:_show_report_window:688 | Creating ReportWindow...
+2026-08-07 15:55:10 | INFO     | gui.main_window:_show_report_window:691 | ReportWindow created: %s | receives summary id: %s
+2026-08-07 15:55:10 | INFO     | gui.main_window:_show_report_window:693 | Calling show()...
+2026-08-07 15:55:10 | INFO     | gui.main_window:_show_report_window:695 | show() completed. visible=%s hidden=%s geometry=%s
+2026-08-07 15:55:10 | INFO     | gui.main_window:_show_report_window:697 | Calling raise_()...
+2026-08-07 15:55:10 | INFO     | gui.main_window:_show_report_window:699 | Calling activateWindow()...
+2026-08-07 15:55:10 | INFO     | gui.main_window:_show_report_window:702 | Window visible=%s hidden=%s geometry=%s
+2026-08-07 15:55:10 | INFO     | gui.main_window:_validation_finished:634 | Validation completed successfully.
+2026-08-07 15:55:13 | INFO     | gui.main_window:on_generate_chronology:842 | Chronology generation started.
+2026-08-07 15:55:13 | INFO     | gui.main_window:on_generate_chronology:843 | Chronology dialog opened.
+2026-08-07 15:55:34 | INFO     | gui.main_window:on_generate_chronology:852 | Chronology generation completed.
+2026-08-07 15:56:11 | INFO     | gui.main_window:closeEvent:1010 | Application closed.

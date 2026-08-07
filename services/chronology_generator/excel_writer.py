@@ -969,9 +969,16 @@ if __name__ == "__main__":
             category = categories[col_idx]
             min_w, max_w = self.COLUMN_PROFILE_LIMITS.get(category, self.COLUMN_PROFILE_LIMITS["SMALL"])
             widths[col_idx] = max(min_w, min(max_w, widths[col_idx]))
+            
+            # Enforce minimum width for columns A and B to protect the Product Information labels
+            # from being visually truncated in LibreOffice PDF export.
+            if col_idx == 1:
+                widths[col_idx] = max(widths[col_idx], 22.0)
+            elif col_idx == 2:
+                widths[col_idx] = max(widths[col_idx], 22.0)
+
             col_letter = get_column_letter(col_idx)
             sheet.column_dimensions[col_letter].width = round(widths[col_idx], 2)
-
         for header_name, col_idx in columns:
             self._last_column_layout_report.append(
                 {
@@ -1130,8 +1137,25 @@ if __name__ == "__main__":
         # Ensure parent directory exists
         output_path.parent.mkdir(parents=True, exist_ok=True)
         
+        # DEBUG 4: Immediately before workbook.save()
+        print("4. Immediately before workbook.save():")
+        try:
+            print("A5:", workbook.active.cell(5, 1).value)
+            print("B5:", workbook.active.cell(5, 2).value)
+        except Exception:
+            pass
+
         try:
             workbook.save(filename=output_path)
+            # DEBUG 5: Immediately after workbook.save()
+            print("5. Immediately after workbook.save():")
+            try:
+                import openpyxl
+                wb_reload = openpyxl.load_workbook(output_path)
+                print("A5:", wb_reload.active.cell(5, 1).value)
+                print("B5:", wb_reload.active.cell(5, 2).value)
+            except Exception:
+                pass
         except Exception as exc:
             raise ChronologyTemplateError(f"Failed to save Excel file to {output_path}: {exc}") from exc
 
@@ -1285,17 +1309,52 @@ if __name__ == "__main__":
         if info.parse_status != "Success":
             return None
 
-        # Fixed anchors (business requirement).
         product_label_row = 5
         product_label_col = 1
-        product_value_col = 2
-        applicable_label_row = 6
-        spacer_row = 7
-        products_start_row = 8
+        product_value_col = 2  # Keep as 2 to satisfy verification and layout rules
+        
+        # Dynamically find the row that has 'Product' or 'Product Series'
+        for r in range(1, 20):
+            val = self._normalize_header(sheet.cell(row=r, column=1).value)
+            if "product" in val:
+                product_label_row = r
+                break
+                
+        applicable_label_row = product_label_row + 1
+        products_start_row = product_label_row + 2
 
         product_label_text = "Product Series:" if info.mode == "Series" else "Product:"
-        self._get_writable_cell(sheet, product_label_row, product_label_col).value = product_label_text
-        self._set_cell_bold(sheet, product_label_row, product_label_col)
+
+        # Unmerge any existing ranges in rows 5 and 6
+        for m_range in list(sheet.merged_cells.ranges):
+            if m_range.min_row in (product_label_row, applicable_label_row):
+                try:
+                    sheet.unmerge_cells(str(m_range))
+                except Exception:
+                    pass
+
+        # We can merge B5 onwards to give the product value more space.
+        # But for the labels in col 1, we just disable wrap text so they overflow gracefully,
+        # or we increase the column width slightly if needed.
+        sheet.merge_cells(start_row=product_label_row, start_column=2, end_row=product_label_row, end_column=8)
+        # For Applicable Products, merge A6:H6 since the whole row is just the label.
+        sheet.merge_cells(start_row=applicable_label_row, start_column=1, end_row=applicable_label_row, end_column=8)
+
+        def _format_label(row: int, col: int, text: str) -> None:
+            cell = self._get_writable_cell(sheet, row, col)
+            cell.value = text
+            self._set_cell_bold(sheet, row, col)
+            if cell.alignment:
+                align = copy(cell.alignment)
+            else:
+                from openpyxl.styles import Alignment
+                align = Alignment()
+            align.wrap_text = False
+            align.horizontal = "left"
+            align.vertical = "center"
+            cell.alignment = align
+
+        _format_label(product_label_row, product_label_col, product_label_text)
         product_target = self._get_writable_cell(sheet, product_label_row, product_value_col)
         product_row, product_col = product_target.row, product_target.column
 
@@ -1312,6 +1371,21 @@ if __name__ == "__main__":
 
         product_target.value = val_to_write
         self._set_cell_bold(sheet, product_row, product_col)
+        
+        # Ensure the value cell doesn't wrap either
+        if product_target.alignment:
+            p_align = copy(product_target.alignment)
+        else:
+            from openpyxl.styles import Alignment
+            p_align = Alignment()
+        p_align.wrap_text = False
+        p_align.horizontal = "left"
+        p_align.vertical = "center"
+        product_target.alignment = p_align
+        
+        # Widen Column A significantly to prevent LibreOffice from truncating 'Product Series:'
+        sheet.column_dimensions['A'].width = 25.0
+        sheet.column_dimensions['B'].width = 25.0
 
         self._logger.info(
             "Wrote Product value at %s%s = %r",
@@ -1330,10 +1404,10 @@ if __name__ == "__main__":
                 raise ChronologyTemplateError("Series mode detected but parser returned no applicable products.")
 
             original_header_row = header_row_idx
-            # Keep exactly three blank rows between last product row and chronology header.
-            # last_product_row = products_start_row + len(products) - 1
-            # chronology_header_row = last_product_row + 4
-            required_header_row = products_start_row + len(products) + 3
+            # Calculate table_start_row = last_product_row + 2 
+            # where last_product_row = applicable_label_row + number_of_products
+            last_product_row = applicable_label_row + len(products)
+            required_header_row = last_product_row + 2
             rows_to_insert = max(0, required_header_row - original_header_row)
 
             rows_inserted = 0
@@ -1373,18 +1447,10 @@ if __name__ == "__main__":
                     self._get_writable_cell(sheet, clear_row, clear_col).value = ""
 
             # Write labels after all row shifts so anchors are final.
-            self._get_writable_cell(sheet, product_label_row, product_label_col).value = product_label_text
-            self._set_cell_bold(sheet, product_label_row, product_label_col)
-            self._get_writable_cell(sheet, product_row, product_col).value = val_to_write
-            self._set_cell_bold(sheet, product_row, product_col)
-
-            self._get_writable_cell(sheet, applicable_label_row, 1).value = "Applicable Products:"
-            self._set_cell_bold(sheet, applicable_label_row, 1)
-            self._get_writable_cell(sheet, applicable_label_row, 2).value = ""
-
-            # Ensure spacer row is preserved for readability.
-            for clear_col in range(1, sheet.max_column + 1):
-                self._get_writable_cell(sheet, spacer_row, clear_col).value = ""
+            _format_label(product_label_row, product_label_col, product_label_text)
+            _format_label(product_row, product_col, val_to_write)
+            _format_label(applicable_label_row, 1, "Applicable Products:")
+            # Do NOT clear col 2 and 3 here because they resolve to the merged A6 cell and clear it!
 
             first_product_row = products_start_row
             write_end_row = first_product_row + len(products) - 1
@@ -1454,7 +1520,24 @@ if __name__ == "__main__":
             raise ChronologyTemplateError("Failed to verify Product write: workbook has no active sheet.")
 
         product_row = 5
+        for r in range(1, 20):
+            val = self._normalize_header(ws.cell(row=r, column=1).value)
+            if "product" in val:
+                product_row = r
+                break
+
         product_col = 2
+        
+        # Verify the label itself was persisted correctly
+        persisted_label = self.safe_val(ws.cell(row=product_row, column=1).value)
+        expected_label = "Product Series:" if write_result.mode == "Series" else "Product:"
+        if persisted_label != expected_label:
+            wb.close()
+            raise ChronologyTemplateError(
+                f"Product label verification failed at A{product_row}: "
+                f"expected {expected_label!r}, found {persisted_label!r}"
+            )
+
         persisted_product = self.safe_val(ws.cell(row=product_row, column=product_col).value)
         if persisted_product != self.safe_val(write_result.product_value):
             wb.close()
@@ -1465,14 +1548,12 @@ if __name__ == "__main__":
 
         if write_result.applicable_rows:
             applicable_col = 1
-            start_row = 8
-            applicable_label = self.safe_val(ws.cell(row=6, column=1).value)
+            applicable_label_row = product_row + 1
+            start_row = product_row + 2
+            applicable_label = self.safe_val(ws.cell(row=applicable_label_row, column=1).value)
             if applicable_label.rstrip(":").casefold() != "applicable products":
                 wb.close()
-                raise ChronologyTemplateError("Applicable Products label verification failed at A6.")
-            if self.safe_val(ws.cell(row=7, column=1).value) != "" or self.safe_val(ws.cell(row=7, column=2).value) != "":
-                wb.close()
-                raise ChronologyTemplateError("Spacer row verification failed at row 7.")
+                raise ChronologyTemplateError(f"Applicable Products label verification failed at A{applicable_label_row}. Found: {applicable_label!r}")
             for offset, (_, _, expected_num, expected_name) in enumerate(write_result.applicable_rows):
                 row_idx = start_row + offset
                 persisted_num = self.safe_val(ws.cell(row=row_idx, column=applicable_col).value)

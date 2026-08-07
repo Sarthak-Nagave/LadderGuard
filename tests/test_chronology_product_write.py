@@ -114,17 +114,18 @@ class ChronologyProductWriteTests(unittest.TestCase):
             ws = wb.active
 
             self.assertEqual(ws["B3"].value, "LRPS480")
-            self.assertEqual(ws["A9"].value, 1)
-            self.assertEqual(ws["B9"].value, "LRPS480-24-CE")
-            self.assertEqual(ws["A10"].value, 2)
-            self.assertEqual(ws["B10"].value, "LRPS480-12-CE")
-            self.assertEqual(ws["A11"].value, 3)
-            self.assertEqual(ws["B11"].value, "LRPS480-05-CE")
-            self.assertEqual(ws["A12"].value, 4)
-            self.assertEqual(ws["B12"].value, "LRPS480-48-CE")
+            self.assertEqual(ws["A5"].value, 1)
+            self.assertEqual(ws["B5"].value, "LRPS480-24-CE")
+            self.assertEqual(ws["A6"].value, 2)
+            self.assertEqual(ws["B6"].value, "LRPS480-12-CE")
+            self.assertEqual(ws["A7"].value, 3)
+            self.assertEqual(ws["B7"].value, "LRPS480-05-CE")
+            self.assertEqual(ws["A8"].value, 4)
+            self.assertEqual(ws["B8"].value, "LRPS480-48-CE")
 
-            # Header moved down because one row was inserted above the history table.
-            self.assertEqual(ws["A13"].value, "Serial No.")
+            # Check shifted history table header
+            self.assertEqual(ws["A12"].value, "Serial No.")
+            self.assertEqual(ws["B12"].value, "Source Code Path")
             wb.close()
 
     def test_single_mode_writes_product_value_with_reload_proof(self) -> None:
