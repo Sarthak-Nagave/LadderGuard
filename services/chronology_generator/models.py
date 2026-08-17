@@ -69,6 +69,9 @@ class ChronologyEntry:
     operator_procedure_modification: str = ""
     automation_setup_modification: str = ""
     test_report_path: Path | None = None
+    prepared_by: str = ""
+    checked_by: str = ""
+    approved_by: str = ""
 
     @property
     def version_tuple(self) -> tuple[int, ...]:

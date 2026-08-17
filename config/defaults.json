@@ -3,9 +3,9 @@
   "_description": "Default configurations for missing or corrupted files.",
   "config": {
     "config_version": "1.0.0",
-    "_description": "Core business configuration for the Operational Package Validator.",
+    "_description": "Core business configuration for the Ladder Release Validator.",
     "app": {
-      "name": "Operational Package Validator",
+      "name": "Ladder Release Validator",
       "version": "1.0.0",
       "company_name": "Selec Controls Pvt. Ltd.",
       "organization_name": "Selec Controls Pvt. Ltd.",
@@ -23,7 +23,7 @@
       "default_folder_generation_target": "Desktop"
     },
     "project_structure": {
-      "root_folder_name": "Operational Package Structure",
+      "root_folder_name": "Ladder Release Structure",
       "required_folders": [
         "1. Ladders",
         "2. Bin File",

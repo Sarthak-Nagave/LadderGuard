@@ -145,10 +145,10 @@ class ChronologyDialog(QDialog):
 
         # Dropdowns Layout
         dropdown_layout = QHBoxLayout()
-        dropdown_layout.addWidget(QLabel("Firmware Type:"))
+        dropdown_layout.addWidget(QLabel("Testing Type:"))
         self._combo_type = QComboBox()
         dropdown_layout.addWidget(self._combo_type)
-        dropdown_layout.addWidget(QLabel("Firmware Stage:"))
+        dropdown_layout.addWidget(QLabel("Testing Stage:"))
         self._combo_stage = QComboBox()
         dropdown_layout.addWidget(self._combo_stage)
         dropdown_layout.addStretch(1)
@@ -411,8 +411,11 @@ class ChronologyDialog(QDialog):
         combo_ladder_release = self._yes_no_combo(card_box)
         combo_operator_modification = self._yes_no_combo(card_box)
         combo_automation_modification = self._yes_no_combo(card_box)
+        combo_prepared_by = self._personnel_combo(card_box)
+        combo_checked_by = self._personnel_combo(card_box)
+        combo_approved_by = self._personnel_combo(card_box)
 
-        form.addRow("Firmware Folder:", line_firmware_folder)
+        form.addRow("Folder:", line_firmware_folder)
         form.addRow("BIN File Name:", line_bin)
         form.addRow("Version:", line_version)
         form.addRow("PLC Model:", line_plc)
@@ -429,6 +432,9 @@ class ChronologyDialog(QDialog):
         form.addRow("Ladder Release To Production:", combo_ladder_release)
         form.addRow("Operator Procedure Modification:", combo_operator_modification)
         form.addRow("Automation Set Up Modification:", combo_automation_modification)
+        form.addRow("Prepared By:", combo_prepared_by)
+        form.addRow("Checked By:", combo_checked_by)
+        form.addRow("Approved By:", combo_approved_by)
 
         line_reason.textChanged.connect(self._update_generate_button_state)
         line_released_by.textChanged.connect(self._update_generate_button_state)
@@ -436,6 +442,9 @@ class ChronologyDialog(QDialog):
         combo_ladder_release.currentTextChanged.connect(self._update_generate_button_state)
         combo_operator_modification.currentTextChanged.connect(self._update_generate_button_state)
         combo_automation_modification.currentTextChanged.connect(self._update_generate_button_state)
+        combo_prepared_by.currentTextChanged.connect(self._update_generate_button_state)
+        combo_checked_by.currentTextChanged.connect(self._update_generate_button_state)
+        combo_approved_by.currentTextChanged.connect(self._update_generate_button_state)
         btn_browse_template.clicked.connect(lambda _checked=False, card=None: self._on_browse_template_clicked(card or card_data))
         btn_browse_source.clicked.connect(lambda _checked=False, card=None: self._on_browse_source_clicked(card or card_data))
 
@@ -455,6 +464,9 @@ class ChronologyDialog(QDialog):
             "combo_ladder_release": combo_ladder_release,
             "combo_operator_modification": combo_operator_modification,
             "combo_automation_modification": combo_automation_modification,
+            "combo_prepared_by": combo_prepared_by,
+            "combo_checked_by": combo_checked_by,
+            "combo_approved_by": combo_approved_by,
         }
 
         return card_data
@@ -483,6 +495,14 @@ class ChronologyDialog(QDialog):
         combo.addItems(["Select...", "Yes", "No"])
         return combo
 
+    @staticmethod
+    def _personnel_combo(parent: QWidget) -> QComboBox:
+        combo = QComboBox(parent)
+        combo.setEditable(True)
+        combo.setPlaceholderText("Select or enter person")
+        combo.addItems(["Select or enter person"])
+        return combo
+
     def _update_generate_button_state(self) -> None:
         if not self._stacked_cards or self._stacked_cards.count() == 0:
             self.ui.btn_generate.setEnabled(False)
@@ -505,6 +525,12 @@ class ChronologyDialog(QDialog):
                 if card["combo_operator_modification"].currentText() == "Select...":
                     card_ready = False
                 if card["combo_automation_modification"].currentText() == "Select...":
+                    card_ready = False
+                if not card["combo_prepared_by"].currentText().strip() or card["combo_prepared_by"].currentText() == "Select or enter person":
+                    card_ready = False
+                if not card["combo_checked_by"].currentText().strip() or card["combo_checked_by"].currentText() == "Select or enter person":
+                    card_ready = False
+                if not card["combo_approved_by"].currentText().strip() or card["combo_approved_by"].currentText() == "Select or enter person":
                     card_ready = False
                 break
 
@@ -691,6 +717,20 @@ class ChronologyDialog(QDialog):
             self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), GUI_MESSAGES.get("chronology_automation_mod_empty", "select 'Automation Set Up Modification'."))
             card["combo_automation_modification"].setFocus()
             return False
+        
+        personnel_msg = "Please select or enter Prepared By, Checked By, and Approved By."
+        if not card["combo_prepared_by"].currentText().strip() or card["combo_prepared_by"].currentText() == "Select or enter person":
+            self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), personnel_msg)
+            card["combo_prepared_by"].setFocus()
+            return False
+        if not card["combo_checked_by"].currentText().strip() or card["combo_checked_by"].currentText() == "Select or enter person":
+            self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), personnel_msg)
+            card["combo_checked_by"].setFocus()
+            return False
+        if not card["combo_approved_by"].currentText().strip() or card["combo_approved_by"].currentText() == "Select or enter person":
+            self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), personnel_msg)
+            card["combo_approved_by"].setFocus()
+            return False
         if not self._is_template_selected_for_card(card):
             self._show_warning(GUI_MESSAGES.get("validation_error", "Validation Error"), f"Please select a chronology template for\n{card['line_firmware_folder'].text()}")
             card["btn_browse_template"].setFocus()
@@ -799,6 +839,14 @@ class ChronologyDialog(QDialog):
             entry.ladder_release_to_production = ladder_release if ladder_release != "Select..." else ""
             entry.operator_procedure_modification = operator_mod if operator_mod != "Select..." else ""
             entry.automation_setup_modification = automation_mod if automation_mod != "Select..." else ""
+
+            prep = card["combo_prepared_by"].currentText().strip()
+            chk = card["combo_checked_by"].currentText().strip()
+            app = card["combo_approved_by"].currentText().strip()
+
+            entry.prepared_by = prep if prep != "Select or enter person" else ""
+            entry.checked_by = chk if chk != "Select or enter person" else ""
+            entry.approved_by = app if app != "Select or enter person" else ""
 
     def _show_error(self, title: str, message: str) -> None:
         show_styled_message(self, title, message, variant="error")

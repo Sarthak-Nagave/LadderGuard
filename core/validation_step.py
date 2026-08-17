@@ -3,7 +3,7 @@ core.validation_step
 ====================
 
 Defines validation workflow steps and result status used throughout the
-Operational Package Validator.
+Ladder Release Validator.
 
 This module intentionally contains only enumerations and must not contain
 business logic.

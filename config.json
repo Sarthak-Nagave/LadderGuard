@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Operational Package Validator",
+    "name": "Ladder Release Validator",
     "version": "1.0.0",
     "company_name": "Selec Controls Pvt. Ltd.",
     "organization_name": "Selec Controls Pvt. Ltd."
@@ -19,7 +19,7 @@
   },
 
   "project_structure": {
-    "root_folder_name": "Operational Package Structure",
+    "root_folder_name": "Ladder Release Structure",
     "required_folders": [
       "1. Ladders",
       "2. Bin File",

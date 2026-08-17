@@ -2,12 +2,12 @@
 config.py
 ---------
 
-Central configuration for the Operational Package Validator.
+Central configuration for the Ladder Release Validator.
 
 This module now acts purely as a compatibility wrapper for backward compatibility.
 All values are loaded dynamically from the new JSON configuration structure
 via ConfigManager. The public API (constant names and types) is unchanged
-so that every existing ``from config import …`` statement continues to work.
+so that every existing ``from config import …`` statement continues to work for the Ladder Release Validator.
 
 Author : Selec Controls R&D
 """

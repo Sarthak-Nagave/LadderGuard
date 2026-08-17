@@ -47,6 +47,10 @@ from config import (
     COMPANY_NAME,
     DOCUMENT_VALIDATION_FOLDERS,
     GUI_MESSAGES,
+    WINDOW_WIDTH,
+    WINDOW_HEIGHT,
+    MIN_WINDOW_WIDTH,
+    MIN_WINDOW_HEIGHT,
 )
 from core.validation_engine import ValidationEngine
 from core.validation_step import ValidationStep
@@ -127,8 +131,8 @@ class MainWindow(QMainWindow):
         Build the main window.
         """
         self.setWindowTitle(APP_NAME)
-        self.resize(1600, 900)
-        self.setMinimumSize(1450, 820)
+        self.resize(WINDOW_WIDTH, WINDOW_HEIGHT)
+        self.setMinimumSize(MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT)
 
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -205,7 +209,7 @@ class MainWindow(QMainWindow):
         self.report_button.setMinimumHeight(38)
         self.report_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.report_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogApplyButton))
-        self.generate_and_validate_button = QPushButton("Generate Folder Structure")
+        self.generate_and_validate_button = QPushButton("Ladder Release Structure")
         self.generate_and_validate_button.setObjectName("PrimaryButton")
         self.generate_and_validate_button.setMinimumWidth(220)
         self.generate_and_validate_button.setMinimumHeight(38)
@@ -319,15 +323,22 @@ class MainWindow(QMainWindow):
                 geometry = desktop.availableGeometry()
 
         if geometry is None:
-            self.resize(1600, 900)
+            self.resize(WINDOW_WIDTH, WINDOW_HEIGHT)
             return
 
-        width = min(1600, max(self.minimumWidth(), int(geometry.width() * 0.72)))
-        height = min(900, max(self.minimumHeight(), int(geometry.height() * 0.72)))
-        self.resize(width, height)
+        # Safely clamp the minimum size to the available screen geometry
+        safe_min_width = min(MIN_WINDOW_WIDTH, geometry.width())
+        safe_min_height = min(MIN_WINDOW_HEIGHT, geometry.height())
+        self.setMinimumSize(safe_min_width, safe_min_height)
+
+        # Calculate desired startup size, clamped to available screen
+        desired_width = min(WINDOW_WIDTH, geometry.width())
+        desired_height = min(WINDOW_HEIGHT, geometry.height())
+
+        self.resize(desired_width, desired_height)
         self.move(
-            geometry.left() + max(0, (geometry.width() - width) // 2),
-            geometry.top() + max(0, (geometry.height() - height) // 2),
+            geometry.left() + max(0, (geometry.width() - desired_width) // 2),
+            geometry.top() + max(0, (geometry.height() - desired_height) // 2),
         )
 
     # ---------------------------------------------------------
@@ -820,7 +831,7 @@ class MainWindow(QMainWindow):
             QMessageBox.information(
                 self,
                 "Validation Required",
-                "Please validate the generated Operational Package before generating the Chronology.",
+                "Please validate the generated Ladder Release Structure before generating the Chronology.",
             )
             return
 

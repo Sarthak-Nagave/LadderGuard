@@ -1,7 +1,7 @@
 """
 Application entry point.
 
-Operational Package Validator
+Ladder Release Validator
 
 Author:
     Selec Controls Pvt. Ltd. - R&D

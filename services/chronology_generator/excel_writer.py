@@ -226,6 +226,8 @@ class ChronologyExcelWriter:
         if newest_entry.test_report_path:
             self._update_page_header_from_signed_report(sheet, newest_entry.test_report_path)
 
+        self._write_signoff_fields(sheet, newest_entry, history_row)
+
         self._normalize_chronology_table_format(
             sheet,
             header_map,
@@ -1652,6 +1654,38 @@ if __name__ == "__main__":
                 return row_idx
 
         return start_row
+
+    def _write_signoff_fields(self, sheet: Worksheet, entry: ChronologyEntry, history_row: int) -> None:
+        """
+        Scans rows below the chronology data table for sign-off cells
+        and replaces the template demo value with the actual personnel names.
+        """
+        if not entry.prepared_by and not entry.checked_by and not entry.approved_by:
+            return
+
+        updates = {
+            "prepared by": ("Prepared By:", entry.prepared_by),
+            "checked by": ("Checked By:", entry.checked_by),
+            "approved by": ("Approved By:", entry.approved_by),
+        }
+
+        start_row = max(1, history_row)
+        for row in range(start_row, min(start_row + 100, sheet.max_row + 1)):
+            for col in range(1, min(sheet.max_column + 1, 10)):
+                cell = self._get_writable_cell(sheet, row, col)
+                val = str(cell.value or "").strip().lower()
+                
+                for key, (label, name) in updates.items():
+                    if val.startswith(key):
+                        new_val = f"{label} {name}".strip()
+                        cell.value = new_val
+                        self._logger.info(
+                            "Updated signoff cell %s%s with %r",
+                            openpyxl.utils.get_column_letter(cell.column),
+                            cell.row,
+                            new_val
+                        )
+                        break
 
     def _update_page_header_from_signed_report(self, sheet: Worksheet, signed_pdf_path: Path) -> None:
         """Update only page header fields using the corresponding signed test report."""

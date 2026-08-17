@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 class ConfigManager:
     """
-    Centralized Configuration Manager for Operational Package Validator.
+    Centralized Configuration Manager for the Ladder Release Validator.
     This is the ONLY class allowed to read JSON configuration files directly.
     """
     _instance = None
