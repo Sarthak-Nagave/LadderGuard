@@ -317,6 +317,6 @@ class Ui_ChronologyDialog:
         self.combo_automation_modification.setItemText(1, QCoreApplication.translate("ChronologyDialog", "Yes", None))
         self.combo_automation_modification.setItemText(2, QCoreApplication.translate("ChronologyDialog", "No", None))
 
-        self.btn_generate.setText(QCoreApplication.translate("ChronologyDialog", "Generate Excel", None))
+        self.btn_generate.setText(QCoreApplication.translate("ChronologyDialog", "Generate", None))
         self.btn_cancel.setText(QCoreApplication.translate("ChronologyDialog", "Cancel", None))
     # retranslateUi

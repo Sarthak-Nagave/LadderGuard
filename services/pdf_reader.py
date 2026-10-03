@@ -23,7 +23,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import fitz  # PyMuPDF
+import pdfplumber
+import pypdf
 from loguru import logger
 
 from exceptions.file_not_found_error import FileNotFoundValidationError
@@ -69,22 +70,19 @@ class PdfReaderService:
         logger.info(f"Reading PDF: {file_path}")
 
         try:
-            document = fitz.open(file_path)
-
-            if document.needs_pass:
+            reader = pypdf.PdfReader(file_path)
+            if reader.is_encrypted:
                 raise PermissionError(
                     f"Encrypted PDF: {file_path.name}"
                 )
 
             extracted_text: list[str] = []
 
-            for page in document:
-                page_text = page.get_text("text")
-
-                if page_text:
-                    extracted_text.append(page_text)
-
-            document.close()
+            with pdfplumber.open(file_path) as pdf:
+                for page in pdf.pages:
+                    page_text = page.extract_text()
+                    if page_text:
+                        extracted_text.append(page_text)
 
             text = "\n".join(extracted_text)
 

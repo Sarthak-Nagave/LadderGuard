@@ -33,7 +33,7 @@ class MainWindowChronologyGateTests(unittest.TestCase):
                 info_mock.assert_called_once()
                 args = info_mock.call_args[0]
                 self.assertEqual(args[1], "Validation Required")
-                self.assertIn("Please validate the generated Operational Package", args[2])
+                self.assertIn("Please validate the generated Ladder Release Structure", args[2])
                 dialog_mock.assert_not_called()
 
             window.close()

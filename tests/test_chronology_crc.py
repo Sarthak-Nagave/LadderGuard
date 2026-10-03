@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import fitz
+from reportlab.pdfgen import canvas
 
 from core.validation_context import ValidationContext
 from core.validation_step import ValidationStatus
@@ -20,10 +20,10 @@ class ChronologyValidatorCRCTests(unittest.TestCase):
             stage_folder = chronology_folder / "Master" / "Initial"
             stage_folder.mkdir(parents=True, exist_ok=True)
 
-            document = fitz.open()
-            page = document.new_page()
-            page.insert_text(
-                (72, 72),
+            c = canvas.Canvas(str(stage_folder / "chronology.pdf"))
+            textobject = c.beginText()
+            textobject.setTextOrigin(72, 750)
+            text = (
                 "Chronology Report - Master Initial\n"
                 "Board\n"
                 "Testing Stage\n"
@@ -36,10 +36,12 @@ class ChronologyValidatorCRCTests(unittest.TestCase):
                 "firmware_V1.02.bin\n"
                 "V1.02\n"
                 "12-03-2026\n"
-                "N/A",
+                "N/A"
             )
-            document.save(stage_folder / "chronology.pdf")
-            document.close()
+            for line in text.split("\n"):
+                textobject.textLine(line)
+            c.drawText(textobject)
+            c.save()
 
             bin_root = root / "2. Bin File"
             bin_stage_folder = bin_root / "Master" / "Initial"
@@ -68,10 +70,10 @@ class ChronologyValidatorCRCTests(unittest.TestCase):
             stage_folder = chronology_folder / "Slave" / "Final"
             stage_folder.mkdir(parents=True, exist_ok=True)
 
-            document = fitz.open()
-            page = document.new_page()
-            page.insert_text(
-                (72, 72),
+            c = canvas.Canvas(str(stage_folder / "chronology.pdf"))
+            textobject = c.beginText()
+            textobject.setTextOrigin(72, 750)
+            text = (
                 "Chronology Report - Slave Final\n"
                 "Board\n"
                 "Testing Stage\n"
@@ -86,10 +88,12 @@ class ChronologyValidatorCRCTests(unittest.TestCase):
                 "firmware_V1.00.bin\n"
                 "V1.00\n"
                 "14-05-2026\n"
-                "Information update",
+                "Information update"
             )
-            document.save(stage_folder / "chronology.pdf")
-            document.close()
+            for line in text.split("\n"):
+                textobject.textLine(line)
+            c.drawText(textobject)
+            c.save()
 
             bin_root = root / "2. Bin File"
             bin_stage_folder = bin_root / "Slave" / "Final"

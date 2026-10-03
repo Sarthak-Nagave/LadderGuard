@@ -24,7 +24,6 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-import fitz
 import pdfplumber
 
 from config import FOLDER_KEYS
@@ -325,7 +324,8 @@ class ChronologyValidator(BaseValidator):
             }
 
         try:
-            document = fitz.open(file_path)
+            with pdfplumber.open(file_path) as document:
+                text = "\n".join(page.extract_text() or "" for page in document.pages)
         except Exception:
             return {
                 "board": None,
@@ -335,11 +335,6 @@ class ChronologyValidator(BaseValidator):
                 "release_date": None,
                 "reason_for_upgrade": None,
             }
-
-        try:
-            text = "\n".join(page.get_text("text") for page in document if page.get_text("text"))
-        finally:
-            document.close()
 
         normalized = ChronologyValidator._normalize_text(text)
         lines = [line for line in normalized.splitlines() if line]
@@ -380,14 +375,10 @@ class ChronologyValidator(BaseValidator):
             return metadata
 
         try:
-            document = fitz.open(file_path)
+            with pdfplumber.open(file_path) as document:
+                text = "\n".join(page.extract_text() or "" for page in document.pages)
         except Exception:
             return metadata
-
-        try:
-            text = "\n".join(page.get_text("text") for page in document if page.get_text("text"))
-        finally:
-            document.close()
 
         normalized = ChronologyValidator._normalize_text(text)
         lines = [line for line in normalized.splitlines() if line]

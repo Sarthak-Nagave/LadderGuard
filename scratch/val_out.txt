@@ -1,0 +1,540 @@
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 1 of 8'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=167.53 Dx=17.96 Dy=-166.56 Text='3. Use control plan doc. For label and casing printing.'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 1 of 8'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=186.72 Dx=-182.93 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=186.79 Dx=-84.55 Dy=-166.56 Text='3. Use control plan doc. For label and casing printing.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=201.27 Dx=-194.73 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 1 of 8'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=260.27 Dx=-199.99 Dy=-166.56 Text='3. Use control plan doc. For label and casing printing.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=300.72 Dx=-298.38 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=314.32 Dx=-310.17 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 2 of 8'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=102.28 Dx=14.82 Dy=-101.20 Text='Pic (2.B)'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=198.84 Dx=145.75 Dy=-135.25 Text='Refer Pic (2.B)'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=238.92 Dx=178.91 Dy=-158.35 Text='Press F1 to select initial testing.'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=2 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 2 of 8'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=133.91 Dx=-87.69 Dy=-101.20 Text='Pic (2.B)'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=142.00 Dx=43.24 Dy=-135.25 Text='Refer Pic (2.B)'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=175.82 Dx=76.40 Dy=-158.35 Text='Press F1 to select initial testing.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=186.72 Dx=-182.93 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=201.27 Dx=-194.73 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=2 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 2 of 8'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=153.32 Dx=-72.20 Dy=-135.25 Text='Refer Pic (2.B)'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=163.09 Dx=-39.04 Dy=-158.35 Text='Press F1 to select initial testing.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=226.95 Dx=-203.13 Dy=-101.20 Text='Pic (2.B)'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=300.72 Dx=-298.38 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=314.32 Dx=-310.17 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=2 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=56.17 Dx=16.47 Dy=-53.70 Text='Pic (2.F)'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 3 of 8'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=159.60 Dx=73.72 Dy=-141.55 Text='2.6 SET LOAD BANK SWITCH TO'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=164.16 Dx=147.40 Dy=-72.25 Text='Refer Pic (2.F)'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#10 Dist=164.77 Dx=134.37 Dy=-95.35 Text='press F1.'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=3 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 3 of 8'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=85.06 Dx=44.89 Dy=-72.25 Text='Refer Pic (2.F)'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=100.54 Dx=31.86 Dy=-95.35 Text='press F1.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=101.42 Dx=-86.04 Dy=-53.70 Text='Pic (2.F)'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=136.49 Dx=41.57 Dy=-130.00 Text='EXTERNAL'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=139.46 Dx=89.56 Dy=-106.90 Text='After switching load bank to external,'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=144.45 Dx=-28.79 Dy=-141.55 Text='2.6 SET LOAD BANK SWITCH TO'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#10 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=3 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=100.98 Dx=-70.55 Dy=-72.25 Text='Refer Pic (2.F)'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=109.99 Dx=-25.88 Dy=-106.90 Text='After switching load bank to external,'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 3 of 8'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=126.80 Dx=-83.58 Dy=-95.35 Text='press F1.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=149.52 Dx=-73.87 Dy=-130.00 Text='EXTERNAL'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=202.09 Dx=-144.23 Dy=-141.55 Text='2.6 SET LOAD BANK SWITCH TO'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=208.52 Dx=-201.48 Dy=-53.70 Text='Pic (2.F)'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#10 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=3 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=94.27 Dx=15.74 Dy=-92.95 Text='Pic (2.J)'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 4 of 8'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=178.18 Dx=143.07 Dy=-106.20 Text='Refer Pic (2.J)'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=204.28 Dx=147.96 Dy=-140.85 Text='3. EFFICIENCY'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#10 Dist=207.04 Dx=140.14 Dy=-152.40 Text='2. OP CURR'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=4 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 4 of 8'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=113.69 Dx=40.56 Dy=-106.20 Text='Refer Pic (2.J)'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=127.16 Dx=-86.77 Dy=-92.95 Text='Pic (2.J)'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=148.00 Dx=45.45 Dy=-140.85 Text='3. EFFICIENCY'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=156.98 Dx=37.63 Dy=-152.40 Text='2. OP CURR'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=168.03 Dx=36.81 Dy=-163.95 Text='1. OP VLTG'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#10 Dist=186.72 Dx=-182.93 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=4 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 4 of 8'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=129.95 Dx=-74.88 Dy=-106.20 Text='Refer Pic (2.J)'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=157.28 Dx=-69.99 Dy=-140.85 Text='3. EFFICIENCY'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=171.12 Dx=-77.81 Dy=-152.40 Text='2. OP CURR'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=181.84 Dx=-78.64 Dy=-163.95 Text='1. OP VLTG'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=222.56 Dx=-202.21 Dy=-92.95 Text='Pic (2.J)'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#10 Dist=300.72 Dx=-298.38 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=4 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 5 of 8'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=103.89 Dx=15.69 Dy=-102.70 Text='Pic (2.N)'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=194.08 Dx=132.24 Dy=-142.05 Text='voltage a'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=194.88 Dx=144.73 Dy=-130.50 Text='Refer Pic (2.N)'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#10 Dist=208.76 Dx=185.46 Dy=-95.85 Text='product I&T Doc No. on page no. 2'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=5 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 5 of 8'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=126.76 Dx=82.95 Dy=-95.85 Text='product I&T Doc No. on page no. 2'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=134.48 Dx=-86.82 Dy=-102.70 Text='Pic (2.N)'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=137.16 Dx=42.22 Dy=-130.50 Text='Refer Pic (2.N)'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=137.25 Dx=85.46 Dy=-107.40 Text='Note: - Refer Table A- for respective'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=145.13 Dx=29.73 Dy=-142.05 Text='voltage a'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=175.38 Dx=84.63 Dy=-153.60 Text='After OCP check, recover the output'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#10 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=5 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=101.21 Dx=-32.49 Dy=-95.85 Text='product I&T Doc No. on page no. 2'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=111.51 Dx=-29.98 Dy=-107.40 Text='Note: - Refer Table A- for respective'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 5 of 8'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=149.64 Dx=-73.22 Dy=-130.50 Text='Refer Pic (2.N)'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=156.66 Dx=-30.81 Dy=-153.60 Text='After OCP check, recover the output'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=165.91 Dx=-85.71 Dy=-142.05 Text='voltage a'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=226.84 Dx=-202.26 Dy=-102.70 Text='Pic (2.N)'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#10 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=5 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 6 of 8'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=109.45 Dx=16.47 Dy=-108.20 Text='Pic (2.R)'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=155.76 Dx=131.96 Dy=-82.75 Text='selected.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=207.47 Dx=184.80 Dy=-94.30 Text='be different as per output voltage'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#10 Dist=212.73 Dx=159.72 Dy=-140.50 Text='And go To Next Page.'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=6 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 6 of 8'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=87.84 Dx=29.45 Dy=-82.75 Text='selected.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=125.16 Dx=82.30 Dy=-94.30 Text='be different as per output voltage'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=138.24 Dx=-86.04 Dy=-108.20 Text='Pic (2.R)'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=140.09 Dx=91.76 Dy=-105.85 Text='for 24V power supply. The screen will'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=151.70 Dx=57.21 Dy=-140.50 Text='And go To Next Page.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=151.84 Dx=96.29 Dy=-117.40 Text='Refer Pic(2.R) : Reference image shown'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#10 Dist=169.46 Dx=74.81 Dy=-152.05 Text='Set the Variac txf Auto at 264V.'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=6 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=99.96 Dx=-33.15 Dy=-94.30 Text='be different as per output voltage'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=108.47 Dx=-23.68 Dy=-105.85 Text='for 24V power supply. The screen will'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 6 of 8'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=118.96 Dx=-19.16 Dy=-117.40 Text='Refer Pic(2.R) : Reference image shown'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=119.34 Dx=-85.99 Dy=-82.75 Text='selected.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=152.09 Dx=-58.23 Dy=-140.50 Text='And go To Next Page.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=157.39 Dx=-40.63 Dy=-152.05 Text='Set the Variac txf Auto at 264V.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=228.70 Dx=-201.48 Dy=-108.20 Text='Pic (2.R)'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#10 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=6 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=53.92 Dx=14.68 Dy=-51.88 Text='Pic (2.V)'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 7 of 8'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=142.56 Dx=-105.71 Dy=-95.65 Text='2.22'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=171.63 Dx=144.28 Dy=-92.95 Text='window button'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#10 Dist=226.82 Dx=201.31 Dy=-104.50 Text='each parameter by pressing corresponding'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=7 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 7 of 8'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=101.91 Dx=41.77 Dy=-92.95 Text='window button'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=102.00 Dx=-87.83 Dy=-51.88 Text='Pic (2.V)'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=143.81 Dx=98.80 Dy=-104.50 Text='each parameter by pressing corresponding'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=149.51 Dx=94.26 Dy=-116.05 Text='(Note: You can check measured value of'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=186.72 Dx=-182.93 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#10 Dist=201.27 Dx=-194.73 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=7 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=105.82 Dx=-16.64 Dy=-104.50 Text='each parameter by pressing corresponding'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=117.97 Dx=-21.18 Dy=-116.05 Text='(Note: You can check measured value of'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 7 of 8'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=118.61 Dx=-73.67 Dy=-92.95 Text='window button'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=209.79 Dx=-203.27 Dy=-51.88 Text='Pic (2.V)'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=300.72 Dx=-298.38 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#10 Dist=314.32 Dx=-310.17 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=7 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.8,210.4,714.8)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.41 Dx=-40.47 Dy=-20.60 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 8 of 8'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=8 KeywordRect=(162.6,705.8,210.4,714.8) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.8,310.4,714.8)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 8 of 8'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=144.45 Dx=-142.97 Dy=-20.60 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=186.72 Dx=-182.93 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=201.27 Dx=-194.73 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=8 KeywordRect=(267.6,705.8,310.4,714.8) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.8,429.6,714.8)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 8 of 8'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=259.24 Dx=-258.42 Dy=-20.60 Text='Amendment : New original made on 25/05/26'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=300.72 Dx=-298.38 Dy=37.44 Text='0\\Operation Method\\3.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=314.32 Dx=-310.17 Dy=50.89 Text='Operators Flow'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=8 KeywordRect=(379.4,705.8,429.6,714.8) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(74.2,533.4,107.9,538.4)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=73.49 Dx=72.59 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=149.76 Dx=28.72 Dy=-146.98 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=155.45 Dx=28.71 Dy=-152.78 Text='OUTPUT WIRE'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=164.00 Dx=28.69 Dy=-161.47 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=275.99 Dx=275.99 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=331.87 Dx=296.08 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=340.06 Dx=296.08 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(74.2,533.4,107.9,538.4) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(372.3,533.4,405.4,538.4)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=21.82 Dx=-21.82 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=149.93 Dx=-1.73 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=167.28 Dx=-1.73 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=225.51 Dx=-225.22 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=306.62 Dx=-269.09 Dy=-146.98 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=309.44 Dx=-269.09 Dy=-152.78 Text='OUTPUT WIRE'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=313.85 Dx=-269.12 Dy=-161.47 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(372.3,533.4,405.4,538.4) DetectedName='Nitin K' SignatureFound=True Source=annotation,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(602.6,533.4,638.4,538.4)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=253.46 Dx=-253.46 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=277.38 Dx=-233.37 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=287.13 Dx=-233.37 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=(602.6,533.4,638.4,538.4) DetectedName='Sanjay P' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(74.2,533.4,107.9,538.4)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=73.49 Dx=72.59 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=149.76 Dx=28.72 Dy=-146.98 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=155.45 Dx=28.71 Dy=-152.78 Text='OUTPUT WIRE'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=164.00 Dx=28.69 Dy=-161.47 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=275.99 Dx=275.99 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=331.87 Dx=296.08 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=340.06 Dx=296.08 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(74.2,533.4,107.9,538.4) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(372.3,533.4,405.4,538.4)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=21.82 Dx=-21.82 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=149.93 Dx=-1.73 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=167.28 Dx=-1.73 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=225.51 Dx=-225.22 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=306.62 Dx=-269.09 Dy=-146.98 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=309.44 Dx=-269.09 Dy=-152.78 Text='OUTPUT WIRE'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=313.85 Dx=-269.12 Dy=-161.47 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(372.3,533.4,405.4,538.4) DetectedName='Nitin K' SignatureFound=True Source=annotation,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(602.6,533.4,638.4,538.4)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=253.46 Dx=-253.46 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=277.38 Dx=-233.37 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=287.13 Dx=-233.37 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=(602.6,533.4,638.4,538.4) DetectedName='Sanjay P' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(51.4,557.1,85.0,562.1)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=150.98 Dx=28.86 Dy=-148.19 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=225.00 Dx=224.93 Dy=5.47 Text="X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports 2026.06.29 09:21:55 +05'30'"
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=233.42 Dx=233.42 Dy=0.99 Text='PREPARED BY : Akshay B. Akshay B. Digitally signed by Akshay B. CHECKED BY: Nitin K Nitin Kale D D ou i N g = : i E t c a L n l - l = 2 y N 7 s , i i t g e in n m e K a d a i l l b = e y n , k N o a = i l t S e in e @ l s K e e c a l l e C e c o . n c t o r m ol , s c P = v I t N . D Lt a d t . e , :'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=266.43 Dx=217.55 Dy=-153.81 Text='17 OUTPUT WIRE UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=275.26 Dx=217.55 Dy=-168.63 Text='16 CONNECTION FAIL UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B.' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(51.4,557.1,85.0,562.1) DetectedName='Akshay B.' SignatureFound=True Source=vector,OCR
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(404.1,555.5,437.1,560.5)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=118.99 Dx=-118.96 Dy=2.58 Text='PREPARED BY : Akshay B. Akshay B. Digitally signed by Akshay B. CHECKED BY: Nitin K Nitin Kale D D ou i N g = : i E t c a L n l - l = 2 y N 7 s , i i t g e in n m e K a d a i l l b = e y n , k N o a = i l t S e in e @ l s K e e c a l l e C e c o . n c t o r m ol , s c P = v I t N . D Lt a d t . e , :'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=127.64 Dx=-127.45 Dy=7.05 Text="X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports 2026.06.29 09:21:55 +05'30'"
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=203.35 Dx=-134.83 Dy=-152.22 Text='17 OUTPUT WIRE UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=214.67 Dx=-134.83 Dy=-167.05 Text='16 CONNECTION FAIL UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(404.1,555.5,437.1,560.5) DetectedName='Nitin K' SignatureFound=True Source=vector,OCR
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_TRACE] Role=Prepared By Page=2 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_TRACE] Role=Checked By / Verified By Page=2 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(177.2,555.5,212.9,560.5)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=63.83 Dx=-63.83 Dy=-0.13 Text='Digitally signed by Nitin Kale APPROVED BY :Sanjay P.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=78.98 Dx=-78.49 Dy=8.78 Text="2026.06.29 09:21:55 +05'30' Sanjay"
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=81.17 Dx=75.14 Dy=30.71 Text='Digitally signed by Sanjay Pusalkar'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=146.11 Dx=-146.08 Dy=2.84 Text='ou=EL-27, email=nkale@selec.com, c=IN Date:'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=146.30 Dx=-146.30 Dy=0.55 Text='DN: cn=Nitin Kale, o=Selec Controls Pvt. Ltd.,'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=154.26 Dx=-25.01 Dy=-152.22 Text='FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=168.37 Dx=-25.01 Dy=-166.51 Text='FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=2 KeywordRect=(177.2,555.5,212.9,560.5) DetectedName='Sanjay P' SignatureFound=True Source=OCR
+[SIG_TRACE] Role=Prepared By Page=3 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_TRACE] Role=Checked By / Verified By Page=3 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_TRACE] Role=Approved By Page=3 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(74.2,533.4,107.9,538.4)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=73.49 Dx=72.59 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=149.76 Dx=28.72 Dy=-146.98 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=155.45 Dx=28.71 Dy=-152.78 Text='OUTPUT WIRE'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=164.00 Dx=28.69 Dy=-161.47 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=275.99 Dx=275.99 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=331.87 Dx=296.08 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=340.06 Dx=296.08 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(74.2,533.4,107.9,538.4) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(372.3,533.4,405.4,538.4)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=21.82 Dx=-21.82 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=149.93 Dx=-1.73 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=167.28 Dx=-1.73 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=225.51 Dx=-225.22 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=306.62 Dx=-269.09 Dy=-146.98 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=309.44 Dx=-269.09 Dy=-152.78 Text='OUTPUT WIRE'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=313.85 Dx=-269.12 Dy=-161.47 Text='CONNECTION FAIL'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(372.3,533.4,405.4,538.4) DetectedName='Nitin K' SignatureFound=True Source=annotation,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(602.6,533.4,638.4,538.4)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=253.46 Dx=-253.46 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=277.38 Dx=-233.37 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=287.13 Dx=-233.37 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=(602.6,533.4,638.4,538.4) DetectedName='Sanjay P' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(65.3,725.9,117.3,734.0)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=164.24 Dx=160.16 Dy=36.37 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=240.09 Dx=240.09 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(65.3,725.9,117.3,734.0) DetectedName='Akshay B' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(256.8,725.9,325.0,734.0)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=40.51 Dx=40.51 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=53.63 Dx=-39.42 Dy=36.37 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Jiten G./Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(256.8,725.9,325.0,734.0) DetectedName='Jiten G./Nitin K' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(503.6,725.9,557.9,734.0)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=199.38 Dx=-199.38 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=281.67 Dx=-279.31 Dy=36.37 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=(503.6,725.9,557.9,734.0) DetectedName='Sanjay P' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(47.5,684.7,99.6,692.9)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=160.21 Dx=154.18 Dy=43.54 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=240.09 Dx=240.09 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=2 KeywordRect=(47.5,684.7,99.6,692.9) DetectedName='Akshay B' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(239.0,684.7,307.2,692.9)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=40.51 Dx=40.51 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=62.90 Dx=-45.40 Dy=43.54 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Jiten G./Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=2 KeywordRect=(239.0,684.7,307.2,692.9) DetectedName='Jiten G./Nitin K' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(485.8,684.7,540.2,692.9)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=199.38 Dx=-199.38 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=288.59 Dx=-285.29 Dy=43.54 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=2 KeywordRect=(485.8,684.7,540.2,692.9) DetectedName='Sanjay P' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(63.6,723.6,115.7,731.7)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=157.89 Dx=154.19 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=163.70 Dx=159.80 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=240.09 Dx=240.09 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=3 KeywordRect=(63.6,723.6,115.7,731.7) DetectedName='Akshay B' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(255.1,723.6,323.3,731.7)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=40.51 Dx=40.51 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=53.33 Dx=-39.79 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=56.69 Dx=-45.39 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Jiten G./Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=3 KeywordRect=(255.1,723.6,323.3,731.7) DetectedName='Jiten G./Nitin K' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(501.9,723.6,556.3,731.7)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=199.38 Dx=-199.38 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=281.92 Dx=-279.68 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=287.30 Dx=-285.28 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=3 KeywordRect=(501.9,723.6,556.3,731.7) DetectedName='Sanjay P' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(64.7,729.4,116.7,737.5)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=161.60 Dx=158.12 Dy=33.36 Text='XX::\\\\PPrroodduucctt\\\\GG44__PPSS\\\\AAuuttoommaattiioonn\\\\LARDPPS\\7\\428\\V01\\V.020.0\\O0\\pOepreartiaotnioanl aMl eMthetohdo\\5d.\\ 5A.u Atuomtoamtiaotnio inn pinuptu dto dcoc'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=240.09 Dx=240.09 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=4 KeywordRect=(64.7,729.4,116.7,737.5) DetectedName='Akshay B' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(256.2,729.4,324.4,737.5)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=40.51 Dx=40.51 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=53.22 Dx=-41.46 Dy=33.36 Text='XX::\\\\PPrroodduucctt\\\\GG44__PPSS\\\\AAuuttoommaattiioonn\\\\LARDPPS\\7\\428\\V01\\V.020.0\\O0\\pOepreartiaotnioanl aMl eMthetohdo\\5d.\\ 5A.u Atuomtoamtiaotnio inn pinuptu dto dcoc'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Jiten G./Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=4 KeywordRect=(256.2,729.4,324.4,737.5) DetectedName='Jiten G./Nitin K' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(503.0,729.4,557.3,737.5)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=199.38 Dx=-199.38 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=283.32 Dx=-281.35 Dy=33.36 Text='XX::\\\\PPrroodduucctt\\\\GG44__PPSS\\\\AAuuttoommaattiioonn\\\\LARDPPS\\7\\428\\V01\\V.020.0\\O0\\pOepreartiaotnioanl aMl eMthetohdo\\5d.\\ 5A.u Atuomtoamtiaotnio inn pinuptu dto dcoc'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=4 KeywordRect=(503.0,729.4,557.3,737.5) DetectedName='Sanjay P' SignatureFound=True Source=image
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(61.2,670.1,113.2,678.2)
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=157.89 Dx=154.19 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=164.30 Dx=160.42 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=240.09 Dx=240.09 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=5 KeywordRect=(61.2,670.1,113.2,678.2) DetectedName='Akshay B' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(252.7,670.1,320.9,678.2)
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=40.51 Dx=40.51 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=52.87 Dx=-39.16 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=56.69 Dx=-45.39 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Jiten G./Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=5 KeywordRect=(252.7,670.1,320.9,678.2) DetectedName='Jiten G./Nitin K' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(499.5,670.1,553.9,678.2)
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=199.38 Dx=-199.38 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=281.30 Dx=-279.05 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=287.30 Dx=-285.28 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=5 KeywordRect=(499.5,670.1,553.9,678.2) DetectedName='Sanjay P' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Process Representative Keyword=['Process Representative'] KeywordRect=(97.0,447.5,172.7,455.6)
+[SIG_NAME_TRACE] Role=Process Representative CandidateBlock#1 Dist=249.28 Dx=249.28 Dy=0.00 Text='Process Representative Production / QC HOD'
+[SIG_NAME_TRACE] Role=Process Representative CandidateBlock#2 Dist=292.97 Dx=281.31 Dy=81.82 Text='Page 1 OF 2'
+[SIG_NAME_TRACE] Role=Process Representative ChosenName='' Reason=none
+[SIG_TRACE] Role=Process Representative Page=1 KeywordRect=(97.0,447.5,172.7,455.6) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Production/QC Keyword=['Production/QC', 'Production QC'] KeywordRect=(371.1,447.5,426.8,455.6)
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#1 Dist=14.83 Dx=-14.83 Dy=0.00 Text='Process Representative Production / QC HOD'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#2 Dist=83.61 Dx=17.21 Dy=81.82 Text='Page 1 OF 2'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#3 Dist=174.30 Dx=153.42 Dy=-82.73 Text='Stage 8'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#4 Dist=192.36 Dx=151.47 Dy=-118.57 Text='PACKING'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#5 Dist=197.37 Dx=151.46 Dy=-126.55 Text='+'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#6 Dist=203.24 Dx=152.34 Dy=-134.53 Text='QC'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#7 Dist=208.61 Dx=152.34 Dy=-142.51 Text='+'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#8 Dist=212.88 Dx=150.56 Dy=-150.49 Text='CLEANING'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#9 Dist=292.54 Dx=281.39 Dy=-80.01 Text='Stage 7'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#10 Dist=303.51 Dx=283.40 Dy=-108.63 Text='TRML SCREWING'
+[SIG_NAME_TRACE] Role=Production/QC ChosenName='' Reason=none
+[SIG_TRACE] Role=Production / QC Page=1 KeywordRect=(371.1,447.5,426.8,455.6) DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=HOD Keyword=['HOD'] KeywordRect=(656.0,447.5,671.3,455.6)
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#1 Dist=81.73 Dx=16.69 Dy=-80.01 Text='Stage 7'
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#2 Dist=110.23 Dx=18.71 Dy=-108.63 Text='TRML SCREWING'
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#3 Dist=118.11 Dx=18.72 Dy=-116.61 Text='+'
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#4 Dist=125.99 Dx=18.71 Dy=-124.60 Text='UNSCREWING'
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#5 Dist=133.77 Dx=17.80 Dy=-132.58 Text='CONN'
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#6 Dist=138.66 Dx=-111.28 Dy=-82.73 Text='Stage 8'
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#7 Dist=141.80 Dx=18.72 Dy=-140.56 Text='+'
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#8 Dist=149.72 Dx=18.71 Dy=-148.54 Text='FINAL TESTING'
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#9 Dist=163.95 Dx=-113.23 Dy=-118.57 Text='PACKING'
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#10 Dist=169.82 Dx=-113.24 Dy=-126.55 Text='+'
+[SIG_NAME_TRACE] Role=HOD ChosenName='' Reason=none
+[SIG_TRACE] Role=HOD Page=1 KeywordRect=(656.0,447.5,671.3,455.6) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Process Representative Keyword=['Process Representative'] KeywordRect=(83.7,370.6,159.5,378.6)
+[SIG_NAME_TRACE] Role=Process Representative CandidateBlock#1 Dist=113.32 Dx=24.35 Dy=-110.67 Text='Target Output /Person ► 2.01 160'
+[SIG_NAME_TRACE] Role=Process Representative CandidateBlock#2 Dist=133.24 Dx=25.28 Dy=-130.83 Text='Remove From Load Test 15 20 300'
+[SIG_NAME_TRACE] Role=Process Representative CandidateBlock#3 Dist=151.30 Dx=140.84 Dy=-55.29 Text='Note : Operation with person 3, 4 & 5 is not recommended for production planning . Hence there is effect on product quality'
+[SIG_NAME_TRACE] Role=Process Representative CandidateBlock#4 Dist=158.99 Dx=38.08 Dy=-154.36 Text='Load Test 7200 20 7200'
+[SIG_NAME_TRACE] Role=Process Representative CandidateBlock#5 Dist=248.74 Dx=248.74 Dy=0.00 Text='Process Representative Production / QC HOD'
+[SIG_NAME_TRACE] Role=Process Representative CandidateBlock#6 Dist=334.62 Dx=294.56 Dy=158.76 Text='Page 2 OF 2'
+[SIG_NAME_TRACE] Role=Process Representative ChosenName='' Reason=none
+[SIG_TRACE] Role=Process Representative Page=2 KeywordRect=(83.7,370.6,159.5,378.6) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Production/QC Keyword=['Production/QC', 'Production QC'] KeywordRect=(343.5,370.6,399.3,378.6)
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#1 Dist=1.05 Dx=-1.05 Dy=0.00 Text='Process Representative Production / QC HOD'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#2 Dist=122.18 Dx=-108.96 Dy=-55.29 Text='Note : Operation with person 3, 4 & 5 is not recommended for production planning . Hence there is effect on product quality'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#3 Dist=164.95 Dx=44.76 Dy=158.76 Text='Page 2 OF 2'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#4 Dist=251.15 Dx=-225.45 Dy=-110.67 Text='Target Output /Person ► 2.01 160'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#5 Dist=259.86 Dx=-224.52 Dy=-130.83 Text='Remove From Load Test 15 20 300'
+[SIG_NAME_TRACE] Role=Production/QC CandidateBlock#6 Dist=262.01 Dx=-211.71 Dy=-154.36 Text='Load Test 7200 20 7200'
+[SIG_NAME_TRACE] Role=Production/QC ChosenName='' Reason=none
+[SIG_TRACE] Role=Production / QC Page=2 KeywordRect=(343.5,370.6,399.3,378.6) DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=HOD Keyword=['HOD'] KeywordRect=(641.7,370.6,656.9,378.6)
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#1 Dist=278.99 Dx=-278.99 Dy=0.00 Text='Process Representative Production / QC HOD'
+[SIG_NAME_TRACE] Role=HOD CandidateBlock#2 Dist=282.10 Dx=-233.18 Dy=158.76 Text='Page 2 OF 2'
+[SIG_NAME_TRACE] Role=HOD ChosenName='' Reason=none
+[SIG_TRACE] Role=HOD Page=2 KeywordRect=(641.7,370.6,656.9,378.6) DetectedName='' SignatureFound=True Source=annotation
+[PASS] FOLDER_STRUCTURE: All required folders are present.
+[PASS] LADDER_FILES: Ladder folders and SDOC files validated successfully.
+[PASS] BIN_FILES: BIN CRC comparison validated successfully.
+[FAIL] OPERATIONAL_FLOW: Approved By printed name missing.
+[PASS] TEST_REPORT: Structured Test Report validation completed successfully.
+[PASS] AUTOMATION_INPUT: All required signatures found on every page.
+[FAIL] LADDER_FLOW: Production / QC digital signature missing.
+[FAIL] CHRONOLOGY: Master / Final: BIN filename missing in chronology.; Master / Initial: BIN filename missing in chronology.; Slave / Final: BIN filename missing in chronology.; UUT / QC: BIN filename missing in chronology.

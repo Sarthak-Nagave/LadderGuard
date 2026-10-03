@@ -814,6 +814,116 @@ class MainWindow(QMainWindow):
 
     # ---------------------------------------------------------
 
+    def check_chronology_prerequisites(self) -> dict:
+        """
+        Evaluate if chronology generation is allowed.
+        Returns a dict with structured information about the prerequisite state.
+        """
+        if self.project_path is None or not self.project_path.exists():
+            return {
+                "allowed": False,
+                "validation_completed": False,
+                "passed_count": 0,
+                "total_count": 7,
+                "crc_completed": False,
+                "crc_passed": False,
+                "reason": "Validation has not been completed.\nPlease run validation first."
+            }
+
+        validation_summary = self._validation_summaries_by_project.get(self._project_key(self.project_path))
+        if validation_summary is None:
+            return {
+                "allowed": False,
+                "validation_completed": False,
+                "passed_count": 0,
+                "total_count": 7,
+                "crc_completed": False,
+                "crc_passed": False,
+                "reason": "Validation has not been completed.\nPlease run validation first."
+            }
+        
+        passed_count = validation_summary.passed
+        total_count = 7  # Exactly 7 steps as per requirements
+
+        bin_records = self._extract_bin_crc_records(validation_summary)
+        
+        # Check CRC records presence and pass state
+        crc_completed = bool(bin_records)
+        pass_records = {
+            stage: record
+            for stage, record in bin_records.items()
+            if isinstance(record, dict) and str(record.get("status") or "").upper() == "PASS"
+        }
+        fail_records = {
+            stage: record
+            for stage, record in bin_records.items()
+            if isinstance(record, dict) and str(record.get("status") or "").upper() == "FAIL"
+        }
+
+        # The project considers CRC complete if there are BIN records.
+        # It considers CRC PASS only if there are pass records and no fail records, or just any pass records?
+        # Actually, if there is a FAIL, the status is FAIL. 
+        # But wait, existing code used: `if not pass_records:` block. 
+        # User said "CRC = PASS" is the condition, and differentiate between NOT RUN and FAIL.
+        # If crc_completed is False, it's NOT RUN.
+        # If there are fail records or NO pass records (while completed), it's FAIL.
+        if crc_completed:
+            # We have records. If any is PASS and none are FAIL, it's PASS. But maybe there's a mix.
+            # Let's say it's PASS if `bool(pass_records)` is true, consistent with existing logic which blocked `if not pass_records`.
+            # Actually, existing logic blocked if there were NO pass records. So if there's at least one PASS record, it generated.
+            crc_passed = bool(pass_records)
+        else:
+            crc_passed = False
+
+        if passed_count < 6:
+            if not crc_passed:
+                crc_status_text = "FAIL" if crc_completed else "Not completed"
+                reason = (f"Validation result: {passed_count}/{total_count}\n"
+                          f"Required: 6/7 or 7/7\n\n"
+                          f"CRC status: {crc_status_text}\n\n"
+                          f"Both chronology prerequisites must be satisfied.")
+            else:
+                reason = (f"Validation result: {passed_count}/{total_count}\n"
+                          f"Required: 6/7 or 7/7\n\n"
+                          f"Please resolve the failed validation steps before generating chronology.")
+            return {
+                "allowed": False,
+                "validation_completed": True,
+                "passed_count": passed_count,
+                "total_count": total_count,
+                "crc_completed": crc_completed,
+                "crc_passed": crc_passed,
+                "reason": reason
+            }
+        
+        if not crc_passed:
+            crc_status_text = "FAIL" if crc_completed else "Not completed"
+            pass_word = "PASS" if crc_completed else "pass"
+            reason = (f"Validation result: {passed_count}/{total_count}\n"
+                      f"CRC status: {crc_status_text}\n\n"
+                      f"CRC validation must {pass_word} before chronology can be generated.")
+            return {
+                "allowed": False,
+                "validation_completed": True,
+                "passed_count": passed_count,
+                "total_count": total_count,
+                "crc_completed": crc_completed,
+                "crc_passed": crc_passed,
+                "reason": reason
+            }
+            
+        return {
+            "allowed": True,
+            "validation_completed": True,
+            "passed_count": passed_count,
+            "total_count": total_count,
+            "crc_completed": True,
+            "crc_passed": True,
+            "reason": "Prerequisites satisfied."
+        }
+
+    # ---------------------------------------------------------
+
     def on_generate_chronology(self) -> None:
         """
         Open the Chronology Generation dialog for the selected project.
@@ -826,29 +936,24 @@ class MainWindow(QMainWindow):
             )
             return
 
+        prereqs = self.check_chronology_prerequisites()
+        logger.info(
+            f"Chronology prerequisite check: Validation={prereqs['passed_count']}/{prereqs['total_count']}, "
+            f"CRC={'PASS' if prereqs['crc_passed'] else ('FAIL' if prereqs['crc_completed'] else 'NOT RUN')}, "
+            f"Allowed={prereqs['allowed']}"
+        )
+
+        if not prereqs["allowed"]:
+            logger.info(f"Chronology Generation Blocked: {prereqs['reason'].replace(chr(10), ' ')}")
+            QMessageBox.information(
+                self,
+                "Chronology Generation Blocked",
+                prereqs["reason"]
+            )
+            return
+
         validation_summary = self._validation_summaries_by_project.get(self._project_key(self.project_path))
-        if validation_summary is None:
-            QMessageBox.information(
-                self,
-                "Validation Required",
-                "Please validate the generated Ladder Release Structure before generating the Chronology.",
-            )
-            return
-
         bin_records = self._extract_bin_crc_records(validation_summary)
-        pass_records = {
-            stage: record
-            for stage, record in bin_records.items()
-            if isinstance(record, dict) and str(record.get("status") or "").upper() == "PASS"
-        }
-
-        if not pass_records:
-            QMessageBox.information(
-                self,
-                "No Chronology Generated",
-                "All firmware folders failed CRC validation.",
-            )
-            return
 
         logger.info("Chronology generation started.")
         logger.info("Chronology dialog opened.")

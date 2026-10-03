@@ -402,6 +402,9 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
             active_card["combo_ladder_release"].setCurrentText("Yes")
             active_card["combo_operator_modification"].setCurrentText("No")
             active_card["combo_automation_modification"].setCurrentText("No")
+            active_card["combo_prepared_by"].setCurrentText("John")
+            active_card["combo_checked_by"].setCurrentText("Jane")
+            active_card["combo_approved_by"].setCurrentText("Boss")
             dialog._update_generate_button_state()
 
             # Generate button should be enabled since active card is filled out
@@ -520,3 +523,4 @@ class ChronologyGenerationWorkflowTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

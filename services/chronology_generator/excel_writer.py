@@ -237,11 +237,26 @@ class ChronologyExcelWriter:
         self._restore_print_layout(sheet, layout_snapshot)
         self._debug_print_header_state(sheet, "before save")
 
+        # Inlined page setup and page break calculation to avoid saving/reopening
+        self._validate_merged_ranges(sheet)
+        max_row, max_col = self._last_used_cell(sheet)
+        end_col = get_column_letter(max_col)
+        sheet.print_area = f"$A$1:${end_col}${max_row}"
+
+        sheet.page_setup.fitToWidth = 1
+        sheet.page_setup.fitToHeight = 0
+        sheet.page_setup.scale = None
+
+        if sheet.sheet_properties.pageSetUpPr is None:
+            from openpyxl.worksheet.properties import PageSetupProperties
+            sheet.sheet_properties.pageSetUpPr = PageSetupProperties()
+        sheet.sheet_properties.pageSetUpPr.fitToPage = True
+
+        self._recalculate_page_breaks(sheet)
+
         self._save(workbook, output_path)
         self._debug_print_header_state(sheet, "after save")
         workbook.close()
-
-        self._recalculate_page_setup_from_saved_workbook(output_path)
 
         self._last_pdf_export_succeeded = self._export_generated_excel_to_pdf(output_path)
 
@@ -283,42 +298,44 @@ class ChronologyExcelWriter:
             self._logger.warning("Failed to remove existing chronology PDF %s: %s", pdf_path, exc)
             return False
 
-        command = [
-            str(soffice_path),
-            "--headless",
-            "--convert-to",
-            "pdf",
-            "--outdir",
-            str(excel_path.parent),
-            str(excel_path),
-        ]
+        # Attempt to use LibreOffice UNO to apply headers AND export PDF in one launch
+        uno_success = self._apply_header_and_export_with_soffice_uno(excel_path, pdf_path, soffice_path)
 
-        self._apply_header_with_soffice_uno(excel_path, soffice_path)
+        if not uno_success:
+            # Fallback to standard command line PDF export if UNO wasn't used or failed
+            command = [
+                str(soffice_path),
+                "--headless",
+                "--convert-to",
+                "pdf",
+                "--outdir",
+                str(excel_path.parent),
+                str(excel_path),
+            ]
 
-        try:
-            result = subprocess.run(command, capture_output=True, text=True, check=False)
-        except Exception as exc:
-            self._last_pdf_export_message = "PDF export failed while running LibreOffice."
-            self._logger.warning(
-                "Chronology PDF export failed for %s using %s: %s",
-                excel_path,
-                soffice_path,
-                exc,
-            )
-            return False
-
-        if result.returncode != 0:
-            stderr = (result.stderr or "").strip()
-            stdout = (result.stdout or "").strip()
-            self._last_pdf_export_message = "PDF export failed. Please check LibreOffice installation and logs."
-            self._logger.warning(
-                "Chronology PDF export failed for %s (exit=%s). stdout=%r stderr=%r",
-                excel_path,
-                result.returncode,
-                stdout,
-                stderr,
-            )
-            return False
+            try:
+                result = subprocess.run(command, capture_output=True, text=True, check=False)
+                if result.returncode != 0:
+                    stderr = (result.stderr or "").strip()
+                    stdout = (result.stdout or "").strip()
+                    self._last_pdf_export_message = "PDF export failed. Please check LibreOffice installation and logs."
+                    self._logger.warning(
+                        "Chronology PDF export failed for %s (exit=%s). stdout=%r stderr=%r",
+                        excel_path,
+                        result.returncode,
+                        stdout,
+                        stderr,
+                    )
+                    return False
+            except Exception as exc:
+                self._last_pdf_export_message = "PDF export failed while running LibreOffice."
+                self._logger.warning(
+                    "Chronology PDF export failed for %s using %s: %s",
+                    excel_path,
+                    soffice_path,
+                    exc,
+                )
+                return False
 
         if not pdf_path.exists() or pdf_path.stat().st_size <= 0:
             self._last_pdf_export_message = "PDF export failed: output file was not created correctly."
@@ -331,47 +348,6 @@ class ChronologyExcelWriter:
         self._last_pdf_export_message = ""
         self._logger.info("Chronology PDF export completed successfully: %s", pdf_path)
         return True
-
-    def _recalculate_page_setup_from_saved_workbook(self, output_path: Path) -> None:
-        """Reopen saved workbook and normalize page setup before PDF export."""
-        workbook = openpyxl.load_workbook(filename=output_path)
-        sheet = workbook.active
-        if sheet is None:
-            workbook.close()
-            raise ChronologyTemplateError("Saved workbook contains no active worksheet for page-setup recalculation.")
-
-        self._debug_print_header_state(sheet, "after reopening workbook")
-
-        self._validate_merged_ranges(sheet)
-
-        max_row, max_col = self._last_used_cell(sheet)
-        end_col = get_column_letter(max_col)
-        sheet.print_area = f"$A$1:${end_col}${max_row}"
-
-        # Keep print titles unchanged.
-        # Fit to width exactly one page, and allow natural vertical pagination.
-        sheet.page_setup.fitToWidth = 1
-        sheet.page_setup.fitToHeight = 0
-        sheet.page_setup.scale = None
-
-        if sheet.sheet_properties.pageSetUpPr is None:
-            from openpyxl.worksheet.properties import PageSetupProperties
-
-            sheet.sheet_properties.pageSetUpPr = PageSetupProperties()
-        sheet.sheet_properties.pageSetUpPr.fitToPage = True
-
-        self._recalculate_page_breaks(sheet)
-
-        workbook.save(filename=output_path)
-        workbook.close()
-
-        verify_workbook = openpyxl.load_workbook(filename=output_path)
-        verify_sheet = verify_workbook.active
-        if verify_sheet is None:
-            verify_workbook.close()
-            raise ChronologyTemplateError("Saved workbook contains no active worksheet during header verification.")
-        self._debug_print_header_state(verify_sheet, "after recalculation save+reopen")
-        verify_workbook.close()
 
     def _normalize_header_footer_linebreaks(self, sheet: Worksheet) -> None:
         """Replace Excel escaped newline tokens with real newlines in header/footer text."""
@@ -386,17 +362,17 @@ class ChronologyExcelWriter:
         print(f"[{stage}] worksheet.oddHeader.center.text = {sheet.oddHeader.center.text!r}")
         print(f"[{stage}] worksheet.oddHeader.right.text = {sheet.oddHeader.right.text!r}")
 
-    def _apply_header_with_soffice_uno(self, excel_path: Path, soffice_path: Path) -> None:
-        """Write page headers via LibreOffice UNO before PDF conversion."""
+    def _apply_header_and_export_with_soffice_uno(self, excel_path: Path, pdf_path: Path, soffice_path: Path) -> bool:
+        """Write page headers via LibreOffice UNO and export to PDF in a single LibreOffice launch."""
         if not self._native_header_override:
-            return
+            return False
 
         lo_python = self._resolve_soffice_python_executable(soffice_path)
         if lo_python is None:
             self._logger.warning(
                 "Native header override skipped: LibreOffice python executable not found for UNO header write."
             )
-            return
+            return False
 
         script_source = """
 import sys
@@ -430,9 +406,10 @@ def _apply_header_to_style(style, left_text, center_text, right_text):
 
 def main():
     workbook_path = sys.argv[1]
-    left_text = sys.argv[2]
-    center_text = sys.argv[3]
-    right_text = sys.argv[4]
+    pdf_path = sys.argv[2]
+    left_text = sys.argv[3]
+    center_text = sys.argv[4]
+    right_text = sys.argv[5]
 
     context = officehelper.bootstrap()
     desktop = context.ServiceManager.createInstanceWithContext("com.sun.star.frame.Desktop", context)
@@ -450,6 +427,10 @@ def main():
             _apply_header_to_style(style, left_text, center_text, right_text)
 
         doc.store()
+        
+        pdf_url = uno.systemPathToFileUrl(pdf_path)
+        pdf_args = (_prop("FilterName", "calc_pdf_Export"),)
+        doc.storeToURL(pdf_url, pdf_args)
     finally:
         if doc is not None:
             doc.close(True)
@@ -475,6 +456,7 @@ if __name__ == "__main__":
                     str(lo_python),
                     str(script_path),
                     str(excel_path.resolve()),
+                    str(pdf_path.resolve()),
                     left,
                     center,
                     right,
@@ -485,20 +467,23 @@ if __name__ == "__main__":
             )
             if result.returncode != 0:
                 self._logger.warning(
-                    "Native header override via LibreOffice UNO failed (exit=%s). stdout=%r stderr=%r",
+                    "Native header override and PDF export via LibreOffice UNO failed (exit=%s). stdout=%r stderr=%r",
                     result.returncode,
                     (result.stdout or "").strip(),
                     (result.stderr or "").strip(),
                 )
+                return False
             else:
-                self._logger.info("Applied page header through LibreOffice UNO before PDF export.")
+                self._logger.info("Applied page header and exported PDF through LibreOffice UNO in one pass.")
+                return True
         except Exception as exc:
             self._logger.warning("Native header override via LibreOffice UNO failed: %s", exc)
+            return False
         finally:
             if script_path is not None:
                 try:
                     script_path.unlink(missing_ok=True)
-                except Exception:
+                except OSError:
                     pass
 
     def _resolve_soffice_python_executable(self, soffice_path: Path) -> Path | None:

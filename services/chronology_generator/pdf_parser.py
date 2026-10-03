@@ -20,7 +20,7 @@ import logging
 import re
 from pathlib import Path
 
-import fitz  # PyMuPDF
+import pdfplumber
 
 from services.chronology_generator.models import ProductInfo
 
@@ -65,13 +65,13 @@ class TestReportParser:
             return info
 
         try:
-            doc = fitz.open(pdf_path)
+            doc = pdfplumber.open(pdf_path)
             
             # Print page 1 trace for user
-            if len(doc) > 0:
+            if len(doc.pages) > 0:
                 print("\n================================================")
                 print("6.\nPDF being parsed (Page 1):")
-                print(doc[0].get_text())
+                print(doc.pages[0].extract_text() or "")
 
         except Exception as e:
             info.parse_status = "Failed"
@@ -81,9 +81,9 @@ class TestReportParser:
 
         found_info = False
 
-        for page_num, page in enumerate(doc):
+        for page_num, page in enumerate(doc.pages):
             try:
-                text = page.get_text()
+                text = page.extract_text() or ""
                 # Parse text
                 series_match = re.search(r'PRODUCT\s+SERIES\s*:?\s*([^\n]+)', text, re.IGNORECASE)
                 names_raw = self._extract_product_name_block(text)
@@ -137,17 +137,17 @@ class TestReportParser:
             return None
 
         try:
-            doc = fitz.open(pdf_path)
+            doc = pdfplumber.open(pdf_path)
         except Exception as exc:
             self._logger.warning("Failed to open signed report for header extraction %s: %s", pdf_path, exc)
             return None
 
         try:
-            if len(doc) == 0:
+            if len(doc.pages) == 0:
                 self._logger.warning("Signed report has no pages for header extraction: %s", pdf_path)
                 return None
 
-            page1_text = doc[0].get_text()
+            page1_text = doc.pages[0].extract_text() or ""
             match = re.search(
                 r'(?i)\bDDHW(?:\s*[_\-/:]?\s*)([A-Z0-9]+(?:[_\-][A-Z0-9]+)*)\b',
                 page1_text,

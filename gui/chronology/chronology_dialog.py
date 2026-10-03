@@ -22,6 +22,8 @@ import os
 from pathlib import Path
 from typing import Any
 
+from PySide6.QtCore import QObject, QThread, Signal, QCoreApplication
+
 from PySide6.QtWidgets import (
     QComboBox,
     QDialog,
@@ -48,6 +50,42 @@ from services.chronology_generator.parsers import FilenameParser
 from gui.ui_dialogs import show_action_dialog, show_styled_message
 
 from .ui_chronology_dialog import Ui_ChronologyDialog
+
+
+class ChronologyWorker(QObject):
+    """
+    Executes chronology generation (Excel/PDF) in a background thread.
+    """
+    # Signals to communicate with the GUI thread
+    # target_path, pdf_path, pdf_succeeded, export_message
+    finished = Signal(Path, Path, bool, str)
+    failed = Signal(str)
+
+    def __init__(
+        self,
+        chronology: ProjectChronology,
+        template_path: Path,
+        target_path: Path,
+    ) -> None:
+        super().__init__()
+        self._chronology = chronology
+        self._template_path = template_path
+        self._target_path = target_path
+
+    def run(self) -> None:
+        try:
+            writer = ChronologyExcelWriter(self._template_path)
+            writer.write(self._chronology, self._target_path)
+
+            pdf_path = writer.last_pdf_path or self._target_path.with_suffix(".pdf")
+            pdf_succeeded = writer.last_pdf_export_succeeded
+            export_message = writer.last_pdf_export_message or ""
+
+            self.finished.emit(self._target_path, pdf_path, pdf_succeeded, export_message)
+        except Exception as error:
+            import traceback
+            traceback.print_exc()
+            self.failed.emit(str(error))
 
 
 class ChronologyDialog(QDialog):
@@ -84,6 +122,9 @@ class ChronologyDialog(QDialog):
         self._card_map: dict[str, dict[str, Any]] = {}
         self._validation_bin_crc_records = validation_bin_crc_records or {}
         self._skipped_firmware: list[dict[str, str]] = []
+
+        self._chronology_thread: QThread | None = None
+        self._chronology_worker: ChronologyWorker | None = None
 
         # Standard PySide6 UI setup
         self.ui = Ui_ChronologyDialog()
@@ -570,6 +611,9 @@ class ChronologyDialog(QDialog):
             self.ui.line_output_file.setText(str(path))
 
     def _on_generate_clicked(self) -> None:
+        if self._chronology_thread is not None and self._chronology_thread.isRunning():
+            return
+
         if not self._validate_inputs():
             return
 
@@ -607,76 +651,102 @@ class ChronologyDialog(QDialog):
                     return
 
             chronology = ProjectChronology(project_root=self._project_folder, entries=[entry])
-            writer = ChronologyExcelWriter(template_path)
-            writer.write(chronology, target_path)
 
-            pdf_path = writer.last_pdf_path or target_path.with_suffix(".pdf")
-            pdf_succeeded = writer.last_pdf_export_succeeded
+            self.ui.btn_generate.setEnabled(False)
+            self.ui.btn_generate.setText(QCoreApplication.translate("ChronologyDialog", "Generating...", None))
 
-            if pdf_succeeded:
-                text = (
-                    "Chronology Generated Successfully\n\n"
-                    "Generated Files\n\n"
-                    f"\u2713 {target_path.name}\n"
-                    f"\u2713 {pdf_path.name}"
-                )
-                choice = show_action_dialog(
-                    self,
-                    title=GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"),
-                    subtitle="Chronology Generated Successfully",
-                    description=text,
-                    accent="success",
-                    actions=[("View Excel", "excel"), ("View PDF", "pdf"), ("Close", "close")],
-                )
-            else:
-                export_message = writer.last_pdf_export_message or "PDF export failed. Please check logs for details."
-                text = (
-                    "Chronology Excel generated successfully.\n\n"
-                    f"{export_message}\n\n"
-                    "Generated Files\n\n"
-                    f"\u2713 {target_path.name}"
-                )
-                choice = show_action_dialog(
-                    self,
-                    title=GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"),
-                    subtitle="Chronology Generated with Warnings",
-                    description=text,
-                    accent="warning",
-                    actions=[("View Excel", "excel"), ("View PDF", "pdf"), ("Close", "close")],
-                )
+            self._chronology_thread = QThread(self)
+            self._chronology_worker = ChronologyWorker(chronology, template_path, target_path)
+            self._chronology_worker.moveToThread(self._chronology_thread)
 
-            if choice == "excel":
-                if not target_path.exists():
-                    self._show_warning("File Not Found", "Generated Excel file could not be found.")
-                    self.accept()
-                    return
-                try:
-                    os.startfile(str(target_path))
-                except Exception:
-                    self._logger.exception("Failed to open chronology Excel.")
-                    self._show_warning(
-                        "Error",
-                        f"Failed to open the Excel file. It might not be associated with any application.\n\nFile: {target_path}"
-                    )
-            elif choice == "pdf":
-                if not pdf_path.exists():
-                    self._show_warning("File Not Found", "Generated PDF file could not be found.")
-                    self.accept()
-                    return
-                try:
-                    os.startfile(str(pdf_path))
-                except Exception:
-                    self._logger.exception("Failed to open chronology PDF.")
-                    self._show_warning(
-                        "Error",
-                        f"Failed to open the PDF file. It might not be associated with any application.\n\nFile: {pdf_path}"
-                    )
-            
-            self.accept()
+            self._chronology_thread.started.connect(self._chronology_worker.run)
+            self._chronology_worker.finished.connect(self._on_generation_finished)
+            self._chronology_worker.failed.connect(self._on_generation_failed)
+
+            # Cleanup
+            self._chronology_worker.finished.connect(self._chronology_thread.quit)
+            self._chronology_worker.failed.connect(self._chronology_thread.quit)
+            self._chronology_thread.finished.connect(self._chronology_worker.deleteLater)
+            self._chronology_thread.finished.connect(self._chronology_thread.deleteLater)
+            self._chronology_thread.finished.connect(self._cleanup_generation_thread)
+
+            self._chronology_thread.start()
 
         except Exception as exc:
-            self._logger.exception("Unexpected error during chronology generation.")
+            self._logger.exception("Unexpected error during chronology generation startup.")
             self._show_error(GUI_MESSAGES.get("unexpected_error", "Unexpected Error"), f"An unexpected error occurred:\n{exc}")
+            self._cleanup_generation_thread()
+
+    def _cleanup_generation_thread(self) -> None:
+        self._chronology_worker = None
+        self._chronology_thread = None
+        self.ui.btn_generate.setEnabled(True)
+        self.ui.btn_generate.setText(QCoreApplication.translate("ChronologyDialog", "Generate", None))
+
+    def _on_generation_finished(self, target_path: Path, pdf_path: Path, pdf_succeeded: bool, export_message: str) -> None:
+        if pdf_succeeded:
+            text = (
+                "Chronology Generated Successfully\n\n"
+                "Generated Files\n\n"
+                f"\u2713 {target_path.name}\n"
+                f"\u2713 {pdf_path.name}"
+            )
+            choice = show_action_dialog(
+                self,
+                title=GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"),
+                subtitle="Chronology Generated Successfully",
+                description=text,
+                accent="success",
+                actions=[("View Excel", "excel"), ("View PDF", "pdf"), ("Close", "close")],
+            )
+        else:
+            export_message = export_message or "PDF export failed. Please check logs for details."
+            text = (
+                "Chronology Excel generated successfully.\n\n"
+                f"{export_message}\n\n"
+                "Generated Files\n\n"
+                f"\u2713 {target_path.name}"
+            )
+            choice = show_action_dialog(
+                self,
+                title=GUI_MESSAGES.get("chronology_generation_completed", "Chronology Generation Completed"),
+                subtitle="Chronology Generated with Warnings",
+                description=text,
+                accent="warning",
+                actions=[("View Excel", "excel"), ("View PDF", "pdf"), ("Close", "close")],
+            )
+
+        if choice == "excel":
+            if not target_path.exists():
+                self._show_warning("File Not Found", "Generated Excel file could not be found.")
+                self.accept()
+                return
+            try:
+                os.startfile(str(target_path))
+            except Exception:
+                self._logger.exception("Failed to open chronology Excel.")
+                self._show_warning(
+                    "Error",
+                    f"Failed to open the Excel file. It might not be associated with any application.\n\nFile: {target_path}"
+                )
+        elif choice == "pdf":
+            if not pdf_path.exists():
+                self._show_warning("File Not Found", "Generated PDF file could not be found.")
+                self.accept()
+                return
+            try:
+                os.startfile(str(pdf_path))
+            except Exception:
+                self._logger.exception("Failed to open chronology PDF.")
+                self._show_warning(
+                    "Error",
+                    f"Failed to open the PDF file. It might not be associated with any application.\n\nFile: {pdf_path}"
+                )
+        
+        self.accept()
+
+    def _on_generation_failed(self, error_message: str) -> None:
+        self._show_error(GUI_MESSAGES.get("unexpected_error", "Unexpected Error"), f"An unexpected error occurred:\n{error_message}")
 
     def _validate_inputs(self) -> bool:
         if not self._stacked_cards or self._stacked_cards.count() == 0:

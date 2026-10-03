@@ -1,0 +1,752 @@
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=2 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=2 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=2 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=3 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=3 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=3 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=4 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=4 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=4 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=5 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=5 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=5 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=6 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=6 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=6 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.7,210.4,714.7)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=7 KeywordRect=(162.6,705.7,210.4,714.7) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.7,310.4,714.7)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=7 KeywordRect=(267.6,705.7,310.4,714.7) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.7,429.6,714.7)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=7 KeywordRect=(379.4,705.7,429.6,714.7) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(162.6,705.8,210.4,714.8)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=8 KeywordRect=(162.6,705.8,210.4,714.8) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(267.6,705.8,310.4,714.8)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=8 KeywordRect=(267.6,705.8,310.4,714.8) DetectedName='Nitin K' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(379.4,705.8,429.6,714.8)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='' Reason=none
+[SIG_TRACE] Role=Approved By Page=8 KeywordRect=(379.4,705.8,429.6,714.8) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(74.2,533.4,107.9,538.4)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(74.2,533.4,107.9,538.4) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(372.3,533.4,405.4,538.4)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(372.3,533.4,405.4,538.4) DetectedName='Nitin K' SignatureFound=True Source=annotation,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(602.6,533.4,638.4,538.4)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=(602.6,533.4,638.4,538.4) DetectedName='Sanjay P' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(74.2,533.4,107.9,538.4)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(74.2,533.4,107.9,538.4) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(372.3,533.4,405.4,538.4)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(372.3,533.4,405.4,538.4) DetectedName='Nitin K' SignatureFound=True Source=annotation,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(602.6,533.4,638.4,538.4)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=(602.6,533.4,638.4,538.4) DetectedName='Sanjay P' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(51.4,557.1,85.0,562.1)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B.' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(51.4,557.1,85.0,562.1) DetectedName='Akshay B.' SignatureFound=True Source=vector,OCR
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(404.1,555.5,437.1,560.5)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(404.1,555.5,437.1,560.5) DetectedName='Nitin K' SignatureFound=True Source=vector,OCR
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_TRACE] Role=Prepared By Page=2 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_TRACE] Role=Checked By / Verified By Page=2 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(177.2,555.5,212.9,560.5)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=2 KeywordRect=(177.2,555.5,212.9,560.5) DetectedName='Sanjay P' SignatureFound=True Source=OCR
+[SIG_TRACE] Role=Prepared By Page=3 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_TRACE] Role=Checked By / Verified By Page=3 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_TRACE] Role=Approved By Page=3 KeywordRect=None DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(74.2,533.4,107.9,538.4)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(74.2,533.4,107.9,538.4) DetectedName='Akshay B' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(372.3,533.4,405.4,538.4)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(372.3,533.4,405.4,538.4) DetectedName='Nitin K' SignatureFound=True Source=annotation,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(602.6,533.4,638.4,538.4)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=(602.6,533.4,638.4,538.4) DetectedName='Sanjay P' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(65.3,725.9,117.3,734.0)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=1 KeywordRect=(65.3,725.9,117.3,734.0) DetectedName='Akshay B' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(256.8,725.9,325.0,734.0)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Jiten G./Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=1 KeywordRect=(256.8,725.9,325.0,734.0) DetectedName='Jiten G./Nitin K' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(503.6,725.9,557.9,734.0)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=1 KeywordRect=(503.6,725.9,557.9,734.0) DetectedName='Sanjay P' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(47.5,684.7,99.6,692.9)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=2 KeywordRect=(47.5,684.7,99.6,692.9) DetectedName='Akshay B' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(239.0,684.7,307.2,692.9)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Jiten G./Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=2 KeywordRect=(239.0,684.7,307.2,692.9) DetectedName='Jiten G./Nitin K' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(485.8,684.7,540.2,692.9)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=2 KeywordRect=(485.8,684.7,540.2,692.9) DetectedName='Sanjay P' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(63.6,723.6,115.7,731.7)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=3 KeywordRect=(63.6,723.6,115.7,731.7) DetectedName='Akshay B' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(255.1,723.6,323.3,731.7)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Jiten G./Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=3 KeywordRect=(255.1,723.6,323.3,731.7) DetectedName='Jiten G./Nitin K' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(501.9,723.6,556.3,731.7)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=3 KeywordRect=(501.9,723.6,556.3,731.7) DetectedName='Sanjay P' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(64.7,729.4,116.7,737.5)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=4 KeywordRect=(64.7,729.4,116.7,737.5) DetectedName='Akshay B' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(256.2,729.4,324.4,737.5)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Jiten G./Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=4 KeywordRect=(256.2,729.4,324.4,737.5) DetectedName='Jiten G./Nitin K' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(503.0,729.4,557.3,737.5)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=4 KeywordRect=(503.0,729.4,557.3,737.5) DetectedName='Sanjay P' SignatureFound=True Source=image
+[SIG_NAME_TRACE] Role=Prepared By Keyword=['Prepared By'] KeywordRect=(61.2,670.1,113.2,678.2)
+[SIG_NAME_TRACE] Role=Prepared By ChosenName='Akshay B' Reason=same-line-after-colon
+[SIG_TRACE] Role=Prepared By Page=5 KeywordRect=(61.2,670.1,113.2,678.2) DetectedName='Akshay B' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Checked By Keyword=['Checked By', 'Verified By'] KeywordRect=(252.7,670.1,320.9,678.2)
+[SIG_NAME_TRACE] Role=Checked By ChosenName='Jiten G./Nitin K' Reason=same-line-after-colon
+[SIG_TRACE] Role=Checked By / Verified By Page=5 KeywordRect=(252.7,670.1,320.9,678.2) DetectedName='Jiten G./Nitin K' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Approved By Keyword=['Approved By'] KeywordRect=(499.5,670.1,553.9,678.2)
+[SIG_NAME_TRACE] Role=Approved By ChosenName='Sanjay P' Reason=same-line-after-colon
+[SIG_TRACE] Role=Approved By Page=5 KeywordRect=(499.5,670.1,553.9,678.2) DetectedName='Sanjay P' SignatureFound=True Source=image,vector
+[SIG_NAME_TRACE] Role=Process Representative Keyword=['Process Representative'] KeywordRect=(97.0,447.5,172.7,455.6)
+[SIG_NAME_TRACE] Role=Process Representative ChosenName='' Reason=none
+[SIG_TRACE] Role=Process Representative Page=1 KeywordRect=(97.0,447.5,172.7,455.6) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Production/QC Keyword=['Production/QC', 'Production QC'] KeywordRect=(371.1,447.5,426.8,455.6)
+[SIG_NAME_TRACE] Role=Production/QC ChosenName='' Reason=none
+[SIG_TRACE] Role=Production / QC Page=1 KeywordRect=(371.1,447.5,426.8,455.6) DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=HOD Keyword=['HOD'] KeywordRect=(656.0,447.5,671.3,455.6)
+[SIG_NAME_TRACE] Role=HOD ChosenName='' Reason=none
+[SIG_TRACE] Role=HOD Page=1 KeywordRect=(656.0,447.5,671.3,455.6) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Process Representative Keyword=['Process Representative'] KeywordRect=(83.7,370.6,159.5,378.6)
+[SIG_NAME_TRACE] Role=Process Representative ChosenName='' Reason=none
+[SIG_TRACE] Role=Process Representative Page=2 KeywordRect=(83.7,370.6,159.5,378.6) DetectedName='' SignatureFound=True Source=annotation
+[SIG_NAME_TRACE] Role=Production/QC Keyword=['Production/QC', 'Production QC'] KeywordRect=(343.5,370.6,399.3,378.6)
+[SIG_NAME_TRACE] Role=Production/QC ChosenName='' Reason=none
+[SIG_TRACE] Role=Production / QC Page=2 KeywordRect=(343.5,370.6,399.3,378.6) DetectedName='' SignatureFound=False Source=none
+[SIG_NAME_TRACE] Role=HOD Keyword=['HOD'] KeywordRect=(641.7,370.6,656.9,378.6)
+[SIG_NAME_TRACE] Role=HOD ChosenName='' Reason=none
+[SIG_TRACE] Role=HOD Page=2 KeywordRect=(641.7,370.6,656.9,378.6) DetectedName='' SignatureFound=True Source=annotation
+[PASS] FOLDER_STRUCTURE: All required folders are present.
+[PASS] LADDER_FILES: Ladder folders and SDOC files validated successfully.
+[PASS] BIN_FILES: BIN CRC comparison validated successfully.
+[FAIL] OPERATIONAL_FLOW: Approved By printed name missing.
+[PASS] TEST_REPORT: Structured Test Report validation completed successfully.
+[PASS] AUTOMATION_INPUT: All required signatures found on every page.
+[FAIL] LADDER_FLOW: Production / QC digital signature missing.
+[FAIL] CHRONOLOGY: Master / Final: BIN filename missing in chronology.; Master / Initial: BIN filename missing in chronology.; Slave / Final: BIN filename missing in chronology.; UUT / QC: BIN filename missing in chronology.
+
+STDERR:
+2026-08-18 11:44:03.330 | INFO     | core.validation_engine:validate:143 - Validation started for project: c:\Users\SM 464\Desktop\Operational Package
+2026-08-18 11:44:03.330 | INFO     | core.validation_engine:validate:157 - Running validator: Folder Structure
+2026-08-18 11:44:03.330 | INFO     | validators.folder_validator:validate:49 - Folder validation started.
+2026-08-18 11:44:03.330 | INFO     | validators.folder_validator:validate:87 - Folder validation completed successfully.
+2026-08-18 11:44:03.330 | INFO     | core.validation_engine:validate:157 - Running validator: Ladder Files
+2026-08-18 11:44:03.330 | INFO     | validators.ladder_validator:validate:53 - Starting ladder validation.
+2026-08-18 11:44:03.332 | INFO     | validators.ladder_validator:validate:113 - Ladder validation completed successfully.
+2026-08-18 11:44:03.332 | INFO     | core.validation_engine:validate:157 - Running validator: Bin Files
+2026-08-18 11:44:03.332 | INFO     | validators.bin_validator:validate:56 - Starting BIN validation.
+2026-08-18 11:44:03.332 | INFO     | services.crc.crc_generator:generate_from_file:30 - Starting CRC generation for file %s using %s
+2026-08-18 11:44:03.339 | INFO     | services.crc.crc_generator:generate_from_file:84 - CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-18 11:44:03.339 | INFO     | services.crc.crc_generator:generate_from_file:30 - Starting CRC generation for file %s using %s
+2026-08-18 11:44:03.346 | INFO     | services.crc.crc_generator:generate_from_file:84 - CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-18 11:44:03.347 | INFO     | services.crc.crc_generator:generate_from_file:30 - Starting CRC generation for file %s using %s
+2026-08-18 11:44:03.354 | INFO     | services.crc.crc_generator:generate_from_file:84 - CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-18 11:44:03.354 | INFO     | services.crc.crc_generator:generate_from_file:30 - Starting CRC generation for file %s using %s
+2026-08-18 11:44:03.362 | INFO     | services.crc.crc_generator:generate_from_file:84 - CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-18 11:44:03.363 | INFO     | services.crc.crc_generator:generate_from_file:30 - Starting CRC generation for file %s using %s
+2026-08-18 11:44:03.370 | INFO     | services.crc.crc_generator:generate_from_file:84 - CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-18 11:44:03.370 | INFO     | services.crc.crc_generator:generate_from_file:30 - Starting CRC generation for file %s using %s
+2026-08-18 11:44:03.377 | INFO     | services.crc.crc_generator:generate_from_file:84 - CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-18 11:44:03.377 | INFO     | services.crc.crc_generator:generate_from_file:30 - Starting CRC generation for file %s using %s
+2026-08-18 11:44:03.385 | INFO     | services.crc.crc_generator:generate_from_file:84 - CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-18 11:44:03.385 | INFO     | services.crc.crc_generator:generate_from_file:30 - Starting CRC generation for file %s using %s
+2026-08-18 11:44:03.392 | INFO     | services.crc.crc_generator:generate_from_file:84 - CRC generated for %s: algorithm=%s file_size=%d processing_time=%.6fs crc=%s
+2026-08-18 11:44:03.392 | INFO     | validators.bin_validator:validate:165 - BIN validation completed successfully.
+2026-08-18 11:44:03.392 | INFO     | core.validation_engine:validate:157 - Running validator: Operational Flow
+2026-08-18 11:44:03.392 | INFO     | validators.document_validator:validate:97 - Validating '3. Operational Flow'.
+2026-08-18 11:44:03.394 | INFO     | validators.document_validator:validate:137 - Found signed document: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-18 11:44:03.394 | INFO     | services.signature_reader:read_page_snapshots:142 - Inspecting PDF signatures: LRPS480-24-CE_Operational Flow-sgn.pdf
+2026-08-18 11:44:03.668 | INFO     | services.signature_reader:read_page_snapshots:195 - Extracted signature snapshots for 8 page(s).
+2026-08-18 11:44:03.670 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.671 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.671 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.671 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.672 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 1 of 8'
+2026-08-18 11:44:03.672 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.673 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=167.53 Dx=17.96 Dy=-166.56 Text='3. Use control plan doc. For label and casing printing.'
+2026-08-18 11:44:03.673 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:03.673 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 699.7127637794999, 237.7665, 824.7127637794999) signatures=((169.85, 719.4967637794999, 252.269, 747.3408637795), (283.323, 719.7707637794999, 347.193, 759.0757637795), (402.628, 726.1787637795, 478.922, 756.8078637794999))
+2026-08-18 11:44:03.675 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.675 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 1 of 8'
+2026-08-18 11:44:03.676 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.676 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.676 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=186.72 Dx=-182.93 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.676 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=186.79 Dx=-84.55 Dy=-166.56 Text='3. Use control plan doc. For label and casing printing.'
+2026-08-18 11:44:03.677 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=201.27 Dx=-194.73 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.677 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:03.678 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(237.7665, 699.7127637794999, 346.74225, 824.7127637794999) signatures=((169.85, 719.4967637794999, 252.269, 747.3408637795), (283.323, 719.7707637794999, 347.193, 759.0757637795), (402.628, 726.1787637795, 478.922, 756.8078637794999))
+2026-08-18 11:44:03.679 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 1 of 8'
+2026-08-18 11:44:03.679 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.679 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.679 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=260.27 Dx=-199.99 Dy=-166.56 Text='3. Use control plan doc. For label and casing printing.'
+2026-08-18 11:44:03.680 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.680 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=300.72 Dx=-298.38 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.680 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=314.32 Dx=-310.17 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.680 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Sanjay P. Page' -> rejected (blocked token)
+2026-08-18 11:44:03.681 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'X\Product\G4_PS\Auto 1 of 8' -> rejected (contains digit)
+2026-08-18 11:44:03.681 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'mation\LRPS\480\V2.0' -> rejected (contains digit)
+2026-08-18 11:44:03.681 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] '0\Operation Method\3' -> rejected (blocked token)
+2026-08-18 11:44:03.681 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Operators Flow' -> rejected (blocked token)
+2026-08-18 11:44:03.681 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(346.74225, 699.7127637794999, 595.3039370078, 824.7127637794999) signatures=((169.85, 719.4967637794999, 252.269, 747.3408637795), (283.323, 719.7707637794999, 347.193, 759.0757637795), (402.628, 726.1787637795, 478.922, 756.8078637794999))
+2026-08-18 11:44:03.684 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.684 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.685 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.685 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.685 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 2 of 8'
+2026-08-18 11:44:03.685 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=102.28 Dx=14.82 Dy=-101.20 Text='Pic (2.B)'
+2026-08-18 11:44:03.686 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.686 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=198.84 Dx=145.75 Dy=-135.25 Text='Refer Pic (2.B)'
+2026-08-18 11:44:03.686 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=238.92 Dx=178.91 Dy=-158.35 Text='Press F1 to select initial testing.'
+2026-08-18 11:44:03.687 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:03.687 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 699.7127637794999, 237.7665, 824.7127637794999) signatures=((161.497, 720.0537637795, 253.383, 746.7839637794999), (275.953, 718.1327637795, 343.099, 763.1699637795))
+2026-08-18 11:44:03.688 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.688 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 2 of 8'
+2026-08-18 11:44:03.689 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=133.91 Dx=-87.69 Dy=-101.20 Text='Pic (2.B)'
+2026-08-18 11:44:03.689 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=142.00 Dx=43.24 Dy=-135.25 Text='Refer Pic (2.B)'
+2026-08-18 11:44:03.689 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.689 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=175.82 Dx=76.40 Dy=-158.35 Text='Press F1 to select initial testing.'
+2026-08-18 11:44:03.690 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.690 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=186.72 Dx=-182.93 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.690 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=201.27 Dx=-194.73 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.691 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:03.691 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(237.7665, 699.7127637794999, 346.74225, 824.7127637794999) signatures=((161.497, 720.0537637795, 253.383, 746.7839637794999), (275.953, 718.1327637795, 343.099, 763.1699637795))
+2026-08-18 11:44:03.692 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 2 of 8'
+2026-08-18 11:44:03.692 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.692 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=153.32 Dx=-72.20 Dy=-135.25 Text='Refer Pic (2.B)'
+2026-08-18 11:44:03.693 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=163.09 Dx=-39.04 Dy=-158.35 Text='Press F1 to select initial testing.'
+2026-08-18 11:44:03.693 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=226.95 Dx=-203.13 Dy=-101.20 Text='Pic (2.B)'
+2026-08-18 11:44:03.693 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.694 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.694 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=300.72 Dx=-298.38 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.695 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=314.32 Dx=-310.17 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.695 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Sanjay P. Page' -> rejected (blocked token)
+2026-08-18 11:44:03.695 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'X\Product\G4_PS\Auto 2 of 8' -> rejected (contains digit)
+2026-08-18 11:44:03.695 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'mation\LRPS\480\V2.0' -> rejected (contains digit)
+2026-08-18 11:44:03.695 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] '0\Operation Method\3' -> rejected (blocked token)
+2026-08-18 11:44:03.695 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Operators Flow' -> rejected (blocked token)
+2026-08-18 11:44:03.696 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(346.74225, 699.7127637794999, 595.3039370078, 824.7127637794999) signatures=((161.497, 720.0537637795, 253.383, 746.7839637794999), (275.953, 718.1327637795, 343.099, 763.1699637795))
+2026-08-18 11:44:03.698 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.699 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=56.17 Dx=16.47 Dy=-53.70 Text='Pic (2.F)'
+2026-08-18 11:44:03.699 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.699 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.700 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.701 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 3 of 8'
+2026-08-18 11:44:03.701 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.701 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=159.60 Dx=73.72 Dy=-141.55 Text='2.6 SET LOAD BANK SWITCH TO'
+2026-08-18 11:44:03.702 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=164.16 Dx=147.40 Dy=-72.25 Text='Refer Pic (2.F)'
+2026-08-18 11:44:03.702 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#10 Dist=164.77 Dx=134.37 Dy=-95.35 Text='press F1.'
+2026-08-18 11:44:03.702 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:03.702 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 699.7127637794999, 237.7665, 824.7127637794999) signatures=((164.838, 725.6227637795, 249.485, 752.9096637795), (287.417, 718.1327637795, 346.374, 764.8076637795))
+2026-08-18 11:44:03.703 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.704 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 3 of 8'
+2026-08-18 11:44:03.704 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=85.06 Dx=44.89 Dy=-72.25 Text='Refer Pic (2.F)'
+2026-08-18 11:44:03.704 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=100.54 Dx=31.86 Dy=-95.35 Text='press F1.'
+2026-08-18 11:44:03.705 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=101.42 Dx=-86.04 Dy=-53.70 Text='Pic (2.F)'
+2026-08-18 11:44:03.705 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=136.49 Dx=41.57 Dy=-130.00 Text='EXTERNAL'
+2026-08-18 11:44:03.705 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=139.46 Dx=89.56 Dy=-106.90 Text='After switching load bank to external,'
+2026-08-18 11:44:03.706 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.706 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=144.45 Dx=-28.79 Dy=-141.55 Text='2.6 SET LOAD BANK SWITCH TO'
+2026-08-18 11:44:03.706 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#10 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.707 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:03.707 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(237.7665, 699.7127637794999, 346.74225, 824.7127637794999) signatures=((164.838, 725.6227637795, 249.485, 752.9096637795), (287.417, 718.1327637795, 346.374, 764.8076637795))
+2026-08-18 11:44:03.708 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=100.98 Dx=-70.55 Dy=-72.25 Text='Refer Pic (2.F)'
+2026-08-18 11:44:03.708 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=109.99 Dx=-25.88 Dy=-106.90 Text='After switching load bank to external,'
+2026-08-18 11:44:03.708 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 3 of 8'
+2026-08-18 11:44:03.709 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.709 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=126.80 Dx=-83.58 Dy=-95.35 Text='press F1.'
+2026-08-18 11:44:03.709 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=149.52 Dx=-73.87 Dy=-130.00 Text='EXTERNAL'
+2026-08-18 11:44:03.709 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=202.09 Dx=-144.23 Dy=-141.55 Text='2.6 SET LOAD BANK SWITCH TO'
+2026-08-18 11:44:03.710 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=208.52 Dx=-201.48 Dy=-53.70 Text='Pic (2.F)'
+2026-08-18 11:44:03.710 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.710 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#10 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.710 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Sanjay P. Page' -> rejected (blocked token)
+2026-08-18 11:44:03.711 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'X\Product\G4_PS\Auto 3 of 8' -> rejected (contains digit)
+2026-08-18 11:44:03.711 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'mation\LRPS\480\V2.0' -> rejected (contains digit)
+2026-08-18 11:44:03.711 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] '0\Operation Method\3' -> rejected (blocked token)
+2026-08-18 11:44:03.711 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Operators Flow' -> rejected (blocked token)
+2026-08-18 11:44:03.711 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(346.74225, 699.7127637794999, 595.3039370078, 824.7127637794999) signatures=((164.838, 725.6227637795, 249.485, 752.9096637795), (287.417, 718.1327637795, 346.374, 764.8076637795))
+2026-08-18 11:44:03.714 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.715 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.715 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.715 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=94.27 Dx=15.74 Dy=-92.95 Text='Pic (2.J)'
+2026-08-18 11:44:03.715 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.715 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 4 of 8'
+2026-08-18 11:44:03.715 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.716 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=178.18 Dx=143.07 Dy=-106.20 Text='Refer Pic (2.J)'
+2026-08-18 11:44:03.716 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=204.28 Dx=147.96 Dy=-140.85 Text='3. EFFICIENCY'
+2026-08-18 11:44:03.717 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#10 Dist=207.04 Dx=140.14 Dy=-152.40 Text='2. OP CURR'
+2026-08-18 11:44:03.717 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:03.718 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 699.7127637794999, 237.7665, 824.7127637794999) signatures=((163.168, 723.9517637795, 248.371, 750.1252637795), (295.606, 721.4087637795, 355.382, 767.2642637795))
+2026-08-18 11:44:03.718 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.718 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 4 of 8'
+2026-08-18 11:44:03.719 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=113.69 Dx=40.56 Dy=-106.20 Text='Refer Pic (2.J)'
+2026-08-18 11:44:03.720 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=127.16 Dx=-86.77 Dy=-92.95 Text='Pic (2.J)'
+2026-08-18 11:44:03.720 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.720 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=148.00 Dx=45.45 Dy=-140.85 Text='3. EFFICIENCY'
+2026-08-18 11:44:03.721 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=156.98 Dx=37.63 Dy=-152.40 Text='2. OP CURR'
+2026-08-18 11:44:03.721 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=168.03 Dx=36.81 Dy=-163.95 Text='1. OP VLTG'
+2026-08-18 11:44:03.721 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.722 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#10 Dist=186.72 Dx=-182.93 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.722 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:03.722 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(237.7665, 699.7127637794999, 346.74225, 824.7127637794999) signatures=((163.168, 723.9517637795, 248.371, 750.1252637795), (295.606, 721.4087637795, 355.382, 767.2642637795))
+2026-08-18 11:44:03.723 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 4 of 8'
+2026-08-18 11:44:03.723 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.724 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=129.95 Dx=-74.88 Dy=-106.20 Text='Refer Pic (2.J)'
+2026-08-18 11:44:03.724 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=157.28 Dx=-69.99 Dy=-140.85 Text='3. EFFICIENCY'
+2026-08-18 11:44:03.724 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=171.12 Dx=-77.81 Dy=-152.40 Text='2. OP CURR'
+2026-08-18 11:44:03.725 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=181.84 Dx=-78.64 Dy=-163.95 Text='1. OP VLTG'
+2026-08-18 11:44:03.725 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=222.56 Dx=-202.21 Dy=-92.95 Text='Pic (2.J)'
+2026-08-18 11:44:03.725 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.725 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.725 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#10 Dist=300.72 Dx=-298.38 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.725 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Sanjay P. Page' -> rejected (blocked token)
+2026-08-18 11:44:03.726 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'X\Product\G4_PS\Auto 4 of 8' -> rejected (contains digit)
+2026-08-18 11:44:03.726 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'mation\LRPS\480\V2.0' -> rejected (contains digit)
+2026-08-18 11:44:03.726 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] '0\Operation Method\3' -> rejected (blocked token)
+2026-08-18 11:44:03.726 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Operators Flow' -> rejected (blocked token)
+2026-08-18 11:44:03.726 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(346.74225, 699.7127637794999, 595.3039370078, 824.7127637794999) signatures=((163.168, 723.9517637795, 248.371, 750.1252637795), (295.606, 721.4087637795, 355.382, 767.2642637795))
+2026-08-18 11:44:03.729 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.729 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.730 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.730 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.730 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 5 of 8'
+2026-08-18 11:44:03.731 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=103.89 Dx=15.69 Dy=-102.70 Text='Pic (2.N)'
+2026-08-18 11:44:03.731 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.731 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=194.08 Dx=132.24 Dy=-142.05 Text='voltage a'
+2026-08-18 11:44:03.732 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=194.88 Dx=144.73 Dy=-130.50 Text='Refer Pic (2.N)'
+2026-08-18 11:44:03.732 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#10 Dist=208.76 Dx=185.46 Dy=-95.85 Text='product I&T Doc No. on page no. 2'
+2026-08-18 11:44:03.732 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:03.733 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 699.7127637794999, 237.7665, 824.7127637794999) signatures=((170.407, 726.1787637795, 251.156, 754.0234637794999), (284.961, 719.7707637794999, 344.737, 764.8076637795))
+2026-08-18 11:44:03.733 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.734 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 5 of 8'
+2026-08-18 11:44:03.734 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=126.76 Dx=82.95 Dy=-95.85 Text='product I&T Doc No. on page no. 2'
+2026-08-18 11:44:03.734 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=134.48 Dx=-86.82 Dy=-102.70 Text='Pic (2.N)'
+2026-08-18 11:44:03.734 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=137.16 Dx=42.22 Dy=-130.50 Text='Refer Pic (2.N)'
+2026-08-18 11:44:03.734 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=137.25 Dx=85.46 Dy=-107.40 Text='Note: - Refer Table A- for respective'
+2026-08-18 11:44:03.735 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.735 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=145.13 Dx=29.73 Dy=-142.05 Text='voltage a'
+2026-08-18 11:44:03.735 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=175.38 Dx=84.63 Dy=-153.60 Text='After OCP check, recover the output'
+2026-08-18 11:44:03.735 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#10 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.736 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:03.736 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(237.7665, 699.7127637794999, 346.74225, 824.7127637794999) signatures=((170.407, 726.1787637795, 251.156, 754.0234637794999), (284.961, 719.7707637794999, 344.737, 764.8076637795))
+2026-08-18 11:44:03.737 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=101.21 Dx=-32.49 Dy=-95.85 Text='product I&T Doc No. on page no. 2'
+2026-08-18 11:44:03.737 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=111.51 Dx=-29.98 Dy=-107.40 Text='Note: - Refer Table A- for respective'
+2026-08-18 11:44:03.737 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 5 of 8'
+2026-08-18 11:44:03.738 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.738 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=149.64 Dx=-73.22 Dy=-130.50 Text='Refer Pic (2.N)'
+2026-08-18 11:44:03.738 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=156.66 Dx=-30.81 Dy=-153.60 Text='After OCP check, recover the output'
+2026-08-18 11:44:03.739 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=165.91 Dx=-85.71 Dy=-142.05 Text='voltage a'
+2026-08-18 11:44:03.739 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=226.84 Dx=-202.26 Dy=-102.70 Text='Pic (2.N)'
+2026-08-18 11:44:03.739 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.739 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#10 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.740 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Sanjay P. Page' -> rejected (blocked token)
+2026-08-18 11:44:03.740 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'X\Product\G4_PS\Auto 5 of 8' -> rejected (contains digit)
+2026-08-18 11:44:03.740 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'mation\LRPS\480\V2.0' -> rejected (contains digit)
+2026-08-18 11:44:03.740 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] '0\Operation Method\3' -> rejected (blocked token)
+2026-08-18 11:44:03.740 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Operators Flow' -> rejected (blocked token)
+2026-08-18 11:44:03.740 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(346.74225, 699.7127637794999, 595.3039370078, 824.7127637794999) signatures=((170.407, 726.1787637795, 251.156, 754.0234637794999), (284.961, 719.7707637794999, 344.737, 764.8076637795))
+2026-08-18 11:44:03.742 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.742 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.743 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.743 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.743 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 6 of 8'
+2026-08-18 11:44:03.744 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.744 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=109.45 Dx=16.47 Dy=-108.20 Text='Pic (2.R)'
+2026-08-18 11:44:03.745 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=155.76 Dx=131.96 Dy=-82.75 Text='selected.'
+2026-08-18 11:44:03.745 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=207.47 Dx=184.80 Dy=-94.30 Text='be different as per output voltage'
+2026-08-18 11:44:03.745 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#10 Dist=212.73 Dx=159.72 Dy=-140.50 Text='And go To Next Page.'
+2026-08-18 11:44:03.746 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:03.746 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 699.7127637794999, 237.7665, 824.7127637794999) signatures=((164.281, 721.1667637795, 254.497, 746.7839637794999), (284.961, 721.4087637795, 351.288, 765.6265637795))
+2026-08-18 11:44:03.747 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.747 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 6 of 8'
+2026-08-18 11:44:03.747 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=87.84 Dx=29.45 Dy=-82.75 Text='selected.'
+2026-08-18 11:44:03.748 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=125.16 Dx=82.30 Dy=-94.30 Text='be different as per output voltage'
+2026-08-18 11:44:03.748 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=138.24 Dx=-86.04 Dy=-108.20 Text='Pic (2.R)'
+2026-08-18 11:44:03.748 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=140.09 Dx=91.76 Dy=-105.85 Text='for 24V power supply. The screen will'
+2026-08-18 11:44:03.748 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.749 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=151.70 Dx=57.21 Dy=-140.50 Text='And go To Next Page.'
+2026-08-18 11:44:03.749 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=151.84 Dx=96.29 Dy=-117.40 Text='Refer Pic(2.R) : Reference image shown'
+2026-08-18 11:44:03.749 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#10 Dist=169.46 Dx=74.81 Dy=-152.05 Text='Set the Variac txf Auto at 264V.'
+2026-08-18 11:44:03.750 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:03.750 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(237.7665, 699.7127637794999, 346.74225, 824.7127637794999) signatures=((164.281, 721.1667637795, 254.497, 746.7839637794999), (284.961, 721.4087637795, 351.288, 765.6265637795))
+2026-08-18 11:44:03.751 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=99.96 Dx=-33.15 Dy=-94.30 Text='be different as per output voltage'
+2026-08-18 11:44:03.751 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=108.47 Dx=-23.68 Dy=-105.85 Text='for 24V power supply. The screen will'
+2026-08-18 11:44:03.751 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 6 of 8'
+2026-08-18 11:44:03.751 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=118.96 Dx=-19.16 Dy=-117.40 Text='Refer Pic(2.R) : Reference image shown'
+2026-08-18 11:44:03.752 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.752 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=119.34 Dx=-85.99 Dy=-82.75 Text='selected.'
+2026-08-18 11:44:03.752 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=152.09 Dx=-58.23 Dy=-140.50 Text='And go To Next Page.'
+2026-08-18 11:44:03.753 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=157.39 Dx=-40.63 Dy=-152.05 Text='Set the Variac txf Auto at 264V.'
+2026-08-18 11:44:03.753 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=228.70 Dx=-201.48 Dy=-108.20 Text='Pic (2.R)'
+2026-08-18 11:44:03.753 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#10 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.753 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Sanjay P. Page' -> rejected (blocked token)
+2026-08-18 11:44:03.754 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'X\Product\G4_PS\Auto 6 of 8' -> rejected (contains digit)
+2026-08-18 11:44:03.754 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'mation\LRPS\480\V2.0' -> rejected (contains digit)
+2026-08-18 11:44:03.754 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] '0\Operation Method\3' -> rejected (blocked token)
+2026-08-18 11:44:03.754 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Operators Flow' -> rejected (blocked token)
+2026-08-18 11:44:03.754 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(346.74225, 699.7127637794999, 595.3039370078, 824.7127637794999) signatures=((164.281, 721.1667637795, 254.497, 746.7839637794999), (284.961, 721.4087637795, 351.288, 765.6265637795))
+2026-08-18 11:44:03.756 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.36 Dx=-40.47 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.756 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=53.92 Dx=14.68 Dy=-51.88 Text='Pic (2.V)'
+2026-08-18 11:44:03.756 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.757 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.757 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.757 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 7 of 8'
+2026-08-18 11:44:03.758 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.758 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#8 Dist=142.56 Dx=-105.71 Dy=-95.65 Text='2.22'
+2026-08-18 11:44:03.758 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#9 Dist=171.63 Dx=144.28 Dy=-92.95 Text='window button'
+2026-08-18 11:44:03.758 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#10 Dist=226.82 Dx=201.31 Dy=-104.50 Text='each parameter by pressing corresponding'
+2026-08-18 11:44:03.759 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:03.759 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 699.7127637794999, 237.7665, 824.7127637794999) signatures=((176.533, 725.6227637795, 249.485, 755.6941637795), (286.598, 718.1327637795, 359.476, 765.6265637795))
+2026-08-18 11:44:03.760 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.760 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 7 of 8'
+2026-08-18 11:44:03.760 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=101.91 Dx=41.77 Dy=-92.95 Text='window button'
+2026-08-18 11:44:03.761 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=102.00 Dx=-87.83 Dy=-51.88 Text='Pic (2.V)'
+2026-08-18 11:44:03.761 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=143.81 Dx=98.80 Dy=-104.50 Text='each parameter by pressing corresponding'
+2026-08-18 11:44:03.761 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=144.43 Dx=-142.97 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.762 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=149.51 Dx=94.26 Dy=-116.05 Text='(Note: You can check measured value of'
+2026-08-18 11:44:03.762 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#8 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.763 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#9 Dist=186.72 Dx=-182.93 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.763 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#10 Dist=201.27 Dx=-194.73 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.764 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:03.764 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(237.7665, 699.7127637794999, 346.74225, 824.7127637794999) signatures=((176.533, 725.6227637795, 249.485, 755.6941637795), (286.598, 718.1327637795, 359.476, 765.6265637795))
+2026-08-18 11:44:03.765 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=105.82 Dx=-16.64 Dy=-104.50 Text='each parameter by pressing corresponding'
+2026-08-18 11:44:03.765 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=117.97 Dx=-21.18 Dy=-116.05 Text='(Note: You can check measured value of'
+2026-08-18 11:44:03.765 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 7 of 8'
+2026-08-18 11:44:03.766 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=118.61 Dx=-73.67 Dy=-92.95 Text='window button'
+2026-08-18 11:44:03.766 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.766 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=209.79 Dx=-203.27 Dy=-51.88 Text='Pic (2.V)'
+2026-08-18 11:44:03.766 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=259.23 Dx=-258.42 Dy=-20.50 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.767 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#8 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.767 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#9 Dist=300.72 Dx=-298.38 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.768 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#10 Dist=314.32 Dx=-310.17 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.768 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Sanjay P. Page' -> rejected (blocked token)
+2026-08-18 11:44:03.768 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'X\Product\G4_PS\Auto 7 of 8' -> rejected (contains digit)
+2026-08-18 11:44:03.768 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'mation\LRPS\480\V2.0' -> rejected (contains digit)
+2026-08-18 11:44:03.768 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] '0\Operation Method\3' -> rejected (blocked token)
+2026-08-18 11:44:03.768 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Operators Flow' -> rejected (blocked token)
+2026-08-18 11:44:03.770 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(346.74225, 699.7127637794999, 595.3039370078, 824.7127637794999) signatures=((176.533, 725.6227637795, 249.485, 755.6941637795), (286.598, 718.1327637795, 359.476, 765.6265637795))
+2026-08-18 11:44:03.771 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=45.41 Dx=-40.47 Dy=-20.60 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.772 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=82.96 Dx=-79.34 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.772 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=88.71 Dx=-80.42 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.772 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=98.94 Dx=98.94 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.772 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=101.25 Dx=100.51 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 8 of 8'
+2026-08-18 11:44:03.773 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=105.33 Dx=-92.22 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.773 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:03.773 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 699.8127637795, 237.7665, 824.8127637795) signatures=((167.623, 720.6107637795, 256.724, 750.1252637795), (283.323, 717.3147637794999, 352.925, 764.8076637795), (399.287, 721.7237637794999, 467.227, 751.2390637794999))
+2026-08-18 11:44:03.774 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=3.62 Dx=-3.56 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.774 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=12.37 Dx=-1.99 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 8 of 8'
+2026-08-18 11:44:03.774 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=144.45 Dx=-142.97 Dy=-20.60 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.774 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=183.45 Dx=-181.85 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.775 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=186.72 Dx=-182.93 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.775 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=201.27 Dx=-194.73 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.776 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:03.776 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(237.7665, 699.8127637795, 346.74225, 824.8127637795) signatures=((167.623, 720.6107637795, 256.724, 750.1252637795), (283.323, 717.3147637794999, 352.925, 764.8076637795), (399.287, 721.7237637794999, 467.227, 751.2390637794999))
+2026-08-18 11:44:03.777 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=118.07 Dx=-117.44 Dy=12.21 Text='X\\Product\\G4_PS\\Auto 8 of 8'
+2026-08-18 11:44:03.777 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=119.01 Dx=-119.01 Dy=0.61 Text='File Path: Prepared By: Akshay B. Verified By: Nitin K. Approved By: Sanjay P. Page'
+2026-08-18 11:44:03.777 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=259.24 Dx=-258.42 Dy=-20.60 Text='Amendment : New original made on 25/05/26'
+2026-08-18 11:44:03.778 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=298.28 Dx=-297.29 Dy=24.25 Text='mation\\LRPS\\480\\V2.0'
+2026-08-18 11:44:03.778 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=300.72 Dx=-298.38 Dy=37.44 Text='0\\Operation Method\\3.'
+2026-08-18 11:44:03.778 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=314.32 Dx=-310.17 Dy=50.89 Text='Operators Flow'
+2026-08-18 11:44:03.779 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Sanjay P. Page' -> rejected (blocked token)
+2026-08-18 11:44:03.779 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'X\Product\G4_PS\Auto 8 of 8' -> rejected (contains digit)
+2026-08-18 11:44:03.779 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1116 - [DEBUG_NAME] 'mation\LRPS\480\V2.0' -> rejected (contains digit)
+2026-08-18 11:44:03.779 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] '0\Operation Method\3' -> rejected (blocked token)
+2026-08-18 11:44:03.779 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Operators Flow' -> rejected (blocked token)
+2026-08-18 11:44:03.779 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(346.74225, 699.8127637795, 595.3039370078, 824.8127637795) signatures=((167.623, 720.6107637795, 256.724, 750.1252637795), (283.323, 717.3147637794999, 352.925, 764.8076637795), (399.287, 721.7237637794999, 467.227, 751.2390637794999))
+2026-08-18 11:44:03.781 | WARNING  | validators.document_validator:_validate_single_document:317 - 3. Operational Flow validation failed.
+2026-08-18 11:44:03.781 | INFO     | core.validation_engine:validate:157 - Running validator: Test Report
+2026-08-18 11:44:03.781 | INFO     | validators.document_validator:validate:97 - Validating '4. Test Report'.
+2026-08-18 11:44:03.782 | INFO     | services.signature_reader:read_page_snapshots:142 - Inspecting PDF signatures: M-final_Functional validation report_JIG-sgn.pdf
+2026-08-18 11:44:03.895 | INFO     | services.signature_reader:read_page_snapshots:195 - Extracted signature snapshots for 1 page(s).
+2026-08-18 11:44:03.899 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=73.49 Dx=72.59 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+2026-08-18 11:44:03.899 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=149.76 Dx=28.72 Dy=-146.98 Text='CONNECTION FAIL'
+2026-08-18 11:44:03.900 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=155.45 Dx=28.71 Dy=-152.78 Text='OUTPUT WIRE'
+2026-08-18 11:44:03.900 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=164.00 Dx=28.69 Dy=-161.47 Text='CONNECTION FAIL'
+2026-08-18 11:44:03.900 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=275.99 Dx=275.99 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+2026-08-18 11:44:03.901 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=331.87 Dx=296.08 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:03.901 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=340.06 Dx=296.08 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:03.901 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:03.902 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 527.356704, 239.98186600000008, 612.0) signatures=((137.018, 533.6715, 197.236, 543.7079), (432.002, 534.1115, 510.548, 549.8206), (633.893, 541.1029, 704.789, 567.1675))
+2026-08-18 11:44:03.902 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=21.82 Dx=-21.82 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+2026-08-18 11:44:03.903 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=149.93 Dx=-1.73 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:03.903 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=167.28 Dx=-1.73 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:03.903 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=225.51 Dx=-225.22 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+2026-08-18 11:44:03.903 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=306.62 Dx=-269.09 Dy=-146.98 Text='CONNECTION FAIL'
+2026-08-18 11:44:03.904 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=309.44 Dx=-269.09 Dy=-152.78 Text='OUTPUT WIRE'
+2026-08-18 11:44:03.904 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=313.85 Dx=-269.12 Dy=-161.47 Text='CONNECTION FAIL'
+2026-08-18 11:44:03.904 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:03.905 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(239.98186600000008, 527.356704, 504.7063149999988, 612.0) signatures=((137.018, 533.6715, 197.236, 543.7079), (432.002, 534.1115, 510.548, 549.8206), (633.893, 541.1029, 704.789, 567.1675))
+2026-08-18 11:44:03.905 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=253.46 Dx=-253.46 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+2026-08-18 11:44:03.906 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=277.38 Dx=-233.37 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:03.906 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=287.13 Dx=-233.37 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:03.906 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Sanjay P' -> ACCEPTED
+2026-08-18 11:44:03.906 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(504.7063149999988, 527.356704, 792.0, 612.0) signatures=((137.018, 533.6715, 197.236, 543.7079), (432.002, 534.1115, 510.548, 549.8206), (633.893, 541.1029, 704.789, 567.1675))
+2026-08-18 11:44:03.907 | INFO     | validators.document_validator:_validate_single_document:303 - 4. Test Report validated successfully.
+2026-08-18 11:44:03.908 | INFO     | services.signature_reader:read_page_snapshots:142 - Inspecting PDF signatures: M-initial_Functional validation report_JIG-sgn.pdf
+2026-08-18 11:44:04.028 | INFO     | services.signature_reader:read_page_snapshots:195 - Extracted signature snapshots for 1 page(s).
+2026-08-18 11:44:04.032 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=73.49 Dx=72.59 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+2026-08-18 11:44:04.032 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=149.76 Dx=28.72 Dy=-146.98 Text='CONNECTION FAIL'
+2026-08-18 11:44:04.033 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=155.45 Dx=28.71 Dy=-152.78 Text='OUTPUT WIRE'
+2026-08-18 11:44:04.033 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=164.00 Dx=28.69 Dy=-161.47 Text='CONNECTION FAIL'
+2026-08-18 11:44:04.033 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=275.99 Dx=275.99 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+2026-08-18 11:44:04.034 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=331.87 Dx=296.08 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.034 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=340.06 Dx=296.08 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.034 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:04.035 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 527.356704, 239.98186600000008, 612.0) signatures=((137.018, 533.6715, 197.236, 543.7079), (432.002, 534.1115, 510.548, 549.8206), (633.893, 541.1029, 704.789, 567.1675))
+2026-08-18 11:44:04.035 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=21.82 Dx=-21.82 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+2026-08-18 11:44:04.036 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=149.93 Dx=-1.73 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.036 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=167.28 Dx=-1.73 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.037 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=225.51 Dx=-225.22 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+2026-08-18 11:44:04.037 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=306.62 Dx=-269.09 Dy=-146.98 Text='CONNECTION FAIL'
+2026-08-18 11:44:04.037 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=309.44 Dx=-269.09 Dy=-152.78 Text='OUTPUT WIRE'
+2026-08-18 11:44:04.037 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=313.85 Dx=-269.12 Dy=-161.47 Text='CONNECTION FAIL'
+2026-08-18 11:44:04.038 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:04.038 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(239.98186600000008, 527.356704, 504.7063149999988, 612.0) signatures=((137.018, 533.6715, 197.236, 543.7079), (432.002, 534.1115, 510.548, 549.8206), (633.893, 541.1029, 704.789, 567.1675))
+2026-08-18 11:44:04.039 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=253.46 Dx=-253.46 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+2026-08-18 11:44:04.039 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=277.38 Dx=-233.37 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.039 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=287.13 Dx=-233.37 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.040 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Sanjay P' -> ACCEPTED
+2026-08-18 11:44:04.040 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(504.7063149999988, 527.356704, 792.0, 612.0) signatures=((137.018, 533.6715, 197.236, 543.7079), (432.002, 534.1115, 510.548, 549.8206), (633.893, 541.1029, 704.789, 567.1675))
+2026-08-18 11:44:04.041 | INFO     | validators.document_validator:_validate_single_document:303 - 4. Test Report validated successfully.
+2026-08-18 11:44:04.042 | INFO     | services.signature_reader:read_page_snapshots:142 - Inspecting PDF signatures: S-final_Functional validation report_JIG-sgn.pdf
+2026-08-18 11:44:04.169 | INFO     | services.signature_reader:read_page_snapshots:195 - Extracted signature snapshots for 3 page(s).
+2026-08-18 11:44:04.173 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=150.98 Dx=28.86 Dy=-148.19 Text='CONNECTION FAIL'
+2026-08-18 11:44:04.174 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=225.00 Dx=224.93 Dy=5.47 Text="X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports 2026.06.29 09:21:55 +05'30'"
+2026-08-18 11:44:04.174 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=233.42 Dx=233.42 Dy=0.99 Text='PREPARED BY : Akshay B. Akshay B. Digitally signed by Akshay B. CHECKED BY: Nitin K Nitin Kale D D ou i N g = : i E t c a L n l - l = 2 y N 7 s , i i t g e in n m e K a d a i l l b = e y n , k N o a = i l t S e in e @ l s K e e c a l l e C e c o . n c t o r m ol , s c P = v I t N . D Lt a d t . e , :'
+2026-08-18 11:44:04.174 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=266.43 Dx=217.55 Dy=-153.81 Text='17 OUTPUT WIRE UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL'
+2026-08-18 11:44:04.174 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=275.26 Dx=217.55 Dy=-168.63 Text='16 CONNECTION FAIL UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL'
+2026-08-18 11:44:04.174 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B.' -> ACCEPTED
+2026-08-18 11:44:04.175 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 551.065387779528, 244.40546325, 672.054387779528) signatures=()
+2026-08-18 11:44:04.176 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=118.99 Dx=-118.96 Dy=2.58 Text='PREPARED BY : Akshay B. Akshay B. Digitally signed by Akshay B. CHECKED BY: Nitin K Nitin Kale D D ou i N g = : i E t c a L n l - l = 2 y N 7 s , i i t g e in n m e K a d a i l l b = e y n , k N o a = i l t S e in e @ l s K e e c a l l e C e c o . n c t o r m ol , s c P = v I t N . D Lt a d t . e , :'
+2026-08-18 11:44:04.176 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=127.64 Dx=-127.45 Dy=7.05 Text="X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports 2026.06.29 09:21:55 +05'30'"
+2026-08-18 11:44:04.176 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=203.35 Dx=-134.83 Dy=-152.22 Text='17 OUTPUT WIRE UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL'
+2026-08-18 11:44:04.177 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=214.67 Dx=-134.83 Dy=-167.05 Text='16 CONNECTION FAIL UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL'
+2026-08-18 11:44:04.177 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:04.177 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(244.40546325, 549.478387779528, 595.303937007874, 670.467387779528) signatures=()
+2026-08-18 11:44:04.181 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=63.83 Dx=-63.83 Dy=-0.13 Text='Digitally signed by Nitin Kale APPROVED BY :Sanjay P.'
+2026-08-18 11:44:04.182 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=78.98 Dx=-78.49 Dy=8.78 Text="2026.06.29 09:21:55 +05'30' Sanjay"
+2026-08-18 11:44:04.182 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=81.17 Dx=75.14 Dy=30.71 Text='Digitally signed by Sanjay Pusalkar'
+2026-08-18 11:44:04.182 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#4 Dist=146.11 Dx=-146.08 Dy=2.84 Text='ou=EL-27, email=nkale@selec.com, c=IN Date:'
+2026-08-18 11:44:04.182 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#5 Dist=146.30 Dx=-146.30 Dy=0.55 Text='DN: cn=Nitin Kale, o=Selec Controls Pvt. Ltd.,'
+2026-08-18 11:44:04.183 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#6 Dist=154.26 Dx=-25.01 Dy=-152.22 Text='FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.183 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#7 Dist=168.37 Dx=-25.01 Dy=-166.51 Text='FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.183 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Sanjay P' -> ACCEPTED
+2026-08-18 11:44:04.183 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 549.478387779528, 595.303937007874, 670.467387779528) signatures=()
+2026-08-18 11:44:04.185 | INFO     | validators.document_validator:_validate_single_document:303 - 4. Test Report validated successfully.
+2026-08-18 11:44:04.186 | INFO     | services.signature_reader:read_page_snapshots:142 - Inspecting PDF signatures: U-QC_Functional validation report_JIG-sgn.pdf
+2026-08-18 11:44:04.285 | INFO     | services.signature_reader:read_page_snapshots:195 - Extracted signature snapshots for 1 page(s).
+2026-08-18 11:44:04.289 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=73.49 Dx=72.59 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+2026-08-18 11:44:04.289 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=149.76 Dx=28.72 Dy=-146.98 Text='CONNECTION FAIL'
+2026-08-18 11:44:04.290 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=155.45 Dx=28.71 Dy=-152.78 Text='OUTPUT WIRE'
+2026-08-18 11:44:04.290 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#4 Dist=164.00 Dx=28.69 Dy=-161.47 Text='CONNECTION FAIL'
+2026-08-18 11:44:04.290 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#5 Dist=275.99 Dx=275.99 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+2026-08-18 11:44:04.291 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#6 Dist=331.87 Dx=296.08 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.291 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#7 Dist=340.06 Dx=296.08 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.291 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:04.292 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 527.356704, 239.98186600000008, 612.0) signatures=((137.018, 533.6715, 197.236, 543.7079), (432.002, 534.1115, 510.548, 549.8206), (633.893, 541.1029, 704.789, 567.1675))
+2026-08-18 11:44:04.292 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=21.82 Dx=-21.82 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+2026-08-18 11:44:04.293 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=149.93 Dx=-1.73 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.293 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=167.28 Dx=-1.73 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.293 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#4 Dist=225.51 Dx=-225.22 Dy=11.50 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operation Method\\4. Test Reports'
+2026-08-18 11:44:04.293 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#5 Dist=306.62 Dx=-269.09 Dy=-146.98 Text='CONNECTION FAIL'
+2026-08-18 11:44:04.294 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#6 Dist=309.44 Dx=-269.09 Dy=-152.78 Text='OUTPUT WIRE'
+2026-08-18 11:44:04.294 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#7 Dist=313.85 Dx=-269.12 Dy=-161.47 Text='CONNECTION FAIL'
+2026-08-18 11:44:04.294 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Nitin K' -> ACCEPTED
+2026-08-18 11:44:04.295 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(239.98186600000008, 527.356704, 504.7063149999988, 612.0) signatures=((137.018, 533.6715, 197.236, 543.7079), (432.002, 534.1115, 510.548, 549.8206), (633.893, 541.1029, 704.789, 567.1675))
+2026-08-18 11:44:04.295 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=253.46 Dx=-253.46 Dy=0.00 Text='PREPARED BY : Akshay B. CHECKED BY: Nitin K APPROVED BY :Sanjay P.'
+2026-08-18 11:44:04.296 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=277.38 Dx=-233.37 Dy=-149.92 Text='17 UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.296 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=287.13 Dx=-233.37 Dy=-167.27 Text='16 CONNECTOR UUT ON UUT ON FAIL FAIL FAIL FAIL PASS FAIL FAIL FAIL FAIL FAIL FAIL FAIL'
+2026-08-18 11:44:04.296 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Sanjay P' -> ACCEPTED
+2026-08-18 11:44:04.297 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(504.7063149999988, 527.356704, 792.0, 612.0) signatures=((137.018, 533.6715, 197.236, 543.7079), (432.002, 534.1115, 510.548, 549.8206), (633.893, 541.1029, 704.789, 567.1675))
+2026-08-18 11:44:04.298 | INFO     | validators.document_validator:_validate_single_document:303 - 4. Test Report validated successfully.
+2026-08-18 11:44:04.298 | INFO     | core.validation_engine:validate:157 - Running validator: Automation Input
+2026-08-18 11:44:04.298 | INFO     | validators.document_validator:validate:97 - Validating '5. Automation Input Doc'.
+2026-08-18 11:44:04.299 | INFO     | validators.document_validator:validate:137 - Found signed document: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-18 11:44:04.299 | INFO     | services.signature_reader:read_page_snapshots:142 - Inspecting PDF signatures: Automation-input-doc_LRPS480 Jig Wiring Diagram-sgn.pdf
+2026-08-18 11:44:05.632 | INFO     | services.signature_reader:read_page_snapshots:195 - Extracted signature snapshots for 5 page(s).
+2026-08-18 11:44:05.633 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=164.24 Dx=160.16 Dy=36.37 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.635 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=240.09 Dx=240.09 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.635 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:05.636 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 719.874145, 191.09655975000004, 792.0) signatures=()
+2026-08-18 11:44:05.636 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=40.51 Dx=40.51 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.637 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=53.63 Dx=-39.42 Dy=36.37 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.637 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Jiten G./Nitin K' -> ACCEPTED
+2026-08-18 11:44:05.638 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(191.09655975000004, 719.874145, 410.83274125000116, 792.0) signatures=()
+2026-08-18 11:44:05.638 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=199.38 Dx=-199.38 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.638 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=281.67 Dx=-279.31 Dy=36.37 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.639 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Sanjay P' -> ACCEPTED
+2026-08-18 11:44:05.639 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(410.83274125000116, 719.874145, 612.0, 792.0) signatures=()
+2026-08-18 11:44:05.640 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=160.21 Dx=154.18 Dy=43.54 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.640 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=240.09 Dx=240.09 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.640 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:05.641 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 678.743145, 173.32355975000002, 792.0) signatures=()
+2026-08-18 11:44:05.641 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=40.51 Dx=40.51 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.641 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=62.90 Dx=-45.40 Dy=43.54 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.642 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Jiten G./Nitin K' -> ACCEPTED
+2026-08-18 11:44:05.642 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(173.32355975000002, 678.743145, 393.05974125000114, 792.0) signatures=()
+2026-08-18 11:44:05.643 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=199.38 Dx=-199.38 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.643 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=288.59 Dx=-285.29 Dy=43.54 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.643 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Sanjay P' -> ACCEPTED
+2026-08-18 11:44:05.643 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(393.05974125000114, 678.743145, 612.0, 792.0) signatures=()
+2026-08-18 11:44:05.644 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=157.89 Dx=154.19 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.645 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=163.70 Dx=159.80 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.645 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=240.09 Dx=240.09 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.645 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:05.646 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 717.606145, 189.42355975000004, 792.0) signatures=()
+2026-08-18 11:44:05.646 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=40.51 Dx=40.51 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.647 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=53.33 Dx=-39.79 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.647 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=56.69 Dx=-45.39 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.647 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Jiten G./Nitin K' -> ACCEPTED
+2026-08-18 11:44:05.647 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(189.42355975000004, 717.606145, 409.15974125000116, 792.0) signatures=()
+2026-08-18 11:44:05.648 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=199.38 Dx=-199.38 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.649 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=281.92 Dx=-279.68 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.649 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=287.30 Dx=-285.28 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.649 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Sanjay P' -> ACCEPTED
+2026-08-18 11:44:05.650 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(409.15974125000116, 717.606145, 612.0, 792.0) signatures=()
+2026-08-18 11:44:05.651 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=161.60 Dx=158.12 Dy=33.36 Text='XX::\\\\PPrroodduucctt\\\\GG44__PPSS\\\\AAuuttoommaattiioonn\\\\LARDPPS\\7\\428\\V01\\V.020.0\\O0\\pOepreartiaotnioanl aMl eMthetohdo\\5d.\\ 5A.u Atuomtoamtiaotnio inn pinuptu dto dcoc'
+2026-08-18 11:44:05.651 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=240.09 Dx=240.09 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.651 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:05.652 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 723.360145, 190.50155975, 792.0) signatures=()
+2026-08-18 11:44:05.653 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=40.51 Dx=40.51 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.653 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=53.22 Dx=-41.46 Dy=33.36 Text='XX::\\\\PPrroodduucctt\\\\GG44__PPSS\\\\AAuuttoommaattiioonn\\\\LARDPPS\\7\\428\\V01\\V.020.0\\O0\\pOepreartiaotnioanl aMl eMthetohdo\\5d.\\ 5A.u Atuomtoamtiaotnio inn pinuptu dto dcoc'
+2026-08-18 11:44:05.653 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Jiten G./Nitin K' -> ACCEPTED
+2026-08-18 11:44:05.654 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(190.50155975, 723.360145, 410.23774125000114, 792.0) signatures=()
+2026-08-18 11:44:05.654 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=199.38 Dx=-199.38 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.654 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=283.32 Dx=-281.35 Dy=33.36 Text='XX::\\\\PPrroodduucctt\\\\GG44__PPSS\\\\AAuuttoommaattiioonn\\\\LARDPPS\\7\\428\\V01\\V.020.0\\O0\\pOepreartiaotnioanl aMl eMthetohdo\\5d.\\ 5A.u Atuomtoamtiaotnio inn pinuptu dto dcoc'
+2026-08-18 11:44:05.655 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Sanjay P' -> ACCEPTED
+2026-08-18 11:44:05.655 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(410.23774125000114, 723.360145, 612.0, 792.0) signatures=()
+2026-08-18 11:44:05.656 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#1 Dist=157.89 Dx=154.19 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.656 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#2 Dist=164.30 Dx=160.42 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.656 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Prepared By CandidateBlock#3 Dist=240.09 Dx=240.09 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.657 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Akshay B' -> ACCEPTED
+2026-08-18 11:44:05.657 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 664.088145, 187.01455975000005, 788.195145) signatures=()
+2026-08-18 11:44:05.658 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#1 Dist=40.51 Dx=40.51 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.658 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#2 Dist=52.87 Dx=-39.16 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.658 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Checked By CandidateBlock#3 Dist=56.69 Dx=-45.39 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.658 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Jiten G./Nitin K' -> ACCEPTED
+2026-08-18 11:44:05.659 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(187.01455975000005, 664.088145, 406.75074125000117, 788.195145) signatures=()
+2026-08-18 11:44:05.659 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#1 Dist=199.38 Dx=-199.38 Dy=0.00 Text='Prepared By: Akshay B Checked By:Jiten G./Nitin K. Approved By: Sanjay P.'
+2026-08-18 11:44:05.659 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#2 Dist=281.30 Dx=-279.05 Dy=35.52 Text='X:\\Product\\G4_PS\\Automation\\LRPS\\480\\V2.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.660 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Approved By CandidateBlock#3 Dist=287.30 Dx=-285.28 Dy=33.96 Text='X:\\Product\\G4_PS\\Automation\\ADP\\72\\V1.00\\Operational Method\\5. Automation input doc'
+2026-08-18 11:44:05.660 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1134 - [DEBUG_NAME] 'Sanjay P' -> ACCEPTED
+2026-08-18 11:44:05.660 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(406.75074125000117, 664.088145, 612.0, 788.195145) signatures=()
+2026-08-18 11:44:05.661 | INFO     | validators.document_validator:_validate_single_document:303 - 5. Automation Input Doc validated successfully.
+2026-08-18 11:44:05.661 | INFO     | core.validation_engine:validate:157 - Running validator: Ladder Flow
+2026-08-18 11:44:05.661 | INFO     | validators.document_validator:validate:97 - Validating '6. Ladder Flow'.
+2026-08-18 11:44:05.662 | INFO     | validators.document_validator:validate:137 - Found signed document: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-18 11:44:05.662 | INFO     | services.signature_reader:read_page_snapshots:142 - Inspecting PDF signatures: LRPS480 SERIES_Ladder flow-sgn.pdf
+2026-08-18 11:44:05.763 | INFO     | services.signature_reader:read_page_snapshots:195 - Extracted signature snapshots for 2 page(s).
+2026-08-18 11:44:05.765 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Process Representative CandidateBlock#1 Dist=249.28 Dx=249.28 Dy=0.00 Text='Process Representative Production / QC HOD'
+2026-08-18 11:44:05.765 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Process Representative CandidateBlock#2 Dist=292.97 Dx=281.31 Dy=81.82 Text='Page 1 OF 2'
+2026-08-18 11:44:05.766 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Page 1 OF 2' -> rejected (blocked token)
+2026-08-18 11:44:05.766 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 441.5480092913, 266.89853124999996, 565.5530092913) signatures=((178.037, 444.21966929129997, 240.874, 459.9296692913), (681.684, 435.18166929129995, 753.707, 469.67166929129996))
+2026-08-18 11:44:05.767 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#1 Dist=14.83 Dx=-14.83 Dy=0.00 Text='Process Representative Production / QC HOD'
+2026-08-18 11:44:05.767 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#2 Dist=83.61 Dx=17.21 Dy=81.82 Text='Page 1 OF 2'
+2026-08-18 11:44:05.767 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#3 Dist=174.30 Dx=153.42 Dy=-82.73 Text='Stage 8'
+2026-08-18 11:44:05.768 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#4 Dist=192.36 Dx=151.47 Dy=-118.57 Text='PACKING'
+2026-08-18 11:44:05.768 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#5 Dist=197.37 Dx=151.46 Dy=-126.55 Text='+'
+2026-08-18 11:44:05.768 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#6 Dist=203.24 Dx=152.34 Dy=-134.53 Text='QC'
+2026-08-18 11:44:05.768 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#7 Dist=208.61 Dx=152.34 Dy=-142.51 Text='+'
+2026-08-18 11:44:05.769 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#8 Dist=212.88 Dx=150.56 Dy=-150.49 Text='CLEANING'
+2026-08-18 11:44:05.769 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#9 Dist=292.54 Dx=281.39 Dy=-80.01 Text='Stage 7'
+2026-08-18 11:44:05.770 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#10 Dist=303.51 Dx=283.40 Dy=-108.63 Text='TRML SCREWING'
+2026-08-18 11:44:05.770 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1084 - [DEBUG_NAME] 'Process Representative Production/QC HOD' -> rejected (contains alias token)
+2026-08-18 11:44:05.770 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Page 1 OF 2' -> rejected (blocked token)
+2026-08-18 11:44:05.771 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(266.89853124999996, 441.5480092913, 531.3006487499999, 565.5530092913) signatures=((178.037, 444.21966929129997, 240.874, 459.9296692913), (681.684, 435.18166929129995, 753.707, 469.67166929129996))
+2026-08-18 11:44:05.771 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#1 Dist=81.73 Dx=16.69 Dy=-80.01 Text='Stage 7'
+2026-08-18 11:44:05.772 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#2 Dist=110.23 Dx=18.71 Dy=-108.63 Text='TRML SCREWING'
+2026-08-18 11:44:05.772 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#3 Dist=118.11 Dx=18.72 Dy=-116.61 Text='+'
+2026-08-18 11:44:05.772 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#4 Dist=125.99 Dx=18.71 Dy=-124.60 Text='UNSCREWING'
+2026-08-18 11:44:05.772 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#5 Dist=133.77 Dx=17.80 Dy=-132.58 Text='CONN'
+2026-08-18 11:44:05.773 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#6 Dist=138.66 Dx=-111.28 Dy=-82.73 Text='Stage 8'
+2026-08-18 11:44:05.773 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#7 Dist=141.80 Dx=18.72 Dy=-140.56 Text='+'
+2026-08-18 11:44:05.773 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#8 Dist=149.72 Dx=18.71 Dy=-148.54 Text='FINAL TESTING'
+2026-08-18 11:44:05.773 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#9 Dist=163.95 Dx=-113.23 Dy=-118.57 Text='PACKING'
+2026-08-18 11:44:05.774 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#10 Dist=169.82 Dx=-113.24 Dy=-126.55 Text='+'
+2026-08-18 11:44:05.774 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Page 1 OF 2' -> rejected (blocked token)
+2026-08-18 11:44:05.774 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(531.3006487499999, 441.5480092913, 841.6913385827, 565.5530092913) signatures=((178.037, 444.21966929129997, 240.874, 459.9296692913), (681.684, 435.18166929129995, 753.707, 469.67166929129996))
+2026-08-18 11:44:05.776 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Process Representative CandidateBlock#1 Dist=113.32 Dx=24.35 Dy=-110.67 Text='Target Output /Person \u25ba 2.01 160'
+2026-08-18 11:44:05.777 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Process Representative CandidateBlock#2 Dist=133.24 Dx=25.28 Dy=-130.83 Text='Remove From Load Test 15 20 300'
+2026-08-18 11:44:05.777 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Process Representative CandidateBlock#3 Dist=151.30 Dx=140.84 Dy=-55.29 Text='Note : Operation with person 3, 4 & 5 is not recommended for production planning . Hence there is effect on product quality'
+2026-08-18 11:44:05.777 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Process Representative CandidateBlock#4 Dist=158.99 Dx=38.08 Dy=-154.36 Text='Load Test 7200 20 7200'
+2026-08-18 11:44:05.778 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Process Representative CandidateBlock#5 Dist=248.74 Dx=248.74 Dy=0.00 Text='Process Representative Production / QC HOD'
+2026-08-18 11:44:05.778 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Process Representative CandidateBlock#6 Dist=334.62 Dx=294.56 Dy=158.76 Text='Page 2 OF 2'
+2026-08-18 11:44:05.778 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Page 2 OF 2' -> rejected (blocked token)
+2026-08-18 11:44:05.778 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(0.0, 364.6050092913, 246.50103125, 488.6100092913) signatures=((164.073, 365.6746692913, 219.928, 383.12866929129996), (673.569, 358.0866692912999, 759.794, 397.64866929129994))
+2026-08-18 11:44:05.779 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#1 Dist=1.05 Dx=-1.05 Dy=0.00 Text='Process Representative Production / QC HOD'
+2026-08-18 11:44:05.779 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#2 Dist=122.18 Dx=-108.96 Dy=-55.29 Text='Note : Operation with person 3, 4 & 5 is not recommended for production planning . Hence there is effect on product quality'
+2026-08-18 11:44:05.780 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#3 Dist=164.95 Dx=44.76 Dy=158.76 Text='Page 2 OF 2'
+2026-08-18 11:44:05.780 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#4 Dist=251.15 Dx=-225.45 Dy=-110.67 Text='Target Output /Person \u25ba 2.01 160'
+2026-08-18 11:44:05.780 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#5 Dist=259.86 Dx=-224.52 Dy=-130.83 Text='Remove From Load Test 15 20 300'
+2026-08-18 11:44:05.780 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=Production/QC CandidateBlock#6 Dist=262.01 Dx=-211.71 Dy=-154.36 Text='Load Test 7200 20 7200'
+2026-08-18 11:44:05.781 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1084 - [DEBUG_NAME] 'Process Representative Production/QC HOD' -> rejected (contains alias token)
+2026-08-18 11:44:05.781 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Page 2 OF 2' -> rejected (blocked token)
+2026-08-18 11:44:05.781 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(246.50103125, 364.6050092913, 510.37014875, 488.6100092913) signatures=((164.073, 365.6746692913, 219.928, 383.12866929129996), (673.569, 358.0866692912999, 759.794, 397.64866929129994))
+2026-08-18 11:44:05.782 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#1 Dist=278.99 Dx=-278.99 Dy=0.00 Text='Process Representative Production / QC HOD'
+2026-08-18 11:44:05.782 | DEBUG    | validators.document_validator:_extract_printed_name:711 - [SIG_NAME_TRACE] Role=HOD CandidateBlock#2 Dist=282.10 Dx=-233.18 Dy=158.76 Text='Page 2 OF 2'
+2026-08-18 11:44:05.782 | WARNING  | validators.document_validator:_is_valid_printed_name_candidate:1108 - [DEBUG_NAME] 'Page 2 OF 2' -> rejected (blocked token)
+2026-08-18 11:44:05.783 | WARNING  | validators.document_validator:_detect_signature_sources:468 - [DEBUG] _detect_signature_sources role_rect=(510.37014875, 364.6050092913, 841.6913385827, 488.6100092913) signatures=((164.073, 365.6746692913, 219.928, 383.12866929129996), (673.569, 358.0866692912999, 759.794, 397.64866929129994))
+2026-08-18 11:44:05.784 | WARNING  | validators.document_validator:_validate_single_document:317 - 6. Ladder Flow validation failed.
+2026-08-18 11:44:05.784 | INFO     | core.validation_engine:validate:157 - Running validator: Chronology
+2026-08-18 11:44:05.784 | INFO     | validators.chronology_validator:validate:68 - Starting chronology validation.
+2026-08-18 11:44:06.159 | INFO     | validators.chronology_validator:validate:229 - Chronology validation failed (4 issue(s)).
+2026-08-18 11:44:06.160 | INFO     | core.validation_engine:validate:195 - Validation completed (FAIL) | Passed=5, Failed=3, Warnings=0

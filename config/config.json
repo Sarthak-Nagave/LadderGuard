@@ -1,8 +1,8 @@
 {
   "config_version": "1.0.0",
-  "_description": "Core business configuration for the Operational Package Validator.",
+  "_description": "Core business configuration for the Ladder Release Validator.",
   "app": {
-    "name": "Ladder Release Validation",
+    "name": "Ladder Release Validator",
     "version": "1.0.0",
     "company_name": "Selec Controls Pvt. Ltd.",
     "organization_name": "Selec Controls Pvt. Ltd."

@@ -48,6 +48,9 @@ class ReleaseManagementWorkflowTests(unittest.TestCase):
             card["combo_ladder_release"].setCurrentText("Yes")
             card["combo_operator_modification"].setCurrentText("No")
             card["combo_automation_modification"].setCurrentText("No")
+            card["combo_prepared_by"].setCurrentText("John")
+            card["combo_checked_by"].setCurrentText("Jane")
+            card["combo_approved_by"].setCurrentText("Boss")
 
     def test_single_active_firmware_generates_chronology(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -77,13 +80,14 @@ class ReleaseManagementWorkflowTests(unittest.TestCase):
             dialog._combo_type.setCurrentText("Master")
             dialog._combo_stage.setCurrentText("Initial")
 
+            def mock_start(thread_self):
+                dialog._chronology_worker.run()
+
             with patch.object(
                 ChronologyDialog,
                 "_selected_template_path_for_card",
                 return_value=template_path,
-            ), patch("gui.chronology.chronology_dialog.QMessageBox.exec", return_value=0) as mock_exec, patch(
-                "gui.chronology.chronology_dialog.QMessageBox.clickedButton", return_value=None
-            ):
+            ), patch("gui.ui_dialogs.show_action_dialog", return_value="close"), patch("services.chronology_generator.excel_writer.subprocess.run"), patch("PySide6.QtCore.QThread.start", new=mock_start):
                 dialog._on_generate_clicked()
 
             self.assertTrue((root / "7. Chronology" / "Master" / "Initial" / "Ladder_Chronology.xlsx").exists())
@@ -137,9 +141,10 @@ class ReleaseManagementWorkflowTests(unittest.TestCase):
             dialog = ChronologyDialog(project_folder=root, validation_bin_crc_records=records)
             self._fill_required_fields(dialog)
 
-            with patch("gui.chronology.chronology_dialog.QMessageBox.exec", return_value=0), patch(
-                "gui.chronology.chronology_dialog.QMessageBox.clickedButton", return_value=None
-            ):
+            def mock_start(thread_self):
+                dialog._chronology_worker.run()
+
+            with patch("gui.ui_dialogs.show_action_dialog", return_value="close"), patch("services.chronology_generator.excel_writer.subprocess.run"), patch("PySide6.QtCore.QThread.start", new=mock_start):
                 dialog._on_generate_clicked()
 
             workbook = openpyxl.load_workbook(chronology_path)

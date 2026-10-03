@@ -3,6 +3,7 @@ services.signature_reader
 =========================
 
 Provides PDF page-level signature extraction for section-based validation.
+Uses pdfplumber for geometry/text and pypdf for widget structures.
 
 Responsibilities
 ----------------
@@ -24,7 +25,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-import fitz
+import pdfplumber
+import pypdf
 
 from exceptions.file_not_found_error import FileNotFoundValidationError
 from services.logger import LoggerService
@@ -43,7 +45,7 @@ class PageTextLine:
 
 @dataclass(slots=True, frozen=True)
 class PageTextBlock:
-    """One text block extracted from page.get_text("blocks") with coordinates."""
+    """One text block extracted with coordinates."""
 
     text: str
     x0: float
@@ -141,50 +143,54 @@ class SignatureReaderService:
             f"Inspecting PDF signatures: {file_path.name}"
         )
 
-        document = fitz.open(file_path)
-
         try:
+            reader = pypdf.PdfReader(file_path)
+            
+            # Map page index to list of signed signature rects
+            signature_rects_by_page: dict[int, list[tuple[float, float, float, float]]] = {}
+            
+            for page_index, page in enumerate(reader.pages):
+                rects: list[tuple[float, float, float, float]] = []
+                if "/Annots" in page:
+                    for annot_ref in page["/Annots"]:
+                        try:
+                            annot_obj = annot_ref.get_object()
+                            if cls._is_signature_widget(annot_obj):
+                                if cls._is_signed(annot_obj):
+                                    rect = annot_obj.get("/Rect")
+                                    if rect:
+                                        rects.append(cls._normalize_rect(rect, page))
+                        except Exception:
+                            continue
+                signature_rects_by_page[page_index] = rects
+
             snapshots: list[PageSignatureSnapshot] = []
 
-            for page_index, page in enumerate(document):
-                widgets = page.widgets()
-                signed_signature_rects: list[tuple[float, float, float, float]] = []
+            with pdfplumber.open(file_path) as pdf:
+                for page_index, page in enumerate(pdf.pages):
+                    signed_signature_rects = signature_rects_by_page.get(page_index, [])
+                    
+                    text_blocks = cls._extract_text_blocks(page)
+                    image_rects = cls._extract_image_rects(page)
+                    vector_rects = cls._extract_vector_rects(page)
+                    ocr_blocks = tuple()  # OCR removed
+                    words = cls._extract_words(page)
+                    lines = cls._extract_page_lines(page)
 
-                if widgets is not None:
-                    for widget in widgets:
-                        if getattr(widget, "field_type", None) != fitz.PDF_WIDGET_TYPE_SIGNATURE:
-                            continue
-                        if not getattr(widget, "is_signed", False):
-                            continue
-
-                        rect = getattr(widget, "rect", None)
-                        if rect is None:
-                            continue
-
-                        signed_signature_rects.append(
-                            (float(rect.x0), float(rect.y0), float(rect.x1), float(rect.y1))
+                    snapshots.append(
+                        PageSignatureSnapshot(
+                            page_number=page_index + 1,
+                            page_height=float(page.height),
+                            page_width=float(page.width),
+                            lines=lines,
+                            text_blocks=text_blocks,
+                            signed_signature_rects=tuple(signed_signature_rects),
+                            image_rects=image_rects,
+                            vector_rects=vector_rects,
+                            ocr_blocks=ocr_blocks,
+                            words=words,
                         )
-
-                text_blocks = cls._extract_text_blocks(page)
-                image_rects = cls._extract_image_rects(page)
-                vector_rects = cls._extract_vector_rects(page)
-                ocr_blocks = cls._extract_ocr_blocks(page)
-                words = cls._extract_words(page)
-
-                snapshots.append(
-                    PageSignatureSnapshot(
-                        page_number=page_index + 1,
-                        page_height=float(page.rect.height),
-                        page_width=float(page.rect.width),
-                        lines=cls._extract_page_lines(page),
-                        text_blocks=text_blocks,
-                        signed_signature_rects=tuple(signed_signature_rects),
-                        image_rects=image_rects,
-                        vector_rects=vector_rects,
-                        ocr_blocks=ocr_blocks,
-                        words=words,
                     )
-                )
 
             cls.logger.info(
                 f"Extracted signature snapshots for {len(snapshots)} page(s)."
@@ -198,9 +204,6 @@ class SignatureReaderService:
                 f"Unable to inspect signatures in '{file_path.name}'."
             ) from exc
 
-        finally:
-            document.close()
-
     @classmethod
     def read(
         cls,
@@ -210,56 +213,148 @@ class SignatureReaderService:
         return cls.read_page_snapshots(file_path)
 
     @classmethod
+    def _is_signature_widget(cls, annot_obj: dict) -> bool:
+        if annot_obj.get("/Subtype") != "/Widget":
+            return False
+        ft = annot_obj.get("/FT")
+        if ft == "/Sig":
+            return True
+        parent = annot_obj.get("/Parent")
+        while parent:
+            try:
+                parent_obj = parent.get_object()
+                if parent_obj.get("/FT") == "/Sig":
+                    return True
+                parent = parent_obj.get("/Parent")
+            except Exception:
+                break
+        return False
+
+    @classmethod
+    def _is_signed(cls, annot_obj: dict) -> bool:
+        if "/V" in annot_obj:
+            return True
+        parent = annot_obj.get("/Parent")
+        while parent:
+            try:
+                parent_obj = parent.get_object()
+                if "/V" in parent_obj:
+                    return True
+                parent = parent_obj.get("/Parent")
+            except Exception:
+                break
+        return False
+
+    @classmethod
+    def _normalize_rect(cls, annot_rect: list, page: pypdf.PageObject) -> tuple[float, float, float, float]:
+        """Normalizes a PDF /Rect into pdfplumber top-left coordinate space, respecting CropBox and Rotation."""
+        box = page.cropbox if page.cropbox else page.mediabox
+        c_left = float(box.left)
+        c_bottom = float(box.bottom)
+        c_right = float(box.right)
+        c_top = float(box.top)
+        
+        width = c_right - c_left
+        height = c_top - c_bottom
+        
+        rx0, ry0, rx1, ry1 = [float(v) for v in annot_rect]
+        
+        nx0 = rx0 - c_left
+        nx1 = rx1 - c_left
+        ny0 = ry0 - c_bottom
+        ny1 = ry1 - c_bottom
+        
+        y0 = height - ny1
+        y1 = height - ny0
+        
+        x0 = nx0
+        x1 = nx1
+        
+        rotation = page.get("/Rotate", 0)
+        if isinstance(rotation, pypdf.generic.NumberObject):
+            rotation = int(rotation)
+        else:
+            rotation = 0
+        rotation = rotation % 360
+        
+        if rotation == 90:
+            new_x0 = y0
+            new_y0 = width - x1
+            new_x1 = y1
+            new_y1 = width - x0
+            x0, y0, x1, y1 = new_x0, new_y0, new_x1, new_y1
+        elif rotation == 180:
+            new_x0 = width - x1
+            new_y0 = height - y1
+            new_x1 = width - x0
+            new_y1 = height - y0
+            x0, y0, x1, y1 = new_x0, new_y0, new_x1, new_y1
+        elif rotation == 270:
+            new_x0 = height - y1
+            new_y0 = x0
+            new_x1 = height - y0
+            new_y1 = x1
+            x0, y0, x1, y1 = new_x0, new_y0, new_x1, new_y1
+
+        return (min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1))
+
+    @classmethod
+    def _get_baseline_grouped_words(cls, page: pdfplumber.page.Page) -> list[dict]:
+        from collections import defaultdict
+        from pdfplumber.utils import extract_words
+        
+        lines_by_top = defaultdict(list)
+        for char in page.chars:
+            top_key = round(float(char.get("top", 0.0)) / 2.0) * 2.0
+            lines_by_top[top_key].append(char)
+            
+        final_words = []
+        for top_key in sorted(lines_by_top.keys()):
+            chars = lines_by_top[top_key]
+            slice_words = extract_words(chars, x_tolerance=3.0, y_tolerance=3.0)
+            final_words.extend(slice_words)
+            
+        return final_words
+
+    @classmethod
     def _extract_page_lines(
         cls,
-        page: fitz.Page,
+        page: pdfplumber.page.Page,
     ) -> tuple[PageTextLine, ...]:
         lines: list[PageTextLine] = []
-        page_dict = page.get_text("dict")
-        for block in page_dict.get("blocks", []):
-            if block.get("type") != 0:
-                continue
-            for line in block.get("lines", []):
-                spans = line.get("spans", [])
-                parts = []
-                for span in spans:
-                    text = str(span.get("text", ""))
-                    if text:
-                        parts.append(text)
-                merged = "".join(parts).strip()
-                if not merged:
-                    continue
-                bbox = line.get("bbox", (0.0, 0.0, 0.0, 0.0))
-                x0 = float(bbox[0]) if len(bbox) >= 1 else 0.0
-                x1 = float(bbox[2]) if len(bbox) >= 3 else x0
-                y0 = float(bbox[1]) if len(bbox) >= 2 else 0.0
-                y1 = float(bbox[3]) if len(bbox) >= 4 else y0
-                lines.append(PageTextLine(text=merged, x0=x0, x1=x1, y0=y0, y1=y1))
+        words = cls._get_baseline_grouped_words(page)
+        
+        from collections import defaultdict
+        grouped_by_top = defaultdict(list)
+        for w in words:
+            grouped_by_top[w['top']].append(w)
+            
+        for top_key in sorted(grouped_by_top.keys()):
+            line_words = grouped_by_top[top_key]
+            line_words.sort(key=lambda w: w['x0'])
+            text = " ".join(w['text'] for w in line_words)
+            x0 = min(w['x0'] for w in line_words)
+            x1 = max(w['x1'] for w in line_words)
+            y0 = min(w['top'] for w in line_words)
+            y1 = max(w['bottom'] for w in line_words)
+            lines.append(PageTextLine(text=text, x0=x0, x1=x1, y0=y0, y1=y1))
+            
         return tuple(lines)
 
     @classmethod
     def _extract_text_blocks(
         cls,
-        page: fitz.Page,
+        page: pdfplumber.page.Page,
     ) -> tuple[PageTextBlock, ...]:
-        """Extract text blocks from page.get_text('blocks') exactly as required by role parser."""
         blocks: list[PageTextBlock] = []
-        for raw in page.get_text("blocks"):
-            if len(raw) < 7:
-                continue
-            x0, y0, x1, y1, text, _block_no, block_type = raw[:7]
-            if int(block_type) != 0:
-                continue
-            merged = str(text or "").strip()
-            if not merged:
-                continue
+        for line in cls._extract_page_lines(page):
             blocks.append(
                 PageTextBlock(
-                    text=merged,
-                    x0=float(x0),
-                    y0=float(y0),
-                    x1=float(x1),
-                    y1=float(y1),
+                    text=line.text,
+                    x0=line.x0,
+                    y0=line.y0,
+                    x1=line.x1,
+                    y1=line.y1,
                 )
             )
         return tuple(blocks)
@@ -267,87 +362,56 @@ class SignatureReaderService:
     @classmethod
     def _extract_image_rects(
         cls,
-        page: fitz.Page,
+        page: pdfplumber.page.Page,
     ) -> tuple[tuple[float, float, float, float], ...]:
         image_rects: list[tuple[float, float, float, float]] = []
-        for raw in page.get_text("blocks"):
-            if len(raw) < 7:
-                continue
-            x0, y0, x1, y1, _text, _block_no, block_type = raw[:7]
-            if int(block_type) != 1:
-                continue
-            image_rects.append((float(x0), float(y0), float(x1), float(y1)))
+        for img in page.images:
+            x0 = float(img.get("x0", 0.0))
+            x1 = float(img.get("x1", 0.0))
+            y0 = float(img.get("top", 0.0))
+            y1 = float(img.get("bottom", 0.0))
+            image_rects.append((x0, y0, x1, y1))
         return tuple(image_rects)
 
     @classmethod
     def _extract_vector_rects(
         cls,
-        page: fitz.Page,
+        page: pdfplumber.page.Page,
     ) -> tuple[tuple[float, float, float, float], ...]:
         vector_rects: list[tuple[float, float, float, float]] = []
-        try:
-            drawings: list[dict[str, Any]] = page.get_drawings()
-        except Exception:
-            return tuple(vector_rects)
-
-        for drawing in drawings:
-            rect = drawing.get("rect")
-            if rect is None:
-                continue
-            vector_rects.append((float(rect.x0), float(rect.y0), float(rect.x1), float(rect.y1)))
+        for rect in page.rects:
+            x0 = float(rect.get("x0", 0.0))
+            x1 = float(rect.get("x1", 0.0))
+            y0 = float(rect.get("top", 0.0))
+            y1 = float(rect.get("bottom", 0.0))
+            vector_rects.append((x0, y0, x1, y1))
+        for rect in page.lines:
+            x0 = float(rect.get("x0", 0.0))
+            x1 = float(rect.get("x1", 0.0))
+            y0 = float(rect.get("top", 0.0))
+            y1 = float(rect.get("bottom", 0.0))
+            vector_rects.append((x0, y0, x1, y1))
+        for curve in page.curves:
+            x0 = float(curve.get("x0", 0.0))
+            x1 = float(curve.get("x1", 0.0))
+            y0 = float(curve.get("top", 0.0))
+            y1 = float(curve.get("bottom", 0.0))
+            vector_rects.append((x0, y0, x1, y1))
         return tuple(vector_rects)
-
-    @classmethod
-    def _extract_ocr_blocks(
-        cls,
-        page: fitz.Page,
-    ) -> tuple[PageOcrBlock, ...]:
-        """Try OCR extraction for scanned/signature-like text; returns empty when OCR backend is unavailable."""
-        ocr_blocks: list[PageOcrBlock] = []
-        try:
-            text_page = page.get_textpage_ocr(dpi=150)
-            raw_blocks = text_page.extractBLOCKS()
-        except Exception:
-            return tuple(ocr_blocks)
-
-        for raw in raw_blocks:
-            if len(raw) < 5:
-                continue
-            x0, y0, x1, y1, text = raw[:5]
-            merged = str(text or "").strip()
-            if not merged:
-                continue
-            ocr_blocks.append(
-                PageOcrBlock(
-                    text=merged,
-                    x0=float(x0),
-                    y0=float(y0),
-                    x1=float(x1),
-                    y1=float(y1),
-                )
-            )
-        return tuple(ocr_blocks)
 
     @classmethod
     def _extract_words(
         cls,
-        page: fitz.Page,
+        page: pdfplumber.page.Page,
     ) -> tuple[PageWord, ...]:
         words: list[PageWord] = []
-        for raw in page.get_text("words"):
-            if len(raw) < 5:
+        for word in cls._get_baseline_grouped_words(page):
+            text = word.get("text", "").strip()
+            if not text:
                 continue
-            x0, y0, x1, y1, text = raw[:5]
-            token = str(text or "").strip()
-            if not token:
-                continue
-            words.append(
-                PageWord(
-                    text=token,
-                    x0=float(x0),
-                    y0=float(y0),
-                    x1=float(x1),
-                    y1=float(y1),
-                )
-            )
+            x0 = float(word.get("x0", 0.0))
+            x1 = float(word.get("x1", 0.0))
+            y0 = float(word.get("top", 0.0))
+            y1 = float(word.get("bottom", 0.0))
+            words.append(PageWord(text=text, x0=x0, y0=y0, x1=x1, y1=y1))
         return tuple(words)
